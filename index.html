@@ -608,7 +608,9 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
-<p>This hotspot type contains an array called <code class="prettyprint">products</code> containing one or more products. The <code class="prettyprint">&quot;stub&quot;: &quot;true&quot;</code> flag means this is a &ldquo;stub&rdquo; product and more information about this product has to be retrieved from the <a href="#product">products api</a>. For now only &ldquo;stub&rdquo; products are supported.</p>
+<p>This hotspot type contains an array called <code class="prettyprint">products</code> containing one or more products.</p>
+
+<p>The <code class="prettyprint">&quot;stub&quot;: &quot;true&quot;</code> flag means this is a &ldquo;stub&rdquo; product and more information about this product has to be retrieved from the <a href="#product">products api</a>. For now only &ldquo;stubbed&rdquo; products are supported.</p>
 
 <table><thead>
 <tr>
@@ -647,6 +649,22 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
 </span><span class="p">}</span><span class="w">
 </span></pre>
 <p>Link to an (external) url. Can also be used for custom application schemes on mobile devices.</p>
+
+<p>Internal link to a page, page numbers start at 1.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>Can be an url to a site or <strong>app</strong> (appName://)</td>
+</tr>
+</tbody></table>
 
 <h2 id="page-link-(pagereference)">Page link (pageReference)</h2>
 <pre class="highlight json"><span class="p">{</span><span class="w">
