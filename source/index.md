@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - json
+  - shell
 
 toc_footers:
  - <a href='https://publitas.com'>Publitas.com</a>
@@ -57,15 +57,21 @@ Instances where size attributes have to be added to the url are documented accor
 
 # Publications
 
+```shell
+# This will retrieve all publications for a group:
+curl "https://api.publitas.com/v1/groups/example-blokker/publications.json"
+```
+> The above command returns JSON structured like this:
+
 ``` json
 [
   {
     "id" : 1,
-    "slug" : "Test publication",
-    "title" : "Test",
+    "slug" : "example_publication",
+    "title" : "Blokker example publication",
     "browserTitle" : "Custom title",
     "onlineAt" : "2013-09-11T10:19:41.000+02:00",
-    "url" : "https://api.publitas.com/api/v1/groups/test/publications/test.json"
+    "url" : "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
   }
 ]
 ```
@@ -94,6 +100,12 @@ The JSON response returns a list of publications with the following attributes.
 
 # Publication
 
+```shell
+# This will retrieve a single publication for a group:
+curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
+```
+> The above command returns JSON structured like this:
+
 
 ``` json
 {
@@ -110,7 +122,7 @@ The url for a publication is (appended to the base path)
 
 A complete path looks like:
 
-`https://api.publitas.com/v1/groups/example-blokker/publications/blokker-folder.json`
+`https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json`
 
 This endpoint returns a JSON object, we'll go into the details of this response below.
 
@@ -496,9 +508,16 @@ For now only YouTube is supported, the `youtubeId` can be used in embed code, or
 
 # Product
 
+```shell
+# This will retrieve a single product for a publication:
+curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json"
+```
+> The above command returns JSON structured like this:
+
+
 ``` json
 {
-  "id": 49851,
+  "id": 49836,
   "hotspotId": 138648,
   "title": "Sola wok Ø 28 cm Luna Green & Healthy",
   "description": "Deze duurzaam geproduceerde wok heeft een keramische krasvaste bodem.",
@@ -521,7 +540,7 @@ The url for a product is (appended to the base path)
 
 A complete path looks like:
 
-`https://api.publitas.com/v1/groups/example-blokker/publications/blokker-folder/products/1.json`
+`https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json`
 
 The JSON response returns a product with the following attributes.
 
