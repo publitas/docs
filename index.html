@@ -42,15 +42,7 @@
           
             
               
-                'shell',
-              
-            
-              
-                'ruby',
-              
-            
-              
-                'python',
+                'json',
               
             
           
@@ -67,7 +59,7 @@
       
       <ul class="toc-footer">
         
-          <li><a href='#'>Sign Up for a Developer Key</a></li>
+          <li><a href='https://publitas.com'>Publitas.com</a></li>
         
           <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         
@@ -78,99 +70,749 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the Publitas public API documentation. This api can be used to retrieve publication data for usage in mobile apps, sites and other integrations.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h1 id="version">Version</h1>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>Our api is currently on version 1.</p>
 
 <h1 id="authentication">Authentication</h1>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Our public api doesn&rsquo;t require authentication.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+<h1 id="formats">Formats</h1>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</pre><pre class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>Currently we only support JSON requests.</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<h1 id="paths">Paths</h1>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>The base path of an API request is: <code class="prettyprint">https://api.publitas.com/v1/</code></p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p>An example of a complete path is:</p>
+
+<p><code class="prettyprint">https://api.publitas.com/v1/groups/example-blokker/publications.json</code></p>
+
+<h1 id="images">Images</h1>
+<pre class="highlight json"><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"photoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/1230/10323/photos/22js92ksasfhhj2l"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Images and other assets are served from: <code class="prettyprint">https://view.publitas.com</code>. Image paths returned from the api are all relative to this base pat and all images are returned as <code class="prettyprint">jpg</code> files.</p>
+
+<p>A photoUrl returned from the api has to be concatenated to</p>
+
+<p><code class="prettyprint">https://view.publitas.com/1230/10323/photos/22js92ksasfhhj2l-within1000.jpg</code></p>
+
+<p>where <code class="prettyprint">-within1000.jpg</code> is dependent on the type of image.</p>
 
 <p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
+Instances where size attributes have to be added to the url are documented accordingly.
 </aside></p>
 
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</pre><pre class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
+<h1 id="publications">Publications</h1>
 <pre class="highlight json"><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test publication"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"browserTitle"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom title"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"onlineAt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-09-11T10:19:41.000+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/api/v1/groups/test/publications/test.json"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></pre>
-<p>This endpoint retrieves all kittens.</p>
+<p>The url for a publication is (appended to the base path)</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<p><code class="prettyprint">/groups/&lt;group_slug&gt;/publications.json</code></p>
 
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
+<p>A complete path looks like:</p>
 
-<h3 id="query-parameters">Query Parameters</h3>
+<p><code class="prettyprint">https://api.publitas.com/v1/groups/example-blokker/publications.json</code></p>
+
+<p>The JSON response returns a list of publications with the following attributes.</p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>id</td>
+<td>Integer</td>
+<td>Publication id</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>slug</td>
+<td>String</td>
+<td>Publication slug (used in path for api)</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Publication title</td>
+</tr>
+<tr>
+<td>browserTitle</td>
+<td>String</td>
+<td>Publication browser title (can differ from title)</td>
+</tr>
+<tr>
+<td>onlineAt</td>
+<td>String</td>
+<td>Timestamp of moment publication was published</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>Url to the publication data json</td>
+</tr>
+</tbody></table>
+
+<h1 id="publication">Publication</h1>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"sizes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"spreads"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>The url for a publication is (appended to the base path)</p>
+
+<p><code class="prettyprint">/groups/&lt;group_slug&gt;/publications/&lt;publication_slug&gt;.json</code></p>
+
+<p>A complete path looks like:</p>
+
+<p><code class="prettyprint">https://api.publitas.com/v1/groups/example-blokker/publications/blokker-folder.json</code></p>
+
+<p>This endpoint returns a JSON object, we&rsquo;ll go into the details of this response below.</p>
+
+<h2 id="sizes">Sizes</h2>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"sizes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"original"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">2748.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">3274.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"at200"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">183.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">218.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"at600"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">549.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">654.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"at800"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">732.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">873.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"at1000"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">916.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">1091.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"at1200"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">1099.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">1309.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"at1600"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">1465.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">1746.0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Contains a hash of the resolutions we have images for. Each resolution contains the width and height of that image.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>width</td>
+<td>Integer</td>
+<td>Width in pixels</td>
+</tr>
+<tr>
+<td>height</td>
+<td>Integer</td>
+<td>Height in pixels</td>
+</tr>
+</tbody></table>
+
+<h2 id="config">Config</h2>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"publicationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10323</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"publicationTitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example - Blokker - Blokker Example"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Publitas - Marketing afd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"relativeSize"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.935774</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"downloadPdfUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/1230/10323/pdfs/1d9c2a58af4317ab870f8d4e125c8d664c7369a1.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"disableFeedback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"disableBranding"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"showPrintButton"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currencySymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"€"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"styling"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"call_to_action_button_background_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#51a8d6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"call_to_action_button_text_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#f0f9ff"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>This contains the configuration of the reader.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>publicationId</td>
+<td>Integer</td>
+<td>Unique ID of the publication</td>
+</tr>
+<tr>
+<td>publicationTitle</td>
+<td>String</td>
+<td>Title of the publication</td>
+</tr>
+<tr>
+<td>customerName</td>
+<td>String</td>
+<td>Customer / Company name</td>
+</tr>
+<tr>
+<td>relativeSize</td>
+<td>Float</td>
+<td>Indicating the relative size between the width/height of the images</td>
+</tr>
+<tr>
+<td>locale</td>
+<td>String</td>
+<td>Locale of the publication, used for the translation hash</td>
+</tr>
+<tr>
+<td>language</td>
+<td>String</td>
+<td>Language of the publication</td>
+</tr>
+<tr>
+<td>downloadPdfUrl</td>
+<td>String</td>
+<td>Relative url to the PDF, can be null if download is disabled</td>
+</tr>
+<tr>
+<td>disableFeedback</td>
+<td>Boolean</td>
+<td>Disable feedback tab</td>
+</tr>
+<tr>
+<td>disableBranding</td>
+<td>Boolean</td>
+<td>Disable Publitas.com branding</td>
+</tr>
+<tr>
+<td>showPrintButton</td>
+<td>Boolean</td>
+<td>Show print button</td>
+</tr>
+<tr>
+<td>currencySymbol</td>
+<td>String</td>
+<td>Currency symbol, used in product pop-up</td>
+</tr>
+<tr>
+<td>styling</td>
+<td>Hash</td>
+<td>Hash containing Call To Action (CTA) button styling, described below</td>
+</tr>
+</tbody></table>
+
+<p>Styling:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">call_to_action_button_background_color</code></td>
+<td>CSS/Hex</td>
+<td>Color of the cta button background</td>
+</tr>
+<tr>
+<td><code class="prettyprint">call_to_action_button_text_color</code></td>
+<td>CSS/Hex</td>
+<td>Color of the cta button text</td>
+</tr>
+</tbody></table>
+
+<h2 id="spreads">Spreads</h2>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"spreads"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"/1230/10323/pages/d02b493028db893d159038587a6ed2c792aa0545"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"hotspots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"/1230/10323/pages/b6d66056b3c9bab5332033ce401ec1f9549b5e8a"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"/1230/10323/pages/461fbe1e5cd35d99f13ab501b256f155205db094"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"/1230/10323/pages/b6d66056b3c9bab5332033ce401ec1f9549b5e8a"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Spreads are the core of a Publitas publication. They contain information about the page images and hotspots.</p>
+
+<p>In general all spreads contain two pages, but there are two exceptions.</p>
+
+<ul>
+<li>The first spread always contains a single page and should ideally be displayed on the right side.</li>
+<li>The last spread can contain one or two pages. If only one page is returned, it should ideally be displayed on the left side.</li>
+</ul>
+
+<p>If hotspots are present for a page the <code class="prettyprint">&quot;hotspots&quot;</code> attribute is set. Otherwise the spread doesn&rsquo;t contain a <code class="prettyprint">&quot;hotspots&quot;</code> attribute.</p>
+
+<p>See <a href="#hotspots">Hotspots</a> for more information.</p>
+
+<h2 id="translations">Translations</h2>
+<pre class="highlight json"><span class="s2">"translations"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"loading"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loading..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"zero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No pages"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"one"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{count} page"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{count} pages"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Page"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"menu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Menu"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"hotspot"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"tooltip"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"external"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Go to website"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Go to page {page}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"cta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"video"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Watch video"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"cta_webshop"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Go to webshop"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cta_add_to_cart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Add to cart"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"more_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"More info"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount_in_cart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{items} in your cart."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"video"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Video"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Extra images"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"share"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Share this on Facebook,\nTwitter or via email."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Give us feedback"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Type feedback here..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"submit_button"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send feedback"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"submit_button_short"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Feedback successfully sent."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unable to send feedback at this moment."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"greetings_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email_placeholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Email address (optional)"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We will only use your email address to contact you if we have any questions about your feedback. We promise not to spam you or share your email address with anyone else."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"spread_overview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Page overview"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pdf_download"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Download PDF"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"leave_iframe"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open in new window"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"shopping_cart"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"adding_item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item added to cart."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Proceed to Checkout"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shopping cart"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"no_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no image"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"zero"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your cart is empty."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"one"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{count} item in your cart."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{count} items in your cart."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"zoom_in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zoom in"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zoom_out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zoom out"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"print"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Print"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Depending on the chosen language in the publication edit and group &ldquo;localisation and branding&rdquo; forms, translation strings for the reader are included at the end of the data json.</p>
+
+<h1 id="hotspots">Hotspots</h1>
+
+<p>Hotspots are generated in the hotspot editor.
+Currently we support four kinds of hotspots:</p>
+
+<ul>
+<li>Product</li>
+<li>Link</li>
+<li>Page link</li>
+<li>Video</li>
+</ul>
+
+<h2 id="generic-hotspot-data:">Generic hotspot data:</h2>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">138622</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"showIndication"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.02933</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.31527</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48241</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.31035</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconLeft"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.85627</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconTop"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.28</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Hotspots of all types return at least this data.
+It contains the hotspot id, title and type. But also data on where the hotspot is positioned on the page.</p>
+
+<h3 id="fields">Fields</h3>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Specific hotspot id</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String (optional)</td>
+<td>Hotspot title</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Hotspot type</td>
+</tr>
+<tr>
+<td>showIndication</td>
+<td>Boolean</td>
+<td>If set to true, hotspot indication should be shown,</td>
+</tr>
+<tr>
+<td>position</td>
+<td>Hash</td>
+<td>Hash containing position information,</td>
+</tr>
+</tbody></table>
+
+<h3 id="position-information">Position information</h3>
+
+<p>Position of the hotspots is calculated from the top-left of a spread.
+The value is a float from 0 to 1, where 0 is left and 1 is the right side of the spread. The same goes for top where 0 is top and 1 is bottom of the spread.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>left</td>
+<td>Float</td>
+<td>Left position of the hotspot within the spread</td>
+</tr>
+<tr>
+<td>top</td>
+<td>Float</td>
+<td>Top position of the hotspot within the spread</td>
+</tr>
+<tr>
+<td>width</td>
+<td>Float</td>
+<td>Width of the hotspot</td>
+</tr>
+<tr>
+<td>height</td>
+<td>Float</td>
+<td>Height of the hotspot</td>
+</tr>
+<tr>
+<td>iconLeft</td>
+<td>Float</td>
+<td>Left position (within the hotspot) of the indicator</td>
+</tr>
+<tr>
+<td>iconTop</td>
+<td>Float</td>
+<td>Top position (within the hotspot) of the indicator</td>
+</tr>
+</tbody></table>
+
+<p>For each hotspot we add additional data to the hotspot hash, here&rsquo;s an overview of all types.</p>
+
+<h2 id="product-(product)">Product (product)</h2>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">138622</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"showIndication"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.02933</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.31527</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48241</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.31035</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconLeft"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.85627</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconTop"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.28</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49821</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"stub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>This hotspot type contains an array called <code class="prettyprint">products</code> containing one or more products. The <code class="prettyprint">&quot;stub&quot;: &quot;true&quot;</code> flag means this is a &ldquo;stub&rdquo; product and more information about this product has to be retrieved from the <a href="/docs/products/">products api</a>. For now only &ldquo;stub&rdquo; products are supported.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Int</td>
+<td>Id of the product, can be used to retrieve additional information</td>
+</tr>
+<tr>
+<td>stub</td>
+<td>Bool</td>
+<td>Wether more information has to be retrieved, currently only true is supported</td>
+</tr>
+</tbody></table>
+
+<h2 id="link-(externallink)">Link (externalLink)</h2>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">173114</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visit Google"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"externalLink"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"showIndication"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.04874</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.27657</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.37184</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.32779</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconLeft"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconTop"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://google.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Link to an (external) url. Can also be used for custom application schemes on mobile devices.</p>
+
+<h2 id="page-link-(pagereference)">Page link (pageReference)</h2>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">173113</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Go to page 2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pageReference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"showIndication"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.42419</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03329</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34657</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.18566</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconLeft"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconTop"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pageNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Internal link to a page, page numbers start at 1.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pageNumber</td>
+<td>Int</td>
+<td>Reference to page number in the publication</td>
+</tr>
+</tbody></table>
+
+<h2 id="video-(video)">Video (video)</h2>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">173115</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Watch this video!"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"video"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"showIndication"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.52708</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.28297</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.38989</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.31754</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconLeft"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iconTop"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"youtubeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gLDYtH1RH-U"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>For now only YouTube is supported, the <code class="prettyprint">youtubeId</code> can be used in embed code, or to generate a link to YouTube.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>youtubeId</td>
+<td>String</td>
+<td>YouTube video ID</td>
+</tr>
+</tbody></table>
+
+<h1 id="product">Product</h1>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49851</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"hotspotId"</span><span class="p">:</span><span class="w"> </span><span class="mi">138648</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sola wok Ø 28 cm Luna Green &amp; Healthy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deze duurzaam geproduceerde wok heeft een keramische krasvaste bodem."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">24.99</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"webshopIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2104282"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"webshopUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://webshop.com/product/2104282"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"photoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/1230/10323/photos/22js92ksasfhhj2l"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">440.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">440.0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>The url for a product is (appended to the base path)</p>
+
+<p><code class="prettyprint">/groups/&lt;group_slug&gt;/publications/&lt;publication_slug&gt;/products/&lt;product_id&gt;.json</code></p>
+
+<p>A complete path looks like:</p>
+
+<p><code class="prettyprint">https://api.publitas.com/v1/groups/example-blokker/publications/blokker-folder/products/1.json</code></p>
+
+<p>The JSON response returns a product with the following attributes.</p>
+
+<p>Where <code class="prettyprint">id</code> is the product id from the <code class="prettyprint">data.json</code></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Product id</td>
+</tr>
+<tr>
+<td>hotspotId</td>
+<td>Integer</td>
+<td>Id of the related hotspot</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Product title</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Product description</td>
+</tr>
+<tr>
+<td>price</td>
+<td>Float</td>
+<td>Product price</td>
+</tr>
+<tr>
+<td>webshopIdentifier</td>
+<td>String</td>
+<td>Product id from the webshop</td>
+</tr>
+<tr>
+<td>webshopUrl</td>
+<td>String</td>
+<td>Direct link to the product on the webshop</td>
+</tr>
+<tr>
+<td>photos</td>
+<td>Array</td>
+<td>Array of product photos containing 0 - 6 photos</td>
+</tr>
+</tbody></table>
+
+<p>The photos array contains 0 to 6 photos with the following attributes. The <code class="prettyprint">photoUrl</code> field returns a relative base path to the image. After this pase path two options are available for the complete link.</p>
+
+<ul>
+<li>-at200.jpg - a thumbnail of 200x200 px</li>
+<li>-within1000.jpg - image with a <em>maximum</em> width/height of 1000 px.</li>
+</ul>
+
+<p>In the example below the full photo url wil become:</p>
+
+<p><code class="prettyprint">https://view.publitas.com/1230/10323/photos/22js92ksasfhhj2l-at200.png</code></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>photoUrl</td>
+<td>String</td>
+<td>(Relative) link to product image base path</td>
+</tr>
+<tr>
+<td>width</td>
+<td>Integer</td>
+<td>Width of the image</td>
+</tr>
+<tr>
+<td>height</td>
+<td>Integer</td>
+<td>Height of the image</td>
 </tr>
 </tbody></table>
 
@@ -178,50 +820,7 @@ You must replace <code class="prettyprint">meowmeowmeow</code> with your persona
 Remember — a happy kitten is an authenticated kitten!
 </aside></p>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre><pre class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
 <p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
-</tr>
-</tbody></table>
 
 <h1 id="errors">Errors</h1>
 
@@ -234,40 +833,20 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; The path or document could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access the api with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
 <td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
 <td>418</td>
 <td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
 </tr>
 <tr>
 <td>500</td>
@@ -285,15 +864,7 @@ Remember — a happy kitten is an authenticated kitten!
           
             
               
-                <a href="#" data-language-name="shell">shell</a>
-              
-            
-              
-                <a href="#" data-language-name="ruby">ruby</a>
-              
-            
-              
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="json">json</a>
               
             
           
