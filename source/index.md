@@ -418,7 +418,9 @@ For each hotspot we add additional data to the hotspot hash, here's an overview 
 }
 ```
 
-This hotspot type contains an array called `products` containing one or more products. The `"stub": "true"` flag means this is a "stub" product and more information about this product has to be retrieved from the [products api](#product). For now only "stub" products are supported.
+This hotspot type contains an array called `products` containing one or more products.
+
+The `"stub": "true"` flag means this is a "stub" product and more information about this product has to be retrieved from the [products api](#product). For now only "stubbed" products are supported.
 
 
 | Field    | Type  | Description         |
@@ -448,6 +450,12 @@ This hotspot type contains an array called `products` containing one or more pro
 ```
 
 Link to an (external) url. Can also be used for custom application schemes on mobile devices.
+
+Internal link to a page, page numbers start at 1.
+
+| Field    | Type  | Description         |
+| -------- | ----- | ------------------- |
+| url | String   | Can be an url to a site or __app__ (appName://) |
 
 
 ## Page link (pageReference)
