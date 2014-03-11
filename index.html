@@ -72,19 +72,19 @@
 
 <p>Welcome to the Publitas public API documentation. This api can be used to retrieve publication data for usage in mobile apps, sites and other integrations.</p>
 
-<h1 id="version">Version</h1>
+<h3 id="version">Version</h3>
 
 <p>Our api is currently on version 1.</p>
 
-<h1 id="authentication">Authentication</h1>
+<h3 id="authentication">Authentication</h3>
 
 <p>Our public api doesn&rsquo;t require authentication.</p>
 
-<h1 id="formats">Formats</h1>
+<h3 id="formats">Formats</h3>
 
 <p>Currently we only support JSON requests.</p>
 
-<h1 id="paths">Paths</h1>
+<h3 id="paths">Paths</h3>
 
 <p>The base path of an API request is: <code class="prettyprint">https://api.publitas.com/v1/</code></p>
 
@@ -92,7 +92,7 @@
 
 <p><code class="prettyprint">https://api.publitas.com/v1/groups/example-blokker/publications.json</code></p>
 
-<h1 id="images">Images</h1>
+<h3 id="images">Images</h3>
 <pre class="highlight json"><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"photoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/1230/10323/photos/22js92ksasfhhj2l"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -596,7 +596,7 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
-<p>This hotspot type contains an array called <code class="prettyprint">products</code> containing one or more products. The <code class="prettyprint">&quot;stub&quot;: &quot;true&quot;</code> flag means this is a &ldquo;stub&rdquo; product and more information about this product has to be retrieved from the <a href="/docs/products/">products api</a>. For now only &ldquo;stub&rdquo; products are supported.</p>
+<p>This hotspot type contains an array called <code class="prettyprint">products</code> containing one or more products. The <code class="prettyprint">&quot;stub&quot;: &quot;true&quot;</code> flag means this is a &ldquo;stub&rdquo; product and more information about this product has to be retrieved from the <a href="#product">products api</a>. For now only &ldquo;stub&rdquo; products are supported.</p>
 
 <table><thead>
 <tr>
