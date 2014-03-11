@@ -13,19 +13,19 @@ toc_footers:
 
 Welcome to the Publitas public API documentation. This api can be used to retrieve publication data for usage in mobile apps, sites and other integrations.
 
-# Version
+### Version
 
 Our api is currently on version 1.
 
-# Authentication
+### Authentication
 
 Our public api doesn't require authentication.
 
-# Formats
+### Formats
 
 Currently we only support JSON requests.
 
-# Paths
+### Paths
 
 The base path of an API request is: `https://api.publitas.com/v1/`
 
@@ -33,7 +33,7 @@ An example of a complete path is:
 
 `https://api.publitas.com/v1/groups/example-blokker/publications.json`
 
-# Images
+### Images
 
 ``` json
   {
