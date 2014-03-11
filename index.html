@@ -42,7 +42,7 @@
           
             
               
-                'json',
+                'shell',
               
             
           
@@ -110,14 +110,20 @@ Instances where size attributes have to be added to the url are documented accor
 </aside></p>
 
 <h1 id="publications">Publications</h1>
+<pre class="highlight shell"><span class="c"># This will retrieve all publications for a group:</span>
+curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/publications.json"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
 <pre class="highlight json"><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"slug"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test publication"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"example_publication"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Blokker example publication"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"browserTitle"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom title"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"onlineAt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-09-11T10:19:41.000+02:00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/api/v1/groups/test/publications/test.json"</span><span class="w">
+    </span><span class="s2">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></pre>
@@ -171,6 +177,12 @@ Instances where size attributes have to be added to the url are documented accor
 </tbody></table>
 
 <h1 id="publication">Publication</h1>
+<pre class="highlight shell"><span class="c"># This will retrieve a single publication for a group:</span>
+curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this, we&rsquo;ll describe the individual parts below:</p>
+</blockquote>
 <pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"sizes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
   </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
@@ -184,7 +196,7 @@ Instances where size attributes have to be added to the url are documented accor
 
 <p>A complete path looks like:</p>
 
-<p><code class="prettyprint">https://api.publitas.com/v1/groups/example-blokker/publications/blokker-folder.json</code></p>
+<p><code class="prettyprint">https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json</code></p>
 
 <p>This endpoint returns a JSON object, we&rsquo;ll go into the details of this response below.</p>
 
@@ -703,8 +715,14 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
 </tbody></table>
 
 <h1 id="product">Product</h1>
+<pre class="highlight shell"><span class="c"># This will retrieve a single publication for a group:</span>
+curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this, we&rsquo;ll describe the individual parts below:</p>
+</blockquote>
 <pre class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49851</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49836</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hotspotId"</span><span class="p">:</span><span class="w"> </span><span class="mi">138648</span><span class="p">,</span><span class="w">
   </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sola wok Ø 28 cm Luna Green &amp; Healthy"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deze duurzaam geproduceerde wok heeft een keramische krasvaste bodem."</span><span class="p">,</span><span class="w">
@@ -726,7 +744,7 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
 
 <p>A complete path looks like:</p>
 
-<p><code class="prettyprint">https://api.publitas.com/v1/groups/example-blokker/publications/blokker-folder/products/1.json</code></p>
+<p><code class="prettyprint">https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json</code></p>
 
 <p>The JSON response returns a product with the following attributes.</p>
 
@@ -858,7 +876,7 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
           
             
               
-                <a href="#" data-language-name="json">json</a>
+                <a href="#" data-language-name="shell">shell</a>
               
             
           
