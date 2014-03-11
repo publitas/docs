@@ -555,13 +555,6 @@ In the example below the full photo url wil become:
 | height        | Integer     | Height of the image |
 
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
-
 # Errors
 
 The Kittn API uses the following error codes:
