@@ -220,7 +220,9 @@ Styling:
 | `call_to_action_button_background_color` | CSS/Hex   | Color of the cta button background |
 | `call_to_action_button_text_color`       | CSS/Hex   | Color of the cta button text |
 
-
+<aside class="notice">
+  Additional fields could be added to the configuration, they are meant to influcence our HTML reader, but can also be used in your implementation. These fields will not be removed without incrementing the API version.
+</aside>
 ## Spreads
 
 ```json
