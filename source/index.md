@@ -260,6 +260,18 @@ If hotspots are present for a page the `"hotspots"` attribute is set. Otherwise 
 
 See [Hotspots](#hotspots) for more information.
 
+### Images
+The photos pages array contains 1 or 2 paths to page images. After the base path and this path, a number of options are available for the complete link.
+
+* -at200.jpg
+* -at600.jpg
+* -at800.jpg
+* -at1000.jpg
+* -at1200.jpg
+* -at1600.jpg
+
+A full page image path would look like: `https://view.publitas.com/1230/10323/pages/b6d66056b3c9bab5332033ce401ec1f9549b5e8a-at200.jpg`
+
 ## Translations
 
 ``` json
