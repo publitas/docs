@@ -16,7 +16,7 @@ This API can be used to customize some behaviors in the Publitas.com catalog vie
 
 ## Getting Started
 
-```
+``` javascript
 window.viewerReady = function (api, platform) {
   switch(platform)
 };
@@ -32,7 +32,7 @@ The arguments passed to this function are
 
 ## Targeting Different Devices
 
-```
+``` javascript
 window.viewerReady = function (api, platform) {
   switch (platform) {
     case "desktop":
@@ -52,7 +52,7 @@ By default, customizations are applied to all device categories. This example sh
 
 ## Custom Home Button Action
 
-```
+``` javascript
 window.viewerReady = function (api, platform) {
   api.setHomeButtonAction("http://your.custom.url");
 
@@ -68,7 +68,7 @@ Using the `setHomeButtonAction(action)` you can specify a custom action when the
 
 ## Custom Product Action
 
-```
+``` javascript
 window.viewerReady = function (api, platform) {
   api.setProductAction(function (product) {
     // do something here
@@ -93,7 +93,7 @@ Using the `setProductAction(action)` you can specify a custom action when the us
 
 ## Custom Product CTA
 
-```
+``` javascript
 window.viewerReady = function (api, platform) {
   api.setProductCtaAction(function (webshopUrl) {
     // do something here
@@ -106,7 +106,7 @@ Using the `setProductCtaAction(action)` you can specify a custom action when the
 
 ## Custom Link Action
 
-```
+``` javascript
 window.viewerReady = function (api, platform) {
   api.setLinkAction(function (url) {
     // do something here
