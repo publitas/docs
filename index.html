@@ -70,15 +70,15 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Publitas public API documentation. This api can be used to retrieve publication data for usage in mobile apps, sites and other integrations.</p>
+<p>Welcome to the Publitas public API documentation. This API can be used to retrieve publication data for usage in mobile apps, sites and other integrations.</p>
 
 <h3 id="version">Version</h3>
 
-<p>Our api is currently on version 1.</p>
+<p>Our API is currently on version 1.</p>
 
 <h3 id="authentication">Authentication</h3>
 
-<p>Our public api doesn&rsquo;t require authentication.</p>
+<p>Our public API doesn&rsquo;t require authentication.</p>
 
 <h3 id="formats">Formats</h3>
 
@@ -97,9 +97,9 @@
     </span><span class="s2">"photoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/1230/10323/photos/22js92ksasfhhj2l"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></pre>
-<p>Images and other assets are served from: <code class="prettyprint">https://view.publitas.com</code>. Image paths returned from the api are all relative to this base pat and all images are returned as <code class="prettyprint">jpg</code> files.</p>
+<p>Images and other assets are served from: <code class="prettyprint">https://view.publitas.com</code>. Image paths returned from the API are all relative to this base pat and all images are returned as <code class="prettyprint">jpg</code> files.</p>
 
-<p>A photoUrl returned from the api has to be concatenated to</p>
+<p>A photoUrl returned from the API has to be concatenated to</p>
 
 <p><code class="prettyprint">https://view.publitas.com/1230/10323/photos/22js92ksasfhhj2l-within1000.jpg</code></p>
 
@@ -152,7 +152,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 <tr>
 <td>slug</td>
 <td>String</td>
-<td>Publication slug (used in path for api)</td>
+<td>Publication slug (used in path for API)</td>
 </tr>
 <tr>
 <td>title</td>
@@ -629,7 +629,7 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
 </span></pre>
 <p>This hotspot type contains an array called <code class="prettyprint">products</code> containing one or more products.</p>
 
-<p>The <code class="prettyprint">&quot;stub&quot;: &quot;true&quot;</code> flag means this is a &ldquo;stub&rdquo; product and more information about this product has to be retrieved from the <a href="#product">products api</a>. For now only &ldquo;stubbed&rdquo; products are supported.</p>
+<p>The <code class="prettyprint">&quot;stub&quot;: &quot;true&quot;</code> flag means this is a &ldquo;stub&rdquo; product and more information about this product has to be retrieved from the <a href="#product">products API</a>. For now only &ldquo;stubbed&rdquo; products are supported.</p>
 
 <table><thead>
 <tr>
@@ -887,7 +887,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access the api with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access the API with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
