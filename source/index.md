@@ -27,11 +27,11 @@ Currently we only support JSON requests.
 
 ### Paths
 
-The base path of an API request is: `https://API.publitas.com/v1/`
+The base path of an API request is: `https://api.publitas.com/v1/`
 
 An example of a complete path is:
 
-`https://API.publitas.com/v1/groups/example-blokker/publications.json`
+`https://api.publitas.com/v1/groups/example-blokker/publications.json`
 
 ### Images
 
@@ -59,7 +59,7 @@ Instances where size attributes have to be added to the url are documented accor
 
 ```shell
 # This will retrieve all publications for a group:
-curl "https://API.publitas.com/v1/groups/example-blokker/publications.json"
+curl "https://api.publitas.com/v1/groups/example-blokker/publications.json"
 ```
 > The above command returns JSON structured like this:
 
@@ -71,7 +71,7 @@ curl "https://API.publitas.com/v1/groups/example-blokker/publications.json"
     "title" : "Blokker example publication",
     "browserTitle" : "Custom title",
     "onlineAt" : "2013-09-11T10:19:41.000+02:00",
-    "url" : "https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
+    "url" : "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
   }
 ]
 ```
@@ -82,7 +82,7 @@ The url for a publication is (appended to the base path)
 
 A complete path looks like:
 
-`https://API.publitas.com/v1/groups/example-blokker/publications.json`
+`https://api.publitas.com/v1/groups/example-blokker/publications.json`
 
 The JSON response returns a list of publications with the following attributes.
 
@@ -102,7 +102,7 @@ The JSON response returns a list of publications with the following attributes.
 
 ```shell
 # This will retrieve a single publication for a group:
-curl "https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
+curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
 ```
 > The above command returns JSON structured like this:
 
@@ -122,7 +122,7 @@ The url for a publication is (appended to the base path)
 
 A complete path looks like:
 
-`https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example.json`
+`https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json`
 
 This endpoint returns a JSON object, we'll go into the details of this response below.
 
@@ -532,7 +532,7 @@ For now only YouTube is supported, the `youtubeId` can be used in embed code, or
 
 ```shell
 # This will retrieve a single product for a publication:
-curl "https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json"
+curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json"
 ```
 > The above command returns JSON structured like this:
 
@@ -562,7 +562,7 @@ The url for a product is (appended to the base path)
 
 A complete path looks like:
 
-`https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json`
+`https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json`
 
 The JSON response returns a product with the following attributes.
 
