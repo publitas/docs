@@ -73,9 +73,9 @@
 <p>This API can be used to customize some behaviors in the Publitas.com catalog viewer.</p>
 
 <h2 id="getting-started">Getting Started</h2>
-<pre class="highlight plaintext">window.viewerReady = function (api, platform) {
-  switch(platform)
-};
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">switch</span><span class="p">(</span><span class="nx">platform</span><span class="p">)</span>
+<span class="p">};</span>
 </pre>
 <p>To access the Publitas.com JavaScript API you need to inject javascript code into the Viewer. This can be achieved using the custom header option in your group settings. The basic usage is shown to the right. Please make sure to wrap it in a <code class="prettyprint">&lt;script&gt;</code> tag when setting it in the header.</p>
 
@@ -87,41 +87,41 @@
 </ul>
 
 <h2 id="targeting-different-devices">Targeting Different Devices</h2>
-<pre class="highlight plaintext">window.viewerReady = function (api, platform) {
-  switch (platform) {
-    case "desktop":
-      // desktop only customizations here
-      break;
-    case "tablet":
-      // tablet only customizations here
-      break;
-    case "mobile":
-      // mobile only customizations here
-      break;
-  }
-};
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s2">"desktop"</span><span class="err">:</span>
+      <span class="c1">// desktop only customizations here
+</span>      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s2">"tablet"</span><span class="err">:</span>
+      <span class="c1">// tablet only customizations here
+</span>      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s2">"mobile"</span><span class="err">:</span>
+      <span class="c1">// mobile only customizations here
+</span>      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
 </pre>
 <p>By default, customizations are applied to all device categories. This example shows how you could use the <code class="prettyprint">platform</code> parameter to implement different customizations depending on the device the Viewer is running on.</p>
 
 <h2 id="custom-home-button-action">Custom Home Button Action</h2>
-<pre class="highlight plaintext">window.viewerReady = function (api, platform) {
-  api.setHomeButtonAction("http://your.custom.url");
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="s2">"http://your.custom.url"</span><span class="p">);</span>
 
-  // or
-
-  api.setHomeButtonAction(function () {
-    // do something here
-  });
-}
+  <span class="c1">// or
+</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// do something here
+</span>  <span class="p">});</span>
+<span class="p">}</span>
 </pre>
 <p>Using the <code class="prettyprint">setHomeButtonAction(action)</code> you can specify a custom action when the user clicks the home button in the main menu. <code class="prettyprint">action</code> can be a url string or a function</p>
 
 <h2 id="custom-product-action">Custom Product Action</h2>
-<pre class="highlight plaintext">window.viewerReady = function (api, platform) {
-  api.setProductAction(function (product) {
-    // do something here
-  });
-}
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">product</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something here
+</span>  <span class="p">});</span>
+<span class="p">}</span>
 </pre>
 <p>Using the <code class="prettyprint">setProductAction(action)</code> you can specify a custom action when the user clicks on a product on the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive the clicked product as an argument. It has the following properties:</p>
 
@@ -175,20 +175,20 @@
 </tbody></table>
 
 <h2 id="custom-product-cta">Custom Product CTA</h2>
-<pre class="highlight plaintext">window.viewerReady = function (api, platform) {
-  api.setProductCtaAction(function (webshopUrl) {
-    // do something here
-  });
-}
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setProductCtaAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">webshopUrl</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something here
+</span>  <span class="p">});</span>
+<span class="p">}</span>
 </pre>
 <p>Using the <code class="prettyprint">setProductCtaAction(action)</code> you can specify a custom action when the user clicks the &lsquo;Go To Webshop&rsquo; button (call to action) in the product details view. <code class="prettyprint">action</code> needs to be a function. It will receive the original webshop url as an argument.</p>
 
 <h2 id="custom-link-action">Custom Link Action</h2>
-<pre class="highlight plaintext">window.viewerReady = function (api, platform) {
-  api.setLinkAction(function (url) {
-    // do something here
-  });
-}
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setLinkAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something here
+</span>  <span class="p">});</span>
+<span class="p">}</span>
 </pre>
 <p>Using the <code class="prettyprint">setLinkAction(action)</code> you can specify a custom action when the user clicks on an external link in the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive the original url as an argument.</p>
 
