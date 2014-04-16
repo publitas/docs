@@ -14,7 +14,7 @@ You only need to worry about `index.md`
 
 ## Deploy
 
-run `rake build`
+run `rake publish`
 
 
 ## Visit
