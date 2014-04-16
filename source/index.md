@@ -11,15 +11,15 @@ toc_footers:
 
 # Introduction
 
-Welcome to the Publitas public API documentation. This api can be used to retrieve publication data for usage in mobile apps, sites and other integrations.
+Welcome to the Publitas public API documentation. This API can be used to retrieve publication data for usage in mobile apps, sites and other integrations.
 
 ### Version
 
-Our api is currently on version 1.
+Our API is currently on version 1.
 
 ### Authentication
 
-Our public api doesn't require authentication.
+Our public API doesn't require authentication.
 
 ### Formats
 
@@ -27,11 +27,11 @@ Currently we only support JSON requests.
 
 ### Paths
 
-The base path of an API request is: `https://api.publitas.com/v1/`
+The base path of an API request is: `https://API.publitas.com/v1/`
 
 An example of a complete path is:
 
-`https://api.publitas.com/v1/groups/example-blokker/publications.json`
+`https://API.publitas.com/v1/groups/example-blokker/publications.json`
 
 ### Images
 
@@ -41,9 +41,9 @@ An example of a complete path is:
   }
 ```
 
-Images and other assets are served from: `https://view.publitas.com`. Image paths returned from the api are all relative to this base pat and all images are returned as `jpg` files.
+Images and other assets are served from: `https://view.publitas.com`. Image paths returned from the API are all relative to this base pat and all images are returned as `jpg` files.
 
-A photoUrl returned from the api has to be concatenated to
+A photoUrl returned from the API has to be concatenated to
 
 
 `https://view.publitas.com/1230/10323/photos/22js92ksasfhhj2l-within1000.jpg`
@@ -59,7 +59,7 @@ Instances where size attributes have to be added to the url are documented accor
 
 ```shell
 # This will retrieve all publications for a group:
-curl "https://api.publitas.com/v1/groups/example-blokker/publications.json"
+curl "https://API.publitas.com/v1/groups/example-blokker/publications.json"
 ```
 > The above command returns JSON structured like this:
 
@@ -71,7 +71,7 @@ curl "https://api.publitas.com/v1/groups/example-blokker/publications.json"
     "title" : "Blokker example publication",
     "browserTitle" : "Custom title",
     "onlineAt" : "2013-09-11T10:19:41.000+02:00",
-    "url" : "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
+    "url" : "https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
   }
 ]
 ```
@@ -82,7 +82,7 @@ The url for a publication is (appended to the base path)
 
 A complete path looks like:
 
-`https://api.publitas.com/v1/groups/example-blokker/publications.json`
+`https://API.publitas.com/v1/groups/example-blokker/publications.json`
 
 The JSON response returns a list of publications with the following attributes.
 
@@ -90,7 +90,7 @@ The JSON response returns a list of publications with the following attributes.
 | Field         | Type        | Description         |
 | ------------- |-------------| ------------------- |
 | id            | Integer     | Publication id     |
-| slug          | String      | Publication slug (used in path for api)   |
+| slug          | String      | Publication slug (used in path for API)   |
 | title         | String      | Publication title   |
 | browserTitle  | String      | Publication browser title (can differ from title)   |
 | onlineAt      | String      | Timestamp of moment publication was published   |
@@ -102,7 +102,7 @@ The JSON response returns a list of publications with the following attributes.
 
 ```shell
 # This will retrieve a single publication for a group:
-curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
+curl "https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
 ```
 > The above command returns JSON structured like this:
 
@@ -122,7 +122,7 @@ The url for a publication is (appended to the base path)
 
 A complete path looks like:
 
-`https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json`
+`https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example.json`
 
 This endpoint returns a JSON object, we'll go into the details of this response below.
 
@@ -434,7 +434,7 @@ For each hotspot we add additional data to the hotspot hash, here's an overview 
 
 This hotspot type contains an array called `products` containing one or more products.
 
-The `"stub": "true"` flag means this is a "stub" product and more information about this product has to be retrieved from the [products api](#product). For now only "stubbed" products are supported.
+The `"stub": "true"` flag means this is a "stub" product and more information about this product has to be retrieved from the [products API](#product). For now only "stubbed" products are supported.
 
 
 | Field    | Type  | Description         |
@@ -532,7 +532,7 @@ For now only YouTube is supported, the `youtubeId` can be used in embed code, or
 
 ```shell
 # This will retrieve a single product for a publication:
-curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json"
+curl "https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json"
 ```
 > The above command returns JSON structured like this:
 
@@ -562,7 +562,7 @@ The url for a product is (appended to the base path)
 
 A complete path looks like:
 
-`https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json`
+`https://API.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json`
 
 The JSON response returns a product with the following attributes.
 
@@ -604,7 +604,7 @@ The Kittn API uses the following error codes:
 Error Code | Meaning
 ---------- | -------
 404 | Not Found -- The path or document could not be found
-405 | Method Not Allowed -- You tried to access the api with an invalid method
+405 | Method Not Allowed -- You tried to access the API with an invalid method
 406 | Not Acceptable -- You requested a format that isn't json
 418 | I'm a teapot
 500 | Internal Server Error -- We had a problem with our server. Try again later.
