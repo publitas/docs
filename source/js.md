@@ -96,7 +96,7 @@ Using the `setProductAction(action)` you can specify a custom action when the us
 
 ``` javascript
 window.viewerReady = function (api, platform) {
-  api.setProductCtaAction(function (webshopUrl) {
+  api.setProductCtaAction(function (product) {
     // do something here
   });
 }
