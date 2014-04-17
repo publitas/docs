@@ -105,16 +105,16 @@
 
 <h2 id="custom-home-button-action">Custom Home Button Action</h2>
 <pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="s2">"http://your.custom.url"</span><span class="p">);</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="s2">"http://your.custom.url"</span><span class="p">,</span> <span class="s2">"custom title"</span><span class="p">);</span>
 
   <span class="c1">// or
 </span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="c1">// do something here
-</span>  <span class="p">});</span>
+</span>  <span class="p">},</span> <span class="s2">"custom title"</span><span class="p">);</span>
 <span class="p">}</span>
 </pre>
-<p>Using the <code class="prettyprint">setHomeButtonAction(action)</code> you can specify a custom action when the user clicks the home button in the main menu. <code class="prettyprint">action</code> can be a url string or a function</p>
+<p>Using the <code class="prettyprint">setHomeButtonAction(action [, title])</code> you can specify a custom action when the user clicks the home button in the main menu. <code class="prettyprint">action</code> can be a url string or a function. <code class="prettyprint">title</code> is an optional string argument, that sets the home button title.</p>
 
 <h2 id="custom-product-action">Custom Product Action</h2>
 <pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
@@ -172,6 +172,11 @@
 <td>Array</td>
 <td>Array of product photos containing 0 - 6 photos</td>
 </tr>
+<tr>
+<td>video</td>
+<td>Object</td>
+<td>Object with property &lsquo;youtubeId&rsquo; if product has a YouTube video</td>
+</tr>
 </tbody></table>
 
 <h2 id="custom-product-cta">Custom Product CTA</h2>
@@ -181,7 +186,7 @@
 </span>  <span class="p">});</span>
 <span class="p">}</span>
 </pre>
-<p>Using the <code class="prettyprint">setProductCtaAction(action)</code> you can specify a custom action when the user clicks the &lsquo;Go To Webshop&rsquo; button (call to action) in the product details view. <code class="prettyprint">action</code> needs to be a function. It will receive the original webshop url as an argument.</p>
+<p>Using the <code class="prettyprint">setProductCtaAction(action)</code> you can specify a custom action when the user clicks the &lsquo;Go To Webshop&rsquo; button (call to action) in the product details view. <code class="prettyprint">action</code> needs to be a function. It will receive the corresponding product as argument (same as <code class="prettyprint">setProductAction</code>).</p>
 
 <h2 id="custom-link-action">Custom Link Action</h2>
 <pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
