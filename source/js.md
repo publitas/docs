@@ -54,17 +54,17 @@ By default, customizations are applied to all device categories. This example sh
 
 ``` javascript
 window.viewerReady = function (api, platform) {
-  api.setHomeButtonAction("http://your.custom.url");
+  api.setHomeButtonAction("http://your.custom.url", "custom title");
 
   // or
 
   api.setHomeButtonAction(function () {
     // do something here
-  });
+  }, "custom title");
 }
 ```
 
-Using the `setHomeButtonAction(action)` you can specify a custom action when the user clicks the home button in the main menu. `action` can be a url string or a function
+Using the `setHomeButtonAction(action [, title])` you can specify a custom action when the user clicks the home button in the main menu. `action` can be a url string or a function. `title` is an optional string argument, that sets the home button title.
 
 ## Custom Product Action
 
