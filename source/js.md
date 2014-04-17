@@ -89,6 +89,7 @@ Using the `setProductAction(action)` you can specify a custom action when the us
 | webshopIdentifier | String  | Product id from the webshop |
 | webshopUrl    | String      | Direct link to the product on the webshop   |
 | photos        | Array       | Array of product photos containing 0 - 6 photos   |
+| video         | Object      | Object with property 'youtubeId' if product has a YouTube video |
 
 
 ## Custom Product CTA
@@ -101,7 +102,7 @@ window.viewerReady = function (api, platform) {
 }
 ```
 
-Using the `setProductCtaAction(action)` you can specify a custom action when the user clicks the 'Go To Webshop' button (call to action) in the product details view. `action` needs to be a function. It will receive the original webshop url as an argument.
+Using the `setProductCtaAction(action)` you can specify a custom action when the user clicks the 'Go To Webshop' button (call to action) in the product details view. `action` needs to be a function. It will receive the corresponding product as argument (same as `setProductAction`).
 
 
 ## Custom Link Action
