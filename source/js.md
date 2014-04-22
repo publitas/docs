@@ -66,17 +66,53 @@ window.viewerReady = function (api, platform) {
 
 Using the `setHomeButtonAction(action [, title])` you can specify a custom action when the user clicks the home button in the main menu. `action` can be a url string or a function. `title` is an optional string argument, that sets the home button title.
 
+## Custom Shopping Cart Button Action
+
+``` javascript
+window.viewerReady = function (api, platform) {
+  api.setCartButtonAction("http://your.custom.url", "custom title");
+
+  // or
+
+  api.setCartButtonAction(function () {
+    // do something here
+  }, "custom title");
+}
+```
+
+Using the `setCartButtonAction(action [, title])` you can specify a custom action when the user clicks the shopping cart button in the main menu. `action` can be a url string or a function. `title` is an optional string argument, that sets the cart button title.
+
 ## Custom Product Action
 
 ``` javascript
 window.viewerReady = function (api, platform) {
-  api.setProductAction(function (product) {
+  api.setProductAction(function (products) {
     // do something here
   });
 }
 ```
 
-Using the `setProductAction(action)` you can specify a custom action when the user clicks on a product on the Viewer. `action` needs to be a function. It will receive the clicked product as an argument. It has the following properties:
+``` javascript
+window.viewerReady = function (api, platform) {
+  api.setProductAction(function (products, onOpen, onClose) {
+    // a button that will hide your custom product view
+    closeButton = ...
+
+    // an iFrame with your custom product view
+    iframe = ...
+
+    // update the address bar once the iframe loads
+    iframe.onload = onOpen;
+
+    closeButton.addEventListener('click', function () {
+      // close the product view
+      onClose(); // make sure the address bar
+    })
+  });
+}
+```
+
+Using the `setProductAction(action [, onOpen[, onClose]])` you can specify a custom action when the user clicks on a product on the Viewer. `action` needs to be a function. It will receive the an array of products that belong to the clicked hotspot as an argument. Products have the following properties:
 
 
 | Field         | Type        | Description         |
@@ -90,6 +126,15 @@ Using the `setProductAction(action)` you can specify a custom action when the us
 | webshopUrl    | String      | Direct link to the product on the webshop   |
 | photos        | Array       | Array of product photos containing 0 - 6 photos   |
 | video         | Object      | Object with property 'youtubeId' if product has a YouTube video |
+
+### `onOpen` and `onClose`
+
+These are optional callbacks that you can evoke if you are implementing a custom product popover. The default behavior of the catalog viewer is to update the address bar URL to
+
+
+*http://url.of/your/publication/product/&lt;product-id&gt;*
+
+whenever the product view opens. This way, users can directly link to a product within the catalog and refreshing the page will leave the product view intact. If you want to keep this behavior for your custom product action, please make sure to invoke these callbacks at appropriate times. The second example to the right highlights this use case.
 
 
 ## Custom Product CTA
