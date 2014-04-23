@@ -22,7 +22,7 @@ window.viewerReady = function (api, platform) {
 };
 ```
 
-To access the Publitas.com JavaScript API you need to inject JavaScript code into the Viewer. This can be achieved using the code injection field in your group settings. The basic usage is shown to the right. Please make sure to wrap it in a `<script>` tag when setting it in the header.
+To access the Publitas.com JavaScript API you need to inject JavaScript code into the Viewer. This can be achieved using the code injection field in your group or publication settings. The basic usage is shown to the right. Please make sure to wrap it in a `<script>` tag when setting it in the header.
 
 The arguments passed to this function are
 
