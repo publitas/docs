@@ -11,7 +11,7 @@ toc_footers:
 
 # Introduction
 
-Welcome to the Publitas public API documentation. This API can be used to programatically list your account's groups, and also list and create publications based on existing PDF documents.
+Welcome to the Publitas public API documentation. This API can be used to programatically list your account's groups, as well as to list and create publications based on existing PDF documents.
 
 ### Version
 
@@ -72,7 +72,7 @@ The attributes are as follows:
 ## Listing
 
 ```shell
-# This will retrieve all publications for a group:
+# This will retrieve all publications for a group
 curl "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
 ```
 > The above command returns JSON structured like this:
@@ -112,35 +112,36 @@ curl "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
 
 The JSON response returns a list of publications with the following attributes:
 
-|        Field        |   Type   |                          Description                           |
-|---------------------|----------|----------------------------------------------------------------|
-| id                  | Integer  | Publication ID                                                 |
-| title               | String   | Publication Title                                              |
-| slug                | String   | Publication Slug                                               |
-| url                 | String   | Publication details URL                                        |
-| cover_url           | String   | URL for the cover image (@800 resolution)                      |
-| page_count          | Integer  | Number of pages in the publication                             |
-| state               | String   | The publication state (see table below for better description) |
-| online_at           | DateTime | Time at which the publication was last set online              |
-| offline_at          | DateTime | Time at which the publication was last set offline             |
-| schedule_online_at  | DateTime | Time at which the publication is scheduled to go online        |
-| schedule_offline_at | DateTime | Time at which the publication is scheduled to go offline       |
+|        Field        |   Type   |                           Description                            |
+|---------------------|----------|------------------------------------------------------------------|
+| id                  | Integer  | Publication ID                                                   |
+| title               | String   | Publication Title                                                |
+| slug                | String   | Publication Slug                                                 |
+| url                 | String   | Publication details URL                                          |
+| cover_url           | String   | URL for the cover image (@800 resolution)                        |
+| page_count          | Integer  | Number of pages in the publication                               |
+| state               | String   | The publication state (see table below for a better description) |
+| online_at           | DateTime | Time at which the publication was last set online                |
+| offline_at          | DateTime | Time at which the publication was last set offline               |
+| schedule_online_at  | DateTime | Time at which the publication is scheduled to go online          |
+| schedule_offline_at | DateTime | Time at which the publication is scheduled to go offline         |
 
 The `state` field can have one of the following values:
 
-|    Value    |                                  Description                                   | Visible on CMS |
-|-------------|--------------------------------------------------------------------------------|----------------|
-| new         | Initial state of a publication. From here, it will be downloaded or converted. | No             |
-| downloading | PDF is being downloaded from its origin. From here it will be converted.       | No             |
-| waiting     | PDF is being converted and awaiting result                                     | Yes            |
-| failed      | Usually triggered with invalid PDFs                                            | Yes            |
-| offline     | Publication is not publically visible                                          | Yes            |
-| online      | Publication is publically visible                                              | Yes            |
-| cloning     | Publication is being cloned via the Hotspot Import tool                        | Yes            |
+|    Value    |                                  Description                                  | Visible on CMS |
+|-------------|-------------------------------------------------------------------------------|----------------|
+| new         | Initial state of a publication. From here, it will be downloaded or converted | No             |
+| downloading | PDF is being downloaded from its origin. From here it will be converted       | No             |
+| waiting     | PDF is being converted and awaiting result                                    | Yes            |
+| failed      | Usually triggered with invalid PDFs                                           | Yes            |
+| offline     | Publication is not publically visible                                         | Yes            |
+| online      | Publication is publically visible                                             | Yes            |
+| cloning     | Publication is being cloned via the Hotspot Import tool                       | Yes            |
 
 ## Creating
 
 ```shell
+# This will create a publication with the title Winter2014, and source URL http://example.com/winter2014.pdf.
 curl --data "publication[title]=Winter2014&publication[source_url]=http://example.com/winter2014.pdf" "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
 ```
 > The above command returns JSON structured like this:
@@ -165,18 +166,20 @@ curl --data "publication[title]=Winter2014&publication[source_url]=http://exampl
 
 The following fields need to be sent within a publication scope (see right for an example.)
 
-|         Name        |   Type   | Required |                                                                                Description                                                                                |
-|---------------------|----------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| title               | String   | Yes      | The title for the publication                                                                                                                                             |
-| slug                | String   | No       | The slug for the publication (when not present it will be derived from the title)                                                                                         |
-| language            | String   | No       | 2-digit language code. See [the language table](#languages) below for allowed values.                                                                                     |
-| schedule_online_at  | DateTime | No       | Time at which the publication is scheduled to be online. If the current time (or a past time) is provided, the publication will be put online as soon as it is converted. |
-| schedule_offline_at | DateTime | No       | Time at which the publication is scheduled to be offline.                                                                                                                 |
-| source_url          | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted.                                                                                                              |
+|         Name        |   Type   | Required |                                                                               Description                                                                                |
+|---------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| title               | String   | Yes      | The title for the publication                                                                                                                                            |
+| slug                | String   | No       | The slug for the publication (when not present it will be derived from the title)                                                                                        |
+| language            | String   | No       | 2-digit language code. See [the language table](#languages) below for allowed values                                                                                     |
+| schedule_online_at  | DateTime | No       | Time at which the publication is scheduled to be online. If the current time (or a past time) is provided, the publication will be put online as soon as it is converted |
+| schedule_offline_at | DateTime | No       | Time at which the publication is scheduled to be offline                                                                                                                 |
+| source_url          | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file.                                                                |
 
 When created, a publication is automatically queued to be converted. The conversion status can be monitored by requesting the URL that you find in the `url` key.
 
 For a publication created via the API, the state path should be `new` > `downloading` > `waiting` > `offline`
+
+
 
 # Languages
 
@@ -208,11 +211,11 @@ For a publication created via the API, the state path should be `new` > `downloa
 
 The Publitas API uses the following error codes:
 
-| Error Code |                                           Meaning                                           |
-|------------|---------------------------------------------------------------------------------------------|
-|        404 | Not Found -- The path or document could not be found                                        |
-|        405 | Method Not Allowed -- You tried to access the API with an invalid method                    |
-|        406 | Not Acceptable -- You requested a format that isn't json                                    |
-|        418 | I'm a teapot                                                                                |
-|        500 | Internal Server Error -- We had a problem with our server. Try again later.                 |
-|        503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later. |
+| Error Code |                                          Meaning                                           |
+|------------|--------------------------------------------------------------------------------------------|
+|        404 | Not Found -- The path or document could not be found                                       |
+|        405 | Method Not Allowed -- You tried to access the API with an invalid method                   |
+|        406 | Not Acceptable -- You requested a format that isn't json                                   |
+|        418 | I'm a teapot                                                                               |
+|        500 | Internal Server Error -- We had a problem with our server. Try again later                 |
+|        503 | Service Unavailable -- We're temporarially offline for maintenance. Please try again later |
