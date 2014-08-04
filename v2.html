@@ -1,0 +1,545 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>API Reference</title>
+
+    <link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="javascripts/all.js" type="text/javascript"></script>
+
+    <script>
+      $(function() {
+        var toc = $("#toc").tocify({
+          selectors: "h1,h2",
+          extendPage: false,
+          theme: "none",
+          smoothScroll: false,
+          showEffectSpeed: 0,
+          hideEffectSpeed: 180,
+          ignoreSelector: ".toc-ignore",
+          hashGenerator: 'pretty',
+          highlightOffset: 60,
+          scrollTo: -2,
+          scrollHistory: true,
+          hashGenerator: function(text, element) {
+            return element[0].getAttribute('id');
+          }
+        }).data("toc-tocify");
+        // Hack to make already open sections to start opened,
+        // instead of displaying an ugly animation
+        setTimeout(function() {
+          toc.setOption("showEffectSpeed", 180);
+        },50);
+        setupLanguages([
+          
+            
+              
+                'shell',
+              
+            
+          
+        ]);
+      });
+    </script>
+  </head>
+
+  <body class="v2">
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+      <div id="toc">
+      </div>
+      
+      <ul class="toc-footer">
+        
+          <li><a href='https://publitas.com'>Publitas.com</a></li>
+        
+          <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        
+      </ul>
+      
+    </div>
+    <div class="page-wrapper">
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the Publitas public API documentation. This API can be used to programatically list your account&rsquo;s groups, as well as to list and create publications based on existing PDF documents.</p>
+
+<h3 id="version">Version</h3>
+
+<p>Our API is currently on version 2 beta. Click <a href="./">here</a> to see documentation for the first version of the API.</p>
+
+<h3 id="authentication">Authentication</h3>
+
+<p>Our public API requires an API key, sent with the parameter <code class="prettyprint">api_key</code>. Contact our <a href="mailto:support@publitas.com">support team</a> to request an API key. For convenience, we also allow HTTP based authorization with the <code class="prettyprint">api</code> user and your API key as password.</p>
+
+<h3 id="formats">Formats</h3>
+
+<p>Currently we only support JSON requests.</p>
+
+<h3 id="paths">Paths</h3>
+
+<p>The base path of an API request is: <code class="prettyprint">https://api.publitas.com/v2/</code></p>
+
+<p>An example of a complete path is:</p>
+
+<p><code class="prettyprint">https://api.publitas.com/v2/groups/?api_key=&lt;api_key&gt;</code></p>
+
+<h1 id="groups">Groups</h1>
+<pre class="highlight shell"><span class="c"># This will retrieve all the groups accessible by the user</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups?api_key=&lt;api_key&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns a JSON document structured like so:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example group"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-group"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"publications_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"publication_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group"</span><span class="w">
+
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>The attributes are as follows:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Group ID</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Group title</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>String</td>
+<td>Group slug</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>Group details URL</td>
+</tr>
+<tr>
+<td>publications_url</td>
+<td>String</td>
+<td>Publication list URL for the group</td>
+</tr>
+<tr>
+<td>publication_count</td>
+<td>Integer</td>
+<td>Amount of publications contained within the group</td>
+</tr>
+<tr>
+<td>public_url</td>
+<td>String</td>
+<td>Group public URL (redirects to latest online publication)</td>
+</tr>
+</tbody></table>
+
+<h1 id="publications">Publications</h1>
+
+<h2 id="listing">Listing</h2>
+<pre class="highlight shell"><span class="c"># This will retrieve all publications for a group</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key=&lt;api_key&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"publications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://production-revolution-publitas-com.s3.amazonaws.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autumn-2014"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://production-revolution-publitas-com.s3.amazonaws.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-25T15:17:20.000+02:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/autumn-2014"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>The JSON response returns a list of publications with the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Publication ID</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Publication Title</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>String</td>
+<td>Publication Slug</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>Publication details URL</td>
+</tr>
+<tr>
+<td>cover_url</td>
+<td>String</td>
+<td>URL for the cover image (@800 resolution)</td>
+</tr>
+<tr>
+<td>page_count</td>
+<td>Integer</td>
+<td>Number of pages in the publication</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The publication state (see table below for a better description)</td>
+</tr>
+<tr>
+<td>online_at</td>
+<td>DateTime</td>
+<td>Time at which the publication was last set online</td>
+</tr>
+<tr>
+<td>offline_at</td>
+<td>DateTime</td>
+<td>Time at which the publication was last set offline</td>
+</tr>
+<tr>
+<td>schedule_online_at</td>
+<td>DateTime</td>
+<td>Time at which the publication is scheduled to go online</td>
+</tr>
+<tr>
+<td>schedule_offline_at</td>
+<td>DateTime</td>
+<td>Time at which the publication is scheduled to go offline</td>
+</tr>
+<tr>
+<td>public_url</td>
+<td>String</td>
+<td>Publication public URL</td>
+</tr>
+</tbody></table>
+
+<p>The <code class="prettyprint">state</code> field can have one of the following values:</p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+<th>Visible on CMS</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>new</td>
+<td>Initial state of a publication.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>downloading</td>
+<td>PDF is being downloaded from its origin.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>waiting</td>
+<td>PDF is being converted and awaiting result</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>failed</td>
+<td>Usually triggered with invalid PDFs</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>offline</td>
+<td>Publication is not publicly visible</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>online</td>
+<td>Publication is publicly visible</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h2 id="creating-[post-request]">Creating [POST Request]</h2>
+<pre class="highlight shell"><span class="c"># This will create a publication with the title Winter2014, and source URL http://example.com/winter2014.pdf.</span>
+curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[source_url]=http://example.com/winter2014.pdf"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key=&lt;api_key&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"winter2014"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/winter2014"</span><span class="w">  
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>The following fields need to be sent within a publication scope (see right for an example.)</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source_url</td>
+<td>String</td>
+<td>Yes</td>
+<td>URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Yes</td>
+<td>The title for the publication</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>String</td>
+<td>No</td>
+<td>The slug for the publication (when not present it will be derived from the title)</td>
+</tr>
+<tr>
+<td>language</td>
+<td>String</td>
+<td>No</td>
+<td>2-digit language code. See <a href="#languages">the language table</a> below for allowed values</td>
+</tr>
+<tr>
+<td>schedule_online_at</td>
+<td>DateTime</td>
+<td>No</td>
+<td>Time at which the publication is scheduled to be online. If the current time is provided, the publication will be put online as soon as it is converted</td>
+</tr>
+<tr>
+<td>schedule_offline_at</td>
+<td>DateTime</td>
+<td>No</td>
+<td>Time at which the publication is scheduled to be offline</td>
+</tr>
+</tbody></table>
+
+<p>When created, a publication is automatically queued to be converted. The conversion status can be monitored by requesting the URL that you find in the <code class="prettyprint">url</code> key.</p>
+
+<p>For a publication created via the API, the state path should be <code class="prettyprint">new</code> &gt; <code class="prettyprint">downloading</code> &gt; <code class="prettyprint">waiting</code> &gt; <code class="prettyprint">offline</code></p>
+
+<h1 id="languages">Languages</h1>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bg</td>
+<td>Bulgarian</td>
+</tr>
+<tr>
+<td>zh</td>
+<td>Chinese</td>
+</tr>
+<tr>
+<td>cs</td>
+<td>Czech</td>
+</tr>
+<tr>
+<td>da</td>
+<td>Danish</td>
+</tr>
+<tr>
+<td>nl</td>
+<td>Dutch</td>
+</tr>
+<tr>
+<td>en</td>
+<td>English</td>
+</tr>
+<tr>
+<td>fr</td>
+<td>French</td>
+</tr>
+<tr>
+<td>de</td>
+<td>German</td>
+</tr>
+<tr>
+<td>hu</td>
+<td>Hungarian</td>
+</tr>
+<tr>
+<td>it</td>
+<td>Italian</td>
+</tr>
+<tr>
+<td>no</td>
+<td>Norwegian</td>
+</tr>
+<tr>
+<td>pl</td>
+<td>Polish</td>
+</tr>
+<tr>
+<td>pt</td>
+<td>Portuguese</td>
+</tr>
+<tr>
+<td>ro</td>
+<td>Romanian</td>
+</tr>
+<tr>
+<td>ru</td>
+<td>Russian</td>
+</tr>
+<tr>
+<td>sr</td>
+<td>Serbian</td>
+</tr>
+<tr>
+<td>sk</td>
+<td>Slovak</td>
+</tr>
+<tr>
+<td>es</td>
+<td>Spanish</td>
+</tr>
+<tr>
+<td>sv</td>
+<td>Swedish</td>
+</tr>
+<tr>
+<td>tr</td>
+<td>Turkish</td>
+</tr>
+<tr>
+<td>uk</td>
+<td>Ukranian</td>
+</tr>
+</tbody></table>
+
+<h1 id="errors">Errors</h1>
+
+<p>The Publitas API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>402</td>
+<td>Payment Required &ndash; You have reached your publishing limit</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The path or document could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access the API with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Unprocessable Entity &ndash; We found validation errors on one or more fields, a detailed error message can be found in the response body</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintenance. Please try again later</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+        <div id="lang-selector">
+          
+            
+              
+                <a href="#" data-language-name="shell">shell</a>
+              
+            
+          
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
