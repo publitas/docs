@@ -129,28 +129,51 @@
 </pre>
 <p>Using the <code class="prettyprint">setCartButtonAction(action [, title])</code> you can specify a custom action when the user clicks the shopping cart button in the main menu. <code class="prettyprint">action</code> can be a url string or a function. <code class="prettyprint">title</code> is an optional string argument, that sets the cart button title.</p>
 
+<h2 id="updating-the-shopping-cart-icon">Updating the shopping cart icon</h2>
+<pre class="highlight javascript"><span class="nx">api</span><span class="p">.</span><span class="nx">cartContentChanged</span><span class="p">({</span> <span class="na">numItems</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">num</span><span class="o">-</span><span class="nx">items</span><span class="o">&gt;</span> <span class="p">})</span>
+</pre>
+<p>The shopping cart icon can display the number of items currently in the cart, using the cartContentChange method.</p>
+
+<p>The appearance of the shopping cart icon will change from &lsquo;empty&rsquo; to &lsquo;full&rsquo; if there are more than 0 items in the cart. To change the cart to empty again, set numItems to 0.</p>
+
+<h3 id="updating-the-shopping-cart-from-an-iframe">Updating the shopping cart from an iframe</h3>
+<pre class="highlight javascript"><span class="nx">parent</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span><span class="s1">'cartContentChanged'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">numItems</span><span class="p">:</span> <span class="nx">numItems</span>
+<span class="p">}]),</span> <span class="s2">"*"</span><span class="p">);</span>
+
+</pre>
+<p>If you use an iframe (check <a href="#showing-external-content-in-an-iframe">the section</a> on iframes) and you need to update the shopping cart icon from within the iframed content, you can use the <code class="prettyprint">postMessage</code> as shown to the left.</p>
+
+<p>The message consists of an array, but because IE 8 &amp; 9 only support sending string messages, it needs to be serialized using <code class="prettyprint">JSON.stringify</code>.</p>
+
+<p>The second parameter to postMessage controls the target origin the parent window should have to receive the message. Using <code class="prettyprint">&quot;*&quot;</code> is a good default, but you can implement a more restrictive policy. Check <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage">the postMessage documentation</a> for more details.</p>
+
+<h2 id="showing-external-content-in-an-iframe">Showing external content in an iframe</h2>
+<pre class="highlight javascript"><span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="s1">'http://some.url'</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</pre>
+<p>Using the showExternalContent method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.</p>
+
+<p>The first parameter is a url string and the second an optional object with options. Supported options are</p>
+
+<ul>
+<li><code class="prettyprint">width</code>, a css string to set the width of the iframe. Default is <code class="prettyprint">&#39;800px&#39;</code></li>
+<li><code class="prettyprint">background</code>, a css string to set the background color of the popover. You can use this to match the background color of your content. Default is <code class="prettyprint">&#39;#ffffff&#39;</code></li>
+</ul>
+
+<h3 id="callbacks">callbacks</h3>
+<pre class="highlight javascript"><span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="s1">'http://some.url'</span><span class="p">);</span>
+
+<span class="nx">content</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// do something when the iframe closes
+</span><span class="p">});</span>
+</pre>
+<p><code class="prettyprint">showExtrenalContent</code> returns a proxy on which you can register event listeners. The only supported event at the moment is <code class="prettyprint">close</code> which gets triggered whenever the user closes the iframe. The syntax is shown in the second example on the right. For a full use case, check the next section on setting custom product actions.</p>
+
 <h2 id="custom-product-action">Custom Product Action</h2>
 <pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// do something here
 </span>  <span class="p">});</span>
-<span class="p">}</span>
-</pre><pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">,</span> <span class="nx">onOpen</span><span class="p">,</span> <span class="nx">onClose</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// a button that will hide your custom product view
-</span>    <span class="nx">closeButton</span> <span class="o">=</span> <span class="p">...</span>
-
-    <span class="c1">// an iFrame with your custom product view
-</span>    <span class="nx">iframe</span> <span class="o">=</span> <span class="p">...</span>
-
-    <span class="c1">// update the address bar once the iframe loads
-</span>    <span class="nx">iframe</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">onOpen</span><span class="p">;</span>
-
-    <span class="nx">closeButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="c1">// close the product view
-</span>      <span class="nx">onClose</span><span class="p">();</span> <span class="c1">// make sure the address bar
-</span>    <span class="p">})</span>
-  <span class="p">});</span>
 <span class="p">}</span>
 </pre>
 <p>Using the <code class="prettyprint">setProductAction(action [, onOpen[, onClose]])</code> you can specify a custom action when the user clicks on a product on the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive the an array of products that belong to the clicked hotspot as an argument. Products have the following properties:</p>
@@ -210,7 +233,19 @@
 </tbody></table>
 
 <h3 id="onopen-and-onclose"><code class="prettyprint">onOpen</code> and <code class="prettyprint">onClose</code></h3>
-
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">,</span> <span class="nx">onOpen</span><span class="p">,</span> <span class="nx">onClose</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="p">...;</span> <span class="c1">// create a url based on products
+</span>
+    <span class="nx">onOpen</span><span class="p">();</span> <span class="c1">// update the address bar and browser title
+</span>
+    <span class="c1">// show custom product page
+</span>    <span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="s1">'600px'</span><span class="p">})</span>
+      <span class="c1">// revert the address bar and browser title once iframe is closed
+</span>      <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="nx">onClose</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre>
 <p>These are optional callbacks that you can evoke if you are implementing a custom product popover. The default behavior of the catalog viewer is to update the address bar URL to</p>
 
 <p><em>http://url.of/your/publication/product/&lt;product-id&gt;</em></p>
