@@ -11,7 +11,7 @@ toc_footers:
 
 # JavaScript API v1.0
 
-This API can be used to customize some behaviors in the Publitas.com catalog viewer.
+This API can be used to customize some behaviors in the Publitas.com Viewer.
 
 
 ## Getting Started
@@ -64,7 +64,7 @@ window.viewerReady = function (api, platform) {
 }
 ```
 
-Using the `setHomeButtonAction(action [, title])` you can specify a custom action when the user clicks the home button in the main menu. `action` can be a url string or a function. `title` is an optional string argument, that sets the home button title.
+Using the `setHomeButtonAction(action [, title])` you can specify a custom action when the user clicks the home button in the main menu. `action` can be a URL string or a function. `title` is an optional string argument, that sets the home button title.
 
 ## Custom Shopping Cart Button Action
 
@@ -80,7 +80,7 @@ window.viewerReady = function (api, platform) {
 }
 ```
 
-Using the `setCartButtonAction(action [, title])` you can specify a custom action when the user clicks the shopping cart button in the main menu. `action` can be a url string or a function. `title` is an optional string argument, that sets the cart button title.
+Using the `setCartButtonAction(action [, title])` you can specify a custom action when the user clicks the shopping cart button in the main menu. `action` can be a URL string or a function. `title` is an optional string argument, that sets the cart button title.
 
 ## Updating the shopping cart icon
 
@@ -112,12 +112,18 @@ The second parameter to postMessage controls the target origin the parent window
 ## Showing external content in an iframe
 
 ``` javascript
+
+options = {
+  width: '800px',
+  background: '#ffffff'
+};
+
 api.showExternalContent('http://some.url', options);
 ```
 
-Using the showExternalContent method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.
+Using the `showExternalContent(url [, options])`  method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.
 
-The first parameter is a url string and the second an optional object with options. Supported options are
+The first parameter is a URL string and the second an optional object with options. Supported options are
 
   * `width`, a css string to set the width of the iframe. Default is `'800px'`
   * `background`, a css string to set the background color of the popover. You can use this to match the background color of your content. Default is `'#ffffff'`
@@ -133,7 +139,7 @@ content.on('close', function () {
 });
 ```
 
-`showExtrenalContent` returns a proxy on which you can register event listeners. The only supported event at the moment is `close` which gets triggered whenever the user closes the iframe. The syntax is shown in the second example on the right. For a full use case, check the next section on setting custom product actions.
+`showExternalContent` returns a proxy on which you can register event listeners. The only supported event at the moment is `close` which gets triggered whenever the user closes the iframe. The syntax is shown in the second example on the right. For a full use case, check the next section on setting custom product actions.
 
 
 ## Custom Product Action
@@ -167,7 +173,7 @@ Using the `setProductAction(action [, onOpen[, onClose]])` you can specify a cus
 ``` javascript
 window.viewerReady = function (api, platform) {
   api.setProductAction(function (products, onOpen, onClose) {
-    var url = ...; // create a url based on products
+    var url = ...; // create a URL based on products
 
     onOpen(); // update the address bar and browser title
 
@@ -209,6 +215,4 @@ window.viewerReady = function (api, platform) {
   });
 }
 ```
-Using the `setLinkAction(action)` you can specify a custom action when the user clicks on an external link in the Viewer. `action` needs to be a function. It will receive the original url as an argument.
-
-
+Using the `setLinkAction(action)` you can specify a custom action when the user clicks on an external link in the Viewer. `action` needs to be a function. It will receive the original URL as an argument.
