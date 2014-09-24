@@ -113,7 +113,7 @@ The second parameter to postMessage controls the target origin the parent window
 
 ``` javascript
 
-options = {
+var options = {
   width: '800px',
   background: '#ffffff'
 };
