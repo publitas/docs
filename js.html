@@ -70,7 +70,7 @@
       <div class="content">
         <h1 id="javascript-api-v1.0">JavaScript API v1.0</h1>
 
-<p>This API can be used to customize some behaviors in the Publitas.com catalog viewer.</p>
+<p>This API can be used to customize some behaviors in the Publitas.com Viewer.</p>
 
 <h2 id="getting-started">Getting Started</h2>
 <pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
@@ -114,7 +114,7 @@
 </span>  <span class="p">},</span> <span class="s2">"custom title"</span><span class="p">);</span>
 <span class="p">}</span>
 </pre>
-<p>Using the <code class="prettyprint">setHomeButtonAction(action [, title])</code> you can specify a custom action when the user clicks the home button in the main menu. <code class="prettyprint">action</code> can be a url string or a function. <code class="prettyprint">title</code> is an optional string argument, that sets the home button title.</p>
+<p>Using the <code class="prettyprint">setHomeButtonAction(action [, title])</code> you can specify a custom action when the user clicks the home button in the main menu. <code class="prettyprint">action</code> can be a URL string or a function. <code class="prettyprint">title</code> is an optional string argument, that sets the home button title.</p>
 
 <h2 id="custom-shopping-cart-button-action">Custom Shopping Cart Button Action</h2>
 <pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
@@ -127,7 +127,7 @@
 </span>  <span class="p">},</span> <span class="s2">"custom title"</span><span class="p">);</span>
 <span class="p">}</span>
 </pre>
-<p>Using the <code class="prettyprint">setCartButtonAction(action [, title])</code> you can specify a custom action when the user clicks the shopping cart button in the main menu. <code class="prettyprint">action</code> can be a url string or a function. <code class="prettyprint">title</code> is an optional string argument, that sets the cart button title.</p>
+<p>Using the <code class="prettyprint">setCartButtonAction(action [, title])</code> you can specify a custom action when the user clicks the shopping cart button in the main menu. <code class="prettyprint">action</code> can be a URL string or a function. <code class="prettyprint">title</code> is an optional string argument, that sets the cart button title.</p>
 
 <h2 id="updating-the-shopping-cart-icon">Updating the shopping cart icon</h2>
 <pre class="highlight javascript"><span class="nx">api</span><span class="p">.</span><span class="nx">cartContentChanged</span><span class="p">({</span> <span class="na">numItems</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">num</span><span class="o">-</span><span class="nx">items</span><span class="o">&gt;</span> <span class="p">})</span>
@@ -149,11 +149,17 @@
 <p>The second parameter to postMessage controls the target origin the parent window should have to receive the message. Using <code class="prettyprint">&quot;*&quot;</code> is a good default, but you can implement a more restrictive policy. Check <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage">the postMessage documentation</a> for more details.</p>
 
 <h2 id="showing-external-content-in-an-iframe">Showing external content in an iframe</h2>
-<pre class="highlight javascript"><span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="s1">'http://some.url'</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
-</pre>
-<p>Using the showExternalContent method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.</p>
+<pre class="highlight javascript">
+<span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">width</span><span class="p">:</span> <span class="s1">'800px'</span><span class="p">,</span>
+  <span class="na">background</span><span class="p">:</span> <span class="s1">'#ffffff'</span>
+<span class="p">};</span>
 
-<p>The first parameter is a url string and the second an optional object with options. Supported options are</p>
+<span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="s1">'http://some.url'</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</pre>
+<p>Using the <code class="prettyprint">showExternalContent(url [, options])</code>  method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.</p>
+
+<p>The first parameter is a URL string and the second an optional object with options. Supported options are</p>
 
 <ul>
 <li><code class="prettyprint">width</code>, a css string to set the width of the iframe. Default is <code class="prettyprint">&#39;800px&#39;</code></li>
@@ -167,7 +173,7 @@
   <span class="c1">// do something when the iframe closes
 </span><span class="p">});</span>
 </pre>
-<p><code class="prettyprint">showExtrenalContent</code> returns a proxy on which you can register event listeners. The only supported event at the moment is <code class="prettyprint">close</code> which gets triggered whenever the user closes the iframe. The syntax is shown in the second example on the right. For a full use case, check the next section on setting custom product actions.</p>
+<p><code class="prettyprint">showExternalContent</code> returns a proxy on which you can register event listeners. The only supported event at the moment is <code class="prettyprint">close</code> which gets triggered whenever the user closes the iframe. The syntax is shown in the second example on the right. For a full use case, check the next section on setting custom product actions.</p>
 
 <h2 id="custom-product-action">Custom Product Action</h2>
 <pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
@@ -235,7 +241,7 @@
 <h3 id="onopen-and-onclose"><code class="prettyprint">onOpen</code> and <code class="prettyprint">onClose</code></h3>
 <pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">,</span> <span class="nx">onOpen</span><span class="p">,</span> <span class="nx">onClose</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="p">...;</span> <span class="c1">// create a url based on products
+    <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="p">...;</span> <span class="c1">// create a URL based on products
 </span>
     <span class="nx">onOpen</span><span class="p">();</span> <span class="c1">// update the address bar and browser title
 </span>
@@ -268,7 +274,7 @@
 </span>  <span class="p">});</span>
 <span class="p">}</span>
 </pre>
-<p>Using the <code class="prettyprint">setLinkAction(action)</code> you can specify a custom action when the user clicks on an external link in the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive the original url as an argument.</p>
+<p>Using the <code class="prettyprint">setLinkAction(action)</code> you can specify a custom action when the user clicks on an external link in the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive the original URL as an argument.</p>
 
       </div>
       <div class="dark-box">
