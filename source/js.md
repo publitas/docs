@@ -82,6 +82,60 @@ window.viewerReady = function (api, platform) {
 
 Using the `setCartButtonAction(action [, title])` you can specify a custom action when the user clicks the shopping cart button in the main menu. `action` can be a url string or a function. `title` is an optional string argument, that sets the cart button title.
 
+## Updating the shopping cart icon
+
+``` javascript
+api.cartContentChanged({ numItems: <num-items> })
+```
+
+The shopping cart icon can display the number of items currently in the cart, using the cartContentChange method.
+
+The appearance of the shopping cart icon will change from 'empty' to 'full' if there are more than 0 items in the cart. To change the cart to empty again, set numItems to 0.
+
+
+### Updating the shopping cart from an iframe
+
+``` javascript
+parent.postMessage( JSON.stringify(['cartContentChanged', {
+  numItems: numItems
+}]), "*");
+
+```
+
+If you use an iframe (check [the section](#showing-external-content-in-an-iframe) on iframes) and you need to update the shopping cart icon from within the iframed content, you can use the `postMessage` as shown to the left.
+
+
+The message consists of an array, but because IE 8 & 9 only support sending string messages, it needs to be serialized using `JSON.stringify`.
+
+The second parameter to postMessage controls the target origin the parent window should have to receive the message. Using `"*"` is a good default, but you can implement a more restrictive policy. Check [the postMessage documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage) for more details.
+
+## Showing external content in an iframe
+
+``` javascript
+api.showExternalContent('http://some.url', options);
+```
+
+Using the showExternalContent method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.
+
+The first parameter is a url string and the second an optional object with options. Supported options are
+
+  * `width`, a css string to set the width of the iframe. Default is `'800px'`
+  * `background`, a css string to set the background color of the popover. You can use this to match the background color of your content. Default is `'#ffffff'`
+
+
+### callbacks
+
+``` javascript
+var content = api.showExternalContent('http://some.url');
+
+content.on('close', function () {
+  // do something when the iframe closes
+});
+```
+
+`showExtrenalContent` returns a proxy on which you can register event listeners. The only supported event at the moment is `close` which gets triggered whenever the user closes the iframe. The syntax is shown in the second example on the right. For a full use case, check the next section on setting custom product actions.
+
+
 ## Custom Product Action
 
 ``` javascript
@@ -92,25 +146,6 @@ window.viewerReady = function (api, platform) {
 }
 ```
 
-``` javascript
-window.viewerReady = function (api, platform) {
-  api.setProductAction(function (products, onOpen, onClose) {
-    // a button that will hide your custom product view
-    closeButton = ...
-
-    // an iFrame with your custom product view
-    iframe = ...
-
-    // update the address bar once the iframe loads
-    iframe.onload = onOpen;
-
-    closeButton.addEventListener('click', function () {
-      // close the product view
-      onClose(); // make sure the address bar
-    })
-  });
-}
-```
 
 Using the `setProductAction(action [, onOpen[, onClose]])` you can specify a custom action when the user clicks on a product on the Viewer. `action` needs to be a function. It will receive the an array of products that belong to the clicked hotspot as an argument. Products have the following properties:
 
@@ -128,6 +163,21 @@ Using the `setProductAction(action [, onOpen[, onClose]])` you can specify a cus
 | video         | Object      | Object with property 'youtubeId' if product has a YouTube video |
 
 ### `onOpen` and `onClose`
+
+``` javascript
+window.viewerReady = function (api, platform) {
+  api.setProductAction(function (products, onOpen, onClose) {
+    var url = ...; // create a url based on products
+
+    onOpen(); // update the address bar and browser title
+
+    // show custom product page
+    api.showExternalContent(url, {width: '600px'})
+      // revert the address bar and browser title once iframe is closed
+      .on('close', onClose);
+  });
+}
+```
 
 These are optional callbacks that you can evoke if you are implementing a custom product popover. The default behavior of the catalog viewer is to update the address bar URL to
 
@@ -160,3 +210,5 @@ window.viewerReady = function (api, platform) {
 }
 ```
 Using the `setLinkAction(action)` you can specify a custom action when the user clicks on an external link in the Viewer. `action` needs to be a function. It will receive the original url as an argument.
+
+
