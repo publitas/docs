@@ -125,7 +125,10 @@ Using the `showExternalContent(url [, options])`  method, you can display custom
 
 The first parameter is a URL string and the second an optional object with options. Supported options are
 
-  * `width`, a css string to set the width of the iframe. Default is `'800px'`
+  * `width`, a css string to set the width of the iframe. Default is different per device category:
+    * *desktop* : `'800px'`
+    * *tablet*  : `'720px'`
+    * *mobile*  : `'100%'` (cannot be overruled)
   * `background`, a css string to set the background color of the popover. You can use this to match the background color of your content. Default is `'#ffffff'`
 
 
