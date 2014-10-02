@@ -162,7 +162,13 @@
 <p>The first parameter is a URL string and the second an optional object with options. Supported options are</p>
 
 <ul>
-<li><code class="prettyprint">width</code>, a css string to set the width of the iframe. Default is <code class="prettyprint">&#39;800px&#39;</code></li>
+<li><code class="prettyprint">width</code>, a css string to set the width of the iframe. Default is different per device category:
+
+<ul>
+<li><em>desktop</em> : <code class="prettyprint">&#39;800px&#39;</code></li>
+<li><em>tablet</em>  : <code class="prettyprint">&#39;720px&#39;</code></li>
+<li><em>mobile</em>  : <code class="prettyprint">&#39;100%&#39;</code> (cannot be overruled)</li>
+</ul></li>
 <li><code class="prettyprint">background</code>, a css string to set the background color of the popover. You can use this to match the background color of your content. Default is <code class="prettyprint">&#39;#ffffff&#39;</code></li>
 </ul>
 
