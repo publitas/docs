@@ -288,28 +288,28 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
 <td>No</td>
 </tr>
 <tr>
-<td>downloading</td>
-<td>PDF is being downloaded from its origin.</td>
-<td>No</td>
+<td>preparing</td>
+<td>Preparing PDF for conversion.</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>waiting</td>
-<td>PDF is being converted and awaiting result</td>
+<td>converting</td>
+<td>PDF is being converted and awaiting result.</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>failed</td>
-<td>Usually triggered with invalid PDFs</td>
+<td>Usually triggered with invalid PDFs.</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>offline</td>
-<td>Publication is not publicly visible</td>
+<td>Publication is not publicly visible.</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>online</td>
-<td>Publication is publicly visible</td>
+<td>Publication is publicly visible.</td>
 <td>Yes</td>
 </tr>
 </tbody></table>
@@ -388,7 +388,9 @@ curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[sour
 
 <p>When created, a publication is automatically queued to be converted. The conversion status can be monitored by requesting the URL that you find in the <code class="prettyprint">url</code> key.</p>
 
-<p>For a publication created via the API, the state path should be <code class="prettyprint">new</code> &gt; <code class="prettyprint">downloading</code> &gt; <code class="prettyprint">waiting</code> &gt; <code class="prettyprint">offline</code></p>
+<p>For a publication created via the API, the state path should be:</p>
+
+<p><code class="prettyprint">new</code> &gt; <code class="prettyprint">preparing</code> &gt; <code class="prettyprint">converting</code> &gt; <code class="prettyprint">offline</code></p>
 
 <h1 id="languages">Languages</h1>
 
