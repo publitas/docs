@@ -162,7 +162,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups?api_key=&lt;api_key&gt
 
 <h1 id="publications">Publications</h1>
 
-<h2 id="listing">Listing</h2>
+<h2 id="list-all-publications-of-a-group">List all publications of a group</h2>
 <pre class="highlight shell"><span class="c"># This will retrieve all publications for a group</span>
 curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key=&lt;api_key&gt;"</span>
 </pre>
@@ -176,7 +176,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
             </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://production-revolution-publitas-com.s3.amazonaws.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
             </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
@@ -190,7 +190,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
             </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autumn-2014"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/2"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://production-revolution-publitas-com.s3.amazonaws.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
             </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
@@ -202,6 +202,24 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+</tbody></table>
+
 <p>The JSON response returns a list of publications with the following attributes:</p>
 
 <table><thead>
@@ -269,7 +287,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
 <tr>
 <td>public_url</td>
 <td>String</td>
-<td>Publication public URL</td>
+<td>Publication public URL when state is <code class="prettyprint">online</code> or <code class="prettyprint">offline</code>. Otherwise, <code class="prettyprint">null</code></td>
 </tr>
 </tbody></table>
 
@@ -314,7 +332,56 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
 </tr>
 </tbody></table>
 
-<h2 id="creating-[post-request]">Creating [POST Request]</h2>
+<h2 id="get-a-specific-publication">Get a specific publication</h2>
+<pre class="highlight shell"><span class="c"># This endpoint retrieves a specific publication.</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222?api_key=&lt;api_key&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Publication ID</td>
+<td>The ID of a specific publication</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-publication-[post-request]">Create a publication [POST Request]</h2>
 <pre class="highlight shell"><span class="c"># This will create a publication with the title Winter2014, and source URL http://example.com/winter2014.pdf.</span>
 curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[source_url]=http://example.com/winter2014.pdf"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key=&lt;api_key&gt;"</span>
 </pre>
@@ -329,15 +396,35 @@ curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[sour
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preparing"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/winter2014"</span><span class="w">  
+        </span><span class="s2">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="w">  
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request body parameters</h3>
+
 <p>The following fields need to be sent within a publication scope (see right for an example.)</p>
 
 <table><thead>
@@ -439,6 +526,10 @@ curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[sour
 <tr>
 <td>it</td>
 <td>Italian</td>
+</tr>
+<tr>
+<td>lt</td>
+<td>Lithuanian</td>
 </tr>
 <tr>
 <td>no</td>
