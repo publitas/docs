@@ -69,7 +69,9 @@ under the License.
 
   <body class="<%= page_classes %>">
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <div class='logo-wrapper'>
+        <%= image_tag "logo.png" %><span>api</span>
+      </div>
       <div id="toc">
       </div>
       <% if current_page.data.toc_footers %>

@@ -6,7 +6,7 @@ language_tabs:
 
 toc_footers:
  - <a href='https://publitas.com'>Publitas.com</a>
- - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+ - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
 ---
 
 # Introduction

@@ -4,6 +4,8 @@
 @import 'variables';
 @import 'syntax';
 @import 'icon-font';
+@import url('//cloud.typography.com/6901452/773564/css/fonts.css');
+
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -48,21 +50,45 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 500;
+  border-right: 1px solid #ddd;
+
+  .logo-wrapper {
+    line-height: 21px;
+    padding: $logo-margin;
+    background: $main-bg;
+    border-bottom: 1px solid #ddd;
+  }
 
   // This is the logo at the top of the ToC
-  &>img {
-    display: block;
-    margin-bottom: $logo-margin;
+  .logo-wrapper > img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 64px;
+  }
+
+  .logo-wrapper > span {
+    font-size: 20px;
+    line-height: 1;
+    color: darken($publitas-blue, 5%);
+    vertical-align: -2px;
+    margin-left: 4px;
+    letter-spacing: -1px;
+    font-weight: 200;
   }
 
   .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
+    padding: 4px $nav-padding 4px $nav-padding;
     display:block;
     overflow-x:hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  .tocify-item > a:hover {
+    background: $publitas-blue;
+    color: #fff;
   }
 
   // The Table of Contents is composed of multiple nested
@@ -94,17 +120,25 @@ html, body {
   .tocify-subheader {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
-    font-weight: 500;
-    @include background-image(
-      linear-gradient(top,
-                      darken($nav-subitem-bg,2%),
-                      $nav-subitem-bg 10%,
-                      $nav-subitem-bg 90%,
-                      darken($nav-subitem-bg,2%))
-    );
-    .tocify-item>a {
+
+    li {
+      font-weight: 300;
+      color: $main-text;
+    }
+
+    .tocify-focus {
+      color: $nav-active-text;
+    }
+
+    .tocify-item > a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
+
+      &:hover {
+        text-decoration: underline;
+        background: none;
+        color: $main-text;
+      }
     }
     // These items make for a slight embossed look for the subheader.
     // "Why not put the borders in the subheader?" you ask.
@@ -147,7 +181,7 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 
 .page-wrapper {
-  margin-left: $nav-width;
+  margin-left: $nav-width + 1;
   min-width: 700px;
   position: relative;
   z-index: 10;
@@ -234,15 +268,10 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 30px;
-    padding-top: 0.5em;
+    padding-top: 2em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
-    margin-top: 2em;
     margin-bottom: $h1-margin-bottom;
     border-top: 1px solid #ddd;
-    @include background-image(
-      linear-gradient(top, #fff, #f9f9f9)
-    );
   }
 
   // The header at the very top of the page
@@ -253,16 +282,12 @@ html, body {
   }
 
   h2 {
-    @extend %header-font;
+    @extend %large-header-font;
     font-size: 20px;
-    margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
-    padding-top: 1.2em;
+    padding-top: 1.6em;
     padding-bottom: 1.2em;
-    @include background-image(
-      linear-gradient(top, rgba(#fff,0.4), rgba(#fff, 0))
-    );
   }
 
   // h2s right after h1s should bump right up
@@ -289,10 +314,12 @@ html, body {
   table {
     margin-bottom: 1em;
     overflow: auto;
+
     th,td {
       text-align: left;
       vertical-align: top;
       line-height: 1.6;
+      border: 1px solid #ddd;
     }
 
     th {
@@ -305,16 +332,12 @@ html, body {
       padding: 10px;
     }
 
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
-    }
-
     tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
+      background-color: darken($main-bg,2.4%);
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+      background-color: darken($main-bg, 0%);
     }
   }
 
@@ -336,7 +359,7 @@ html, body {
   }
 
   code {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0);
     padding: 3px;
     border-radius: 3px;
     @extend %break-words;
@@ -346,20 +369,18 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: $aside-notice-fg;
 
     &.warning {
       background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
     }
 
     &.success {
       background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
     }
   }
 
@@ -406,7 +427,6 @@ html, body {
     clear:right;
 
     @include box-sizing(border-box);
-    @include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
 
     &>p { margin: 0; }
 
@@ -427,8 +447,6 @@ html, body {
       border-radius: 5px;
       padding: $code-annotation-padding;
       color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
     }
   }
 }
