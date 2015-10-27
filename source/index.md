@@ -601,17 +601,3 @@ In the example below the full photo url wil become:
 | width         | Integer     | Width of the image    |
 | height        | Integer     | Height of the image |
 
-
-# Errors
-
-The Kittn API uses the following error codes:
-
-
-Error Code | Meaning
----------- | -------
-404 | Not Found -- The path or document could not be found
-405 | Method Not Allowed -- You tried to access the API with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-418 | I'm a teapot
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
