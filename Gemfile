@@ -1,19 +1,13 @@
 source 'https://rubygems.org'
 
-gem "middleman", "~>3.3.0"
+# Middleman
+gem 'middleman', '~>3.3.10'
+gem 'middleman-gh-pages', '~> 0.0.3'
+gem 'middleman-syntax', '~> 2.0.0'
+gem 'middleman-autoprefixer', '~> 2.4.4'
+gem 'rouge', '~> 1.9.0'
+gem 'redcarpet', '~> 3.3.2'
 
-# For syntax highlighting
-gem "middleman-syntax"
+gem 'rake', '~> 10.4.2'
+gem 'therubyracer', '~> 0.12.1', platforms: :ruby
 
-# Plugin for middleman to generate Github pages
-gem 'middleman-gh-pages'
-
-# Live-reloading plugin
-gem "middleman-livereload", "~> 3.4.0"
-
-gem 'redcarpet', '~> 3.1.1'
-
-# For faster file watcher updates on Windows:
-gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
-
-gem "rake", "~> 10.1.0"

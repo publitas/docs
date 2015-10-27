@@ -59,9 +59,12 @@ $examples-width: 50%; // portion of the screen taken up by code examples
 $logo-margin: 20px 22px; // margin between nav items and logo
 $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 20px; // padding to left and right of navbar
+$nav-v-padding: 0;
 $nav-indent: 0px; // extra padding for ToC subitems
 $code-annotation-padding: 13px; // padding inside code annotations
 $h1-margin-bottom: 0px; // padding under the largest header tags
+$tablet-width: 930px; // min width before reverting to tablet size
+$phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
 
 
 // FONTS
@@ -84,11 +87,10 @@ $h1-margin-bottom: 0px; // padding under the largest header tags
 }
 
 %code-font {
-  font-family: Monaco, "Courier New", monospace;
+  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
   font-size: 12px;
   line-height: 1.5;
 }
-
 
 // OTHER
 ////////////////////
@@ -97,6 +99,7 @@ $nav-footer-border-color: #ddd;
 $nav-embossed-border-top: none;
 $nav-embossed-border-bottom: none;
 $main-embossed-text-shadow: none;
+$search-box-border-color: #666;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -105,13 +108,10 @@ $main-embossed-text-shadow: none;
 // These settings are probably best left alone.
 
 %break-words {
- -ms-word-break: break-all;
      word-break: break-all;
 
      /* Non standard for webkit */
      word-break: break-word;
 
--webkit-hyphens: auto;
-   -moz-hyphens: auto;
         hyphens: auto;
 }
