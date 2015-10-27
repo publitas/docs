@@ -418,6 +418,10 @@ html, body {
     font-size: 15px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
+
+    code {
+      font-size: 15px;
+    }
   }
 
   h4, h5, h6 {
@@ -586,7 +590,7 @@ html, body {
 
 @media (max-width: $tablet-width) {
   .tocify-wrapper {
-    left: -$nav-width;
+    left: -($nav-width + 1);
 
     &.open {
       left: 0;
@@ -616,9 +620,9 @@ html, body {
     margin-right: 0;
   }
 
-  .tocify-wrapper .lang-selector {
-    display: block;
-  }
+  // .tocify-wrapper .lang-selector {
+  //   display: block;
+  // }
 
   .page-wrapper .lang-selector {
     display: none;
