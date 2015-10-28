@@ -71,6 +71,8 @@ html, body {
     padding: $logo-margin;
     background: $main-bg;
     border-bottom: 1px solid #ddd;
+    display: block;
+    text-decoration: none;
   }
 
   // language selector for mobile devices

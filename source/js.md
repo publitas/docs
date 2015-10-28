@@ -1,5 +1,5 @@
 ---
-title: Javascript API Reference
+title: Viewer API Reference
 
 language_tabs:
   - javascript
@@ -9,12 +9,12 @@ toc_footers:
  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 ---
 
-# JavaScript API v1.0
+# Viewer API v1.0
 
 This API can be used to customize some behaviors in the Publitas.com Viewer.
 
 
-## Getting Started
+# Getting Started
 
 ``` javascript
 window.viewerReady = function (api, platform) {
@@ -30,7 +30,7 @@ The arguments passed to this function are
   * `platform`, a string specifying the current device category. Can be *desktop*, *tablet* or *mobile*
 
 
-## Targeting Different Devices
+# Targeting Different Devices
 
 ``` javascript
 window.viewerReady = function (api, platform) {
@@ -49,6 +49,8 @@ window.viewerReady = function (api, platform) {
 ```
 By default, customizations are applied to all device categories. This example shows how you could use the `platform` parameter to implement different customizations depending on the device the Viewer is running on.
 
+
+# API Methods
 
 ## Custom Home Button Action
 
