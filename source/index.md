@@ -8,32 +8,32 @@ toc_footers:
 search: false
 
 ---
+# Publitas API Overview
 
-# Introduction
 ```
-  ____        _     _ _ _
- |  _ \ _   _| |__ | (_) |_ __ _ ___
- | |_) | | | | '_ \| | | __/ _` / __|
- |  __/| |_| | |_) | | | || (_| \__ \
- |_|    \__,_|_.__/|_|_|\__\__,_|___/
+    ____        _     _ _ _
+   |  _ \ _   _| |__ | (_) |_ __ _ ___
+   | |_) | | | | '_ \| | | __/ _` / __|
+   |  __/| |_| | |_) | | | || (_| \__ \
+   |_|    \__,_|_.__/|_|_|\__\__,_|___/
 
-          API Documentation
+            API Documentation
 ```
 
-Welcome to the Publitas API documentation. We offer several APIs for customizing and integrating Publitas.com products.
+Welcome to the Publitas API documentation. We offer several APIs for customizing and integrating Publitas.com products:
 
 
-# REST API v1
+### REST API v1
 
 
 
 A REST to be used to retrieve publication data for usage in mobile apps, sites and other integrations.
 
-[REST API v1](rest-v1.html)
+[REST API v1 documentation](rest-v1.html)
 
 
-# Viewer API v1
+### Viewer API v1
 
-A JavaScript API to be used in our Viewers via the code injection tool. Can be used for customizing the Viewer, add analytics tracking or even devlop new features.
+A JavaScript API to be used in our Viewers via the code injection tool. Can be used for customizing the Viewer, add analytics tracking or even develop new features.
 
-[Viewer API v1](js.html)
+[Viewer API v1 documentation](js.html)
