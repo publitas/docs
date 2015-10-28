@@ -10,13 +10,12 @@ toc_footers:
 ---
 
 
-# Viewer Javascript API v1.0
+# Viewer Message API v1.0
 
 This API can be used to listen to events in the Viewer, for example:
 
 - the user navigated to a page/spread
 - the user opened a product
-
 
 
 # Getting Started
