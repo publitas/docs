@@ -43,18 +43,17 @@ curl "https://api.publitas.com/v2/groups?api_key=<api_key>"
 
 ```json
 {
-    "groups": [
-        {
-            "id": 1,
-            "title": "Example group",
-            "slug": "example-group",
-            "url": "https://api.publitas.com/v2/groups/1",
-            "publications_url": "https://api.publitas.com/v2/groups/1/publications",
-            "publication_count": 2,
-            "public_url": "https://view.publitas.com/example-group"
-
-        }
-    ]
+  "groups": [
+    {
+      "id": 1,
+      "title": "Example group",
+      "slug": "example-group",
+      "url": "https://api.publitas.com/v2/groups/1",
+      "publications_url": "https://api.publitas.com/v2/groups/1/publications",
+      "publication_count": 2,
+      "public_url": "https://view.publitas.com/example-group"
+    }
+  ]
 }
 ```
 
@@ -82,36 +81,36 @@ curl "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
 
 ``` json
 {
-    "publications": [
-        {
-            "id": 1,
-            "title": "Spring 2014",
-            "slug": "spring-2014",
-            "url": "https://api.publitas.com/v2/groups/1/publications/1",
-            "cover_url": "https://view.publitas.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
-            "page_count": 52,
-            "state": "offline",
-            "online_at": null,
-            "offline_at": null,
-            "schedule_online_at": null,
-            "schedule_offline_at": null,
-            "public_url": "https://view.publitas.com/example-group/spring-2014"
-        },
-        {
-            "id": 2,
-            "title": "Autumn 2014",
-            "slug": "autumn-2014",
-            "url": "https://api.publitas.com/v2/groups/1/publications/2",
-            "cover_url": "https://view.publitas.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
-            "page_count": 52,
-            "state": "offline",
-            "online_at": null,
-            "offline_at": null,
-            "schedule_online_at": "2014-09-25T15:17:20.000+02:00",
-            "schedule_offline_at": null,
-            "public_url": "https://view.publitas.com/example-group/autumn-2014"
-        }
-    ]
+  "publications": [
+    {
+      "id": 1,
+      "title": "Spring 2014",
+      "slug": "spring-2014",
+      "url": "https://api.publitas.com/v2/groups/1/publications/1",
+      "cover_url": "https://view.publitas.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
+      "page_count": 52,
+      "state": "offline",
+      "online_at": null,
+      "offline_at": null,
+      "schedule_online_at": null,
+      "schedule_offline_at": null,
+      "public_url": "https://view.publitas.com/example-group/spring-2014"
+    },
+    {
+      "id": 2,
+      "title": "Autumn 2014",
+      "slug": "autumn-2014",
+      "url": "https://api.publitas.com/v2/groups/1/publications/2",
+      "cover_url": "https://view.publitas.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
+      "page_count": 52,
+      "state": "offline",
+      "online_at": null,
+      "offline_at": null,
+      "schedule_online_at": "2014-09-25T15:17:20.000+02:00",
+      "schedule_offline_at": null,
+      "public_url": "https://view.publitas.com/example-group/autumn-2014"
+    }
+  ]
 }
 ```
 
@@ -164,23 +163,22 @@ curl "https://api.publitas.com/v2/groups/1/publications/222?api_key=<api_key>"
 
 ``` json
 {
-    "publication": [
-        {
-            "id": 222,
-            "title": "Spring 2014",
-            "slug": "spring-2014",
-            "url": "https://api.publitas.com/v2/groups/1/publications/222",
-            "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
-            "page_count": 52,
-            "state": "offline",
-            "online_at": null,
-            "offline_at": null,
-            "schedule_online_at": null,
-            "schedule_offline_at": null,
-            "public_url": "https://view.publitas.com/example-group/spring-2014"
-        }
-    ]
-
+  "publication": [
+    {
+      "id": 222,
+      "title": "Spring 2014",
+      "slug": "spring-2014",
+      "url": "https://api.publitas.com/v2/groups/1/publications/222",
+      "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
+      "page_count": 52,
+      "state": "offline",
+      "online_at": null,
+      "offline_at": null,
+      "schedule_online_at": null,
+      "schedule_offline_at": null,
+      "public_url": "https://view.publitas.com/example-group/spring-2014"
+    }
+  ]
 }
 ```
 
@@ -206,20 +204,20 @@ curl --data "publication[title]=Winter2014&publication[source_url]=http://exampl
 
 ```json
 {
-    "publication": {
-        "id": 3,
-        "title": "Winter2014",
-        "slug": "winter2014",
-        "url": "https://api.publitas.com/v2/groups/1/publications/3",
-        "cover_url": null,
-        "page_count": 0,
-        "state": "preparing",
-        "online_at": null,
-        "offline_at": null,
-        "schedule_online_at": null,
-        "schedule_offline_at": null,
-        "public_url": null
-    }
+  "publication": {
+    "id": 3,
+    "title": "Winter2014",
+    "slug": "winter2014",
+    "url": "https://api.publitas.com/v2/groups/1/publications/3",
+    "cover_url": null,
+    "page_count": 0,
+    "state": "preparing",
+    "online_at": null,
+    "offline_at": null,
+    "schedule_online_at": null,
+    "schedule_offline_at": null,
+    "public_url": null
+  }
 }
 ```
 
@@ -263,23 +261,22 @@ curl -X POST "https://api.publitas.com/v2/groups/1/publications/222/online?api_k
 
 ``` json
 {
-    "publication": [
-        {
-            "id": 222,
-            "title": "Spring 2014",
-            "slug": "spring-2014",
-            "url": "https://api.publitas.com/v2/groups/1/publications/222",
-            "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
-            "page_count": 52,
-            "state": "online",
-            "online_at": "2015-01-28T16:05:28.309+01:00",
-            "offline_at": null,
-            "schedule_online_at": null,
-            "schedule_offline_at": null,
-            "public_url": "https://view.publitas.com/example-group/spring-2014"
-        }
-    ]
-
+  "publication": [
+    {
+      "id": 222,
+      "title": "Spring 2014",
+      "slug": "spring-2014",
+      "url": "https://api.publitas.com/v2/groups/1/publications/222",
+      "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
+      "page_count": 52,
+      "state": "online",
+      "online_at": "2015-01-28T16:05:28.309+01:00",
+      "offline_at": null,
+      "schedule_online_at": null,
+      "schedule_offline_at": null,
+      "public_url": "https://view.publitas.com/example-group/spring-2014"
+    }
+  ]
 }
 ```
 
@@ -307,23 +304,22 @@ curl -X POST "https://api.publitas.com/v2/groups/1/publications/222/offline?api_
 
 ``` json
 {
-    "publication": [
-        {
-            "id": 222,
-            "title": "Spring 2014",
-            "slug": "spring-2014",
-            "url": "https://api.publitas.com/v2/groups/1/publications/222",
-            "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
-            "page_count": 52,
-            "state": "offline",
-            "online_at": "2015-01-28T16:05:28.309+01:00",
-            "offline_at": "2015-01-28T17:05:28.309+01:00",
-            "schedule_online_at": null,
-            "schedule_offline_at": null,
-            "public_url": "https://view.publitas.com/example-group/spring-2014"
-        }
-    ]
-
+  "publication": [
+    {
+      "id": 222,
+      "title": "Spring 2014",
+      "slug": "spring-2014",
+      "url": "https://api.publitas.com/v2/groups/1/publications/222",
+      "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
+      "page_count": 52,
+      "state": "offline",
+      "online_at": "2015-01-28T16:05:28.309+01:00",
+      "offline_at": "2015-01-28T17:05:28.309+01:00",
+      "schedule_online_at": null,
+      "schedule_offline_at": null,
+      "public_url": "https://view.publitas.com/example-group/spring-2014"
+    }
+  ]
 }
 ```
 ### HTTP Request
@@ -370,11 +366,11 @@ This endpoint returns the `200` response code.
 
 ``` json
 {
-    "errors": {
-        "state": [
-            "You have reached your publication limit"
-        ]
-    }
+  "errors": {
+    "state": [
+        "You have reached your publication limit"
+    ]
+  }
 }
 ```
 
