@@ -27,7 +27,7 @@ The message API uses HTML5's [window.postMessage](https://developer.mozilla.org/
 ```javascript
 window.addEventListener('message', function(message) {
   // do something with message
-})
+});
 ```
 
 The code injection tool in the [Publitas CMS](revolution.publitas.com) lets you add custom HTML tags into the header of a publication. Use a `<script>` tag to include custom javacsript code.
@@ -47,7 +47,7 @@ window.addEventListener('message', function(message) {
   }
 
   // do something with message
-}
+});
 ```
 
 If you embed the Viewer using an `<iframe>` or our embed code, the Viewer will post messages to the parent window. In _your_ website you can then also listen to message events on `window`, making the code almost identical. However, since your window can also receive other messages, you might need to ensure that it originates from the Viewer you are targeting.
@@ -63,7 +63,7 @@ If you have several Viewers embedded in your website, you can distinguish betwee
 ```javascript
 window.addEventListener('message', function(message) {
   var event = JSON.parse(message.data);
-}
+});
 ```
 
 The `message` object supplied to your event listener has a data property which is JSON encoded. You can use the standard `JSON.parse` method to decode it.
@@ -76,7 +76,7 @@ window.addEventListener('message', function(message) {
 
   var eventType = event[0];
   var eventData = event[1];
-}
+});
 ```
 
 API messages, once parsed, are an array with two elements
@@ -107,7 +107,7 @@ window.addEventListener('message', function(message) {
       // do something with eventData
       break;
   }
-}
+});
 ```
 
 Once you've parsed the message to get the event data, you can react to the event type in your code. Currently only one event type is supported:
@@ -126,7 +126,7 @@ window.addEventListener('message', function(message) {
       reactToStateChange(eventData);
       break;
   }
-}
+});
 
 function reactToStateChange(data) {
   data.url; // e.g. https://view.publitas.com/g/p/pages/2-3
