@@ -29,7 +29,7 @@ A REST to be used to retrieve publication data for usage in mobile apps, sites a
 
 [REST API v2 documentation](rest-v2.html)
 
-[REST API v1 documentation](rest-v1.html)
+[REST API v1 documentation (deprecated)](rest-v1.html)
 
 
 ### Viewer JavaScript API
