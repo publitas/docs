@@ -11,7 +11,7 @@ toc_footers:
 
 # REST API v2
 
-Welcome to the Publitas public API documentation. This API can be used to programatically list your account's groups, as well as to list and create publications based on existing PDF documents.
+This API can be used to programatically list your account's groups, as well as to list and create publications based on existing PDF documents.
 
 ### Version
 
