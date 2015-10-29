@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Viewer Message API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all_nosearch.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["javascript"]);
+        });
+      </script>
+  </head>
+
+  <body class="viewer-message-api">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <a href='./' class='logo-wrapper'>
+        <img src="images/logo.png" /><span>api</span>
+      </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://publitas.com'>Publitas.com</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="viewer-message-api-v1-0">Viewer Message API v1.0</h1>
+
+<p>This API can be used to listen to events in the Viewer, for example:</p>
+
+<ul>
+<li>the user navigated to a page/spread</li>
+<li>the user opened a product</li>
+</ul>
+
+<h1 id="getting-started">Getting Started</h1>
+
+<p>The message API uses HTML5&rsquo;s <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage">window.postMessage</a> to send messages. You can access messages sent by the Viewer in two different ways:</p>
+
+<h3 id="using-the-code-injection-tool">Using the Code Injection Tool</h3>
+<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do something with message</span>
+<span class="p">})</span>
+</code></pre>
+
+<p>The code injection tool in the <a href="revolution.publitas.com">Publitas CMS</a> lets you add custom HTML tags into the header of a publication. Use a <code class="prettyprint">&lt;script&gt;</code> tag to include custom javacsript code.
+The viewer will post messages to its window, so we can listen to events using <code class="prettyprint">window.addEventListener</code></p>
+
+<h3 id="in-your-own-website">In Your Own Website</h3>
+<pre class="highlight javascript"><code><span class="c1">// get a reference to the iFrame containing the Viewer</span>
+<span class="kd">var</span> <span class="nx">viewerFrame</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'viewer-frame-id'</span><span class="p">);</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do nothing if the message comes from a different source</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">source</span> <span class="o">!=</span> <span class="nx">viewerFrame</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// do something with message</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>If you embed the Viewer using an <code class="prettyprint">&lt;iframe&gt;</code> or our embed code, the Viewer will post messages to the parent window. In <em>your</em> website you can then also listen to message events on <code class="prettyprint">window</code>, making the code almost identical. However, since your window can also receive other messages, you might need to ensure that it originates from the Viewer you are targeting.</p>
+
+<aside class='notice'>
+If you have several Viewers embedded in your website, you can distinguish between them by checking the message source.
+</aside>
+
+<h1 id="message-format">Message Format</h1>
+
+<h2 id="parsing-messages">Parsing Messages</h2>
+<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The <code class="prettyprint">message</code> object supplied to your event listener has a data property which is JSON encoded. You can use the standard <code class="prettyprint">JSON.parse</code> method to decode it.</p>
+
+<h2 id="data-format">Data Format</h2>
+<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">eventType</span> <span class="o">=</span> <span class="nx">event</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">eventData</span> <span class="o">=</span> <span class="nx">event</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>API messages, once parsed, are an array with two elements</p>
+
+<table><thead>
+<tr>
+<th>Index</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>String</td>
+<td>event type</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Object</td>
+<td>extra event data/details</td>
+</tr>
+</tbody></table>
+
+<aside class='warning'>
+  The Viewer also sends a few internal messages which do not follow this format. The code described here will not break, but `eventType` will be `undefined` and you can simply ignore those messages.
+</aside>
+
+<h1 id="events">Events</h1>
+<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">eventType</span> <span class="o">=</span> <span class="nx">event</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">eventData</span> <span class="o">=</span> <span class="nx">event</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">eventType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">'event type A'</span><span class="err">:</span>
+      <span class="c1">// do something with eventData</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">'event type B'</span>
+      <span class="c1">// do something with eventData</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Once you&rsquo;ve parsed the message to get the event data, you can react to the event type in your code. Currently only one event type is supported:</p>
+
+<h2 id="statechange-event">stateChange Event</h2>
+<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">eventType</span> <span class="o">=</span> <span class="nx">event</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">eventData</span> <span class="o">=</span> <span class="nx">event</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">eventType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">'stateChange'</span><span class="err">:</span>
+      <span class="nx">reactToStateChange</span><span class="p">(</span><span class="nx">eventData</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">reactToStateChange</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">.</span><span class="nx">url</span><span class="p">;</span> <span class="c1">// e.g. https://view.publitas.com/g/p/pages/2-3</span>
+  <span class="nx">data</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">pages</span><span class="p">;</span> <span class="c1">// e.g. [2, 3]</span>
+  <span class="nx">data</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">productId</span> <span class="c1">// e.g. 2431</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>This event is triggered whenever a user does one of two things:</p>
+
+<ul>
+<li>navigates to a page/spread</li>
+<li>clicks on a product hotspot</li>
+</ul>
+
+<p>Thus any action in the Viewer that reveals content which has its own URL.</p>
+
+<h3 id="event-type">Event Type</h3>
+
+<p>The event type is the String <code class="prettyprint">&quot;stateChange&quot;</code></p>
+
+<h3 id="event-data">Event Data</h3>
+
+<p>The event data is an Object in the form</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>the deeplink url for the new state</td>
+</tr>
+<tr>
+<td>state</td>
+<td>Object</td>
+<td>the state data/details</td>
+</tr>
+</tbody></table>
+
+<p>where the <code class="prettyprint">state</code> Object has the form</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pages</td>
+<td>Array</td>
+<td>an array of current page numbers</td>
+</tr>
+<tr>
+<td>productId</td>
+<td>Number</td>
+<td>the id of the current product (if applicable)</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
