@@ -12,7 +12,7 @@ search: false
 
 ---
 
-# REST API v1.0
+# REST API v1
 
 This API can be used to retrieve publication data for usage in mobile apps, sites and other integrations.
 

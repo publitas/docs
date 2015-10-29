@@ -10,7 +10,7 @@ toc_footers:
 ---
 
 
-# Viewer Message API v1.0
+# Viewer Message API v1
 
 This API can be used to listen to events in the Viewer, for example:
 

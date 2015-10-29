@@ -9,7 +9,7 @@ toc_footers:
  - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
 ---
 
-# Introduction
+# REST API v2
 
 Welcome to the Publitas public API documentation. This API can be used to programatically list your account's groups, as well as to list and create publications based on existing PDF documents.
 
