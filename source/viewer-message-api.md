@@ -20,7 +20,7 @@ This API can be used to listen to events in the Viewer, for example:
 
 # Getting Started
 
-The message API uses HTML5s [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) to send messages. You can access messages in two different ways:
+The message API uses HTML5s [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) to send messages. You can access messages sent by the Viewer in two different ways:
 
 ### Using the Code Injection Tool
 
@@ -52,6 +52,10 @@ window.addEventListener('message', function(message) {
 
 If you embed the Viewer using an `<iframe>` or our embed code, the Viewer will post messages to the parent window. In _your_ website you can then also listen to message events on `window`, making the code almost identical. However, since your window can also receive other messages, you might need to ensure that it originates from the Viewer you are targeting.
 
+<aside class='notice'>
+If you have several Viewers embedded in your website, you can distinguish between them by checking the message source.
+</aside>
+
 # Message Format
 
 ## Parsing Messages
@@ -62,7 +66,7 @@ window.addEventListener('message', function(message) {
 }
 ```
 
-The `message` object supplied to your event listener has a data property which is JSON encoded. You can use the standard `JSON.parse` method to parse it.
+The `message` object supplied to your event listener has a data property which is JSON encoded. You can use the standard `JSON.parse` method to decode it.
 
 ## Data Format
 
@@ -82,7 +86,7 @@ API messages, once parsed, are an array with two elements
 | 0     | String | event type               |
 | 1     | Object | extra event data/details |
 
-<aside class='notice'>
+<aside class='warning'>
   The Viewer also sends a few internal messages which do not follow this format. The code described here will not break, but `eventType` will be `undefined` and you can simply ignore those messages.
 </aside>
 
