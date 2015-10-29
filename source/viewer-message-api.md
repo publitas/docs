@@ -20,7 +20,7 @@ This API can be used to listen to events in the Viewer, for example:
 
 # Getting Started
 
-The message API uses HTML5s [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) to send messages. You can access messages sent by the Viewer in two different ways:
+The message API uses HTML5's [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) to send messages. You can access messages sent by the Viewer in two different ways:
 
 ### Using the Code Injection Tool
 
@@ -31,7 +31,7 @@ window.addEventListener('message', function(message) {
 ```
 
 The code injection tool in the [Publitas CMS](revolution.publitas.com) lets you add custom HTML tags into the header of a publication. Use a `<script>` tag to include custom javacsript code.
-The viewer will post messages to its window, so we can listen to to events using `window.addEventListener`
+The viewer will post messages to its window, so we can listen to events using `window.addEventListener`
 
 
 ### In Your Own Website
@@ -110,7 +110,7 @@ window.addEventListener('message', function(message) {
 }
 ```
 
-Once you've parsed the message to get the event data, you can react on the event type in your code. Currently only one event type is supported:
+Once you've parsed the message to get the event data, you can react to the event type in your code. Currently only one event type is supported:
 
 ## stateChange Event
 
@@ -140,7 +140,7 @@ This event is triggered whenever a user does one of two things:
 - navigates to a page/spread
 - clicks on a product hotspot
 
-Thus any action in the Viewer that reveals content which has its own url.
+Thus any action in the Viewer that reveals content which has its own URL.
 
 ### Event Type
 
