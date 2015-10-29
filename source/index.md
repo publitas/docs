@@ -25,15 +25,19 @@ Welcome to the Publitas API documentation. We offer several APIs for customizing
 
 ### REST API v1
 
-
-
 A REST to be used to retrieve publication data for usage in mobile apps, sites and other integrations.
 
 [REST API v1 documentation](rest-v1.html)
 
 
-### Viewer API v1
+### Viewer JavaScript API v1
 
 A JavaScript API to be used in our Viewers via the code injection tool. Can be used for customizing the Viewer, add analytics tracking or even develop new features.
 
-[Viewer API v1 documentation](js.html)
+[Viewer JavaScript API v1 documentation](js.html)
+
+### Viewer Message API v1.0
+
+A JavaScript API to react to events in the Viewer. Useful for integrating an embeded Viewer with your site, or for triggering custom actions on certain events.
+
+[Viewer Message API documentation](viewer-message-api.html)

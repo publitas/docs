@@ -552,7 +552,7 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    padding: 2em $main-padding;
+    padding: 0 $main-padding 2em $main-padding;
     margin: 0;
     width: $examples-width;
 
@@ -637,5 +637,11 @@ html, body {
 
   %right-col + %left-col {
     margin-top: $main-padding;
+  }
+
+  .content {
+    pre, blockquote {
+      padding-top: 2em;
+    }
   }
 }
