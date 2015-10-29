@@ -9,7 +9,7 @@ toc_footers:
  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 ---
 
-# Viewer Javascript API v1.0
+# Viewer JavaScript API v1.0
 
 This API can be used to customize some behaviors in the Publitas.com Viewer.
 
