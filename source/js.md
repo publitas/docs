@@ -71,20 +71,24 @@ The `api.publication` property exposes information of the current publication. I
 | slug          | String      | publication identifier |
 | groupSlug     | String      | unique group identifier  |
 
-The `slug` and `groupSlug` properties are the building blocks of publication URLs, which have the structure
+The `slug` and `groupSlug` properties are the building blocks of publication URLs, which have the structure:
 
-*https://view.publitas.com/groupSlug/slug/`*
+*https://view.publitas.com/groupSlug/slug/*
 
-They can be used to construct a unique identifier for the current publication (to be used for custom analytics tracking, for example).
+They can be used to construct a unique identifier for the current publication
+(e.g. to be used for custom analytics tracking).
 
-Note that several publications can have the same slug as long as they are from different groups. To ensure to get a unique identifier for your publication, use both, the group and the publication slug.
+Note that several publications can have the same slug as long as they are from different groups. 
+To ensure to get a unique identifier for your publication,
+use both the group and the publication slug.
 
 <aside class="notice">
-If you have a custom domain configured, your URLs will have the structure
+If you have a custom domain configured,
+your URLs will have the structure:
 
 *http(s)://your-custom.domain/slug*
 
-and using just the publication slug might be sufficient if you are doing tracking per domain.
+Using just the publication slug might be sufficient if you are doing tracking per domain.
 </aside>
 
 # API Methods
