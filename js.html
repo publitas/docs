@@ -36,7 +36,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='https://publitas.com'>Publitas.com</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='http://github.com/tripit/slate'>Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -57,7 +57,7 @@
 <p>The arguments passed to this function are</p>
 
 <ul>
-<li><code class="prettyprint">api</code>, an object exposing the API methods</li>
+<li><code class="prettyprint">api</code>, an object exposing API properties and methods</li>
 <li><code class="prettyprint">platform</code>, a string specifying the current device category. Can be <em>desktop</em>, <em>tablet</em> or <em>mobile</em></li>
 </ul>
 
@@ -78,6 +78,60 @@
 </code></pre>
 
 <p>By default, customizations are applied to all device categories. This example shows how you could use the <code class="prettyprint">platform</code> parameter to implement different customizations depending on the device the Viewer is running on.</p>
+
+<h2 id="getting-basic-publication-information">Getting basic publication information</h2>
+<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">publication</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">publication</span><span class="p">;</span>
+
+ <span class="cm">/*
+  * Assuming your publication url is:
+  * https://view.publitas.com/my-group/my-publication/
+  */</span>
+  <span class="nx">publication</span><span class="p">.</span><span class="nx">slug</span><span class="p">;</span> <span class="c1">// 'my-publication'</span>
+  <span class="nx">publication</span><span class="p">.</span><span class="nx">groupSlug</span><span class="p">;</span> <span class="c1">// 'my-group'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The <code class="prettyprint">api.publication</code> property exposes information of the current publication. It contains the following properties:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>slug</td>
+<td>String</td>
+<td>publication identifier</td>
+</tr>
+<tr>
+<td>groupSlug</td>
+<td>String</td>
+<td>unique group identifier</td>
+</tr>
+</tbody></table>
+
+<p>The <code class="prettyprint">slug</code> and <code class="prettyprint">groupSlug</code> properties are the building blocks of publication URLs, which have the structure:</p>
+
+<p><em>https://view.publitas.com/groupSlug/slug/</em></p>
+
+<p>They can be used to construct a unique identifier for the current publication
+(e.g. to be used for custom analytics tracking).</p>
+
+<p>Note that several publications can have the same slug as long as they are from different groups. 
+To ensure to get a unique identifier for your publication,
+use both the group and the publication slug.</p>
+
+<aside class="notice">
+If you have a custom domain configured,
+your URLs will have the structure:
+
+*http(s)://your-custom.domain/slug*
+
+Using just the publication slug might be sufficient if you are doing tracking per domain.
+</aside>
 
 <h1 id="api-methods">API Methods</h1>
 
@@ -177,7 +231,7 @@
 
 <table><thead>
 <tr>
-<th>Field</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
