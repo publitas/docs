@@ -6,7 +6,7 @@ language_tabs:
 
 toc_footers:
  - <a href='https://publitas.com'>Publitas.com</a>
- - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+ - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
 ---
 
 # Viewer JavaScript API v1
@@ -26,7 +26,7 @@ To access the Publitas.com JavaScript API you need to inject JavaScript code int
 
 The arguments passed to this function are
 
-  * `api`, an object exposing the API methods
+  * `api`, an object exposing API properties and methods
   * `platform`, a string specifying the current device category. Can be *desktop*, *tablet* or *mobile*
 
 
@@ -49,6 +49,47 @@ window.viewerReady = function (api, platform) {
 ```
 By default, customizations are applied to all device categories. This example shows how you could use the `platform` parameter to implement different customizations depending on the device the Viewer is running on.
 
+## Getting basic publication information
+
+``` javascript
+window.viewerReady = function (api, platform) {
+  var publication = api.publication;
+
+ /*
+  * Assuming your publication url is:
+  * https://view.publitas.com/my-group/my-publication/
+  */
+  publication.slug; // 'my-publication'
+  publication.groupSlug; // 'my-group'
+}
+```
+
+The `api.publication` property exposes information of the current publication. It contains the following properties:
+
+| Property      | Type        | Description         |
+| ------------- |-------------| ------------------- |
+| slug          | String      | publication identifier |
+| groupSlug     | String      | unique group identifier  |
+
+The `slug` and `groupSlug` properties are the building blocks of publication URLs, which have the structure:
+
+*https://view.publitas.com/groupSlug/slug/*
+
+They can be used to construct a unique identifier for the current publication
+(e.g. to be used for custom analytics tracking).
+
+Note that several publications can have the same slug as long as they are from different groups. 
+To ensure to get a unique identifier for your publication,
+use both the group and the publication slug.
+
+<aside class="notice">
+If you have a custom domain configured,
+your URLs will have the structure:
+
+*http(s)://your-custom.domain/slug*
+
+Using just the publication slug might be sufficient if you are doing tracking per domain.
+</aside>
 
 # API Methods
 
@@ -161,7 +202,7 @@ window.viewerReady = function (api, platform) {
 Using the `setProductAction(action [, onOpen[, onClose]])` you can specify a custom action when the user clicks on a product on the Viewer. `action` needs to be a function. It will receive the an array of products that belong to the clicked hotspot as an argument. Products have the following properties:
 
 
-| Field         | Type        | Description         |
+| Property      | Type        | Description         |
 | ------------- |-------------| ------------------- |
 | id            | Integer     | Product id     |
 | hotspotId     | Integer     | Id of the related hotspot     |
