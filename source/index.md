@@ -40,6 +40,6 @@ A JavaScript API to be used in our Viewers via the code injection tool. Can be u
 
 ### Viewer Message API
 
-A JavaScript API to react to events in the Viewer. Useful for integrating an embeded Viewer with your site, or for triggering custom actions on certain events.
+A JavaScript API to react to events in the Viewer. Useful for integrating an embedded Viewer with your site, or for triggering custom actions on certain events.
 
 [Viewer Message API documentation](viewer-message-api.html)
