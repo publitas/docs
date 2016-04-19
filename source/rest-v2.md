@@ -140,18 +140,14 @@ The JSON response returns a list of publications with the following attributes:
 | offline_at          | DateTime | Time at which the publication was last set offline                            |
 | schedule_online_at  | DateTime | Time at which the publication is scheduled to go online                       |
 | schedule_offline_at | DateTime | Time at which the publication is scheduled to go offline                      |
-| public_url          | String   | Publication public URL when state is `online` or `offline`. Otherwise, `null` |
+| public_url          | String   | Publication public URL or `null` when the publication is still converting.    |
 
 The `state` field can have one of the following values:
 
-|    Value    |                        Description                     | Visible on CMS |
-|-------------|--------------------------------------------------------|----------------|
-| new         | Initial state of a publication.                        | No             |
-| preparing   | Preparing PDF for conversion.                          | Yes            |
-| converting  | PDF is being converted and awaiting result.            | Yes            |
-| failed      | Usually triggered with invalid PDFs.                   | Yes            |
-| offline     | Publication is not publicly visible.                   | Yes            |
-| online      | Publication is publicly visible.                       | Yes            |
+|    Value    |                        Description                     |
+|-------------|--------------------------------------------------------|
+| offline     | Publication is not publicly visible.                   |
+| online      | Publication is publicly visible.                       |
 
 ## Get a specific publication
 
