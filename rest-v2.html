@@ -264,7 +264,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
 <tr>
 <td>public_url</td>
 <td>String</td>
-<td>Publication public URL when state is <code class="prettyprint">online</code> or <code class="prettyprint">offline</code>. Otherwise, <code class="prettyprint">null</code></td>
+<td>Publication public URL or <code class="prettyprint">null</code> when the publication is still converting.</td>
 </tr>
 </tbody></table>
 
@@ -274,38 +274,15 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
 <tr>
 <th>Value</th>
 <th>Description</th>
-<th>Visible on CMS</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>new</td>
-<td>Initial state of a publication.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>preparing</td>
-<td>Preparing PDF for conversion.</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>converting</td>
-<td>PDF is being converted and awaiting result.</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>failed</td>
-<td>Usually triggered with invalid PDFs.</td>
-<td>Yes</td>
-</tr>
-<tr>
 <td>offline</td>
 <td>Publication is not publicly visible.</td>
-<td>Yes</td>
 </tr>
 <tr>
 <td>online</td>
 <td>Publication is publicly visible.</td>
-<td>Yes</td>
 </tr>
 </tbody></table>
 
