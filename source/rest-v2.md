@@ -207,7 +207,7 @@ curl --data "publication[title]=Winter2014&publication[source_url]=http://exampl
     "url": "https://api.publitas.com/v2/groups/1/publications/3",
     "cover_url": null,
     "page_count": 0,
-    "state": "preparing",
+    "state": "offline",
     "online_at": null,
     "offline_at": null,
     "schedule_online_at": null,
@@ -239,12 +239,6 @@ The following fields need to be sent within a publication scope (see right for a
 | language            | String   | No       | 2-digit language code. See [the language table](#languages) below for allowed values                                                                     |
 | schedule_online_at  | DateTime | No       | Time at which the publication is scheduled to be online. If the current time is provided, the publication will be put online as soon as it is converted  |
 | schedule_offline_at | DateTime | No       | Time at which the publication is scheduled to be offline                                                                                                 |
-
-When created, a publication is automatically queued to be converted. The conversion status can be monitored by requesting the URL that you find in the `url` key.
-
-For a publication created via the API, the state path should be:
-
-`new` > `preparing` > `converting` > `offline`
 
 ## Mark a publication as online
 
