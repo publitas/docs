@@ -352,7 +352,7 @@ curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[sour
     </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preparing"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -423,12 +423,6 @@ curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[sour
 <td>Time at which the publication is scheduled to be offline</td>
 </tr>
 </tbody></table>
-
-<p>When created, a publication is automatically queued to be converted. The conversion status can be monitored by requesting the URL that you find in the <code class="prettyprint">url</code> key.</p>
-
-<p>For a publication created via the API, the state path should be:</p>
-
-<p><code class="prettyprint">new</code> &gt; <code class="prettyprint">preparing</code> &gt; <code class="prettyprint">converting</code> &gt; <code class="prettyprint">offline</code></p>
 
 <h2 id="mark-a-publication-as-online">Mark a publication as online</h2>
 <pre class="highlight shell"><code><span class="c"># This endpoint marks a publication as being online.</span>
