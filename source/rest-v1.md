@@ -543,6 +543,7 @@ curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-ex
   "title": "Sola wok Ø 28 cm Luna Green & Healthy",
   "description": "Deze duurzaam geproduceerde wok heeft een keramische krasvaste bodem.",
   "price": 24.99,
+  "discountedPrice": 19.99,
   "webshopIdentifier": "2104282",
   "webshopUrl": "http://webshop.com/product/2104282",
   "photos": [
@@ -574,6 +575,7 @@ Where `id` is the product id from the `data.json`
 | title         | String      | Product title |
 | description   | String      | Product description   |
 | price         | Float       | Product price  |
+| discountedPrice | Float       | Product price with discount |
 | webshopIdentifier | String  | Product id from the webshop |
 | webshopUrl    | String      | Direct link to the product on the webshop   |
 | photos        | Array       | Array of product photos containing 0 - 6 photos   |

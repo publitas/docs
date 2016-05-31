@@ -209,6 +209,7 @@ Using the `setProductAction(action [, onOpen[, onClose]])` you can specify a cus
 | title         | String      | Product title |
 | description   | String      | Product description   |
 | price         | Float       | Product price  |
+| discountedPrice | Float       | Product price with discount |
 | webshopIdentifier | String  | Product id from the webshop |
 | webshopUrl    | String      | Direct link to the product on the webshop   |
 | photos        | Array       | Array of product photos containing 0 - 6 photos   |
