@@ -40,7 +40,7 @@ An example of a complete path is:
   }
 ```
 
-Images and other assets are served from: `https://view.publitas.com`. Image paths returned from the API are all relative to this base pat and all images are returned as `jpg` files.
+Images and other assets are served from: `https://view.publitas.com`. Image paths returned from the API are all relative to this base path and all images are returned as `jpg` files.
 
 A photoUrl returned from the API has to be concatenated to
 
@@ -50,7 +50,7 @@ A photoUrl returned from the API has to be concatenated to
 where `-within1000.jpg` is dependent on the type of image.
 
 <aside class="notice">
-Instances where size attributes have to be added to the url are documented accordingly.
+Instances where size attributes have to be added to the URL are documented accordingly.
 </aside>
 
 
@@ -75,7 +75,7 @@ curl "https://api.publitas.com/v1/groups/example-blokker/publications.json"
 ]
 ```
 
-The url for a publication is (appended to the base path)
+The URL for a publication is (appended to the base path)
 
 `/groups/<group_slug>/publications.json`
 
@@ -88,12 +88,12 @@ The JSON response returns a list of publications with the following attributes.
 
 | Field         | Type        | Description         |
 | ------------- |-------------| ------------------- |
-| id            | Integer     | Publication id     |
+| id            | Integer     | Publication ID     |
 | slug          | String      | Publication slug (used in path for API)   |
 | title         | String      | Publication title   |
 | browserTitle  | String      | Publication browser title (can differ from title)   |
 | onlineAt      | String      | Timestamp of moment publication was published   |
-| url           | String      | Url to the publication data json   |
+| url           | String      | URL to the publication data json   |
 
 
 
@@ -115,7 +115,7 @@ curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-ex
 }
 ```
 
-The url for a publication is (appended to the base path)
+The URL for a publication is (appended to the base path)
 
 `/groups/<group_slug>/publications/<publication_slug>.json`
 
@@ -205,7 +205,7 @@ This contains the configuration of the reader.
 | relativeSize      | Float       | Indicating the relative size between the width/height of the images |
 | locale            | String      | Locale of the publication, used for the translation hash |
 | language          | String      | Language of the publication |
-| downloadPdfUrl    | String      | Relative url to the PDF, can be null if download is disabled |
+| downloadPdfUrl    | String      | Relative URL to the PDF, can be null if download is disabled |
 | disableFeedback   | Boolean     | Disable feedback tab |
 | disableBranding   | Boolean     | Disable Publitas.com branding |
 | showPrintButton   | Boolean     | Show print button |
@@ -381,7 +381,7 @@ It contains the hotspot id, title and type. But also data on where the hotspot i
 
 | Field         | Type        | Description         |
 | ------------- |-------------| ------------------- |
-| id            | Integer     | Specific hotspot id |
+| id            | Integer     | Specific hotspot ID |
 | title         | String (optional)| Hotspot title |
 | type          | String     | Hotspot type |
 | showIndication| Boolean     | If set to true, hotspot indication should be shown, |
@@ -438,7 +438,7 @@ The `"stub": "true"` flag means this is a "stub" product and more information ab
 
 | Field    | Type  | Description         |
 | -------- | ----- | ------------------- |
-| id       | Int   | Id of the product, can be used to retrieve additional information |
+| id       | Int   | ID of the product, can be used to retrieve additional information |
 | stub     | Bool  | Wether more information has to be retrieved, currently only true is supported |
 
 
@@ -462,13 +462,13 @@ The `"stub": "true"` flag means this is a "stub" product and more information ab
 }
 ```
 
-Link to an (external) url. Can also be used for custom application schemes on mobile devices.
+Link to an (external) URL. Can also be used for custom application schemes on mobile devices.
 
 Internal link to a page, page numbers start at 1.
 
 | Field    | Type  | Description         |
 | -------- | ----- | ------------------- |
-| url | String   | Can be an url to a site or __app__ (appName://) |
+| url | String   | Can be an URL to a site or __app__ (appName://) |
 
 
 ## Page link (pageReference)
@@ -554,7 +554,7 @@ curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-ex
 }
 ```
 
-The url for a product is (appended to the base path)
+The URL for a product is (appended to the base path)
 
 `/groups/<group_slug>/publications/<publication_slug>/products/<product_id>.json`
 
@@ -564,27 +564,27 @@ A complete path looks like:
 
 The JSON response returns a product with the following attributes.
 
-Where `id` is the product id from the `data.json`
+Where `id` is the product ID from the `data.json`
 
 | Field         | Type        | Description         |
 | ------------- |-------------| ------------------- |
-| id            | Integer     | Product id     |
+| id            | Integer     | Product ID     |
 | hotspotId     | Integer     | Id of the related hotspot     |
 | title         | String      | Product title |
 | description   | String      | Product description   |
 | price         | Float       | Product price  |
 | discountedPrice | Float       | Product price with discount |
-| webshopIdentifier | String  | Product id from the webshop |
+| webshopIdentifier | String  | Product ID from the webshop |
 | webshopUrl    | String      | Direct link to the product on the webshop   |
 | photos        | Array       | Array of product photos containing 0 - 6 photos   |
 
 
-The photos array contains 0 to 6 photos with the following attributes. The `photoUrl` field returns a relative base path to the image. After this pase path two options are available for the complete link.
+The photos array contains 0 to 6 photos with a `photoUrl` attribute. The `photoUrl` field refers to a relative base path to the image. After this base path two options are available for the complete link.
 
 * -at200.jpg - a thumbnail of 200x200 px
 * -within1000.jpg - image with a _maximum_ width/height of 1000 px.
 
-In the example below the full photo url wil become:
+In the example below the full photo URL will become:
 
 `https://view.publitas.com/1230/10323/photos/22js92ksasfhhj2l-at200.png`
 
