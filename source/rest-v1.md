@@ -548,9 +548,7 @@ curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-ex
   "webshopUrl": "http://webshop.com/product/2104282",
   "photos": [
     {
-      "photoUrl": "/1230/10323/photos/22js92ksasfhhj2l",
-      "width": 440.0,
-      "height": 440.0
+      "photoUrl": "/1230/10323/photos/22js92ksasfhhj2l"
     }
   ]
 }
@@ -593,6 +591,4 @@ In the example below the full photo url wil become:
 | Field         | Type        | Description         |
 | ------------- |-------------| ------------------- |
 | photoUrl      | String      | (Relative) link to product image base path |
-| width         | Integer     | Width of the image    |
-| height        | Integer     | Height of the image |
 
