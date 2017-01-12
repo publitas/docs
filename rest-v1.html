@@ -68,7 +68,7 @@
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Images and other assets are served from: <code class="prettyprint">https://view.publitas.com</code>. Image paths returned from the API are all relative to this base pat and all images are returned as <code class="prettyprint">jpg</code> files.</p>
+<p>Images and other assets are served from: <code class="prettyprint">https://view.publitas.com</code>. Image paths returned from the API are all relative to this base path and all images are returned as <code class="prettyprint">jpg</code> files.</p>
 
 <p>A photoUrl returned from the API has to be concatenated to</p>
 
@@ -77,7 +77,7 @@
 <p>where <code class="prettyprint">-within1000.jpg</code> is dependent on the type of image.</p>
 
 <aside class="notice">
-Instances where size attributes have to be added to the url are documented accordingly.
+Instances where size attributes have to be added to the URL are documented accordingly.
 </aside>
 
 <h1 id="publications">Publications</h1>
@@ -100,7 +100,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>The url for a publication is (appended to the base path)</p>
+<p>The URL for a publication is (appended to the base path)</p>
 
 <p><code class="prettyprint">/groups/&lt;group_slug&gt;/publications.json</code></p>
 
@@ -120,7 +120,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 <tr>
 <td>id</td>
 <td>Integer</td>
-<td>Publication id</td>
+<td>Publication ID</td>
 </tr>
 <tr>
 <td>slug</td>
@@ -145,7 +145,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 <tr>
 <td>url</td>
 <td>String</td>
-<td>Url to the publication data json</td>
+<td>URL to the publication data json</td>
 </tr>
 </tbody></table>
 
@@ -165,7 +165,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The url for a publication is (appended to the base path)</p>
+<p>The URL for a publication is (appended to the base path)</p>
 
 <p><code class="prettyprint">/groups/&lt;group_slug&gt;/publications/&lt;publication_slug&gt;.json</code></p>
 
@@ -295,7 +295,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 <tr>
 <td>downloadPdfUrl</td>
 <td>String</td>
-<td>Relative url to the PDF, can be null if download is disabled</td>
+<td>Relative URL to the PDF, can be null if download is disabled</td>
 </tr>
 <tr>
 <td>disableFeedback</td>
@@ -515,7 +515,7 @@ It contains the hotspot id, title and type. But also data on where the hotspot i
 <tr>
 <td>id</td>
 <td>Integer</td>
-<td>Specific hotspot id</td>
+<td>Specific hotspot ID</td>
 </tr>
 <tr>
 <td>title</td>
@@ -622,7 +622,7 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
 <tr>
 <td>id</td>
 <td>Int</td>
-<td>Id of the product, can be used to retrieve additional information</td>
+<td>ID of the product, can be used to retrieve additional information</td>
 </tr>
 <tr>
 <td>stub</td>
@@ -649,7 +649,7 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Link to an (external) url. Can also be used for custom application schemes on mobile devices.</p>
+<p>Link to an (external) URL. Can also be used for custom application schemes on mobile devices.</p>
 
 <p>Internal link to a page, page numbers start at 1.</p>
 
@@ -663,7 +663,7 @@ The value is a float from 0 to 1, where 0 is left and 1 is the right side of the
 <tr>
 <td>url</td>
 <td>String</td>
-<td>Can be an url to a site or <strong>app</strong> (appName://)</td>
+<td>Can be an URL to a site or <strong>app</strong> (appName://)</td>
 </tr>
 </tbody></table>
 
@@ -754,15 +754,13 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
   </span><span class="nt">"webshopUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://webshop.com/product/2104282"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"photoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/1230/10323/photos/22js92ksasfhhj2l"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">440.0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">440.0</span><span class="w">
+      </span><span class="nt">"photoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/1230/10323/photos/22js92ksasfhhj2l"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The url for a product is (appended to the base path)</p>
+<p>The URL for a product is (appended to the base path)</p>
 
 <p><code class="prettyprint">/groups/&lt;group_slug&gt;/publications/&lt;publication_slug&gt;/products/&lt;product_id&gt;.json</code></p>
 
@@ -772,7 +770,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 
 <p>The JSON response returns a product with the following attributes.</p>
 
-<p>Where <code class="prettyprint">id</code> is the product id from the <code class="prettyprint">data.json</code></p>
+<p>Where <code class="prettyprint">id</code> is the product ID from the <code class="prettyprint">data.json</code></p>
 
 <table><thead>
 <tr>
@@ -784,7 +782,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 <tr>
 <td>id</td>
 <td>Integer</td>
-<td>Product id</td>
+<td>Product ID</td>
 </tr>
 <tr>
 <td>hotspotId</td>
@@ -814,7 +812,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 <tr>
 <td>webshopIdentifier</td>
 <td>String</td>
-<td>Product id from the webshop</td>
+<td>Product ID from the webshop</td>
 </tr>
 <tr>
 <td>webshopUrl</td>
@@ -828,14 +826,14 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 </tr>
 </tbody></table>
 
-<p>The photos array contains 0 to 6 photos with the following attributes. The <code class="prettyprint">photoUrl</code> field returns a relative base path to the image. After this pase path two options are available for the complete link.</p>
+<p>The photos array contains 0 to 6 photos with a <code class="prettyprint">photoUrl</code> attribute. The <code class="prettyprint">photoUrl</code> field refers to a relative base path to the image. After this base path two options are available for the complete link.</p>
 
 <ul>
 <li>-at200.jpg - a thumbnail of 200x200 px</li>
 <li>-within1000.jpg - image with a <em>maximum</em> width/height of 1000 px.</li>
 </ul>
 
-<p>In the example below the full photo url wil become:</p>
+<p>In the example below the full photo URL will become:</p>
 
 <p><code class="prettyprint">https://view.publitas.com/1230/10323/photos/22js92ksasfhhj2l-at200.png</code></p>
 
@@ -850,16 +848,6 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 <td>photoUrl</td>
 <td>String</td>
 <td>(Relative) link to product image base path</td>
-</tr>
-<tr>
-<td>width</td>
-<td>Integer</td>
-<td>Width of the image</td>
-</tr>
-<tr>
-<td>height</td>
-<td>Integer</td>
-<td>Height of the image</td>
 </tr>
 </tbody></table>
 
