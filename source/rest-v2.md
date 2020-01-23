@@ -85,6 +85,8 @@ curl "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
     {
       "id": 1,
       "title": "Spring 2014",
+      "browser_title": "Browser Spring 2014",
+      "description": "Spring 2014 description",
       "slug": "spring-2014",
       "url": "https://api.publitas.com/v2/groups/1/publications/1",
       "cover_url": "https://view.publitas.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
@@ -99,6 +101,8 @@ curl "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
     {
       "id": 2,
       "title": "Autumn 2014",
+      "browser_title": "Browser Autumn 2014",
+      "description": "Autumn 2014 description",
       "slug": "autumn-2014",
       "url": "https://api.publitas.com/v2/groups/1/publications/2",
       "cover_url": "https://view.publitas.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
@@ -131,6 +135,8 @@ The JSON response returns a list of publications with the following attributes:
 |---------------------|----------|-------------------------------------------------------------------------------|
 | id                  | Integer  | Publication ID                                                                |
 | title               | String   | Publication Title                                                             |
+| browser_title       | String   | SEO title                                                                     |
+| description         | String   | SEO description                                                               |
 | slug                | String   | Publication Slug                                                              |
 | url                 | String   | Publication details URL                                                       |
 | cover_url           | String   | URL for the cover image (@800 resolution)                                     |
@@ -163,6 +169,8 @@ curl "https://api.publitas.com/v2/groups/1/publications/222?api_key=<api_key>"
     {
       "id": 222,
       "title": "Spring 2014",
+      "browser_title": "Browser Spring 2014",
+      "description": "Spring 2014 description",
       "slug": "spring-2014",
       "url": "https://api.publitas.com/v2/groups/1/publications/222",
       "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
@@ -193,8 +201,8 @@ Publication ID | The ID of a specific publication
 ## Create a publication
 
 ```shell
-# This will create a publication with the title Winter2014, and source URL http://example.com/winter2014.pdf.
-curl --data "publication[title]=Winter2014&publication[source_url]=http://example.com/winter2014.pdf" "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
+# This will create a publication with the title Winter2014, browser title BrowserWinter2014, description Winter2014Description and source URL http://example.com/winter2014.pdf.
+curl --data "publication[title]=Winter2014&publication[source_url]=http://example.com/winter2014.pdf&publication[browser_title]=BrowserWinter2014&publication[description]=Winter2014Description" "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
 ```
 > The above command returns JSON structured like this:
 
@@ -203,6 +211,8 @@ curl --data "publication[title]=Winter2014&publication[source_url]=http://exampl
   "publication": {
     "id": 3,
     "title": "Winter2014",
+    "browser_title": "BrowserWinter2014",
+    "description": "Winter2014Description",
     "slug": "winter2014",
     "url": "https://api.publitas.com/v2/groups/1/publications/3",
     "cover_url": null,
@@ -236,9 +246,61 @@ The following fields need to be sent within a publication scope (see right for a
 |---------------------|----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | source_url          | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file.                                                |
 | title               | String   | Yes      | The title for the publication                                                                                                                            |
+| browser_title       | String   | No       | The SEO title for the publication                                                                                                                        |
+| description         | String   | No       | The SEO description for the publication                                                                                                                  |
 | language            | String   | No       | 2-digit language code. See [the language table](#languages) below for allowed values                                                                     |
 | schedule_online_at  | DateTime | No       | Time at which the publication is scheduled to be online. If the current time is provided, the publication will be put online as soon as it is converted  |
 | schedule_offline_at | DateTime | No       | Time at which the publication is scheduled to be offline                                                                                                 |
+
+## Update a publication
+
+```shell
+# This will update a publication with the browser title UpdatedBrowserTitle and description UpdatedDescription.
+curl -X PUT --data "publication[browser_title]=UpdatedBrowserTitle&publication[description]=UpdatedDescription" "https://api.publitas.com/v2/groups/1/publications/3?api_key=<api_key>"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "publication": {
+    "id": 3,
+    "title": "Winter2014",
+    "browser_title": "UpdatedBrowserTitle",
+    "description": "UpdatedDescription",
+    "slug": "winter2014",
+    "url": "https://api.publitas.com/v2/groups/1/publications/3",
+    "cover_url": null,
+    "page_count": 0,
+    "state": "offline",
+    "online_at": null,
+    "offline_at": null,
+    "schedule_online_at": null,
+    "schedule_offline_at": null,
+    "public_url": null
+  }
+}
+```
+
+### HTTP Request
+
+`PUT https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Group ID | The ID of a specific group
+Publication ID | The ID of a specific publication
+
+
+### Request body parameters
+
+The following fields need to be sent within a publication scope (see right for an example.)
+
+|         Name        |   Type   | Required |                 Description                     |
+|---------------------|----------|----------|-------------------------------------------------|
+| browser_title       | String   | No       | The SEO title for the publication               |
+| description         | String   | No       | The SEO description for the publication         |
 
 ## Mark a publication as online
 
@@ -255,6 +317,8 @@ curl -X POST "https://api.publitas.com/v2/groups/1/publications/222/online?api_k
     {
       "id": 222,
       "title": "Spring 2014",
+      "browser_title": "Browser Spring 2014",
+      "description": "Spring 2014 description",
       "slug": "spring-2014",
       "url": "https://api.publitas.com/v2/groups/1/publications/222",
       "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
@@ -298,6 +362,8 @@ curl -X POST "https://api.publitas.com/v2/groups/1/publications/222/offline?api_
     {
       "id": 222,
       "title": "Spring 2014",
+      "browser_title": "Browser Spring 2014",
+      "description": "Spring 2014 description",
       "slug": "spring-2014",
       "url": "https://api.publitas.com/v2/groups/1/publications/222",
       "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
