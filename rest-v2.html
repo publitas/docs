@@ -22,12 +22,12 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
       <a href='./' class='logo-wrapper'>
-        <img src="images/logo.png" /><span>api</span>
+        <img src="images/logo.png" alt="Logo" /><span>api</span>
       </a>
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
@@ -150,6 +150,8 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
@@ -164,6 +166,8 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Autumn 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014 description"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autumn-2014"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/2"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
@@ -215,6 +219,16 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key
 <td>title</td>
 <td>String</td>
 <td>Publication Title</td>
+</tr>
+<tr>
+<td>browser_title</td>
+<td>String</td>
+<td>SEO title</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>SEO description</td>
 </tr>
 <tr>
 <td>slug</td>
@@ -299,6 +313,8 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222?api
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
       </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
@@ -337,8 +353,8 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222?api
 </tbody></table>
 
 <h2 id="create-a-publication">Create a publication</h2>
-<pre class="highlight shell"><code><span class="c"># This will create a publication with the title Winter2014, and source URL http://example.com/winter2014.pdf.</span>
-curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[source_url]=http://example.com/winter2014.pdf"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key=&lt;api_key&gt;"</span>
+<pre class="highlight shell"><code><span class="c"># This will create a publication with the title Winter2014, browser title BrowserWinter2014, description Winter2014Description and source URL http://example.com/winter2014.pdf.</span>
+curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[source_url]=http://example.com/winter2014.pdf&amp;publication[browser_title]=BrowserWinter2014&amp;publication[description]=Winter2014Description"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?api_key=&lt;api_key&gt;"</span>
 </code></pre>
 
 <blockquote>
@@ -348,6 +364,8 @@ curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[sour
   </span><span class="nt">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BrowserWinter2014"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014Description"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"winter2014"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -405,6 +423,18 @@ curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[sour
 <td>The title for the publication</td>
 </tr>
 <tr>
+<td>browser_title</td>
+<td>String</td>
+<td>No</td>
+<td>The SEO title for the publication</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>No</td>
+<td>The SEO description for the publication</td>
+</tr>
+<tr>
 <td>language</td>
 <td>String</td>
 <td>No</td>
@@ -424,6 +454,82 @@ curl --data <span class="s2">"publication[title]=Winter2014&amp;publication[sour
 </tr>
 </tbody></table>
 
+<h2 id="update-a-publication">Update a publication</h2>
+<pre class="highlight shell"><code><span class="c"># This will update a publication with the browser title UpdatedBrowserTitle and description UpdatedDescription.</span>
+curl -X PUT --data <span class="s2">"publication[browser_title]=UpdatedBrowserTitle&amp;publication[description]=UpdatedDescription"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/3?api_key=&lt;api_key&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UpdatedBrowserTitle"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UpdatedDescription"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"winter2014"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Publication ID</td>
+<td>The ID of a specific publication</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request body parameters</h3>
+
+<p>The following fields need to be sent within a publication scope (see right for an example.)</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>browser_title</td>
+<td>String</td>
+<td>No</td>
+<td>The SEO title for the publication</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>No</td>
+<td>The SEO description for the publication</td>
+</tr>
+</tbody></table>
+
 <h2 id="mark-a-publication-as-online">Mark a publication as online</h2>
 <pre class="highlight shell"><code><span class="c"># This endpoint marks a publication as being online.</span>
 curl -X POST <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/online?api_key=&lt;api_key&gt;"</span>
@@ -437,6 +543,8 @@ curl -X POST <span class="s2">"https://api.publitas.com/v2/groups/1/publications
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
       </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
@@ -489,6 +597,8 @@ curl -X POST <span class="s2">"https://api.publitas.com/v2/groups/1/publications
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
       </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
