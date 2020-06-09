@@ -19,7 +19,7 @@ Our API is currently on version 2 beta. Click [here](index.html) to see document
 
 ### Authentication
 
-Our public API requires an API key, sent with the parameter `api_key`. Contact our [support team](mailto:support@publitas.com) to request an API key. For convenience, we also allow HTTP based authorization with the `api` user and your API key as password.
+Our public API requires an API key, sent in the headers in the form of `'Autorization': "ApiKey <api_key>"`. Contact our [support team](mailto:support@publitas.com) to request an API key. For convenience, we also allow sending it as a `api_key` query param and sending HTTP based authorization with the `api` user and your API key as password.
 
 ### Formats
 
@@ -37,7 +37,7 @@ An example of a complete path is:
 
 ```shell
 # This will retrieve all the groups accessible by the user
-curl "https://api.publitas.com/v2/groups?api_key=<api_key>"
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
 ```
 > The above command returns a JSON document structured like so:
 
@@ -75,7 +75,7 @@ The attributes are as follows:
 
 ```shell
 # This will retrieve all publications for a group
-curl "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications"
 ```
 > The above command returns JSON structured like this:
 
@@ -159,7 +159,7 @@ The `state` field can have one of the following values:
 
 ```shell
 # This endpoint retrieves a specific publication.
-curl "https://api.publitas.com/v2/groups/1/publications/222?api_key=<api_key>"
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications/222"
 ```
 > The above command returns JSON structured like this:
 
@@ -202,7 +202,7 @@ Publication ID | The ID of a specific publication
 
 ```shell
 # This will create a publication with the title Winter2014, browser title BrowserWinter2014, description Winter2014Description and source URL http://example.com/winter2014.pdf.
-curl --data "publication[title]=Winter2014&publication[source_url]=http://example.com/winter2014.pdf&publication[browser_title]=BrowserWinter2014&publication[description]=Winter2014Description" "https://api.publitas.com/v2/groups/1/publications?api_key=<api_key>"
+curl -H "Authorization: ApiKey <api_key>" --data "publication[title]=Winter2014&publication[source_url]=http://example.com/winter2014.pdf&publication[browser_title]=BrowserWinter2014&publication[description]=Winter2014Description" "https://api.publitas.com/v2/groups/1/publications"
 ```
 > The above command returns JSON structured like this:
 
@@ -256,7 +256,7 @@ The following fields need to be sent within a publication scope (see right for a
 
 ```shell
 # This will update a publication with the browser title UpdatedBrowserTitle and description UpdatedDescription.
-curl -X PUT --data "publication[browser_title]=UpdatedBrowserTitle&publication[description]=UpdatedDescription" "https://api.publitas.com/v2/groups/1/publications/3?api_key=<api_key>"
+curl -H "Authorization: ApiKey <api_key>" -X PUT --data "publication[browser_title]=UpdatedBrowserTitle&publication[description]=UpdatedDescription" "https://api.publitas.com/v2/groups/1/publications/3"
 ```
 > The above command returns JSON structured like this:
 
@@ -306,7 +306,7 @@ The following fields need to be sent within a publication scope (see right for a
 
 ```shell
 # This endpoint marks a publication as being online.
-curl -X POST "https://api.publitas.com/v2/groups/1/publications/222/online?api_key=<api_key>"
+curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/groups/1/publications/222/online"
 ```
 
 > When the response code is 200 the command returns JSON structured like this:
@@ -351,7 +351,7 @@ This endpoint returns one of the following HTTP codes:
 
 ```shell
 # This endpoint marks a publication as being offline.
-curl -X POST "https://api.publitas.com/v2/groups/1/publications/222/offline?api_key=<api_key>"
+curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/groups/1/publications/222/offline"
 ```
 
 > The above command returns JSON structured like this:
