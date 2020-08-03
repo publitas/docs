@@ -19,7 +19,7 @@ Our API is currently on version 2 beta. Click [here](index.html) to see document
 
 ### Authentication
 
-Our public API requires an API key, sent in the headers in the form of `'Autorization': "ApiKey <api_key>"`. Contact our [support team](mailto:support@publitas.com) to request an API key. For convenience, we also allow sending it as a `api_key` query param and sending HTTP based authorization with the `api` user and your API key as password.
+Our public API requires an API key, sent in the headers in the form of `'Authorization': "ApiKey <api_key>"`. Contact our [support team](mailto:support@publitas.com) to request an API key. For convenience, we also allow sending it as a `api_key` query param and sending HTTP based authorization with the `api` user and your API key as password.
 
 ### Formats
 
