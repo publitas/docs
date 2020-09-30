@@ -96,7 +96,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "offline_at": null,
       "schedule_online_at": null,
       "schedule_offline_at": null,
-      "public_url": "https://view.publitas.com/example-group/spring-2014"
+      "public_url": "https://view.publitas.com/example-group/spring-2014",
+      "metatag_ids": [1, 2]
     },
     {
       "id": 2,
@@ -112,7 +113,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "offline_at": null,
       "schedule_online_at": "2014-09-25T15:17:20.000+02:00",
       "schedule_offline_at": null,
-      "public_url": "https://view.publitas.com/example-group/autumn-2014"
+      "public_url": "https://view.publitas.com/example-group/autumn-2014",
+      "metatag_ids": [2, 3]
     }
   ]
 }
@@ -147,6 +149,7 @@ The JSON response returns a list of publications with the following attributes:
 | schedule_online_at  | DateTime | Time at which the publication is scheduled to go online                       |
 | schedule_offline_at | DateTime | Time at which the publication is scheduled to go offline                      |
 | public_url          | String   | Publication public URL or `null` when the publication is still converting.    |
+| metatag_ids         | Array    | List of metatag IDs assigned to the publication                               |
 
 The `state` field can have one of the following values:
 
@@ -180,7 +183,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "offline_at": null,
       "schedule_online_at": null,
       "schedule_offline_at": null,
-      "public_url": "https://view.publitas.com/example-group/spring-2014"
+      "public_url": "https://view.publitas.com/example-group/spring-2014",
+      "metatag_ids": [2, 3]
     }
   ]
 }
@@ -222,7 +226,8 @@ curl -H "Authorization: ApiKey <api_key>" --data "publication[title]=Winter2014&
     "offline_at": null,
     "schedule_online_at": null,
     "schedule_offline_at": null,
-    "public_url": null
+    "public_url": null,
+    "metatag_ids": []
   }
 }
 ```
@@ -251,12 +256,14 @@ The following fields need to be sent within a publication scope (see right for a
 | language            | String   | No       | 2-digit language code. See [the language table](#languages) below for allowed values                                                                     |
 | schedule_online_at  | DateTime | No       | Time at which the publication is scheduled to be online. If the current time is provided, the publication will be put online as soon as it is converted  |
 | schedule_offline_at | DateTime | No       | Time at which the publication is scheduled to be offline                                                                                                 |
+| metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication                                                                                                |
+| metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                               |
 
 ## Update a publication
 
 ```shell
-# This will update a publication with the browser title UpdatedBrowserTitle and description UpdatedDescription.
-curl -H "Authorization: ApiKey <api_key>" -X PUT --data "publication[browser_title]=UpdatedBrowserTitle&publication[description]=UpdatedDescription" "https://api.publitas.com/v2/groups/1/publications/3"
+# This will update a publication with the browser title UpdatedBrowserTitle, description UpdatedDescription and assign metatags with IDs 1 and 2.
+curl -H "Authorization: ApiKey <api_key>" -H "Content-Type: application/json" -X PUT --data '{"publication": {"browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "metatag_ids": [1,2]}}' "https://api.publitas.com/v2/groups/1/publications/3"
 ```
 > The above command returns JSON structured like this:
 
@@ -276,7 +283,8 @@ curl -H "Authorization: ApiKey <api_key>" -X PUT --data "publication[browser_tit
     "offline_at": null,
     "schedule_online_at": null,
     "schedule_offline_at": null,
-    "public_url": null
+    "public_url": null,
+    "metatag_ids": [1, 2]
   }
 }
 ```
@@ -297,10 +305,12 @@ Publication ID | The ID of a specific publication
 
 The following fields need to be sent within a publication scope (see right for an example.)
 
-|         Name        |   Type   | Required |                 Description                     |
-|---------------------|----------|----------|-------------------------------------------------|
-| browser_title       | String   | No       | The SEO title for the publication               |
-| description         | String   | No       | The SEO description for the publication         |
+|         Name        |   Type   | Required |                                                               Description                                                                     |
+|---------------------|----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| browser_title       | String   | No       | The SEO title for the publication                                                                                                             |
+| description         | String   | No       | The SEO description for the publication                                                                                                       |
+| metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication. This replaces current assignments (sending an empty array will clear assignments). |
+| metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                    |
 
 ## Mark a publication as online
 
@@ -385,6 +395,200 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
 ### Response codes
 
 This endpoint returns the `200` response code.
+
+# Metatags
+
+## List all metatags of a group
+
+```shell
+# This will retrieve all metatags for a group
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/metatags"
+```
+> The above command returns JSON structured like this:
+
+``` json
+{
+  "metatags": [
+    {
+      "id": 1,
+      "group_id": 1,
+      "category": "category_1",
+      "value": "value_1"
+    },
+    {
+      "id": 2,
+      "group_id": 1,
+      "category": "category_1",
+      "value": "value_2"
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/metatags`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Group ID | The ID of a specific group
+
+
+The JSON response returns a list of metatags with the following attributes:
+
+|      Field    |   Type   |            Description               |
+|---------------|----------|--------------------------------------|
+| id            | Integer  | Publication ID                       |
+| group_id      | Integer  | Group ID                             |
+| category      | String   | Metatag category                     |
+| value         | String   | Metatag value                        |
+
+
+## Get a specific metatag
+
+```shell
+# This endpoint retrieves a specific metatag.
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/metatags/222"
+```
+> The above command returns JSON structured like this:
+
+``` json
+{
+  "metatag": [
+    {
+      "id": 222,
+      "group_id": 1,
+      "category": "category_1",
+      "value": "value_1"
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/metatags/<Metatag ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Group ID | The ID of a specific group
+Metatag ID | The ID of a specific metatag
+
+
+## Create a metatag
+
+```shell
+# This will create a metatag with the categordy category_3 and value value_3.
+curl -H "Authorization: ApiKey <api_key>" --data "metatag[category]=category_3&metatag[value]=value_3" "https://api.publitas.com/v2/groups/1/metatags"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "metatag": {
+    "id": 3,
+    "group_id":  1,
+    "category": "category_3",
+    "value": "value_3"
+  }
+}
+```
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/metatags`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Group ID | The ID of a specific group
+
+
+### Request body parameters
+
+The following fields need to be sent within a metatag scope (see right for an example.)
+
+|         Name        |   Type   | Required |                  Description                 |
+|---------------------|----------|----------|----------------------------------------------|
+| category            | String   | Yes      | Category of the metatag                      |
+| value               | String   | Yes      | Value of the metatag                         |
+
+## Update a metatag
+
+```shell
+# This will update a metatag with the category new_category and value value_4.
+curl -H "Authorization: ApiKey <api_key>" -X PUT --data "metatag[category]=new_category&metatag[value]=value_4" "https://api.publitas.com/v2/groups/1/metatags/3"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "metatag": {
+    "id": 3,
+    "group_id": 1,
+    "category": "new_category",
+    "value": "value_4"
+  }
+}
+```
+
+### HTTP Request
+
+`PUT https://api.publitas.com/v2/groups/<Group ID>/metatags/<Metatag ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Group ID | The ID of a specific group
+Metatag ID | The ID of a specific metatag
+
+
+### Request body parameters
+
+The following fields need to be sent within a metatag scope (see right for an example.)
+
+|         Name        |   Type   | Required |            Description             |
+|---------------------|----------|----------|------------------------------------|
+| category            | String   | No       | Category of the metatag            |
+| value               | String   | No       | Value of the metatag               |
+
+## Delete a metatag
+
+```shell
+# This will try to delete a metatag with id 4.
+curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/metatags/4"
+```
+> The above command returns a 409 error and the following JSON if metatag is assigned to a publication:
+
+```json
+{
+  "error": "Metatag is currently in use, send \"force_delete=true\" to delete anyway"
+}
+```
+
+```shell
+# This will delete the metatag with id 4 even if it's assigned to a publication.
+curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/metatags/4?force_delete=true"
+```
+> The above command returns a 204 with no content
+
+### HTTP Request
+
+`DELETE https://api.publitas.com/v2/groups/<Group ID>/metatags/<Metatag ID>`
+
+### URL Parameters
+
+|    Parameter    |                        Description                          |
+|---------------- | ------------------------------------------------------------|
+| Group ID        | The ID of a specific group                                  |
+| Metatag ID      | The ID of a specific metatag                                |
+| force_delete    | Send “true” to override “Metatag is currently in use” error |
 
 # Languages
 
