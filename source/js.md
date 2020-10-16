@@ -263,3 +263,21 @@ window.viewerReady = function (api, platform) {
 }
 ```
 Using the `setLinkAction(action)` you can specify a custom action when the user clicks on an external link in the Viewer. `action` needs to be a function. It will receive the original URL as an argument.
+
+
+## Custom Menu Item
+
+``` javascript
+window.viewerReady = function (api, platform) {
+  api.addMenuItem({
+    name: 'custom_item_1',
+    title: 'Custom Title 1',
+    iconUrl: 'https://icons.com/b7803b.jpg',
+    action: function(){ 
+      // do something here 
+    },
+    order: 2,
+  });
+}
+```
+Using the `addMenuItem(object)` you can add a custom item into the main menu. `item` needs to be an object. `name` is a unique identifier in case you need to address it for further actions (for instance, custom styling it). `title` sets item title. `iconUrl` is the source of the icon displayed for item, may be external url or image data. `action` could be a function as well as an external url (to keep compatibility among all browsers, we recommend not using arrow functions). `order` is a number indicating item's position starting from the top of the main menu, regardless of the amount of items being displayed for a specific publication. It is the only optional parameter, when it's not defined, item will be pushed to bottom of main menu.
