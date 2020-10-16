@@ -329,6 +329,22 @@ Using just the publication slug might be sufficient if you are doing tracking pe
 
 <p>Using the <code class="prettyprint">setLinkAction(action)</code> you can specify a custom action when the user clicks on an external link in the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive the original URL as an argument.</p>
 
+<h2 id="custom-menu-item">Custom Menu Item</h2>
+<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">addMenuItem</span><span class="p">({</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s1">'custom_item_1'</span><span class="p">,</span>
+    <span class="na">title</span><span class="p">:</span> <span class="s1">'Custom Title 1'</span><span class="p">,</span>
+    <span class="na">iconUrl</span><span class="p">:</span> <span class="s1">'https://icons.com/b7803b.jpg'</span><span class="p">,</span>
+    <span class="na">action</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span> 
+      <span class="c1">// do something here </span>
+    <span class="p">},</span>
+    <span class="na">order</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Using the <code class="prettyprint">addMenuItem(object)</code> you can add a custom item into the main menu. <code class="prettyprint">item</code> needs to be an object. <code class="prettyprint">name</code> is a unique identifier in case you need to address it for further actions (for instance, custom styling it). <code class="prettyprint">title</code> sets item title. <code class="prettyprint">iconUrl</code> is the source of the icon displayed for item, may be external url or image data. <code class="prettyprint">action</code> could be a function as well as an external url (to keep compatibility among all browsers, we recommend not using arrow functions). <code class="prettyprint">order</code> is a number indicating item&rsquo;s position starting from the top of the main menu, regardless of the amount of items being displayed for a specific publication. It is the only optional parameter, when it&rsquo;s not defined, item will be pushed to bottom of main menu.</p>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
