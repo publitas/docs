@@ -162,8 +162,9 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
       </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014"</span><span class="p">,</span><span class="w">
@@ -179,7 +180,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
       </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-25T15:17:20.000+02:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/autumn-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w">
+      </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-26"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -287,6 +289,11 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Array</td>
 <td>List of metatag IDs assigned to the publication</td>
 </tr>
+<tr>
+<td>valid_from</td>
+<td>Date</td>
+<td>Date when publication become valid</td>
+</tr>
 </tbody></table>
 
 <p>The <code class="prettyprint">state</code> field can have one of the following values:</p>
@@ -332,7 +339,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
       </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w">
+      </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -384,7 +392,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <
     </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -473,6 +482,12 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <
 <td>No</td>
 <td>Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids</td>
 </tr>
+<tr>
+<td>valid_from</td>
+<td>Date</td>
+<td>No</td>
+<td>Date when publication become valid (requires validity date feature enabled)</td>
+</tr>
 </tbody></table>
 
 <h2 id="update-a-publication">Update a publication</h2>
@@ -499,7 +514,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -H <span
     </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w">
+    </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -562,6 +578,12 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -H <span
 <td>No</td>
 <td>Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids</td>
 </tr>
+<tr>
+<td>valid_from</td>
+<td>Date</td>
+<td>No</td>
+<td>Date when publication become valid (requires validity date feature enabled)</td>
+</tr>
 </tbody></table>
 
 <h2 id="mark-a-publication-as-online">Mark a publication as online</h2>
@@ -588,7 +610,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X POST 
       </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="w">
+      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -642,7 +665,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X POST 
       </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-28T17:05:28.309+01:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="w">
+      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
