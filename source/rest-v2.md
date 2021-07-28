@@ -97,7 +97,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "schedule_online_at": null,
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
-      "metatag_ids": [1, 2]
+      "metatag_ids": [1, 2],
+      "valid_from": null,
     },
     {
       "id": 2,
@@ -114,7 +115,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "schedule_online_at": "2014-09-25T15:17:20.000+02:00",
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/autumn-2014",
-      "metatag_ids": [2, 3]
+      "metatag_ids": [2, 3],
+      "valid_from": "2014-09-26"
     }
   ]
 }
@@ -150,6 +152,7 @@ The JSON response returns a list of publications with the following attributes:
 | schedule_offline_at | DateTime | Time at which the publication is scheduled to go offline                      |
 | public_url          | String   | Publication public URL or `null` when the publication is still converting.    |
 | metatag_ids         | Array    | List of metatag IDs assigned to the publication                               |
+| valid_from          | Date     | Date when publication become valid
 
 The `state` field can have one of the following values:
 
@@ -184,7 +187,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "schedule_online_at": null,
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
-      "metatag_ids": [2, 3]
+      "metatag_ids": [2, 3],
+      "valid_from": null
     }
   ]
 }
@@ -227,7 +231,8 @@ curl -H "Authorization: ApiKey <api_key>" --data "publication[title]=Winter2014&
     "schedule_online_at": null,
     "schedule_offline_at": null,
     "public_url": null,
-    "metatag_ids": []
+    "metatag_ids": [],
+    "valid_from": null
   }
 }
 ```
@@ -258,6 +263,7 @@ The following fields need to be sent within a publication scope (see right for a
 | schedule_offline_at | DateTime | No       | Time at which the publication is scheduled to be offline                                                                                                 |
 | metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication                                                                                                |
 | metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                               |
+| valid_from          | Date     | No       | Date when publication become valid (requires validity date feature enabled)
 
 ## Update a publication
 
@@ -284,7 +290,8 @@ curl -H "Authorization: ApiKey <api_key>" -H "Content-Type: application/json" -X
     "schedule_online_at": null,
     "schedule_offline_at": null,
     "public_url": null,
-    "metatag_ids": [1, 2]
+    "metatag_ids": [1, 2],
+    "valid_from": null
   }
 }
 ```
@@ -311,6 +318,7 @@ The following fields need to be sent within a publication scope (see right for a
 | description         | String   | No       | The SEO description for the publication                                                                                                       |
 | metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication. This replaces current assignments (sending an empty array will clear assignments). |
 | metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                    |
+| valid_from          | Date     | No       | Date when publication become valid (requires validity date feature enabled)
 
 ## Mark a publication as online
 
@@ -338,7 +346,8 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
       "offline_at": null,
       "schedule_online_at": null,
       "schedule_offline_at": null,
-      "public_url": "https://view.publitas.com/example-group/spring-2014"
+      "public_url": "https://view.publitas.com/example-group/spring-2014",
+      "valid_from": null
     }
   ]
 }
@@ -383,7 +392,8 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
       "offline_at": "2015-01-28T17:05:28.309+01:00",
       "schedule_online_at": null,
       "schedule_offline_at": null,
-      "public_url": "https://view.publitas.com/example-group/spring-2014"
+      "public_url": "https://view.publitas.com/example-group/spring-2014",
+      "valid_from": null
     }
   ]
 }
