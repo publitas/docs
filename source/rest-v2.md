@@ -135,24 +135,24 @@ Group ID | The ID of a specific group
 
 The JSON response returns a list of publications with the following attributes:
 
-|        Field        |   Type   |                           Description                                         |
-|---------------------|----------|-------------------------------------------------------------------------------|
-| id                  | Integer  | Publication ID                                                                |
-| title               | String   | Publication Title                                                             |
-| browser_title       | String   | SEO title                                                                     |
-| description         | String   | SEO description                                                               |
-| slug                | String   | Publication Slug                                                              |
-| url                 | String   | Publication details URL                                                       |
-| cover_url           | String   | URL for the cover image (@800 resolution)                                     |
-| page_count          | Integer  | Number of pages in the publication                                            |
-| state               | String   | The publication state (see table below for a better description)              |
-| online_at           | DateTime | Time at which the publication was last set online                             |
-| offline_at          | DateTime | Time at which the publication was last set offline                            |
-| schedule_online_at  | DateTime | Time at which the publication is scheduled to go online                       |
-| schedule_offline_at | DateTime | Time at which the publication is scheduled to go offline                      |
-| public_url          | String   | Publication public URL or `null` when the publication is still converting.    |
-| metatag_ids         | Array    | List of metatag IDs assigned to the publication                               |
-| valid_from          | Date     | Date when publication become valid
+|        Field        |   Type   |                           Description                                                                  |
+|---------------------|----------|--------------------------------------------------------------------------------------------------------|
+| id                  | Integer  | Publication ID                                                                                         |
+| title               | String   | Publication Title                                                                                      |
+| browser_title       | String   | SEO title                                                                                              |
+| description         | String   | SEO description                                                                                        |
+| slug                | String   | Publication Slug                                                                                       |
+| url                 | String   | Publication details URL                                                                                |
+| cover_url           | String   | URL for the cover image (@800 resolution)                                                              |
+| page_count          | Integer  | Number of pages in the publication                                                                     |
+| state               | String   | The publication state (see table below for a better description)                                       |
+| online_at           | DateTime | Time at which the publication was last set online                                                      |
+| offline_at          | DateTime | Time at which the publication was last set offline                                                     |
+| schedule_online_at  | DateTime | Time at which the publication is scheduled to go online                                                |
+| schedule_offline_at | DateTime | Time at which the publication is scheduled to go offline                                               |
+| public_url          | String   | Publication public URL or `null` when the publication is still converting.                             |
+| metatag_ids         | Array    | List of metatag IDs assigned to the publication                                                        |
+| valid_from          | Date     | Validity date of the publication. This is a descriptive parameter and has no effect on the publication |
 
 The `state` field can have one of the following values:
 
@@ -263,7 +263,7 @@ The following fields need to be sent within a publication scope (see right for a
 | schedule_offline_at | DateTime | No       | Time at which the publication is scheduled to be offline                                                                                                 |
 | metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication                                                                                                |
 | metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                               |
-| valid_from          | Date     | No       | Date when publication become valid (requires validity date feature enabled)
+| valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                                   |
 
 ## Update a publication
 
@@ -318,7 +318,7 @@ The following fields need to be sent within a publication scope (see right for a
 | description         | String   | No       | The SEO description for the publication                                                                                                       |
 | metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication. This replaces current assignments (sending an empty array will clear assignments). |
 | metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                    |
-| valid_from          | Date     | No       | Date when publication become valid (requires validity date feature enabled)
+| valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                        |
 
 ## Mark a publication as online
 
