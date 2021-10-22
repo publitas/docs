@@ -91,6 +91,7 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "url": "https://api.publitas.com/v2/groups/1/publications/1",
       "cover_url": "https://view.publitas.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
       "page_count": 52,
+      "pdf_download_url": "https://view.publitas.com/1/1/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf",
       "state": "offline",
       "online_at": null,
       "offline_at": null,
@@ -109,6 +110,7 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "url": "https://api.publitas.com/v2/groups/1/publications/2",
       "cover_url": "https://view.publitas.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
       "page_count": 52,
+      "pdf_download_url": "https://view.publitas.com/1/2/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Autumn%25202014.pdf",
       "state": "offline",
       "online_at": null,
       "offline_at": null,
@@ -145,6 +147,7 @@ The JSON response returns a list of publications with the following attributes:
 | url                 | String   | Publication details URL                                                                                |
 | cover_url           | String   | URL for the cover image (@800 resolution)                                                              |
 | page_count          | Integer  | Number of pages in the publication                                                                     |
+| pdf_download_url    | String   | Source PDF download URL                                                                                |
 | state               | String   | The publication state (see table below for a better description)                                       |
 | online_at           | DateTime | Time at which the publication was last set online                                                      |
 | offline_at          | DateTime | Time at which the publication was last set offline                                                     |
@@ -181,6 +184,7 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "url": "https://api.publitas.com/v2/groups/1/publications/222",
       "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
       "page_count": 52,
+      "pdf_download_url": "https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf",
       "state": "offline",
       "online_at": null,
       "offline_at": null,
@@ -225,6 +229,7 @@ curl -H "Authorization: ApiKey <api_key>" --data "publication[title]=Winter2014&
     "url": "https://api.publitas.com/v2/groups/1/publications/3",
     "cover_url": null,
     "page_count": 0,
+    "pdf_download_url": "https://view.publitas.com/1/3/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Winter%25202014.pdf",
     "state": "offline",
     "online_at": null,
     "offline_at": null,
@@ -284,6 +289,7 @@ curl -H "Authorization: ApiKey <api_key>" -H "Content-Type: application/json" -X
     "url": "https://api.publitas.com/v2/groups/1/publications/3",
     "cover_url": null,
     "page_count": 0,
+    "pdf_download_url": "https://view.publitas.com/1/3/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Winter%25202014.pdf",
     "state": "offline",
     "online_at": null,
     "offline_at": null,
@@ -341,6 +347,7 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
       "url": "https://api.publitas.com/v2/groups/1/publications/222",
       "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
       "page_count": 52,
+      "pdf_download_url": "https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf",
       "state": "online",
       "online_at": "2015-01-28T16:05:28.309+01:00",
       "offline_at": null,
@@ -387,6 +394,7 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
       "url": "https://api.publitas.com/v2/groups/1/publications/222",
       "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
       "page_count": 52,
+      "pdf_download_url": "https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf",
       "state": "offline",
       "online_at": "2015-01-28T16:05:28.309+01:00",
       "offline_at": "2015-01-28T17:05:28.309+01:00",
