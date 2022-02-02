@@ -199,7 +199,7 @@ window.viewerReady = function (api, platform) {
 ```
 
 
-Using the `setProductAction(action [, onOpen[, onClose]])` you can specify a custom action when the user clicks on a product on the Viewer. `action` needs to be a function. It will receive the an array of products that belong to the clicked hotspot as an argument. Products have the following properties:
+Using the `setProductAction(action [, onOpen[, onClose[, callOriginal[, index]]]])` you can specify a custom action when the user clicks on a product on the Viewer. `action` needs to be a function. It will receive the an array of products that belong to the clicked hotspot as an argument. Products have the following properties:
 
 
 | Property      | Type        | Description         |
@@ -238,6 +238,20 @@ These are optional callbacks that you can evoke if you are implementing a custom
 *http://url.of/your/publication/product/&lt;product-id&gt;*
 
 whenever the product view opens. This way, users can directly link to a product within the catalog and refreshing the page will leave the product view intact. If you want to keep this behavior for your custom product action, please make sure to invoke these callbacks at appropriate times. The second example to the right highlights this use case.
+
+
+### `callOriginal` and `index`
+
+``` javascript
+window.viewerReady = function (api, platform) {
+  api.setProductAction(function (products, _o, _c, callOriginal, index) {
+    console.log('product viewed', products[index]);
+    callOriginal();
+  });
+}
+```
+
+The fifth param provides the index of the current product within the product array. It is used to identify which product was clicked in a multi product hotspot.
 
 
 ## Custom Product CTA
