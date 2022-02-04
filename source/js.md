@@ -199,7 +199,7 @@ window.viewerReady = function (api, platform) {
 ```
 
 
-Using the `setProductAction(action [, onOpen[, onClose[, callOriginal[, index]]]])` you can specify a custom action when the user clicks on a product on the Viewer. `action` needs to be a function. It will receive the an array of products that belong to the clicked hotspot as an argument. Products have the following properties:
+Using the `setProductAction(action [, onOpen[, onClose[, callOriginal[, index]]]])` you can specify a custom action when the user clicks on a product on the Viewer. `action` needs to be a function. It will receive an array of products that belong to the clicked hotspot as an argument. Products have the following properties:
 
 
 | Property      | Type        | Description         |
@@ -251,7 +251,7 @@ window.viewerReady = function (api, platform) {
 }
 ```
 
-The fifth param provides the index of the current product within the product array. It is used to identify which product was clicked in a multi product hotspot.
+The fifth param provides the index of the current product within the product array. It is used to identify which product was clicked in a multi-product hotspot.
 
 
 ## Custom Product CTA
