@@ -227,7 +227,7 @@ Using just the publication slug might be sufficient if you are doing tracking pe
 <span class="p">}</span>
 </code></pre>
 
-<p>Using the <code class="prettyprint">setProductAction(action [, onOpen[, onClose]])</code> you can specify a custom action when the user clicks on a product on the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive the an array of products that belong to the clicked hotspot as an argument. Products have the following properties:</p>
+<p>Using the <code class="prettyprint">setProductAction(action [, onOpen[, onClose[, callOriginal[, index]]]])</code> you can specify a custom action when the user clicks on a product on the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive an array of products that belong to the clicked hotspot as an argument. Products have the following properties:</p>
 
 <table><thead>
 <tr>
@@ -308,6 +308,17 @@ Using just the publication slug might be sufficient if you are doing tracking pe
 <p><em>http://url.of/your/publication/product/&lt;product-id&gt;</em></p>
 
 <p>whenever the product view opens. This way, users can directly link to a product within the catalog and refreshing the page will leave the product view intact. If you want to keep this behavior for your custom product action, please make sure to invoke these callbacks at appropriate times. The second example to the right highlights this use case.</p>
+
+<h3 id="calloriginal-and-index"><code class="prettyprint">callOriginal</code> and <code class="prettyprint">index</code></h3>
+<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">,</span> <span class="nx">_o</span><span class="p">,</span> <span class="nx">_c</span><span class="p">,</span> <span class="nx">callOriginal</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'product viewed'</span><span class="p">,</span> <span class="nx">products</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
+    <span class="nx">callOriginal</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The fifth param provides the index of the current product within the product array. It is used to identify which product was clicked in a multi-product hotspot.</p>
 
 <h2 id="custom-product-cta">Custom Product CTA</h2>
 <pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
