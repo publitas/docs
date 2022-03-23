@@ -132,10 +132,6 @@ This endpoint returns a JSON object, we'll go into the details of this response 
 ``` json
 {
   "sizes": {
-    "original": {
-      "width": 2748.0,
-      "height": 3274.0
-    },
     "at200": {
       "width": 183.0,
       "height": 218.0
@@ -159,6 +155,14 @@ This endpoint returns a JSON object, we'll go into the details of this response 
     "at1600": {
       "width": 1465.0,
       "height": 1746.0
+    },
+    "at2000": {
+      "width": 1832.0,
+      "height": 2182.0
+    },
+    "at2400": {
+      "width": 2198.0,
+      "height": 2618.0
     }
   }
 }
@@ -268,6 +272,8 @@ The photos pages array contains 1 or 2 paths to page images. After the base path
 * -at1000.jpg
 * -at1200.jpg
 * -at1600.jpg
+* -at2000.jpg
+* -at2400.jpg
 
 A full page image path would look like: `https://view.publitas.com/1230/10323/pages/b6d66056b3c9bab5332033ce401ec1f9549b5e8a-at200.jpg`
 
