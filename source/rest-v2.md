@@ -164,6 +164,18 @@ The `state` field can have one of the following values:
 | offline     | Publication is not publicly visible.                   |
 | online      | Publication is publicly visible.                       |
 
+### Filtering results
+You can filter the results list with the following query params:
+
+```shell
+# This will retrieve only publicly listed publications
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications?state=public"
+```
+
+|        Param        |                     Options                | Description |
+|---------------------|--------------------------------------------|-------------|
+| state               | public<br>unlisted<br>online<br>offline    |Return only publicly listed publications<br>Return only unlisted publications<br>Return public and unlisted publications<br>Return only offline publications |
+
 ## Get a specific publication
 
 ```shell
