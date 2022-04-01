@@ -321,6 +321,27 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 </tr>
 </tbody></table>
 
+<h3 id="filtering-results">Filtering results</h3>
+
+<p>You can filter the results list with the following query params:</p>
+<pre class="highlight shell"><code><span class="c"># This will retrieve only publicly listed publications</span>
+curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?state=public"</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Param</th>
+<th>Options</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>state</td>
+<td>public<br>unlisted<br>online<br>offline</td>
+<td>Return only publicly listed publications<br>Return only unlisted publications<br>Return public and unlisted publications<br>Return only offline publications</td>
+</tr>
+</tbody></table>
+
 <h2 id="get-a-specific-publication">Get a specific publication</h2>
 <pre class="highlight shell"><code><span class="c"># This endpoint retrieves a specific publication.</span>
 curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
