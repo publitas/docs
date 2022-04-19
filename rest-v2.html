@@ -1006,6 +1006,69 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X DELET
 </tr>
 </tbody></table>
 
+<h1 id="collections">Collections</h1>
+
+<h2 id="list-all-collections-of-a-group">List all collections of a group</h2>
+<pre class="highlight shell"><code><span class="c"># This will retrieve all collections for a group</span>
+curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"collections"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 1"</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 2"</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+</tbody></table>
+
+<p>The JSON response returns a list of collections with the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Collection ID</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Collection Title</td>
+</tr>
+</tbody></table>
+
 <h1 id="languages">Languages</h1>
 
 <table><thead>
@@ -1141,6 +1204,10 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X DELET
 <tr>
 <td>402</td>
 <td>Payment Required &ndash; You have reached your publishing limit</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; You requested access to a resource which you don&rsquo;t have permission</td>
 </tr>
 <tr>
 <td>404</td>
