@@ -620,6 +620,49 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 | Metatag ID      | The ID of a specific metatag                                |
 | force_delete    | Send “true” to override “Metatag is currently in use” error |
 
+# Collections
+
+## List all collections of a group
+
+```shell
+# This will retrieve all collections for a group
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/collections"
+```
+> The above command returns JSON structured like this:
+
+``` json
+{
+  "collections": [
+    {
+      "id": 1,
+      "title": "Collection 1",
+    },
+    {
+      "id": 2,
+      "title": "Collection 2",
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/collections`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Group ID | The ID of a specific group
+
+
+The JSON response returns a list of collections with the following attributes:
+
+|        Field        |   Type   |                           Description                                                                  |
+|---------------------|----------|--------------------------------------------------------------------------------------------------------|
+| id                  | Integer  | Collection ID                                                                                         |
+| title               | String   | Collection Title                                                                                      |
+
 # Languages
 
 |    Name    | Code |
@@ -669,6 +712,7 @@ The Publitas API uses the following error codes:
 | Error Code |                                          Meaning                                                                                     |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------|
 |        402 | Payment Required -- You have reached your publishing limit                                                                           |
+|        403 | Forbidden -- You requested access to a resource which you don't have permission                                                      |
 |        404 | Not Found -- The path or document could not be found                                                                                 |
 |        405 | Method Not Allowed -- You tried to access the API with an invalid method                                                             |
 |        406 | Not Acceptable -- You requested a format that isn't json                                                                             |
