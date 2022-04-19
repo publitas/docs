@@ -692,6 +692,7 @@ The Publitas API uses the following error codes:
 | Error Code |                                          Meaning                                                                                     |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------|
 |        402 | Payment Required -- You have reached your publishing limit                                                                           |
+|        403 | Forbidden -- You requested access to a resource which you don't have permission                                                      |
 |        404 | Not Found -- The path or document could not be found                                                                                 |
 |        405 | Method Not Allowed -- You tried to access the API with an invalid method                                                             |
 |        406 | Not Acceptable -- You requested a format that isn't json                                                                             |
