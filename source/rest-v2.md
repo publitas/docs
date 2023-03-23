@@ -15,7 +15,7 @@ This API can be used to programatically list your account's groups, as well as t
 
 ### Version
 
-Our API is currently on version 2 beta. Click [here](index.html) to see documentation for the first version of the API.
+Our API is currently on version 2. Click [here](index.html) to see documentation for the first version of the API.
 
 ### Authentication
 
