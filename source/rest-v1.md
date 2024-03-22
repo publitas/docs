@@ -214,8 +214,8 @@ This contains the configuration of the reader.
 | disableFeedback   | Boolean     | Disable feedback tab |
 | disableBranding   | Boolean     | Disable Publitas.com branding |
 | showPrintButton   | Boolean     | Show print button |
-| currencySymbol    | String      | Custom currency symbol value set in the Publication Reader configuration |
-| currency          | String      | Currency set in the Publication Reader configuration |
+| currencySymbol    | String      | Custom currency symbol value set in the Publication Reader configuration. For legacy reasons, this field defaults to € |
+| currency          | String      | Currency set in the Publication Reader configuration. This field is specified using an [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) |
 | styling           | Hash        | Hash containing Call To Action (CTA) button styling, described below |
 
 Styling:
