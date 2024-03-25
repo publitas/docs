@@ -192,6 +192,7 @@ Contains a hash of the resolutions we have images for. Each resolution contains 
     "disableBranding": false,
     "showPrintButton": false,
     "currencySymbol": "€",
+    "currency": "EUR",
     "styling": {
       "call_to_action_button_background_color": "#51a8d6",
       "call_to_action_button_text_color": "#f0f9ff"
@@ -213,7 +214,8 @@ This contains the configuration of the reader.
 | disableFeedback   | Boolean     | Disable feedback tab |
 | disableBranding   | Boolean     | Disable Publitas.com branding |
 | showPrintButton   | Boolean     | Show print button |
-| currencySymbol    | String      | Currency symbol, used in product pop-up |
+| currencySymbol    | String      | Custom currency symbol value set in the Publication Reader configuration. For legacy reasons, this field defaults to € |
+| currency          | String      | Currency set in the Publication Reader configuration. This field is specified using an [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) |
 | styling           | Hash        | Hash containing Call To Action (CTA) button styling, described below |
 
 Styling:
