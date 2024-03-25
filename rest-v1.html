@@ -249,6 +249,7 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
     </span><span class="nt">"disableBranding"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"showPrintButton"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"currencySymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"€"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"styling"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"call_to_action_button_background_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#51a8d6"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"call_to_action_button_text_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#f0f9ff"</span><span class="w">
@@ -319,7 +320,12 @@ curl <span class="s2">"https://api.publitas.com/v1/groups/example-blokker/public
 <tr>
 <td>currencySymbol</td>
 <td>String</td>
-<td>Currency symbol, used in product pop-up</td>
+<td>Custom currency symbol value set in the Publication Reader configuration. For legacy reasons, this field defaults to €</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>Currency set in the Publication Reader configuration. This field is specified using an <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency code</a></td>
 </tr>
 <tr>
 <td>styling</td>
