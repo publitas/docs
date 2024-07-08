@@ -52,7 +52,7 @@
 
 <h3 id="authentication">Authentication</h3>
 
-<p>Our public API requires an API key, sent in the headers in the form of <code class="prettyprint">&#39;Authorization&#39;: &quot;ApiKey &lt;api_key&gt;&quot;</code>. Contact our <a href="mailto:support@publitas.com">support team</a> to request an API key. For convenience, we also allow sending it as a <code class="prettyprint">api_key</code> query param and sending HTTP based authorization with the <code class="prettyprint">api</code> user and your API key as password.</p>
+<p>Our public API requires an API key, sent in the headers in the form of <code class="prettyprint">&#39;Authorization&#39;: &quot;ApiKey &lt;api_key&gt;&quot;</code>. Contact our <a href="mailto:support@publitas.com">support team</a> to request an API key. We also allow HTTP based authorization with the <code class="prettyprint">api</code> user and your API key as password.</p>
 
 <h3 id="formats">Formats</h3>
 
@@ -164,8 +164,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
       </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014"</span><span class="p">,</span><span class="w">
@@ -843,7 +843,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"metatag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w">  </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"category_3"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_3"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -1020,12 +1020,12 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
   </span><span class="nt">"collections"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 1"</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 2"</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 2"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1186,9 +1186,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"You have reached your publication limit"</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"You have reached your publication limit"</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
