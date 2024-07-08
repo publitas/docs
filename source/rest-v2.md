@@ -5,8 +5,8 @@ language_tabs:
   - shell
 
 toc_footers:
- - <a href='https://publitas.com'>Publitas.com</a>
- - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
+  - <a href='https://publitas.com'>Publitas.com</a>
+  - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
 ---
 
 # REST API v2
@@ -19,7 +19,7 @@ Our API is currently on version 2. Click [here](index.html) to see documentation
 
 ### Authentication
 
-Our public API requires an API key, sent in the headers in the form of `'Authorization': "ApiKey <api_key>"`. Contact our [support team](mailto:support@publitas.com) to request an API key. For convenience, we also allow sending it as a `api_key` query param and sending HTTP based authorization with the `api` user and your API key as password.
+Our public API requires an API key, sent in the headers in the form of `'Authorization': "ApiKey <api_key>"`. Contact our [support team](mailto:support@publitas.com) to request an API key. We also allow HTTP based authorization with the `api` user and your API key as password.
 
 ### Formats
 
@@ -39,6 +39,7 @@ An example of a complete path is:
 # This will retrieve all the groups accessible by the user
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
 ```
+
 > The above command returns a JSON document structured like so:
 
 ```json
@@ -59,15 +60,15 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
 
 The attributes are as follows:
 
-|       Field       |   Type  |                    Description                             |
-|-------------------|---------|------------------------------------------------------------|
-| id                | Integer | Group ID                                                   |
-| title             | String  | Group title                                                |
-| slug              | String  | Group slug                                                 |
-| url               | String  | Group details URL                                          |
-| publications_url  | String  | Publication list URL for the group                         |
-| publication_count | Integer | Amount of publications contained within the group          |
-| public_url        | String  | Group public URL (redirects to latest online publication)  |
+| Field             | Type    | Description                                               |
+| ----------------- | ------- | --------------------------------------------------------- |
+| id                | Integer | Group ID                                                  |
+| title             | String  | Group title                                               |
+| slug              | String  | Group slug                                                |
+| url               | String  | Group details URL                                         |
+| publications_url  | String  | Publication list URL for the group                        |
+| publication_count | Integer | Amount of publications contained within the group         |
+| public_url        | String  | Group public URL (redirects to latest online publication) |
 
 # Publications
 
@@ -77,9 +78,10 @@ The attributes are as follows:
 # This will retrieve all publications for a group
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications"
 ```
+
 > The above command returns JSON structured like this:
 
-``` json
+```json
 {
   "publications": [
     {
@@ -99,7 +101,7 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
       "metatag_ids": [1, 2],
-      "valid_from": null,
+      "valid_from": null
     },
     {
       "id": 2,
@@ -130,15 +132,14 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-Group ID | The ID of a specific group
-
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
 
 The JSON response returns a list of publications with the following attributes:
 
-|        Field        |   Type   |                           Description                                                                  |
-|---------------------|----------|--------------------------------------------------------------------------------------------------------|
+| Field               | Type     | Description                                                                                            |
+| ------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
 | id                  | Integer  | Publication ID                                                                                         |
 | title               | String   | Publication Title                                                                                      |
 | browser_title       | String   | SEO title                                                                                              |
@@ -159,12 +160,13 @@ The JSON response returns a list of publications with the following attributes:
 
 The `state` field can have one of the following values:
 
-|    Value    |                        Description                     |
-|-------------|--------------------------------------------------------|
-| offline     | Publication is not publicly visible.                   |
-| online      | Publication is publicly visible.                       |
+| Value   | Description                          |
+| ------- | ------------------------------------ |
+| offline | Publication is not publicly visible. |
+| online  | Publication is publicly visible.     |
 
 ### Filtering results
+
 You can filter the results list with the following query params:
 
 ```shell
@@ -172,9 +174,9 @@ You can filter the results list with the following query params:
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications?state=public"
 ```
 
-|        Param        |                     Options                | Description |
-|---------------------|--------------------------------------------|-------------|
-| state               | public<br>unlisted<br>online<br>offline    |Return only publicly listed publications<br>Return only unlisted publications<br>Return public and unlisted publications<br>Return only offline publications |
+| Param | Options                                 | Description                                                                                                                                                  |
+| ----- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| state | public<br>unlisted<br>online<br>offline | Return only publicly listed publications<br>Return only unlisted publications<br>Return public and unlisted publications<br>Return only offline publications |
 
 ## Get a specific publication
 
@@ -182,9 +184,10 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 # This endpoint retrieves a specific publication.
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications/222"
 ```
+
 > The above command returns JSON structured like this:
 
-``` json
+```json
 {
   "publication": [
     {
@@ -216,11 +219,10 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-Group ID | The ID of a specific group
-Publication ID | The ID of a specific publication
-
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| Group ID       | The ID of a specific group       |
+| Publication ID | The ID of a specific publication |
 
 ## Create a publication
 
@@ -228,6 +230,7 @@ Publication ID | The ID of a specific publication
 # This will create a publication with the title Winter2014, browser title BrowserWinter2014, description Winter2014Description and source URL http://example.com/winter2014.pdf.
 curl -H "Authorization: ApiKey <api_key>" --data "publication[title]=Winter2014&publication[source_url]=http://example.com/winter2014.pdf&publication[browser_title]=BrowserWinter2014&publication[description]=Winter2014Description" "https://api.publitas.com/v2/groups/1/publications"
 ```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -260,27 +263,26 @@ curl -H "Authorization: ApiKey <api_key>" --data "publication[title]=Winter2014&
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-Group ID | The ID of a specific group
-
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
 
 ### Request body parameters
 
 The following fields need to be sent within a publication scope (see right for an example.)
 
-|         Name        |   Type   | Required |                                                                               Description                                                                |
-|---------------------|----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| source_url          | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file.                                                |
-| title               | String   | Yes      | The title for the publication                                                                                                                            |
-| browser_title       | String   | No       | The SEO title for the publication                                                                                                                        |
-| description         | String   | No       | The SEO description for the publication                                                                                                                  |
-| language            | String   | No       | 2-digit language code. See [the language table](#languages) below for allowed values                                                                     |
-| schedule_online_at  | DateTime | No       | Time at which the publication is scheduled to be online. If the current time is provided, the publication will be put online as soon as it is converted  |
-| schedule_offline_at | DateTime | No       | Time at which the publication is scheduled to be offline                                                                                                 |
-| metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication                                                                                                |
-| metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                               |
-| valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                                   |
+| Name                | Type     | Required | Description                                                                                                                                             |
+| ------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| source_url          | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file.                                               |
+| title               | String   | Yes      | The title for the publication                                                                                                                           |
+| browser_title       | String   | No       | The SEO title for the publication                                                                                                                       |
+| description         | String   | No       | The SEO description for the publication                                                                                                                 |
+| language            | String   | No       | 2-digit language code. See [the language table](#languages) below for allowed values                                                                    |
+| schedule_online_at  | DateTime | No       | Time at which the publication is scheduled to be online. If the current time is provided, the publication will be put online as soon as it is converted |
+| schedule_offline_at | DateTime | No       | Time at which the publication is scheduled to be offline                                                                                                |
+| metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication                                                                                               |
+| metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                              |
+| valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                                  |
 
 ## Update a publication
 
@@ -288,6 +290,7 @@ The following fields need to be sent within a publication scope (see right for a
 # This will update a publication with the browser title UpdatedBrowserTitle, description UpdatedDescription and assign metatags with IDs 1 and 2.
 curl -H "Authorization: ApiKey <api_key>" -H "Content-Type: application/json" -X PUT --data '{"publication": {"browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "metatag_ids": [1,2]}}' "https://api.publitas.com/v2/groups/1/publications/3"
 ```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -320,23 +323,22 @@ curl -H "Authorization: ApiKey <api_key>" -H "Content-Type: application/json" -X
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-Group ID | The ID of a specific group
-Publication ID | The ID of a specific publication
-
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| Group ID       | The ID of a specific group       |
+| Publication ID | The ID of a specific publication |
 
 ### Request body parameters
 
 The following fields need to be sent within a publication scope (see right for an example.)
 
-|         Name        |   Type   | Required |                                                               Description                                                                     |
-|---------------------|----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| browser_title       | String   | No       | The SEO title for the publication                                                                                                             |
-| description         | String   | No       | The SEO description for the publication                                                                                                       |
-| metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication. This replaces current assignments (sending an empty array will clear assignments). |
-| metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                    |
-| valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                        |
+| Name              | Type   | Required | Description                                                                                                                                   |
+| ----------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| browser_title     | String | No       | The SEO title for the publication                                                                                                             |
+| description       | String | No       | The SEO description for the publication                                                                                                       |
+| metatag_ids       | Array  | No       | List of metatag IDs you want to assign to the publication. This replaces current assignments (sending an empty array will clear assignments). |
+| metatags_category | String | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                    |
+| valid_from        | Date   | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                        |
 
 ## Mark a publication as online
 
@@ -347,7 +349,7 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
 
 > When the response code is 200 the command returns JSON structured like this:
 
-``` json
+```json
 {
   "publication": [
     {
@@ -381,7 +383,7 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
 This endpoint returns one of the following HTTP codes:
 
 | Code | Description                             |
-|------|---------------------------------------- |
+| ---- | --------------------------------------- |
 | 200  | Publication is online                   |
 | 402  | You have reached your publishing limit. |
 
@@ -394,7 +396,7 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
 
 > The above command returns JSON structured like this:
 
-``` json
+```json
 {
   "publication": [
     {
@@ -418,6 +420,7 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
   ]
 }
 ```
+
 ### HTTP Request
 
 `POST https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/offline`
@@ -434,9 +437,10 @@ This endpoint returns the `200` response code.
 # This will retrieve all metatags for a group
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/metatags"
 ```
+
 > The above command returns JSON structured like this:
 
-``` json
+```json
 {
   "metatags": [
     {
@@ -461,20 +465,18 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-Group ID | The ID of a specific group
-
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
 
 The JSON response returns a list of metatags with the following attributes:
 
-|      Field    |   Type   |            Description               |
-|---------------|----------|--------------------------------------|
-| id            | Integer  | Publication ID                       |
-| group_id      | Integer  | Group ID                             |
-| category      | String   | Metatag category                     |
-| value         | String   | Metatag value                        |
-
+| Field    | Type    | Description      |
+| -------- | ------- | ---------------- |
+| id       | Integer | Publication ID   |
+| group_id | Integer | Group ID         |
+| category | String  | Metatag category |
+| value    | String  | Metatag value    |
 
 ## Get a specific metatag
 
@@ -482,9 +484,10 @@ The JSON response returns a list of metatags with the following attributes:
 # This endpoint retrieves a specific metatag.
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/metatags/222"
 ```
+
 > The above command returns JSON structured like this:
 
-``` json
+```json
 {
   "metatag": [
     {
@@ -503,11 +506,10 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-Group ID | The ID of a specific group
-Metatag ID | The ID of a specific metatag
-
+| Parameter  | Description                  |
+| ---------- | ---------------------------- |
+| Group ID   | The ID of a specific group   |
+| Metatag ID | The ID of a specific metatag |
 
 ## Create a metatag
 
@@ -515,13 +517,14 @@ Metatag ID | The ID of a specific metatag
 # This will create a metatag with the categordy category_3 and value value_3.
 curl -H "Authorization: ApiKey <api_key>" --data "metatag[category]=category_3&metatag[value]=value_3" "https://api.publitas.com/v2/groups/1/metatags"
 ```
+
 > The above command returns JSON structured like this:
 
 ```json
 {
   "metatag": {
     "id": 3,
-    "group_id":  1,
+    "group_id": 1,
     "category": "category_3",
     "value": "value_3"
   }
@@ -534,19 +537,18 @@ curl -H "Authorization: ApiKey <api_key>" --data "metatag[category]=category_3&m
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-Group ID | The ID of a specific group
-
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
 
 ### Request body parameters
 
 The following fields need to be sent within a metatag scope (see right for an example.)
 
-|         Name        |   Type   | Required |                  Description                 |
-|---------------------|----------|----------|----------------------------------------------|
-| category            | String   | Yes      | Category of the metatag                      |
-| value               | String   | Yes      | Value of the metatag                         |
+| Name     | Type   | Required | Description             |
+| -------- | ------ | -------- | ----------------------- |
+| category | String | Yes      | Category of the metatag |
+| value    | String | Yes      | Value of the metatag    |
 
 ## Update a metatag
 
@@ -554,6 +556,7 @@ The following fields need to be sent within a metatag scope (see right for an ex
 # This will update a metatag with the category new_category and value value_4.
 curl -H "Authorization: ApiKey <api_key>" -X PUT --data "metatag[category]=new_category&metatag[value]=value_4" "https://api.publitas.com/v2/groups/1/metatags/3"
 ```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -573,20 +576,19 @@ curl -H "Authorization: ApiKey <api_key>" -X PUT --data "metatag[category]=new_c
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-Group ID | The ID of a specific group
-Metatag ID | The ID of a specific metatag
-
+| Parameter  | Description                  |
+| ---------- | ---------------------------- |
+| Group ID   | The ID of a specific group   |
+| Metatag ID | The ID of a specific metatag |
 
 ### Request body parameters
 
 The following fields need to be sent within a metatag scope (see right for an example.)
 
-|         Name        |   Type   | Required |            Description             |
-|---------------------|----------|----------|------------------------------------|
-| category            | String   | No       | Category of the metatag            |
-| value               | String   | No       | Value of the metatag               |
+| Name     | Type   | Required | Description             |
+| -------- | ------ | -------- | ----------------------- |
+| category | String | No       | Category of the metatag |
+| value    | String | No       | Value of the metatag    |
 
 ## Delete a metatag
 
@@ -594,6 +596,7 @@ The following fields need to be sent within a metatag scope (see right for an ex
 # This will try to delete a metatag with id 4.
 curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/metatags/4"
 ```
+
 > The above command returns a 409 error and the following JSON if metatag is assigned to a publication:
 
 ```json
@@ -606,6 +609,7 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 # This will delete the metatag with id 4 even if it's assigned to a publication.
 curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/metatags/4?force_delete=true"
 ```
+
 > The above command returns a 204 with no content
 
 ### HTTP Request
@@ -614,11 +618,11 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 
 ### URL Parameters
 
-|    Parameter    |                        Description                          |
-|---------------- | ------------------------------------------------------------|
-| Group ID        | The ID of a specific group                                  |
-| Metatag ID      | The ID of a specific metatag                                |
-| force_delete    | Send “true” to override “Metatag is currently in use” error |
+| Parameter    | Description                                                 |
+| ------------ | ----------------------------------------------------------- |
+| Group ID     | The ID of a specific group                                  |
+| Metatag ID   | The ID of a specific metatag                                |
+| force_delete | Send “true” to override “Metatag is currently in use” error |
 
 # Collections
 
@@ -628,18 +632,19 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 # This will retrieve all collections for a group
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/collections"
 ```
+
 > The above command returns JSON structured like this:
 
-``` json
+```json
 {
   "collections": [
     {
       "id": 1,
-      "title": "Collection 1",
+      "title": "Collection 1"
     },
     {
       "id": 2,
-      "title": "Collection 2",
+      "title": "Collection 2"
     }
   ]
 }
@@ -651,22 +656,21 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-Group ID | The ID of a specific group
-
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
 
 The JSON response returns a list of collections with the following attributes:
 
-|        Field        |   Type   |                           Description                                                                  |
-|---------------------|----------|--------------------------------------------------------------------------------------------------------|
-| id                  | Integer  | Collection ID                                                                                         |
-| title               | String   | Collection Title                                                                                      |
+| Field | Type    | Description      |
+| ----- | ------- | ---------------- |
+| id    | Integer | Collection ID    |
+| title | String  | Collection Title |
 
 # Languages
 
-|    Name    | Code |
-|------------|------|
+| Name       | Code |
+| ---------- | ---- |
 | Basque     | eu   |
 | Bulgarian  | bg   |
 | Chinese    | zh   |
@@ -697,26 +701,24 @@ The JSON response returns a list of collections with the following attributes:
 
 > When there is an error the command returns JSON structured like this:
 
-``` json
+```json
 {
   "errors": {
-    "state": [
-        "You have reached your publication limit"
-    ]
+    "state": ["You have reached your publication limit"]
   }
 }
 ```
 
 The Publitas API uses the following error codes:
 
-| Error Code |                                          Meaning                                                                                     |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------|
-|        402 | Payment Required -- You have reached your publishing limit                                                                           |
-|        403 | Forbidden -- You requested access to a resource which you don't have permission                                                      |
-|        404 | Not Found -- The path or document could not be found                                                                                 |
-|        405 | Method Not Allowed -- You tried to access the API with an invalid method                                                             |
-|        406 | Not Acceptable -- You requested a format that isn't json                                                                             |
-|        418 | I'm a teapot                                                                                                                         |
-|        422 | Unprocessable Entity -- We found validation errors on one or more fields, a detailed error message can be found in the response body |
-|        500 | Internal Server Error -- We had a problem with our server. Try again later                                                           |
-|        503 | Service Unavailable -- We're temporarially offline for maintenance. Please try again later                                           |
+| Error Code | Meaning                                                                                                                              |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| 402        | Payment Required -- You have reached your publishing limit                                                                           |
+| 403        | Forbidden -- You requested access to a resource which you don't have permission                                                      |
+| 404        | Not Found -- The path or document could not be found                                                                                 |
+| 405        | Method Not Allowed -- You tried to access the API with an invalid method                                                             |
+| 406        | Not Acceptable -- You requested a format that isn't json                                                                             |
+| 418        | I'm a teapot                                                                                                                         |
+| 422        | Unprocessable Entity -- We found validation errors on one or more fields, a detailed error message can be found in the response body |
+| 500        | Internal Server Error -- We had a problem with our server. Try again later                                                           |
+| 503        | Service Unavailable -- We're temporarially offline for maintenance. Please try again later                                           |
