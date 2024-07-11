@@ -283,6 +283,8 @@ The following fields need to be sent within a publication scope (see right for a
 | metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication                                                                                               |
 | metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                              |
 | valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                                  |
+| collection_id       | Integer  | No       | Associate publication to a collection by ID
+| extraction_options  | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields
 
 ## Update a publication
 
@@ -696,6 +698,21 @@ The JSON response returns a list of collections with the following attributes:
 | Swedish    | sv   |
 | Turkish    | tr   |
 | Ukranian   | uk   |
+
+# Extraction Options
+
+The following fields defines options to extract hotspots from a PDF
+
+| Name                | Type   | Required | Description                                                                                                                                       |
+| ------------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| links               | Object | No       | Extracts link hotspots for any URLs, document links, and email addresses found in PDF file (see object definition table bellow)                   |
+| products            | Object | No       | Extracts product hotspots from any SKU found in PDF file, matching product feed or product library set (see object definition table bellow)       |
+
+Both 'links' and 'products' allow the fields bellow:
+
+| Name                | Type     | Required | Description                                                                                                                              |
+| ------------------- | -------- | -------- | -----------------------------------------------------------------------------------------------------------------------------------------|
+| icons               | Boolean  | No       | Show/hide hotspot icon indication, is not applicable hotspot extracted from pdf annotations(those are defined in the annotantion itself) |
 
 # Errors
 
