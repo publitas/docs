@@ -446,7 +446,6 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 
 This endpoint returns the `200` response code.
 
-
 # Metatags
 
 ## List all metatags of a group
@@ -728,7 +727,7 @@ The following fields need to be sent within a collection scope (see right for an
 
 ## Add pages to publication
 
-Add pages from a given pdf file into a target publication
+Add pages from a given PDF file into a the specific publication
 
 ### HTTP Request
 
@@ -760,9 +759,13 @@ curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Pub
 | position             | Integer  | No       | Page number where new pages should be added (by default add pages at the end)
 | extraction_options   | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields
 
+### Response codes
+
+This endpoint returns the `200` response code.
+
 ## Replace a publication page
 
-Replace a page on target publication
+Replace a page on specific publication
 
 ### HTTP Request
 
@@ -778,7 +781,7 @@ Replace a page on target publication
 
 
 ```shell
-curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>' \
+curl --location --request PUT 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>' \
 --header 'Authorization: ApiKey <api_key>' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -799,9 +802,32 @@ The following fields need to be sent within a page scope (see right for an examp
 | extraction_options   | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields
 | remove_hotspots      | Boolean  | No       | If true remove current hotspots on page to be replaced
 
+### Response codes
+
+This endpoint returns the `200` response code.
+
 ## Remove a publication page
 
-TBD
+### HTTP Request
+
+`DELETE https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>`
+
+```shell
+curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/publications/222"
+```
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | --------------------------
+| Group ID         | The ID of a specific group
+| Publication ID   | The ID of a specific publication
+| Page Number      | The page number to be removed
+
+
+### Response codes
+
+This endpoint returns the `200` response code.
 
 # Product Feeds
 
