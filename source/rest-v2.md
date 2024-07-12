@@ -708,10 +708,12 @@ curl -H "Authorization: ApiKey <api_key>" --data "{
 > The above command returns JSON structured like this:
 
 ```json
-{
-    "id": 42,
-    "title": "New Collection"
-}
+  {
+    "collection": {
+      "id": 42,
+      "title": "New Collection"
+    }
+  }
 ```
 
 ### Request body parameters
@@ -726,7 +728,37 @@ The following fields need to be sent within a collection scope (see right for an
 
 ## Add pages to publication
 
-TBD
+Add pages from a given pdf file into a target pubblication
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages`
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | --------------------------
+| Group ID         | The ID of a specific group
+| Publication ID   | The ID of a specific publication
+
+
+```shell
+curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages' \
+--header 'Authorization: ApiKey <api_key>' \
+--header 'Content-Type: application/json' \
+--data '{
+    "source_url": "https://some/file.pdf"
+  }'
+```
+
+### Request body parameters
+
+| Name                 | Type     | Required | Description
+| -------------------- | -------- | -------- | -----------
+| source_url           | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
+| source_pages_numbers | Array    | No       | List of page numbers from pdf file to be added into the publication
+| position             | Integer  | No       | Page number where new pages should be added (by default add pages at the end)
+| extraction_options   | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields
 
 ## Replace a publication page
 
