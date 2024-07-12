@@ -685,6 +685,43 @@ The JSON response returns a list of collections with the following attributes:
 | id    | Integer | Collection ID    |
 | title | String  | Collection Title |
 
+## Create a collection
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/collections`
+
+### URL Parameters
+
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
+
+```shell
+curl -H "Authorization: ApiKey <api_key>" --data "{
+  "collection": {
+    "title": "New Collection"
+  }
+}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 42,
+    "title": "New Collection"
+}
+```
+
+### Request body parameters
+
+The following fields need to be sent within a collection scope (see right for an example.)
+
+| Name                 | Type      | Required | Description
+| -------------------- | --------- | -------- | -----------------
+| title                | String    | Yes      | Collection Title
+
 # Languages
 
 | Name       | Code |
