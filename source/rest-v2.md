@@ -431,6 +431,22 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
 
 This endpoint returns the `200` response code.
 
+## Archive Publication
+
+```shell
+# This endpoint archives a publication
+curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/publications/222"
+```
+
+### HTTP Request
+
+`DELETE https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>`
+
+### Response codes
+
+This endpoint returns the `200` response code.
+
+
 # Metatags
 
 ## List all metatags of a group
