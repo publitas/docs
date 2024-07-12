@@ -833,11 +833,118 @@ This endpoint returns the `200` response code.
 
 ## List recent product feeds
 
-TBD
+List last 5 product feed imports
+
+```shell
+curl --location "http://api.publitas.com/v2/groups/1/product_feeds" --header "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns a JSON document structured like so:
+
+```json
+{
+  "product_feeds": [
+    {
+      "id": 28,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "processing",
+      "success_count":0,
+      "failed_count": 0
+    },
+    {
+      "id": 27,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "success",
+      "success_count": 1891,
+      "failed_count": 0
+    },
+    {
+      "id": 27,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "failed",
+      "success_count": 1,
+      "failed_count": 1890,
+    }
+    {
+      "id": 27,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "success",
+      "success_count": 1891,
+      "failed_count": 0
+    }
+    {
+      "id": 27,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "success",
+      "success_count": 1891,
+      "failed_count": 0
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/product_feeds`
+
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | --------------------------
+| Group ID         | The ID of a specific group
+
 
 ## Create a product feed
 
-TBD
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/product_feeds`
+
+```shell
+curl --location 'http://api.publitas.com/v2/groups/1/product_feeds' \
+--header 'Authorization: ApiKey <api_key>' \
+--header 'Content-Type: application/json' \
+--data '{
+    "product_feed": {
+        "url": "http://some/feed/file.xml"
+    }
+}'
+```
+
+> The above command returns a JSON document structured like so:
+
+```json
+{
+  "product_feed": {
+    "id": 42,
+    "group_id": 1,
+    "url": "http://some/feed/file.xml",
+    "state": "processing",
+    "success_count":0,
+    "failed_count": 0
+  }
+}
+```
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | --------------------------
+| Group ID         | The ID of a specific group
+
+### Request body parameters
+
+The following fields need to be sent within a product feed scope (see right for an example.)
+
+| Name     | Type     | Required | Description
+| -------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------
+| url      | String   | Yes      | URL where the Feed file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
 
 # Languages
 
