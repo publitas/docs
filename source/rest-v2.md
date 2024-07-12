@@ -728,7 +728,7 @@ The following fields need to be sent within a collection scope (see right for an
 
 ## Add pages to publication
 
-Add pages from a given pdf file into a target pubblication
+Add pages from a given pdf file into a target publication
 
 ### HTTP Request
 
@@ -762,7 +762,42 @@ curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Pub
 
 ## Replace a publication page
 
-TBD
+Replace a page on target publication
+
+### HTTP Request
+
+`PUT https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>`
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | --------------------------
+| Group ID         | The ID of a specific group
+| Publication ID   | The ID of a specific publication
+| Page Number      | The page number of page to be replaced
+
+
+```shell
+curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>' \
+--header 'Authorization: ApiKey <api_key>' \
+--header 'Content-Type: application/json' \
+--data '{
+  "page": {
+    "source_url": "https://some/file.pdf"
+  }
+}'
+```
+
+### Request body parameters
+
+The following fields need to be sent within a page scope (see right for an example.)
+
+| Name                 | Type     | Required | Description
+| -------------------- | -------- | -------- | -----------
+| source_url           | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
+| source_pages_number  | Integer  | No       | PDF page number to be used on replace (by default page number 1 is used)
+| extraction_options   | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields
+| remove_hotspots      | Boolean  | No       | If true remove current hotspots on page to be replaced
 
 ## Remove a publication page
 
