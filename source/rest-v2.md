@@ -722,6 +722,30 @@ The following fields need to be sent within a collection scope (see right for an
 | -------------------- | --------- | -------- | -----------------
 | title                | String    | Yes      | Collection Title
 
+# Pages
+
+## Add pages to publication
+
+TBD
+
+## Replace a publication page
+
+TBD
+
+## Remove a publication page
+
+TBD
+
+# Product Feeds
+
+## List recent product feeds
+
+TBD
+
+## Create a product feed
+
+TBD
+
 # Languages
 
 | Name       | Code |
