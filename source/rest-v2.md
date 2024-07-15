@@ -980,6 +980,17 @@ The following fields need to be sent within a product feed scope (see right for 
 
 The following fields defines options to extract hotspots from a PDF
 
+> Extraction options field JSON object structured like this:
+
+```json
+{
+  "extraction_options": {
+    "links": { "icons": true },
+    "products": { "icons": false }
+  }
+}
+```
+
 | Name                | Type   | Required | Description                                                                                                                                       |
 | ------------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | links               | Object | No       | Extracts link hotspots for any URLs, document links, and email addresses found in PDF file (see object definition table bellow)                   |
