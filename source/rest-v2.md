@@ -438,13 +438,18 @@ This endpoint returns the `200` response code.
 curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/publications/222"
 ```
 
+> The above command returns a 204 with no content
+
 ### HTTP Request
 
 `DELETE https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>`
 
-### Response codes
+### URL Parameters
 
-This endpoint returns the `200` response code.
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| Group ID       | The ID of a specific group       |
+| Publication ID | The ID of a specific publication |
 
 # Metatags
 
@@ -757,7 +762,7 @@ curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Pub
 | source_url           | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
 | source_pages_numbers | Array    | No       | List of page numbers from pdf file to be added into the publication
 | position             | Integer  | No       | Page number where new pages should be added (by default add pages at the end)
-| extraction_options   | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields
+| extraction_options   | Object   | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details
 
 ### Response codes
 
@@ -799,7 +804,7 @@ The following fields need to be sent within a page scope (see right for an examp
 | -------------------- | -------- | -------- | -----------
 | source_url           | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
 | source_pages_number  | Integer  | No       | PDF page number to be used on replace (by default page number 1 is used)
-| extraction_options   | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields
+| extraction_options   | Object   | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details
 | remove_hotspots      | Boolean  | No       | If true remove current hotspots on page to be replaced
 
 ### Response codes
@@ -870,7 +875,7 @@ curl --location "http://api.publitas.com/v2/groups/1/product_feeds" --header "Au
     }
     {
       "id": 27,
-      "group_id": 1,
+      "group_id": 1,Hotspot extraction (auto-tagging) settings, see extraction options for details
       "url": "http://some/feed/file.xml",
       "state": "success",
       "success_count": 1891,
@@ -896,7 +901,7 @@ curl --location "http://api.publitas.com/v2/groups/1/product_feeds" --header "Au
 ### URL Parameters
 
 | Parameter        | Description
-| ---------        | --------------------------
+| ---------        | -----------
 | Group ID         | The ID of a specific group
 
 
@@ -943,8 +948,8 @@ curl --location 'http://api.publitas.com/v2/groups/1/product_feeds' \
 The following fields need to be sent within a product feed scope (see right for an example.)
 
 | Name     | Type     | Required | Description
-| -------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------
-| url      | String   | Yes      | URL where the Feed file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
+| -------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------
+| url      | String   | Yes      | URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file
 
 # Languages
 
@@ -991,16 +996,16 @@ The following fields defines options to extract hotspots from a PDF
 }
 ```
 
-| Name                | Type   | Required | Description                                                                                                                                       |
-| ------------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| links               | Object | No       | Extracts link hotspots for any URLs, document links, and email addresses found in PDF file (see object definition table bellow)                   |
-| products            | Object | No       | Extracts product hotspots from any SKU found in PDF file, matching product feed or product library set (see object definition table bellow)       |
+| Name                | Type   | Required | Description
+| ------------------- | ------ | -------- | -----------
+| links               | Object | No       | Extracts link hotspots for any URL, document link, and email address found in PDF file (see object definition table below)
+| products            | Object | No       | Extracts product hotspots for any SKU found in PDF file, matching product feed or product library set (see object definition table below)
 
 Both 'links' and 'products' allow the fields bellow:
 
-| Name                | Type     | Required | Description                                                                                                                              |
-| ------------------- | -------- | -------- | -----------------------------------------------------------------------------------------------------------------------------------------|
-| icons               | Boolean  | No       | Show/hide hotspot icon indication, is not applicable hotspot extracted from pdf annotations(those are defined in the annotantion itself) |
+| Name                | Type     | Required | Description
+| ------------------- | -------- | -------- | -----------
+| icons               | Boolean  | No       | Show or hide hotspot icons for extracted hotspot. This setting is not applicable to hotspots extracted from PDF annotations (those are defined in the annotation itself)
 
 # Errors
 
