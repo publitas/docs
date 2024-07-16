@@ -269,7 +269,7 @@ curl -H "Authorization: ApiKey <api_key>" --data "publication[title]=Winter2014&
 
 ### Request body parameters
 
-The following fields need to be sent within a publication scope (see right for an example.)
+The following fields need to be sent within a publication scope (see the right panel for an example):
 
 | Name                | Type     | Required | Description                                                                                                                                             |
 | ------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -332,7 +332,7 @@ curl -H "Authorization: ApiKey <api_key>" -H "Content-Type: application/json" -X
 
 ### Request body parameters
 
-The following fields need to be sent within a publication scope (see right for an example.)
+The following fields need to be sent within a publication scope (see the right panel for an example):
 
 | Name              | Type   | Required | Description                                                                                                                                   |
 | ----------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -565,7 +565,7 @@ curl -H "Authorization: ApiKey <api_key>" --data "metatag[category]=category_3&m
 
 ### Request body parameters
 
-The following fields need to be sent within a metatag scope (see right for an example.)
+The following fields need to be sent within a metatag scope (see the right panel for an example):
 
 | Name     | Type   | Required | Description             |
 | -------- | ------ | -------- | ----------------------- |
@@ -605,7 +605,7 @@ curl -H "Authorization: ApiKey <api_key>" -X PUT --data "metatag[category]=new_c
 
 ### Request body parameters
 
-The following fields need to be sent within a metatag scope (see right for an example.)
+The following fields need to be sent within a metatag scope (see the right panel for an example):
 
 | Name     | Type   | Required | Description             |
 | -------- | ------ | -------- | ----------------------- |
@@ -722,7 +722,7 @@ curl -H "Authorization: ApiKey <api_key>" --data "{
 
 ### Request body parameters
 
-The following fields need to be sent within a collection scope (see right for an example.)
+The following fields need to be sent within a collection scope (see the right panel for an example):
 
 | Name                 | Type      | Required | Description
 | -------------------- | --------- | -------- | -----------------
@@ -798,7 +798,7 @@ curl --location --request PUT 'https://api.publitas.com/v2/groups/<Group ID>/pub
 
 ### Request body parameters
 
-The following fields need to be sent within a page scope (see right for an example.)
+The following fields need to be sent within a page scope (see the right panel for an example):
 
 | Name                 | Type     | Required | Description
 | -------------------- | -------- | -------- | -----------
@@ -945,7 +945,7 @@ curl --location 'http://api.publitas.com/v2/groups/1/product_feeds' \
 
 ### Request body parameters
 
-The following fields need to be sent within a product feed scope (see right for an example.)
+The following fields need to be sent within a product feed scope (see the right panel for an example):
 
 | Name     | Type     | Required | Description
 | -------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------
