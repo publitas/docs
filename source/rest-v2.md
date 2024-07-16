@@ -28,8 +28,8 @@ Currently we only support JSON requests.
 ### Paths
 
 The base path of an API request is: `https://api.publitas.com/v2/`
-
-An example of a complete path is:
+this
+A example of a complete path is:
 
 `https://api.publitas.com/v2/groups/?api_key=<api_key>`
 
@@ -40,7 +40,7 @@ An example of a complete path is:
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
 ```
 
-> The above command returns a JSON document structured like so:
+> The above command returns a JSON document structured like this:
 
 ```json
 {
@@ -838,13 +838,13 @@ This endpoint returns the `200` response code.
 
 ## List recent product feeds
 
-List last 5 product feed imports
+Lists last 5 product feed imports
 
 ```shell
 curl --location "http://api.publitas.com/v2/groups/1/product_feeds" --header "Authorization: ApiKey <api_key>"
 ```
 
-> The above command returns a JSON document structured like so:
+> The above command returns a JSON document structured like this:
 
 ```json
 {
@@ -922,7 +922,7 @@ curl --location 'http://api.publitas.com/v2/groups/1/product_feeds' \
 }'
 ```
 
-> The above command returns a JSON document structured like so:
+> The above command returns a JSON document structured like this:
 
 ```json
 {
@@ -983,7 +983,7 @@ The following fields need to be sent within a product feed scope (see right for 
 
 # Extraction Options
 
-The following fields defines options to extract hotspots from a PDF
+The following fields define options to extract hotspots from a PDF
 
 > Extraction options field JSON object structured like this:
 
@@ -1001,7 +1001,7 @@ The following fields defines options to extract hotspots from a PDF
 | links               | Object | No       | Extracts link hotspots for any URL, document link, and email address found in PDF file (see object definition table below)
 | products            | Object | No       | Extracts product hotspots for any SKU found in PDF file, matching product feed or product library set (see object definition table below)
 
-Both 'links' and 'products' allow the fields bellow:
+Both 'links' and 'products' allow the fields below:
 
 | Name                | Type     | Required | Description
 | ------------------- | -------- | -------- | -----------
