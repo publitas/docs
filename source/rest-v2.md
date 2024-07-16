@@ -28,7 +28,7 @@ Currently we only support JSON requests.
 ### Paths
 
 The base path of an API request is: `https://api.publitas.com/v2/`
-this
+
 A example of a complete path is:
 
 `https://api.publitas.com/v2/groups/?api_key=<api_key>`
@@ -732,7 +732,7 @@ The following fields need to be sent within a collection scope (see the right pa
 
 ## Add pages to publication
 
-Add pages from a given PDF file into a the specific publication
+Add pages to a publication from a PDF file
 
 ### HTTP Request
 
@@ -741,9 +741,9 @@ Add pages from a given PDF file into a the specific publication
 ### URL Parameters
 
 | Parameter        | Description
-| ---------        | --------------------------
-| Group ID         | The ID of a specific group
-| Publication ID   | The ID of a specific publication
+| ---------        | -----------
+| Group ID         | ID of a group containing the publication
+| Publication ID   | The ID of a publication to add pages to
 
 
 ```shell
@@ -759,9 +759,9 @@ curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Pub
 
 | Name                 | Type     | Required | Description
 | -------------------- | -------- | -------- | -----------
-| source_url           | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
-| source_pages_numbers | Array    | No       | List of page numbers from pdf file to be added into the publication
-| position             | Integer  | No       | Page number where new pages should be added (by default add pages at the end)
+| source_url           | String   | Yes      | URL of the PDF file to upload. HTTP and HTTPS are accepted, and it needs to be a publicly accessible file
+| source_pages_numbers | Array    | No       | List of page numbers in the pdf file to be added into the publication
+| position             | Integer  | No       | Page number where new pages should be inserted (by default add pages at the end)
 | extraction_options   | Object   | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details
 
 ### Response codes
@@ -770,7 +770,7 @@ This endpoint returns the `200` response code.
 
 ## Replace a publication page
 
-Replace a page on specific publication
+Replace a page in a publication
 
 ### HTTP Request
 
@@ -780,9 +780,9 @@ Replace a page on specific publication
 
 | Parameter        | Description
 | ---------        | --------------------------
-| Group ID         | The ID of a specific group
-| Publication ID   | The ID of a specific publication
-| Page Number      | The page number of page to be replaced
+| Group ID         | ID of a group containing the publication
+| Publication ID   | The ID of a publication to replace a page in
+| Page Number      | The number of the page to be replaced in the publication
 
 
 ```shell
@@ -825,9 +825,9 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 
 | Parameter        | Description
 | ---------        | --------------------------
-| Group ID         | The ID of a specific group
-| Publication ID   | The ID of a specific publication
-| Page Number      | The page number to be removed
+| Group ID         | ID of a group containing the publication
+| Publication ID   | The ID of a publication to remove a page from
+| Page Number      | The number of the page to be removed in the publication
 
 
 ### Response codes
