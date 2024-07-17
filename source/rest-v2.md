@@ -805,7 +805,7 @@ The following fields need to be sent within a page scope (see the right panel fo
 | source_url           | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
 | source_pages_number  | Integer  | No       | PDF page number to be used on replace (by default page number 1 is used)
 | extraction_options   | Object   | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details
-| remove_hotspots      | Boolean  | No       | If true remove current hotspots on page to be replaced
+| remove_hotspots      | Boolean  | No       | Remove existing hotspots on the specified page (based on page number parameter)
 
 ### Response codes
 
