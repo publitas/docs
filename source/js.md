@@ -78,7 +78,7 @@ The `slug` and `groupSlug` properties are the building blocks of publication URL
 They can be used to construct a unique identifier for the current publication
 (e.g. to be used for custom analytics tracking).
 
-Note that several publications can have the same slug as long as they are from different groups. 
+Note that several publications can have the same slug as long as they are from different groups.
 To ensure to get a unique identifier for your publication,
 use both the group and the publication slug.
 
@@ -287,11 +287,36 @@ window.viewerReady = function (api, platform) {
     name: 'custom_item_1',
     title: 'Custom Title 1',
     iconUrl: 'https://icons.com/b7803b.jpg',
-    action: function(){ 
-      // do something here 
+    action: function(){
+      // do something here
     },
     order: 2,
   });
 }
 ```
 Using the `addMenuItem(object)` you can add a custom item into the main menu. `item` needs to be an object. `name` is a unique identifier in case you need to address it for further actions (for instance, custom styling it). `title` sets item title. `iconUrl` is the source of the icon displayed for item, may be external url or image data. `action` could be a function as well as an external url (to keep compatibility among all browsers, we recommend not using arrow functions). `order` is a number indicating item's position starting from the top of the main menu, regardless of the amount of items being displayed for a specific publication. It is the only optional parameter, when it's not defined, item will be pushed to bottom of main menu.
+
+
+## Consent Management For Analytics
+
+``` javascript
+window.viewerReady = function (api, platform) {
+  api.setAnalyticsTrackingConsent(true);
+}
+
+// or if your consent tool uses events
+
+consentManager.on('consent', (categories) => {
+  if (categories.indexOf('analytics') > -1) {
+    api.setAnalyticsTrackingConsent(true);
+  } else {
+    api.setAnalyticsTrackingConsent(false);
+  }
+});
+
+```
+Using the `setAnalyticsTrackingConsent(true/false)` you can manage user consent for Publitas analytics tracking events. This method is effective only if the "Require visitor consent to allow Publitas to collect behavioural data" option is toggled on in our CMS. If this option is not enabled, tracking occurs by default without needing explicit consent.
+
+This method does not store the consent preference in any cookie. Therefore, it must be set on every page refresh. It should be used in conjunction with any third-party cookie consent manager to handle user preferences.
+
+When consent is set to true, any events collected before consent was given are flushed and sent.
