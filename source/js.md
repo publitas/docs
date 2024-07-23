@@ -315,7 +315,7 @@ consentManager.on('consent', (categories) => {
 });
 
 ```
-Using the `setAnalyticsTrackingConsent(true/false)` you can manage user consent for Publitas analytics tracking events. This method is effective only if the "Require visitor consent to allow Publitas to collect behavioural data" option is toggled on in our CMS. If this option is not enabled, tracking occurs by default without needing explicit consent.
+Using the `setAnalyticsTrackingConsent(true/false)` you can manage user consent for Publitas analytics tracking events. This method is effective only if the "Require visitor consent to allow Publitas to collect performance data" option is toggled on in our CMS. If this option is not enabled, tracking occurs by default without needing explicit consent.
 
 This method does not store the consent preference in any cookie. Therefore, it must be set on every page refresh. It should be used in conjunction with any third-party cookie consent manager to handle user preferences.
 
