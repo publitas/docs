@@ -120,7 +120,7 @@
 <p>They can be used to construct a unique identifier for the current publication
 (e.g. to be used for custom analytics tracking).</p>
 
-<p>Note that several publications can have the same slug as long as they are from different groups. 
+<p>Note that several publications can have the same slug as long as they are from different groups.
 To ensure to get a unique identifier for your publication,
 use both the group and the publication slug.</p>
 
@@ -346,8 +346,8 @@ Using just the publication slug might be sufficient if you are doing tracking pe
     <span class="na">name</span><span class="p">:</span> <span class="s1">'custom_item_1'</span><span class="p">,</span>
     <span class="na">title</span><span class="p">:</span> <span class="s1">'Custom Title 1'</span><span class="p">,</span>
     <span class="na">iconUrl</span><span class="p">:</span> <span class="s1">'https://icons.com/b7803b.jpg'</span><span class="p">,</span>
-    <span class="na">action</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span> 
-      <span class="c1">// do something here </span>
+    <span class="na">action</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="c1">// do something here</span>
     <span class="p">},</span>
     <span class="na">order</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="p">});</span>
@@ -355,6 +355,29 @@ Using just the publication slug might be sufficient if you are doing tracking pe
 </code></pre>
 
 <p>Using the <code class="prettyprint">addMenuItem(object)</code> you can add a custom item into the main menu. <code class="prettyprint">item</code> needs to be an object. <code class="prettyprint">name</code> is a unique identifier in case you need to address it for further actions (for instance, custom styling it). <code class="prettyprint">title</code> sets item title. <code class="prettyprint">iconUrl</code> is the source of the icon displayed for item, may be external url or image data. <code class="prettyprint">action</code> could be a function as well as an external url (to keep compatibility among all browsers, we recommend not using arrow functions). <code class="prettyprint">order</code> is a number indicating item&rsquo;s position starting from the top of the main menu, regardless of the amount of items being displayed for a specific publication. It is the only optional parameter, when it&rsquo;s not defined, item will be pushed to bottom of main menu.</p>
+
+<h2 id="consent-management-for-analytics">Consent Management For Analytics</h2>
+<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setAnalyticsTrackingConsent</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// or if your consent tool uses events</span>
+
+<span class="nx">consentManager</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'consent'</span><span class="p">,</span> <span class="p">(</span><span class="nx">categories</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">categories</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'analytics'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">api</span><span class="p">.</span><span class="nx">setAnalyticsTrackingConsent</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">api</span><span class="p">.</span><span class="nx">setAnalyticsTrackingConsent</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+</code></pre>
+
+<p>Using the <code class="prettyprint">setAnalyticsTrackingConsent(true/false)</code> you can manage user consent for Publitas analytics tracking events. This method is effective only if the &ldquo;Require visitor consent to allow Publitas to collect performance data&rdquo; option is toggled on in our CMS. If this option is not enabled, tracking occurs by default without needing explicit consent.</p>
+
+<p>This method does not store the consent preference in any cookie. Therefore, it must be set on every page refresh. It should be used in conjunction with any third-party cookie consent manager to handle user preferences.</p>
+
+<p>When consent is set to true, any events collected before consent was given are flushed and sent.</p>
 
       </div>
       <div class="dark-box">
