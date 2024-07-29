@@ -60,15 +60,15 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
 
 The attributes are as follows:
 
-| Field             | Type    | Description                                               |
-| ----------------- | ------- |-----------------------------------------------------------|
-| id                | Integer | Group ID                                                  |
-| title             | String  | Group title                                               |
-| slug              | String  | Group slug                                                |
-| url               | String  | Group details URL                                         |
-| publications_url  | String  | Publication list URL for the group. Custom domain will be applied if there is one.                      |
-| publication_count | Integer | Amount of publications contained within the group         |
-| public_url        | String  | Group public URL (redirects to latest online publication) |
+| Field             | Type    | Description                                                                         |
+| ----------------- | ------- |-------------------------------------------------------------------------------------|
+| id                | Integer | Group ID                                                                            |
+| title             | String  | Group title                                                                         |
+| slug              | String  | Group slug                                                                          |
+| url               | String  | Group details URL                                                                   |
+| publications_url  | String  | Publication list URL for the group. Custom domain will be applied if there is one.  |
+| publication_count | Integer | Amount of publications contained within the group                                   |
+| public_url        | String  | Group public URL (redirects to latest online publication)                           |
 
 # Publications
 
