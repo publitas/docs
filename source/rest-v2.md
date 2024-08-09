@@ -951,6 +951,127 @@ The following fields need to be sent within a product feed scope (see the right 
 | -------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------
 | url      | String   | Yes      | URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file
 
+# Conversions
+
+## List last conversions
+
+List last 5 conversions of a publication
+
+```shell
+curl --location "https://api.publitas.com/v2/groups/1/publications/222/conversions/" --header "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns a JSON document structured like this:
+
+```json
+{
+    "conversions": [
+        {
+            "id": 1404,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "finished",
+            "state_details": null,
+            "source_type": "api_add_pages",
+            "total_pages": 110,
+            "converted_pages": 110,
+            "extraction_options": null
+        },
+        {
+            "id": 1403,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "failed",
+            "state_details": {
+                "error": "Fail to download given source file: https://some/pdf/file.pdf"
+            },
+            "source_type": "api_add_pages",
+            "total_pages": null,
+            "converted_pages": 0,
+            "extraction_options": null
+        },
+        {
+            "id": 1402,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "finished",
+            "state_details": null,
+            "source_type": "api_replace_page",
+            "total_pages": 100,
+            "converted_pages": 1,
+            "extraction_options": null
+        },
+        {
+            "id": 1401,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "finished",
+            "state_details": null,
+            "source_type": "page_manager",
+            "total_pages": 100,
+            "converted_pages": 2,
+            "extraction_options": null
+        },
+        {
+            "id": 1400,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "finished",
+            "state_details": null,
+            "source_type": "new_publication",
+            "total_pages": 100,
+            "converted_pages": 100,
+            "extraction_options": null
+        },
+    ]
+}
+```
+
+### URL Parameters
+
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| Group ID       | The ID of a specific group       |
+| Publication ID | The ID of a specific publication |
+
+## Get a specific conversion
+
+```shell
+# This endpoint retrieves a specific publication conversion.
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications/222/conversion/1404"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "conversion": {
+    "id": 1404,
+      "group_id": 1,
+      "publication_id": 222,
+      "state": "finished",
+      "state_details": null,
+      "source_type": "api_add_pages",
+      "total_pages": 110,
+      "converted_pages": 110,
+      "extraction_options": null
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>`
+
+### URL Parameters
+
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| Group ID       | The ID of a specific group       |
+| Publication ID | The ID of a specific publication |
+| Conversion ID  | The ID of a specific conversion |
+
+
 # Languages
 
 | Name       | Code |
