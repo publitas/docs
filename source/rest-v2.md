@@ -1034,6 +1034,37 @@ curl --location "https://api.publitas.com/v2/groups/1/publications/222/conversio
 | Group ID       | The ID of a specific group       |
 | Publication ID | The ID of a specific publication |
 
+The JSON response returns a list of publications with the following attributes:
+
+| Field               | Type     | Description
+| ------------------- | -------- | ------------------------------------------------------------------------------------------------------
+| id                  | Integer  | Conversion ID
+| group_id            | Integer  | Group ID
+| publication_id      | Integer  | Publication ID
+| state               | String   | The conversion state (see table below for a better description)
+| state_details       | Object   | Additional info about conversion state (see object structure on section bellow)
+| source_type         | String   | Action which has create the conversion
+| total_pages         | Integer  | Total of pages to be processed in the conversion
+| converted_pages     | Integer  | Count of pages already processed in the conversion
+| extraction_options  | Object   | Conversion hotspots extraction settings. See [extraction options](#extraction-options)
+
+The `state` field can have one of the following values:
+
+| Value       | Description
+| -------     | ------------------------------------
+| new         | Conversion waiting to be processed
+| preparing   | PDF source file is being download
+| converting  | PDF pages being converted to publication page
+| finished    | Conversion process finished
+| canceled    | Conversion process canceled
+| failed      | Conversion process failed
+
+The `state_details` is object with the following attributes:
+
+| Value       | Type   | Description
+| -------     | ----   |-------------------------------
+| error       | String | Error message describing conversion failed state
+
 ## Get a specific conversion
 
 ```shell
