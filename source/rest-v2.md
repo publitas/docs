@@ -866,23 +866,23 @@ curl --location "http://api.publitas.com/v2/groups/1/product_feeds" --header "Au
       "failed_count": 0
     },
     {
-      "id": 27,
+      "id": 26,
       "group_id": 1,
       "url": "http://some/feed/file.xml",
       "state": "failed",
       "success_count": 1,
-      "failed_count": 1890,
-    }
+      "failed_count": 1890
+    },
     {
-      "id": 27,
-      "group_id": 1,Hotspot extraction (auto-tagging) settings, see extraction options for details
+      "id": 25,
+      "group_id": 1,
       "url": "http://some/feed/file.xml",
       "state": "success",
       "success_count": 1891,
       "failed_count": 0
-    }
+    },
     {
-      "id": 27,
+      "id": 24,
       "group_id": 1,
       "url": "http://some/feed/file.xml",
       "state": "success",
