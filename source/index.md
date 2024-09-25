@@ -31,6 +31,11 @@ A REST to be used to retrieve publication data for usage in mobile apps, sites a
 
 [REST API v2 documentation](rest-v2.html)
 
+### GraphQL API
+
+A GraphQL API that allows users to specify the content they want to fetch from our platform.
+
+[GraphQL documentation](graphql.html)
 
 ### Viewer JavaScript API
 

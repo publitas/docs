@@ -1,0 +1,1319 @@
+---
+title: GraphQL Reference
+
+language_tabs:
+  - graphql
+
+toc_footers:
+  - <a href='https://publitas.com'>Publitas.com</a>
+  - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
+---
+
+# GraphQL
+
+Here is an example of a publication by slug query containing all the supported fields. References for each field, type, and object can be found below in [GraphQL References](#graphql-references).
+
+```
+query {
+  publication(slug: "foo", groupSlug: "bar") {
+    id
+    slug
+    groupSlug
+    title
+    description
+    layout
+    language
+    downloadPdfUrl
+    currency
+    customCurrency
+    sizes {
+      at
+      width
+      height
+    }
+    spreads {
+      edges {
+        cursor
+        node {
+          pages {
+            images {
+              size
+              url
+            }
+          }
+          hotspots {
+            height
+            left
+            top
+            tabIndex
+            width
+            zIndex
+            __typename
+            ... on Hotspot {
+              height
+              left
+              top
+              tabIndex
+              width
+              zIndex
+            }
+            ... on ProductHotspot {
+              products {
+                id
+                title
+                availability
+                price
+                description
+                position
+                discountedPrice
+                webshopUrl
+                webshopIdentifier
+                productType
+                brand
+                gtin
+                mpn
+                customLabel0
+                customLabel1
+                customLabel2
+                customLabel3
+                customLabel4
+                itemGroupId
+                videoId
+                videoProvider
+                photoUrls {
+                  thumb
+                  full
+                }
+              }
+            }
+            ... on ExternalLinkHotspot {
+              url
+            }
+            ... on ImageHotspot {
+              url
+              imageAltText
+              imageShowLightbox
+              contentFitMode
+            }
+            ... on PageReferenceHotspot {
+              pageNumber
+            }
+            ... on SlideshowHotspot {
+              autoplay
+              backgroundColor
+              slideshowItems {
+                url
+              }
+            }
+            ... on VideoHotspot {
+              videoId
+              videoUrl
+              videoProvider
+              videoOverlayContent
+              videoAutoplay
+              videoShowPreview
+              videoLoop
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+# GraphQL References
+
+Below are the specifications for each supported field and object.
+
+<!-- START graphql-markdown -->
+
+
+## Query
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="query.publication">publication</strong></td>
+<td valign="top"><a href="#publication">Publication</a></td>
+<td>
+
+Finds a publication by ID or by both slug and the group slug
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#id">ID</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">groupSlug</td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">slug</td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="query.publicationbyurl">publicationByUrl</strong></td>
+<td valign="top"><a href="#publication">Publication</a></td>
+<td>
+
+Finds a publication by URL
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">url</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## Objects
+
+### ExternalLinkHotspot
+
+A hotspot with an external link
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="externallinkhotspot.height">height</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="externallinkhotspot.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="externallinkhotspot.left">left</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="externallinkhotspot.tabindex">tabIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="externallinkhotspot.top">top</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="externallinkhotspot.url">url</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="externallinkhotspot.width">width</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="externallinkhotspot.zindex">zIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### Image
+
+An image from a page
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="image.size">size</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="image.url">url</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### ImageHotspot
+
+An image hotspot
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.contentfitmode">contentFitMode</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.height">height</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.imagealttext">imageAltText</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.imageshowlightbox">imageShowLightbox</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.left">left</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.tabindex">tabIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.top">top</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.url">url</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.width">width</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.zindex">zIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### ImageSize
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="imagesize.at">at</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagesize.height">height</strong></td>
+<td valign="top"><a href="#int">Int</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagesize.width">width</strong></td>
+<td valign="top"><a href="#int">Int</a>!</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### Page
+
+A publication page
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="page.height">height</strong></td>
+<td valign="top"><a href="#int">Int</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="page.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="page.images">images</strong></td>
+<td valign="top">[<a href="#image">Image</a>!]</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="page.position">position</strong></td>
+<td valign="top"><a href="#int">Int</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="page.text">text</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="page.width">width</strong></td>
+<td valign="top"><a href="#int">Int</a>!</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### PageInfo
+
+Information about pagination in a connection.
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="pageinfo.endcursor">endCursor</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+When paginating forwards, the cursor to continue.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pageinfo.hasnextpage">hasNextPage</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a>!</td>
+<td>
+
+When paginating forwards, are there more items?
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pageinfo.haspreviouspage">hasPreviousPage</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a>!</td>
+<td>
+
+When paginating backwards, are there more items?
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pageinfo.startcursor">startCursor</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+When paginating backwards, the cursor to continue.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### PageReferenceHotspot
+
+A hotspot with a reference to another page
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="pagereferencehotspot.height">height</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pagereferencehotspot.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pagereferencehotspot.left">left</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pagereferencehotspot.pagenumber">pageNumber</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pagereferencehotspot.tabindex">tabIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pagereferencehotspot.top">top</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pagereferencehotspot.width">width</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pagereferencehotspot.zindex">zIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### PhotoUrl
+
+Photo data with thumb and full URLs
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="photourl.full">full</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="photourl.thumb">thumb</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### Product
+
+A product from a hotspot
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="product.availability">availability</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.brand">brand</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel0">customLabel0</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel1">customLabel1</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel2">customLabel2</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel3">customLabel3</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel4">customLabel4</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.description">description</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.discountedprice">discountedPrice</strong></td>
+<td valign="top"><a href="#float">Float</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.gtin">gtin</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.itemgroupid">itemGroupId</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.mpn">mpn</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.photourls">photoUrls</strong></td>
+<td valign="top">[<a href="#photourl">PhotoUrl</a>!]</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.position">position</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.price">price</strong></td>
+<td valign="top"><a href="#float">Float</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.producttype">productType</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.title">title</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.videoid">videoId</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.videoprovider">videoProvider</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.webshopidentifier">webshopIdentifier</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.webshopurl">webshopUrl</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### ProductHotspot
+
+A hotspot containing products
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="producthotspot.dynamic">dynamic</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="producthotspot.height">height</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="producthotspot.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="producthotspot.left">left</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="producthotspot.products">products</strong></td>
+<td valign="top">[<a href="#product">Product</a>!]</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="producthotspot.tabindex">tabIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="producthotspot.top">top</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="producthotspot.width">width</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="producthotspot.zindex">zIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### Publication
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.currency">currency</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.customcurrency">customCurrency</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.description">description</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.downloadpdfurl">downloadPdfUrl</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.groupslug">groupSlug</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.language">language</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.layout">layout</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.offlineat">offlineAt</strong></td>
+<td valign="top"><a href="#iso8601datetime">ISO8601DateTime</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.onlineat">onlineAt</strong></td>
+<td valign="top"><a href="#iso8601datetime">ISO8601DateTime</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.scheduleofflineat">scheduleOfflineAt</strong></td>
+<td valign="top"><a href="#iso8601datetime">ISO8601DateTime</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.scheduleonlineat">scheduleOnlineAt</strong></td>
+<td valign="top"><a href="#iso8601datetime">ISO8601DateTime</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.sizes">sizes</strong></td>
+<td valign="top">[<a href="#imagesize">ImageSize</a>!]</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.slug">slug</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.spreads">spreads</strong></td>
+<td valign="top"><a href="#spreadconnection">SpreadConnection</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">after</td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+Returns the elements in the list that come after the specified cursor.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">before</td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+Returns the elements in the list that come before the specified cursor.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">first</td>
+<td valign="top"><a href="#int">Int</a></td>
+<td>
+
+Returns the first _n_ elements from the list.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">last</td>
+<td valign="top"><a href="#int">Int</a></td>
+<td>
+
+Returns the last _n_ elements from the list.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.title">title</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.validfrom">validFrom</strong></td>
+<td valign="top"><a href="#iso8601date">ISO8601Date</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### SlideshowHotspot
+
+A hotspot with a slideshow of images
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.autoplay">autoplay</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.backgroundcolor">backgroundColor</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.height">height</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.left">left</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.slideshowitems">slideshowItems</strong></td>
+<td valign="top">[<a href="#slideshowitem">SlideshowItem</a>!]</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.tabindex">tabIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.top">top</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.width">width</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.zindex">zIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### SlideshowItem
+
+A slideshow item from a slideshow hotspot
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowitem.url">url</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### Spread
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="spread.hotspots">hotspots</strong></td>
+<td valign="top">[<a href="#hotspot">Hotspot</a>!]</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">types</td>
+<td valign="top">[<a href="#hotspotcategory">HotspotCategory</a>!]</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="spread.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="spread.pages">pages</strong></td>
+<td valign="top">[<a href="#page">Page</a>!]</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="spread.position">position</strong></td>
+<td valign="top"><a href="#int">Int</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="spread.publicationid">publicationId</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### SpreadConnection
+
+The connection type for Spread.
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="spreadconnection.edges">edges</strong></td>
+<td valign="top">[<a href="#spreadedge">SpreadEdge</a>]</td>
+<td>
+
+A list of edges.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="spreadconnection.nodes">nodes</strong></td>
+<td valign="top">[<a href="#spread">Spread</a>]</td>
+<td>
+
+A list of nodes.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="spreadconnection.pageinfo">pageInfo</strong></td>
+<td valign="top"><a href="#pageinfo">PageInfo</a>!</td>
+<td>
+
+Information to aid in pagination.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### SpreadEdge
+
+An edge in a connection.
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="spreadedge.cursor">cursor</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+A cursor for use in pagination.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="spreadedge.node">node</strong></td>
+<td valign="top"><a href="#spread">Spread</a></td>
+<td>
+
+The item at the end of the edge.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### VideoHotspot
+
+A hotspot with an embedded video
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.height">height</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.left">left</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.tabindex">tabIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.top">top</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.videoautoplay">videoAutoplay</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.videoid">videoId</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.videoloop">videoLoop</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.videooverlaycontent">videoOverlayContent</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.videoprovider">videoProvider</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.videoshowaccessibilitycontrols">videoShowAccessibilityControls</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.videoshowpreview">videoShowPreview</strong></td>
+<td valign="top"><a href="#boolean">Boolean</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.videotype">videoType</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.videourl">videoUrl</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.width">width</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="videohotspot.zindex">zIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## Enums
+
+### HotspotCategory
+
+<table>
+<thead>
+<tr>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>PRODUCT</strong></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>EXTERNAL_LINK</strong></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>PAGE_REFERENCE</strong></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>VIDEO</strong></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>IMAGE</strong></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>SLIDESHOW</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## Scalars
+
+### Boolean
+
+Represents `true` or `false` values.
+
+### Float
+
+Represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+
+### ID
+
+Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID.
+
+### ISO8601Date
+
+An ISO 8601-encoded date
+
+### ISO8601DateTime
+
+An ISO 8601-encoded datetime
+
+### Int
+
+Represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+
+### String
+
+Represents textual data as UTF-8 character sequences. This type is most often used by GraphQL to represent free-form human-readable text.
+
+
+## Interfaces
+
+
+### Hotspot
+
+A hotspot that may be of several types
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="hotspot.height">height</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="hotspot.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="hotspot.left">left</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="hotspot.tabindex">tabIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="hotspot.top">top</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="hotspot.width">width</strong></td>
+<td valign="top"><a href="#float">Float</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="hotspot.zindex">zIndex</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+**Possible Types:** [ExternalLinkHotspot](#externallinkhotspot), [ImageHotspot](#imagehotspot), [PageReferenceHotspot](#pagereferencehotspot), [ProductHotspot](#producthotspot), [SlideshowHotspot](#slideshowhotspot), [VideoHotspot](#videohotspot)
+
+<!-- END graphql-markdown -->
