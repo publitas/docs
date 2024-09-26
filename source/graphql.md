@@ -1,9 +1,6 @@
 ---
 title: GraphQL Reference
 
-language_tabs:
-  - graphql
-
 toc_footers:
   - <a href='https://publitas.com'>Publitas.com</a>
   - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
@@ -11,9 +8,7 @@ toc_footers:
 
 # GraphQL
 
-Here is an example of a publication by slug query containing all the supported fields. References for each field, type, and object can be found below in [GraphQL References](#graphql-references).
-
-```
+```text
 query {
   publication(slug: "foo", groupSlug: "bar") {
     id
@@ -120,8 +115,133 @@ query {
     }
   }
 }
-
 ```
+
+Here is an example of a publication by slug query containing all the supported fields. References for each field, type, and object can be found below in [GraphQL References](#graphql-references).
+
+## Pagination
+
+```text
+query {
+  publication(id: 1000) {
+    spreads {
+      edges {
+        cursor
+        node {
+          hotspots {
+            left
+            top
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Entities having a related Edge object are paginated using cursors. Each page returns a cursor that points to the next batch of items. For the time being, only Spreads are paginated. The maximum number of items per page is 50.
+
+For more details on how to use cursor-based pagination, read the [official GraphQL docs](https://graphql.org/learn/pagination/).
+
+Here is a simple query showing how to fetch paginated items (in this case, spreads).
+
+## Pagination response
+
+```json
+{
+  "data": {
+    "publication": {
+      "spreads": {
+        "edges": [
+          {
+            "cursor": "MQ",
+            "node": {
+              "hotspots": [
+                {
+                  "left": 0.2181974544203647,
+                  "top": 0.28071539657853817
+                },
+                {
+                  "left": 0.7932750947750123,
+                  "top": 0.9113263785394933
+                },
+                {
+                  "left": 0.10825773919372027,
+                  "top": 0.060517038777908344
+                }
+              ]
+            }
+          },
+          {
+            "cursor": "Mg",
+            "node": {
+              "hotspots": [
+                {
+                  "left": 0.5865075571525111,
+                  "top": 0.4807445442875482
+                },
+                {
+                  "left": 0.05432514161591209,
+                  "top": 0.09948652118100128
+                },
+                {
+                  "left": 0.14557201958101892,
+                  "top": 0.589418777943368
+                },
+                {
+                  "left": 0.5865075571525111,
+                  "top": 0.2749627421758569
+                }
+              ]
+            }
+          },
+          {
+            "cursor": "Mw",
+            "node": {
+              "hotspots": [
+                {
+                  "left": 0.11709053748908045,
+                  "top": 0.6162444113263785
+                },
+                {
+                  "left": 0.7531604885365332,
+                  "top": 0.3211624441132638
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+The above query returns the following result.
+
+## Using the pagination cursor
+
+```text
+query {
+  publication(id: 1000) {
+    spreads(after: "Mw") {
+      edges {
+        cursor
+        node {
+          hotspots {
+            left
+            top
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+To get the next batch of items after the last one, the next query should include an `after` argument for the `spreads` block, passing the last cursor as value.
+
+When there are no more items, the `edges` object array will be empty.
 
 # GraphQL References
 
