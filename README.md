@@ -14,6 +14,8 @@ You only need to worry about the `.md` files in the `source/` folder.
 
 ### Edit GraphQL docs
 
+To update the GraphQL docs, you need to run `npm install` first to get the required Node dependencies.
+
 The GraphQL docs are partially automatized, as the GraphQL References section can be auto-updated by running the command below, supplying the API key used for the production Affiliates API.
 
 ```
