@@ -19,7 +19,7 @@ Our API is currently on version 2. Click [here](index.html) to see documentation
 
 ### Authentication
 
-Our public API requires an API key, sent in the headers in the form of `'Authorization': "ApiKey <api_key>"`. Contact our [support team](mailto:support@publitas.com) to request an API key. We also allow HTTP based authorization with the `api` user and your API key as password.
+Our public API requires an API key, sent in the headers in the form of `'Authorization': "ApiKey <api_key>"`. Contact our [support team](mailto:support@publitas.com) to request an API key.
 
 ### Formats
 
@@ -31,7 +31,7 @@ The base path of an API request is: `https://api.publitas.com/v2/`
 
 An example of a complete path is:
 
-`https://api.publitas.com/v2/groups/?api_key=<api_key>`
+`https://api.publitas.com/v2/groups/`
 
 # Groups
 
