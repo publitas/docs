@@ -29,7 +29,7 @@ Currently we only support JSON requests.
 
 The base path of an API request is: `https://api.publitas.com/v2/`
 
-An example of a complete path is:
+A example of a complete path is:
 
 `https://api.publitas.com/v2/groups/`
 
@@ -40,7 +40,7 @@ An example of a complete path is:
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
 ```
 
-> The above command returns a JSON document structured like so:
+> The above command returns a JSON document structured like this:
 
 ```json
 {
@@ -269,7 +269,7 @@ curl -H "Authorization: ApiKey <api_key>" --data "publication[title]=Winter2014&
 
 ### Request body parameters
 
-The following fields need to be sent within a publication scope (see right for an example.)
+The following fields need to be sent within a publication scope (see the right panel for an example):
 
 | Name                | Type     | Required | Description                                                                                                                                             |
 | ------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -283,6 +283,8 @@ The following fields need to be sent within a publication scope (see right for a
 | metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication                                                                                               |
 | metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                              |
 | valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                                  |
+| collection_id       | Integer  | No       | Associate publication to a collection by ID
+| extraction_options  | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields
 
 ## Update a publication
 
@@ -330,7 +332,7 @@ curl -H "Authorization: ApiKey <api_key>" -H "Content-Type: application/json" -X
 
 ### Request body parameters
 
-The following fields need to be sent within a publication scope (see right for an example.)
+The following fields need to be sent within a publication scope (see the right panel for an example):
 
 | Name              | Type   | Required | Description                                                                                                                                   |
 | ----------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -428,6 +430,26 @@ curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/g
 ### Response codes
 
 This endpoint returns the `200` response code.
+
+## Archive Publication
+
+```shell
+# This endpoint archives a publication
+curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/publications/222"
+```
+
+> The above command returns a 204 with no content
+
+### HTTP Request
+
+`DELETE https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>`
+
+### URL Parameters
+
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| Group ID       | The ID of a specific group       |
+| Publication ID | The ID of a specific publication |
 
 # Metatags
 
@@ -543,7 +565,7 @@ curl -H "Authorization: ApiKey <api_key>" --data "metatag[category]=category_3&m
 
 ### Request body parameters
 
-The following fields need to be sent within a metatag scope (see right for an example.)
+The following fields need to be sent within a metatag scope (see the right panel for an example):
 
 | Name     | Type   | Required | Description             |
 | -------- | ------ | -------- | ----------------------- |
@@ -583,7 +605,7 @@ curl -H "Authorization: ApiKey <api_key>" -X PUT --data "metatag[category]=new_c
 
 ### Request body parameters
 
-The following fields need to be sent within a metatag scope (see right for an example.)
+The following fields need to be sent within a metatag scope (see the right panel for an example):
 
 | Name     | Type   | Required | Description             |
 | -------- | ------ | -------- | ----------------------- |
@@ -667,6 +689,420 @@ The JSON response returns a list of collections with the following attributes:
 | id    | Integer | Collection ID    |
 | title | String  | Collection Title |
 
+## Create a collection
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/collections`
+
+### URL Parameters
+
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
+
+```shell
+curl -H "Authorization: ApiKey <api_key>" --data "{
+  "collection": {
+    "title": "New Collection"
+  }
+}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  {
+    "collection": {
+      "id": 42,
+      "title": "New Collection"
+    }
+  }
+```
+
+### Request body parameters
+
+The following fields need to be sent within a collection scope (see the right panel for an example):
+
+| Name                 | Type      | Required | Description
+| -------------------- | --------- | -------- | -----------------
+| title                | String    | Yes      | Collection Title
+
+# Pages
+
+## Add pages to publication
+
+Add pages to a publication from a PDF file
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages`
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | -----------
+| Group ID         | ID of a group containing the publication
+| Publication ID   | The ID of a publication to add pages to
+
+
+```shell
+curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages' \
+--header 'Authorization: ApiKey <api_key>' \
+--header 'Content-Type: application/json' \
+--data '{
+    "source_url": "https://some/file.pdf"
+  }'
+```
+
+### Request body parameters
+
+| Name                 | Type     | Required | Description
+| -------------------- | -------- | -------- | -----------
+| source_url           | String   | Yes      | URL of the PDF file to upload. HTTP and HTTPS are accepted, and it needs to be a publicly accessible file
+| source_pages_numbers | Array    | No       | List of page numbers in the pdf file to be added into the publication
+| position             | Integer  | No       | Page number where new pages should be inserted (by default add pages at the end)
+| extraction_options   | Object   | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details
+
+### Response codes
+
+This endpoint returns the `200` response code.
+
+## Replace a publication page
+
+Replace a page in a publication
+
+### HTTP Request
+
+`PUT https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>`
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | --------------------------
+| Group ID         | ID of a group containing the publication
+| Publication ID   | The ID of a publication to replace a page in
+| Page Number      | The number of the page to be replaced in the publication
+
+
+```shell
+curl --location --request PUT 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>' \
+--header 'Authorization: ApiKey <api_key>' \
+--header 'Content-Type: application/json' \
+--data '{
+  "page": {
+    "source_url": "https://some/file.pdf"
+  }
+}'
+```
+
+### Request body parameters
+
+The following fields need to be sent within a page scope (see the right panel for an example):
+
+| Name                 | Type     | Required | Description
+| -------------------- | -------- | -------- | -----------
+| source_url           | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
+| source_pages_number  | Integer  | No       | PDF page number to be used on replace (by default page number 1 is used)
+| extraction_options   | Object   | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details
+| remove_hotspots      | Boolean  | No       | Remove existing hotspots on the specified page (based on page number parameter)
+
+### Response codes
+
+This endpoint returns the `200` response code.
+
+## Remove a publication page
+
+### HTTP Request
+
+`DELETE https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>`
+
+```shell
+curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/publications/222"
+```
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | --------------------------
+| Group ID         | ID of a group containing the publication
+| Publication ID   | The ID of a publication to remove a page from
+| Page Number      | The number of the page to be removed in the publication
+
+
+### Response codes
+
+This endpoint returns the `200` response code.
+
+# Product Feeds
+
+## List recent product feeds
+
+Lists last 5 product feed imports
+
+```shell
+curl --location "http://api.publitas.com/v2/groups/1/product_feeds" --header "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns a JSON document structured like this:
+
+```json
+{
+  "product_feeds": [
+    {
+      "id": 28,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "processing",
+      "success_count":0,
+      "failed_count": 0
+    },
+    {
+      "id": 27,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "success",
+      "success_count": 1891,
+      "failed_count": 0
+    },
+    {
+      "id": 26,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "failed",
+      "success_count": 1,
+      "failed_count": 1890
+    },
+    {
+      "id": 25,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "success",
+      "success_count": 1891,
+      "failed_count": 0
+    },
+    {
+      "id": 24,
+      "group_id": 1,
+      "url": "http://some/feed/file.xml",
+      "state": "success",
+      "success_count": 1891,
+      "failed_count": 0
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/product_feeds`
+
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | -----------
+| Group ID         | The ID of a specific group
+
+
+## Create a product feed
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/product_feeds`
+
+```shell
+curl --location 'http://api.publitas.com/v2/groups/1/product_feeds' \
+--header 'Authorization: ApiKey <api_key>' \
+--header 'Content-Type: application/json' \
+--data '{
+    "product_feed": {
+        "url": "http://some/feed/file.xml"
+    }
+}'
+```
+
+> The above command returns a JSON document structured like this:
+
+```json
+{
+  "product_feed": {
+    "id": 42,
+    "group_id": 1,
+    "url": "http://some/feed/file.xml",
+    "state": "processing",
+    "success_count":0,
+    "failed_count": 0
+  }
+}
+```
+
+### URL Parameters
+
+| Parameter        | Description
+| ---------        | --------------------------
+| Group ID         | The ID of a specific group
+
+### Request body parameters
+
+The following fields need to be sent within a product feed scope (see the right panel for an example):
+
+| Name     | Type     | Required | Description
+| -------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------
+| url      | String   | Yes      | URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file
+
+# Conversions
+
+## List last conversions
+
+List last 5 conversions of a publication
+
+```shell
+curl --location "https://api.publitas.com/v2/groups/1/publications/222/conversions/" --header "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns a JSON document structured like this:
+
+```json
+{
+    "conversions": [
+        {
+            "id": 1404,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "finished",
+            "state_details": null,
+            "source_type": "api_add_pages",
+            "total_pages": 110,
+            "converted_pages": 110,
+            "extraction_options": null
+        },
+        {
+            "id": 1403,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "failed",
+            "state_details": {
+                "error": "Fail to download given source file: https://some/pdf/file.pdf"
+            },
+            "source_type": "api_add_pages",
+            "total_pages": null,
+            "converted_pages": 0,
+            "extraction_options": null
+        },
+        {
+            "id": 1402,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "finished",
+            "state_details": null,
+            "source_type": "api_replace_page",
+            "total_pages": 100,
+            "converted_pages": 1,
+            "extraction_options": null
+        },
+        {
+            "id": 1401,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "finished",
+            "state_details": null,
+            "source_type": "page_manager",
+            "total_pages": 100,
+            "converted_pages": 2,
+            "extraction_options": null
+        },
+        {
+            "id": 1400,
+            "group_id": 1,
+            "publication_id": 222,
+            "state": "finished",
+            "state_details": null,
+            "source_type": "new_publication",
+            "total_pages": 100,
+            "converted_pages": 100,
+            "extraction_options": null
+        },
+    ]
+}
+```
+
+### URL Parameters
+
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| Group ID       | The ID of a specific group       |
+| Publication ID | The ID of a specific publication |
+
+The JSON response returns a list of publications with the following attributes:
+
+| Field               | Type     | Description
+| ------------------- | -------- | ------------------------------------------------------------------------------------------------------
+| id                  | Integer  | Conversion ID
+| group_id            | Integer  | Group ID
+| publication_id      | Integer  | Publication ID
+| state               | String   | The conversion state (see table below for a better description)
+| state_details       | Object   | Additional info about conversion state (see object structure on section bellow)
+| source_type         | String   | Action which has create the conversion
+| total_pages         | Integer  | Total of pages to be processed in the conversion
+| converted_pages     | Integer  | Count of pages already processed in the conversion
+| extraction_options  | Object   | Conversion hotspots extraction settings. See [extraction options](#extraction-options)
+
+The `state` field can have one of the following values:
+
+| Value       | Description
+| -------     | ------------------------------------
+| new         | Conversion waiting to be processed
+| preparing   | PDF source file is being download
+| converting  | PDF pages being converted to publication page
+| finished    | Conversion process finished
+| canceled    | Conversion process canceled
+| failed      | Conversion process failed
+
+The `state_details` is object with the following attributes:
+
+| Value       | Type   | Description
+| -------     | ----   |-------------------------------
+| error       | String | Error message describing conversion failed state
+
+## Get a specific conversion
+
+```shell
+# This endpoint retrieves a specific publication conversion.
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications/222/conversion/1404"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "conversion": {
+    "id": 1404,
+      "group_id": 1,
+      "publication_id": 222,
+      "state": "finished",
+      "state_details": null,
+      "source_type": "api_add_pages",
+      "total_pages": 110,
+      "converted_pages": 110,
+      "extraction_options": null
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>`
+
+### URL Parameters
+
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| Group ID       | The ID of a specific group       |
+| Publication ID | The ID of a specific publication |
+| Conversion ID  | The ID of a specific conversion |
+
+
 # Languages
 
 | Name       | Code |
@@ -696,6 +1132,32 @@ The JSON response returns a list of collections with the following attributes:
 | Swedish    | sv   |
 | Turkish    | tr   |
 | Ukranian   | uk   |
+
+# Extraction Options
+
+The following fields define options to extract hotspots from a PDF
+
+> Extraction options field JSON object structured like this:
+
+```json
+{
+  "extraction_options": {
+    "links": { "icons": true },
+    "products": { "icons": false }
+  }
+}
+```
+
+| Name                | Type   | Required | Description
+| ------------------- | ------ | -------- | -----------
+| links               | Object | No       | Extracts link hotspots for any URL, document link, and email address found in PDF file (see object definition table below)
+| products            | Object | No       | Extracts product hotspots for any SKU found in PDF file, matching product feed or product library set (see object definition table below)
+
+Both 'links' and 'products' allow the fields below:
+
+| Name                | Type     | Required | Description
+| ------------------- | -------- | -------- | -----------
+| icons               | Boolean  | No       | Show or hide hotspot icons for extracted hotspot. This setting is not applicable to hotspots extracted from PDF annotations (those are defined in the annotation itself)
 
 # Errors
 
