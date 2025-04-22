@@ -520,6 +520,11 @@ A publication page
 <td></td>
 </tr>
 <tr>
+<td colspan="2" align="right" valign="top">options</td>
+<td valign="top">[<a href="#imageoptions">ImageOptions</a>!]</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong id="page.position">position</strong></td>
 <td valign="top"><a href="#int">Int</a>!</td>
 <td></td>
@@ -875,6 +880,11 @@ A hotspot containing products
 </tr>
 </thead>
 <tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.cachehash">cacheHash</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publication.currency">currency</strong></td>
 <td valign="top"><a href="#string">String</a></td>
@@ -1343,6 +1353,23 @@ A hotspot with an embedded video
 </tr>
 <tr>
 <td valign="top"><strong>SLIDESHOW</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### ImageOptions
+
+<table>
+<thead>
+<tr>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>EXCLUDE_GIFS</strong></td>
 <td></td>
 </tr>
 </tbody>
