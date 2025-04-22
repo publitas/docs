@@ -101,7 +101,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
       "metatag_ids": [1, 2],
-      "valid_from": null
+      "valid_from": null,
+      "collection_id": null
     },
     {
       "id": 2,
@@ -120,7 +121,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/autumn-2014",
       "metatag_ids": [2, 3],
-      "valid_from": "2014-09-26"
+      "valid_from": "2014-09-26",
+      "collection_id": null
     }
   ]
 }
@@ -157,6 +159,7 @@ The JSON response returns a list of publications with the following attributes:
 | public_url          | String   | Publication public URL or `null` when the publication is still converting.                             |
 | metatag_ids         | Array    | List of metatag IDs assigned to the publication                                                        |
 | valid_from          | Date     | Validity date of the publication. This is a descriptive parameter and has no effect on the publication |
+| collection_id       | Integer  | ID of the collection this publication belongs to, or `null` if not part of any collection              |
 
 The `state` field can have one of the following values:
 
@@ -171,12 +174,13 @@ You can filter the results list with the following query params:
 
 ```shell
 # This will retrieve only publicly listed publications
-curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications?state=public"
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications?state=public&collection_id=1"
 ```
 
 | Param | Options                                 | Description                                                                                                                                                  |
 | ----- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | state | public<br>unlisted<br>online<br>offline | Return only publicly listed publications<br>Return only unlisted publications<br>Return public and unlisted publications<br>Return only offline publications |
+| collection_id | Integer | Filter publications by collection ID. Returns only publications that belong to the specified collection |
 
 ## Get a specific publication
 
@@ -207,7 +211,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
       "metatag_ids": [2, 3],
-      "valid_from": null
+      "valid_from": null,
+      "collection_id": null
     }
   ]
 }
