@@ -164,7 +164,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
       </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"collection_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -183,7 +184,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
       </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/autumn-2014"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-26"</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-26"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"collection_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -301,6 +303,11 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Date</td>
 <td>Validity date of the publication. This is a descriptive parameter and has no effect on the publication</td>
 </tr>
+<tr>
+<td>collection_id</td>
+<td>Integer</td>
+<td>ID of the collection this publication belongs to, or <code class="prettyprint">null</code> if not part of any collection</td>
+</tr>
 </tbody></table>
 
 <p>The <code class="prettyprint">state</code> field can have one of the following values:</p>
@@ -325,7 +332,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 
 <p>You can filter the results list with the following query params:</p>
 <pre class="highlight shell"><code><span class="c"># This will retrieve only publicly listed publications</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?state=public"</span>
+curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?state=public&amp;collection_id=1"</span>
 </code></pre>
 
 <table><thead>
@@ -339,6 +346,11 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>state</td>
 <td>public<br>unlisted<br>online<br>offline</td>
 <td>Return only publicly listed publications<br>Return only unlisted publications<br>Return public and unlisted publications<br>Return only offline publications</td>
+</tr>
+<tr>
+<td>collection_id</td>
+<td>Integer</td>
+<td>Filter publications by collection ID. Returns only publications that belong to the specified collection</td>
 </tr>
 </tbody></table>
 
@@ -369,7 +381,8 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
       </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"collection_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
