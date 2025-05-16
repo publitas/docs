@@ -299,6 +299,61 @@ Finds a publication by URL
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
+<tr>
+<td colspan="2" valign="top"><strong id="query.publications">publications</strong></td>
+<td valign="top"><a href="#publicationlistitemconnection">PublicationListItemConnection</a></td>
+<td>
+
+Lists publications with pagination
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">after</td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+Returns the elements in the list that come after the specified cursor.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">before</td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+Returns the elements in the list that come before the specified cursor.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">first</td>
+<td valign="top"><a href="#int">Int</a></td>
+<td>
+
+Returns the first _n_ elements from the list.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">last</td>
+<td valign="top"><a href="#int">Int</a></td>
+<td>
+
+Returns the last _n_ elements from the list.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">groupSlug</td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">accountId</td>
+<td valign="top"><a href="#id">ID</a></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 
@@ -881,6 +936,11 @@ A hotspot containing products
 </thead>
 <tbody>
 <tr>
+<td colspan="2" valign="top"><strong id="publication.accountid">accountId</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong id="publication.cachehash">cacheHash</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
@@ -906,7 +966,17 @@ A hotspot containing products
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong id="publication.groupid">groupId</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong id="publication.groupslug">groupSlug</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.grouptitle">groupTitle</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
@@ -933,6 +1003,16 @@ A hotspot containing products
 <tr>
 <td colspan="2" valign="top"><strong id="publication.onlineat">onlineAt</strong></td>
 <td valign="top"><a href="#iso8601datetime">ISO8601DateTime</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.publicationslug">publicationSlug</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.publicationtitle">publicationTitle</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
 <tr>
@@ -1005,6 +1085,155 @@ Returns the last _n_ elements from the list.
 <td colspan="2" valign="top"><strong id="publication.validfrom">validFrom</strong></td>
 <td valign="top"><a href="#iso8601date">ISO8601Date</a></td>
 <td></td>
+</tr>
+</tbody>
+</table>
+
+### PublicationListItem
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.accountid">accountId</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.cachehash">cacheHash</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.groupid">groupId</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.groupslug">groupSlug</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.grouptitle">groupTitle</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.id">id</strong></td>
+<td valign="top"><a href="#id">ID</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.publicationslug">publicationSlug</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.publicationtitle">publicationTitle</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.scheduleofflineat">scheduleOfflineAt</strong></td>
+<td valign="top"><a href="#iso8601datetime">ISO8601DateTime</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.scheduleonlineat">scheduleOnlineAt</strong></td>
+<td valign="top"><a href="#iso8601datetime">ISO8601DateTime</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.validfrom">validFrom</strong></td>
+<td valign="top"><a href="#iso8601date">ISO8601Date</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### PublicationListItemConnection
+
+The connection type for PublicationListItem.
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitemconnection.edges">edges</strong></td>
+<td valign="top">[<a href="#publicationlistitemedge">PublicationListItemEdge</a>]</td>
+<td>
+
+A list of edges.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitemconnection.nodes">nodes</strong></td>
+<td valign="top">[<a href="#publicationlistitem">PublicationListItem</a>]</td>
+<td>
+
+A list of nodes.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitemconnection.pageinfo">pageInfo</strong></td>
+<td valign="top"><a href="#pageinfo">PageInfo</a>!</td>
+<td>
+
+Information to aid in pagination.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### PublicationListItemEdge
+
+An edge in a connection.
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitemedge.cursor">cursor</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+A cursor for use in pagination.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publicationlistitemedge.node">node</strong></td>
+<td valign="top"><a href="#publicationlistitem">PublicationListItem</a></td>
+<td>
+
+The item at the end of the edge.
+
+</td>
 </tr>
 </tbody>
 </table>
