@@ -344,16 +344,6 @@ Returns the last _n_ elements from the list.
 
 </td>
 </tr>
-<tr>
-<td colspan="2" align="right" valign="top">groupSlug</td>
-<td valign="top"><a href="#string">String</a></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">accountId</td>
-<td valign="top"><a href="#id">ID</a></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 
