@@ -138,6 +138,26 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 | --------- | -------------------------- |
 | Group ID  | The ID of a specific group |
 
+### Query Parameters
+
+| Parameter  | Type    | Description                                                     |
+| ---------- | ------- |-----------------------------------------------------------------|
+| page       | Integer | Page number to retrieve (default: returns all results)          |
+| per_page   | Integer | Number of items per page (default: 25, max: 100)                |
+| state      | String  | Filter by publication state (public, unlisted, online, offline) |
+| collection_id | Integer | Filter by collection ID                                      |
+
+### Response Headers
+
+When pagination is used, the following headers are included in the response:
+
+| Header        | Description                         |
+| ------------- | ----------------------------------- |
+| X-Page        | Current page number                 |
+| X-Per-Page    | Number of items per page            |
+| X-Next-Page   | Next page number (if available)     |
+| X-Prev-Page   | Previous page number (if available) |
+
 The JSON response returns a list of publications with the following attributes:
 
 | Field               | Type     | Description                                                                                            |
@@ -496,6 +516,24 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 | --------- | -------------------------- |
 | Group ID  | The ID of a specific group |
 
+### Query Parameters
+
+| Parameter  | Type    | Description                                             |
+| ---------- | ------- |---------------------------------------------------------|
+| page       | Integer | Page number to retrieve (default: returns all results)  |
+| per_page   | Integer | Number of items per page (default: 25, max: 100)        |
+
+### Response Headers
+
+When pagination is used, the following headers are included in the response:
+
+| Header        | Description                         |
+| ------------- | ----------------------------------- |
+| X-Page        | Current page number                 |
+| X-Per-Page    | Number of items per page            |
+| X-Next-Page   | Next page number (if available)     |
+| X-Prev-Page   | Previous page number (if available) |
+
 The JSON response returns a list of metatags with the following attributes:
 
 | Field    | Type    | Description      |
@@ -686,6 +724,24 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 | Parameter | Description                |
 | --------- | -------------------------- |
 | Group ID  | The ID of a specific group |
+
+### Query Parameters
+
+| Parameter  | Type    | Description                                            |
+| ---------- | ------- |--------------------------------------------------------|
+| page       | Integer | Page number to retrieve (default: returns all results) |
+| per_page   | Integer | Number of items per page (default: 25, max: 100)       |
+
+### Response Headers
+
+When pagination is used, the following headers are included in the response:
+
+| Header        | Description                         |
+| ------------- |-------------------------------------|
+| X-Page        | Current page number                 |
+| X-Per-Page    | Number of items per page            |
+| X-Next-Page   | Next page number (if available)     |
+| X-Prev-Page   | Previous page number (if available) |
 
 The JSON response returns a list of collections with the following attributes:
 
