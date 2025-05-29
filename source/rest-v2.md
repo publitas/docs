@@ -156,13 +156,6 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 | --------- | -------------------------- |
 | Group ID  | The ID of a specific group |
 
-### Query Parameters
-
-| Parameter  | Type    | Description                                                     |
-| ---------- | ------- |-----------------------------------------------------------------|
-| state      | String  | Filter by publication state (public, unlisted, online, offline) |
-| collection_id | Integer | Filter by collection ID                                      |
-
 See the [Pagination](#pagination) section for pagination parameters.
 
 The JSON response returns a list of publications with the following attributes:
