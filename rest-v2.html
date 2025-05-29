@@ -58,6 +58,55 @@
 
 <p>Currently we only support JSON requests.</p>
 
+<h3 id="pagination">Pagination</h3>
+
+<p>Many endpoints in the API support pagination to help manage large result sets. When using pagination, the following query parameters are available:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>Integer</td>
+<td>Page number to retrieve (default: returns all results)</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td>Integer</td>
+<td>Number of items per page (default: 25, max: 100)</td>
+</tr>
+</tbody></table>
+
+<p>When pagination is used, the following headers are included in the response:</p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Page</td>
+<td>Current page number</td>
+</tr>
+<tr>
+<td>X-Per-Page</td>
+<td>Number of items per page</td>
+</tr>
+<tr>
+<td>X-Next-Page</td>
+<td>Next page number (if available)</td>
+</tr>
+<tr>
+<td>X-Prev-Page</td>
+<td>Previous page number (if available)</td>
+</tr>
+</tbody></table>
+
 <h3 id="paths">Paths</h3>
 
 <p>The base path of an API request is: <code class="prettyprint">https://api.publitas.com/v2/</code></p>
@@ -208,6 +257,29 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>Filter by publication state (public, unlisted, online, offline)</td>
+</tr>
+<tr>
+<td>collection_id</td>
+<td>Integer</td>
+<td>Filter by collection ID</td>
+</tr>
+</tbody></table>
+
+<p>See the <a href="#pagination">Pagination</a> section for pagination parameters.</p>
 
 <p>The JSON response returns a list of publications with the following attributes:</p>
 
@@ -815,6 +887,10 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 </tr>
 </tbody></table>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<p>See the <a href="#pagination">Pagination</a> section for pagination parameters.</p>
+
 <p>The JSON response returns a list of metatags with the following attributes:</p>
 
 <table><thead>
@@ -1058,7 +1134,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X DELET
 </tr>
 <tr>
 <td>force_delete</td>
-<td>Send “true” to override “Metatag is currently in use” error</td>
+<td>Send &ldquo;true&rdquo; to override &ldquo;Metatag is currently in use&rdquo; error</td>
 </tr>
 </tbody></table>
 
@@ -1103,6 +1179,10 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<p>See the <a href="#pagination">Pagination</a> section for pagination parameters.</p>
 
 <p>The JSON response returns a list of collections with the following attributes:</p>
 
