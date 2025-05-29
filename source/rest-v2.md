@@ -25,6 +25,24 @@ Our public API requires an API key, sent in the headers in the form of `'Authori
 
 Currently we only support JSON requests.
 
+### Pagination
+
+Many endpoints in the API support pagination to help manage large result sets. When using pagination, the following query parameters are available:
+
+| Parameter  | Type    | Description                                            |
+| ---------- | ------- |--------------------------------------------------------|
+| page       | Integer | Page number to retrieve (default: returns all results) |
+| per_page   | Integer | Number of items per page (default: 25, max: 100)       |
+
+When pagination is used, the following headers are included in the response:
+
+| Header        | Description                         |
+| ------------- |-------------------------------------|
+| X-Page        | Current page number                 |
+| X-Per-Page    | Number of items per page            |
+| X-Next-Page   | Next page number (if available)     |
+| X-Prev-Page   | Previous page number (if available) |
+
 ### Paths
 
 The base path of an API request is: `https://api.publitas.com/v2/`
@@ -137,6 +155,15 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 | Parameter | Description                |
 | --------- | -------------------------- |
 | Group ID  | The ID of a specific group |
+
+### Query Parameters
+
+| Parameter  | Type    | Description                                                     |
+| ---------- | ------- |-----------------------------------------------------------------|
+| state      | String  | Filter by publication state (public, unlisted, online, offline) |
+| collection_id | Integer | Filter by collection ID                                      |
+
+See the [Pagination](#pagination) section for pagination parameters.
 
 The JSON response returns a list of publications with the following attributes:
 
@@ -496,6 +523,10 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 | --------- | -------------------------- |
 | Group ID  | The ID of a specific group |
 
+### Query Parameters
+
+See the [Pagination](#pagination) section for pagination parameters.
+
 The JSON response returns a list of metatags with the following attributes:
 
 | Field    | Type    | Description      |
@@ -649,7 +680,7 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 | ------------ | ----------------------------------------------------------- |
 | Group ID     | The ID of a specific group                                  |
 | Metatag ID   | The ID of a specific metatag                                |
-| force_delete | Send “true” to override “Metatag is currently in use” error |
+| force_delete | Send "true" to override "Metatag is currently in use" error |
 
 # Collections
 
@@ -686,6 +717,10 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 | Parameter | Description                |
 | --------- | -------------------------- |
 | Group ID  | The ID of a specific group |
+
+### Query Parameters
+
+See the [Pagination](#pagination) section for pagination parameters.
 
 The JSON response returns a list of collections with the following attributes:
 
