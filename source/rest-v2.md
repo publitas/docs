@@ -13,37 +13,37 @@ toc_footers:
 
 This API can be used to programatically list your account's groups, as well as to list and create publications based on existing PDF documents.
 
-### Version
+# Getting Started
 
-Our API is currently on version 2. Click [here](index.html) to see documentation for the first version of the API.
+### Get an API key
 
-### Authentication
+To use the rest API you need to an API key. Contact our [support team](mailto:support@publitas.com) to request an API key.
 
-Our public API requires an API key, sent in the headers in the form of `'Authorization': "ApiKey <api_key>"`. Contact our [support team](mailto:support@publitas.com) to request an API key.
+API keys are passed via the `Authorization` header as demonstrated in the code snippet to the right.
 
-### Formats
+```shell
+curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
+```
 
-Currently we only support JSON requests.
-
-### Pagination
+### Understanding Pagination
 
 Many endpoints in the API support pagination to help manage large result sets. When using pagination, the following query parameters are available:
 
-| Parameter  | Type    | Description                                            |
-| ---------- | ------- |--------------------------------------------------------|
-| page       | Integer | Page number to retrieve (default: returns all results) |
-| per_page   | Integer | Number of items per page (default: 25, max: 100)       |
+| Parameter | Type    | Description                                            |
+| --------- | ------- | ------------------------------------------------------ |
+| page      | Integer | Page number to retrieve (default: returns all results) |
+| per_page  | Integer | Number of items per page (default: 25, max: 100)       |
 
 When pagination is used, the following headers are included in the response:
 
-| Header        | Description                         |
-| ------------- |-------------------------------------|
-| X-Page        | Current page number                 |
-| X-Per-Page    | Number of items per page            |
-| X-Next-Page   | Next page number (if available)     |
-| X-Prev-Page   | Previous page number (if available) |
+| Header      | Description                         |
+| ----------- | ----------------------------------- |
+| X-Page      | Current page number                 |
+| X-Per-Page  | Number of items per page            |
+| X-Next-Page | Next page number (if available)     |
+| X-Prev-Page | Previous page number (if available) |
 
-### Paths
+### API Path structure
 
 The base path of an API request is: `https://api.publitas.com/v2/`
 
@@ -78,15 +78,15 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
 
 The attributes are as follows:
 
-| Field             | Type    | Description                                                                         |
-| ----------------- | ------- |-------------------------------------------------------------------------------------|
-| id                | Integer | Group ID                                                                            |
-| title             | String  | Group title                                                                         |
-| slug              | String  | Group slug                                                                          |
-| url               | String  | Group details URL                                                                   |
-| publications_url  | String  | Publication list URL for the group. Custom domain will be applied if there is one.  |
-| publication_count | Integer | Amount of publications contained within the group                                   |
-| public_url        | String  | Group public URL (redirects to latest online publication)                           |
+| Field             | Type    | Description                                                                        |
+| ----------------- | ------- | ---------------------------------------------------------------------------------- |
+| id                | Integer | Group ID                                                                           |
+| title             | String  | Group title                                                                        |
+| slug              | String  | Group slug                                                                         |
+| url               | String  | Group details URL                                                                  |
+| publications_url  | String  | Publication list URL for the group. Custom domain will be applied if there is one. |
+| publication_count | Integer | Amount of publications contained within the group                                  |
+| public_url        | String  | Group public URL (redirects to latest online publication)                          |
 
 # Publications
 
@@ -199,10 +199,10 @@ You can filter the results list with the following query params:
 curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications?state=public&collection_id=1"
 ```
 
-| Param | Options                                 | Description                                                                                                                                                  |
-| ----- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| state | public<br>unlisted<br>online<br>offline | Return only publicly listed publications<br>Return only unlisted publications<br>Return public and unlisted publications<br>Return only offline publications |
-| collection_id | Integer | Filter publications by collection ID. Returns only publications that belong to the specified collection |
+| Param         | Options                                 | Description                                                                                                                                                  |
+| ------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| state         | public<br>unlisted<br>online<br>offline | Return only publicly listed publications<br>Return only unlisted publications<br>Return public and unlisted publications<br>Return only offline publications |
+| collection_id | Integer                                 | Filter publications by collection ID. Returns only publications that belong to the specified collection                                                      |
 
 ## Get a specific publication
 
@@ -310,8 +310,8 @@ The following fields need to be sent within a publication scope (see the right p
 | metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication                                                                                               |
 | metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                              |
 | valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                                  |
-| collection_id       | Integer  | No       | Associate publication to a collection by ID
-| extraction_options  | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields
+| collection_id       | Integer  | No       | Associate publication to a collection by ID                                                                                                             |
+| extraction_options  | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields                                 |
 
 ## Update a publication
 
@@ -747,21 +747,21 @@ curl -H "Authorization: ApiKey <api_key>" --data "{
 > The above command returns JSON structured like this:
 
 ```json
-  {
-    "collection": {
-      "id": 42,
-      "title": "New Collection"
-    }
+{
+  "collection": {
+    "id": 42,
+    "title": "New Collection"
   }
+}
 ```
 
 ### Request body parameters
 
 The following fields need to be sent within a collection scope (see the right panel for an example):
 
-| Name                 | Type      | Required | Description
-| -------------------- | --------- | -------- | -----------------
-| title                | String    | Yes      | Collection Title
+| Name  | Type   | Required | Description      |
+| ----- | ------ | -------- | ---------------- |
+| title | String | Yes      | Collection Title |
 
 # Pages
 
@@ -775,11 +775,10 @@ Add pages to a publication from a PDF file
 
 ### URL Parameters
 
-| Parameter        | Description
-| ---------        | -----------
-| Group ID         | ID of a group containing the publication
-| Publication ID   | The ID of a publication to add pages to
-
+| Parameter      | Description                              |
+| -------------- | ---------------------------------------- |
+| Group ID       | ID of a group containing the publication |
+| Publication ID | The ID of a publication to add pages to  |
 
 ```shell
 curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages' \
@@ -792,12 +791,12 @@ curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Pub
 
 ### Request body parameters
 
-| Name                 | Type     | Required | Description
-| -------------------- | -------- | -------- | -----------
-| source_url           | String   | Yes      | URL of the PDF file to upload. HTTP and HTTPS are accepted, and it needs to be a publicly accessible file
-| source_page_numbers  | Array    | No       | List of page numbers in the pdf file to be added into the publication
-| position             | Integer  | No       | Page number where new pages should be inserted (by default add pages at the end)
-| extraction_options   | Object   | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details
+| Name                | Type    | Required | Description                                                                                               |
+| ------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| source_url          | String  | Yes      | URL of the PDF file to upload. HTTP and HTTPS are accepted, and it needs to be a publicly accessible file |
+| source_page_numbers | Array   | No       | List of page numbers in the pdf file to be added into the publication                                     |
+| position            | Integer | No       | Page number where new pages should be inserted (by default add pages at the end)                          |
+| extraction_options  | Object  | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details     |
 
 ### Response codes
 
@@ -813,12 +812,11 @@ Replace a page in a publication
 
 ### URL Parameters
 
-| Parameter        | Description
-| ---------        | --------------------------
-| Group ID         | ID of a group containing the publication
-| Publication ID   | The ID of a publication to replace a page in
-| Page Number      | The number of the page to be replaced in the publication
-
+| Parameter      | Description                                              |
+| -------------- | -------------------------------------------------------- |
+| Group ID       | ID of a group containing the publication                 |
+| Publication ID | The ID of a publication to replace a page in             |
+| Page Number    | The number of the page to be replaced in the publication |
 
 ```shell
 curl --location --request PUT 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>' \
@@ -835,12 +833,12 @@ curl --location --request PUT 'https://api.publitas.com/v2/groups/<Group ID>/pub
 
 The following fields need to be sent within a page scope (see the right panel for an example):
 
-| Name                 | Type     | Required | Description
-| -------------------- | -------- | -------- | -----------
-| source_url           | String   | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file
-| source_page_number   | Integer  | No       | PDF page number to be used on replace (by default page number 1 is used)
-| extraction_options   | Object   | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details
-| remove_hotspots      | Boolean  | No       | Remove existing hotspots on the specified page (based on page number parameter)
+| Name               | Type    | Required | Description                                                                                              |
+| ------------------ | ------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| source_url         | String  | Yes      | URL where the PDF file resides. HTTP and HTTPS are accepted, and it needs to be a public accessible file |
+| source_page_number | Integer | No       | PDF page number to be used on replace (by default page number 1 is used)                                 |
+| extraction_options | Object  | No       | Hotspot extraction (auto-tagging) settings, see [extraction options](#extraction-options) for details    |
+| remove_hotspots    | Boolean | No       | Remove existing hotspots on the specified page (based on page number parameter)                          |
 
 ### Response codes
 
@@ -858,12 +856,11 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 
 ### URL Parameters
 
-| Parameter        | Description
-| ---------        | --------------------------
-| Group ID         | ID of a group containing the publication
-| Publication ID   | The ID of a publication to remove a page from
-| Page Number      | The number of the page to be removed in the publication
-
+| Parameter      | Description                                             |
+| -------------- | ------------------------------------------------------- |
+| Group ID       | ID of a group containing the publication                |
+| Publication ID | The ID of a publication to remove a page from           |
+| Page Number    | The number of the page to be removed in the publication |
 
 ### Response codes
 
@@ -889,7 +886,7 @@ curl --location "http://api.publitas.com/v2/groups/1/product_feeds" --header "Au
       "group_id": 1,
       "url": "http://some/feed/file.xml",
       "state": "processing",
-      "success_count":0,
+      "success_count": 0,
       "failed_count": 0
     },
     {
@@ -932,13 +929,11 @@ curl --location "http://api.publitas.com/v2/groups/1/product_feeds" --header "Au
 
 `GET https://api.publitas.com/v2/groups/<Group ID>/product_feeds`
 
-
 ### URL Parameters
 
-| Parameter        | Description
-| ---------        | -----------
-| Group ID         | The ID of a specific group
-
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
 
 ## Create a product feed
 
@@ -966,7 +961,7 @@ curl --location 'http://api.publitas.com/v2/groups/1/product_feeds' \
     "group_id": 1,
     "url": "http://some/feed/file.xml",
     "state": "processing",
-    "success_count":0,
+    "success_count": 0,
     "failed_count": 0
   }
 }
@@ -974,17 +969,17 @@ curl --location 'http://api.publitas.com/v2/groups/1/product_feeds' \
 
 ### URL Parameters
 
-| Parameter        | Description
-| ---------        | --------------------------
-| Group ID         | The ID of a specific group
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
 
 ### Request body parameters
 
 The following fields need to be sent within a product feed scope (see the right panel for an example):
 
-| Name     | Type     | Required | Description
-| -------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------
-| url      | String   | Yes      | URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file
+| Name | Type   | Required | Description                                                                                                           |
+| ---- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| url  | String | Yes      | URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file |
 
 # Conversions
 
@@ -1000,65 +995,65 @@ curl --location "https://api.publitas.com/v2/groups/1/publications/222/conversio
 
 ```json
 {
-    "conversions": [
-        {
-            "id": 1404,
-            "group_id": 1,
-            "publication_id": 222,
-            "state": "finished",
-            "state_details": null,
-            "source_type": "api_add_pages",
-            "total_pages": 110,
-            "converted_pages": 110,
-            "extraction_options": null
-        },
-        {
-            "id": 1403,
-            "group_id": 1,
-            "publication_id": 222,
-            "state": "failed",
-            "state_details": {
-                "error": "Fail to download given source file: https://some/pdf/file.pdf"
-            },
-            "source_type": "api_add_pages",
-            "total_pages": null,
-            "converted_pages": 0,
-            "extraction_options": null
-        },
-        {
-            "id": 1402,
-            "group_id": 1,
-            "publication_id": 222,
-            "state": "finished",
-            "state_details": null,
-            "source_type": "api_replace_page",
-            "total_pages": 100,
-            "converted_pages": 1,
-            "extraction_options": null
-        },
-        {
-            "id": 1401,
-            "group_id": 1,
-            "publication_id": 222,
-            "state": "finished",
-            "state_details": null,
-            "source_type": "page_manager",
-            "total_pages": 100,
-            "converted_pages": 2,
-            "extraction_options": null
-        },
-        {
-            "id": 1400,
-            "group_id": 1,
-            "publication_id": 222,
-            "state": "finished",
-            "state_details": null,
-            "source_type": "new_publication",
-            "total_pages": 100,
-            "converted_pages": 100,
-            "extraction_options": null
-        },
-    ]
+  "conversions": [
+    {
+      "id": 1404,
+      "group_id": 1,
+      "publication_id": 222,
+      "state": "finished",
+      "state_details": null,
+      "source_type": "api_add_pages",
+      "total_pages": 110,
+      "converted_pages": 110,
+      "extraction_options": null
+    },
+    {
+      "id": 1403,
+      "group_id": 1,
+      "publication_id": 222,
+      "state": "failed",
+      "state_details": {
+        "error": "Fail to download given source file: https://some/pdf/file.pdf"
+      },
+      "source_type": "api_add_pages",
+      "total_pages": null,
+      "converted_pages": 0,
+      "extraction_options": null
+    },
+    {
+      "id": 1402,
+      "group_id": 1,
+      "publication_id": 222,
+      "state": "finished",
+      "state_details": null,
+      "source_type": "api_replace_page",
+      "total_pages": 100,
+      "converted_pages": 1,
+      "extraction_options": null
+    },
+    {
+      "id": 1401,
+      "group_id": 1,
+      "publication_id": 222,
+      "state": "finished",
+      "state_details": null,
+      "source_type": "page_manager",
+      "total_pages": 100,
+      "converted_pages": 2,
+      "extraction_options": null
+    },
+    {
+      "id": 1400,
+      "group_id": 1,
+      "publication_id": 222,
+      "state": "finished",
+      "state_details": null,
+      "source_type": "new_publication",
+      "total_pages": 100,
+      "converted_pages": 100,
+      "extraction_options": null
+    }
+  ]
 }
 ```
 
@@ -1071,34 +1066,34 @@ curl --location "https://api.publitas.com/v2/groups/1/publications/222/conversio
 
 The JSON response returns a list of publications with the following attributes:
 
-| Field               | Type     | Description
-| ------------------- | -------- | ------------------------------------------------------------------------------------------------------
-| id                  | Integer  | Conversion ID
-| group_id            | Integer  | Group ID
-| publication_id      | Integer  | Publication ID
-| state               | String   | The conversion state (see table below for a better description)
-| state_details       | Object   | Additional info about conversion state (see object structure on section bellow)
-| source_type         | String   | Action which has create the conversion
-| total_pages         | Integer  | Total of pages to be processed in the conversion
-| converted_pages     | Integer  | Count of pages already processed in the conversion
-| extraction_options  | Object   | Conversion hotspots extraction settings. See [extraction options](#extraction-options)
+| Field              | Type    | Description                                                                            |
+| ------------------ | ------- | -------------------------------------------------------------------------------------- |
+| id                 | Integer | Conversion ID                                                                          |
+| group_id           | Integer | Group ID                                                                               |
+| publication_id     | Integer | Publication ID                                                                         |
+| state              | String  | The conversion state (see table below for a better description)                        |
+| state_details      | Object  | Additional info about conversion state (see object structure on section bellow)        |
+| source_type        | String  | Action which has create the conversion                                                 |
+| total_pages        | Integer | Total of pages to be processed in the conversion                                       |
+| converted_pages    | Integer | Count of pages already processed in the conversion                                     |
+| extraction_options | Object  | Conversion hotspots extraction settings. See [extraction options](#extraction-options) |
 
 The `state` field can have one of the following values:
 
-| Value       | Description
-| -------     | ------------------------------------
-| new         | Conversion waiting to be processed
-| preparing   | PDF source file is being download
-| converting  | PDF pages being converted to publication page
-| finished    | Conversion process finished
-| canceled    | Conversion process canceled
-| failed      | Conversion process failed
+| Value      | Description                                   |
+| ---------- | --------------------------------------------- |
+| new        | Conversion waiting to be processed            |
+| preparing  | PDF source file is being download             |
+| converting | PDF pages being converted to publication page |
+| finished   | Conversion process finished                   |
+| canceled   | Conversion process canceled                   |
+| failed     | Conversion process failed                     |
 
 The `state_details` is object with the following attributes:
 
-| Value       | Type   | Description
-| -------     | ----   |-------------------------------
-| error       | String | Error message describing conversion failed state
+| Value | Type   | Description                                      |
+| ----- | ------ | ------------------------------------------------ |
+| error | String | Error message describing conversion failed state |
 
 ## Get a specific conversion
 
@@ -1113,14 +1108,14 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 {
   "conversion": {
     "id": 1404,
-      "group_id": 1,
-      "publication_id": 222,
-      "state": "finished",
-      "state_details": null,
-      "source_type": "api_add_pages",
-      "total_pages": 110,
-      "converted_pages": 110,
-      "extraction_options": null
+    "group_id": 1,
+    "publication_id": 222,
+    "state": "finished",
+    "state_details": null,
+    "source_type": "api_add_pages",
+    "total_pages": 110,
+    "converted_pages": 110,
+    "extraction_options": null
   }
 }
 ```
@@ -1135,8 +1130,7 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 | -------------- | -------------------------------- |
 | Group ID       | The ID of a specific group       |
 | Publication ID | The ID of a specific publication |
-| Conversion ID  | The ID of a specific conversion |
-
+| Conversion ID  | The ID of a specific conversion  |
 
 # Languages
 
@@ -1183,16 +1177,16 @@ The following fields define options to extract hotspots from a PDF
 }
 ```
 
-| Name                | Type   | Required | Description
-| ------------------- | ------ | -------- | -----------
-| links               | Object | No       | Extracts link hotspots for any URL, document link, and email address found in PDF file (see object definition table below)
-| products            | Object | No       | Extracts product hotspots for any SKU found in PDF file, matching product feed or product library set (see object definition table below)
+| Name     | Type   | Required | Description                                                                                                                               |
+| -------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| links    | Object | No       | Extracts link hotspots for any URL, document link, and email address found in PDF file (see object definition table below)                |
+| products | Object | No       | Extracts product hotspots for any SKU found in PDF file, matching product feed or product library set (see object definition table below) |
 
 Both 'links' and 'products' allow the fields below:
 
-| Name                | Type     | Required | Description
-| ------------------- | -------- | -------- | -----------
-| icons               | Boolean  | No       | Show or hide hotspot icons for extracted hotspot. This setting is not applicable to hotspots extracted from PDF annotations (those are defined in the annotation itself)
+| Name  | Type    | Required | Description                                                                                                                                                              |
+| ----- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| icons | Boolean | No       | Show or hide hotspot icons for extracted hotspot. This setting is not applicable to hotspots extracted from PDF annotations (those are defined in the annotation itself) |
 
 # Errors
 
