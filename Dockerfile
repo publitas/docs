@@ -1,12 +1,26 @@
-FROM ubuntu:trusty
+FROM ruby:2.6-slim
 
-RUN apt-get update
-RUN apt-get install -yq ruby ruby-dev build-essential git
-RUN gem install --no-ri --no-rdoc bundler
-ADD Gemfile /app/Gemfile
-ADD Gemfile.lock /app/Gemfile.lock
-RUN cd /app; bundle install
-ADD . /app
+WORKDIR /srv/slate
+
 EXPOSE 4567
-WORKDIR /app
-CMD ["bundle", "exec", "middleman", "server"]
+
+COPY Gemfile .
+COPY Gemfile.lock .
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
+        git \
+        nodejs \
+    && gem install bundler \
+    && bundle install \
+    && apt-get remove -y build-essential git \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY . /srv/slate
+
+RUN chmod +x /srv/slate/slate.sh
+
+ENTRYPOINT ["/srv/slate/slate.sh"]
+CMD ["build"]
