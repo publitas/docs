@@ -35,6 +35,20 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id="graphql">GraphQL</h1>
+
+<p>You can use the GraphQL API as an affiliate partner to ingest publication data for all retailers that have subscribed to your reach channel.</p>
+
+<h1 id="getting-started">Getting Started</h1>
+
+<h2 id="get-an-api-key">Get an API key</h2>
+
+<p>To use the GraphQL API you need to an API key. Contact our <a href="mailto:support@publitas.com">support team</a> to request an API key.</p>
+
+<p>API keys are passed via the <code class="prettyprint">x-api-key</code> header.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>Here is an example of a publication by slug query containing all the supported fields. References for each field, type, and object can be found below in <a href="#graphql-references">GraphQL References</a>.</p>
 <pre class="highlight plaintext"><code>query {
   publication(slug: "foo", groupSlug: "bar") {
     id
@@ -143,9 +157,7 @@
 }
 </code></pre>
 
-<p>Here is an example of a publication by slug query containing all the supported fields. References for each field, type, and object can be found below in <a href="#graphql-references">GraphQL References</a>.</p>
-
-<h2 id="pagination">Pagination</h2>
+<h2 id="understanding-pagination">Understanding Pagination</h2>
 <pre class="highlight plaintext"><code>query {
   publication(id: 1000) {
     spreads {
