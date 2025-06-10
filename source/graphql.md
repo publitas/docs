@@ -8,6 +8,20 @@ toc_footers:
 
 # GraphQL
 
+You can use the GraphQL API as an affiliate partner to ingest publication data for all retailers that have subscribed to your reach channel.
+
+# Getting Started
+
+## Get an API key
+
+To use the GraphQL API you need to an API key. Contact our [support team](mailto:support@publitas.com) to request an API key.
+
+API keys are passed via the `x-api-key` header.
+
+## Overview
+
+Here is an example of a publication by slug query containing all the supported fields. References for each field, type, and object can be found below in [GraphQL References](#graphql-references).
+
 ```text
 query {
   publication(slug: "foo", groupSlug: "bar") {
@@ -117,9 +131,7 @@ query {
 }
 ```
 
-Here is an example of a publication by slug query containing all the supported fields. References for each field, type, and object can be found below in [GraphQL References](#graphql-references).
-
-## Pagination
+## Understanding Pagination
 
 ```text
 query {
@@ -249,8 +261,8 @@ Below are the specifications for each supported field and object.
 
 <!-- START graphql-markdown -->
 
-
 ## Query
+
 <table>
 <thead>
 <tr>
@@ -1624,9 +1636,7 @@ Represents non-fractional signed whole numeric values. Int can represent values 
 
 Represents textual data as UTF-8 character sequences. This type is most often used by GraphQL to represent free-form human-readable text.
 
-
 ## Interfaces
-
 
 ### Hotspot
 
