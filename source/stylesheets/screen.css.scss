@@ -2,6 +2,7 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
+
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -635,3 +636,5 @@ html, body {
 .copy-clipboard:hover {
   opacity: 0.8;
 }
+
+@import 'publitas.css.scss';

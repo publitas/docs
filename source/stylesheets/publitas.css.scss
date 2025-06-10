@@ -1,0 +1,52 @@
+@import 'variables';
+
+@font-face {
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://www.publitas.com/wp-content/uploads/2022/12/Gotham-Regular.woff') format('woff');
+}
+
+.logo {
+  height: 25px;
+  margin:  $logo-margin auto  $logo-margin $nav-padding;
+  margin-bottom: $logo-margin;
+}
+
+.toc-wrapper .logo {
+  margin-bottom: $logo-margin;
+}
+
+.toc-link, .toc-footer li {
+  margin: 0 $nav-padding/2 0 $nav-padding/2;
+  padding: 0px $nav-padding/2;
+  border-radius: $border-radius;
+}
+
+.page-wrapper {
+  border-left: 1px solid $border-color;
+}
+
+.content {
+  h1 {
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+  }
+
+  h2 {
+    border-top: 1px solid $border-color;
+  }
+
+  tr:last-child {
+    border-bottom: 1px solid $border-color;
+  }
+
+  th {
+    border-bottom: 1px solid $border-color;
+  }
+
+  a {
+    border-bottom: dashed 1px $border-color;
+  }
+}
