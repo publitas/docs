@@ -2,12 +2,11 @@
 title: API Reference
 
 toc_footers:
- - <a href='https://publitas.com'>Publitas.com</a>
- - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
+  - <a href='https://publitas.com'>Publitas.com</a>
 
 search: false
-
 ---
+
 # Publitas API Overview
 
 ```
@@ -21,7 +20,6 @@ search: false
 ```
 
 Welcome to the Publitas API documentation. We offer several APIs for customizing and integrating Publitas.com products:
-
 
 ### REST API
 

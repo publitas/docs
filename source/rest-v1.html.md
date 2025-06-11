@@ -5,11 +5,10 @@ language_tabs:
   - shell
 
 toc_footers:
- - <a href='https://publitas.com'>Publitas.com</a>
- - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
+  - <a href='../'>API Overview</a>
+  - <a href='https://publitas.com'>Publitas.com</a>
 
 search: false
-
 ---
 
 # REST API v1
@@ -34,16 +33,15 @@ An example of a complete path is:
 
 ### Images
 
-``` json
-  {
-    "photoUrl": "/1230/10323/photos/22js92ksasfhhj2l"
-  }
+```json
+{
+  "photoUrl": "/1230/10323/photos/22js92ksasfhhj2l"
+}
 ```
 
 Images and other assets are served from: `https://view.publitas.com`. Image paths returned from the API are all relative to this base path and all images are returned as `jpg` files.
 
 A photoUrl returned from the API has to be concatenated to
-
 
 `https://view.publitas.com/1230/10323/photos/22js92ksasfhhj2l-within1000.jpg`
 
@@ -53,24 +51,24 @@ where `-within1000.jpg` is dependent on the type of image.
 Instances where size attributes have to be added to the URL are documented accordingly.
 </aside>
 
-
 # Publications
 
 ```shell
 # This will retrieve all publications for a group:
 curl "https://api.publitas.com/v1/groups/example-blokker/publications.json"
 ```
+
 > The above command returns JSON structured like this:
 
-``` json
+```json
 [
   {
-    "id" : 1,
-    "slug" : "example_publication",
-    "title" : "Blokker example publication",
-    "browserTitle" : "Custom title",
-    "onlineAt" : "2013-09-11T10:19:41.000+02:00",
-    "url" : "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
+    "id": 1,
+    "slug": "example_publication",
+    "title": "Blokker example publication",
+    "browserTitle": "Custom title",
+    "onlineAt": "2013-09-11T10:19:41.000+02:00",
+    "url": "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
   }
 ]
 ```
@@ -85,17 +83,14 @@ A complete path looks like:
 
 The JSON response returns a list of publications with the following attributes.
 
-
-| Field         | Type        | Description         |
-| ------------- |-------------| ------------------- |
-| id            | Integer     | Publication ID     |
-| slug          | String      | Publication slug (used in path for API)   |
-| title         | String      | Publication title   |
-| browserTitle  | String      | Publication browser title (can differ from title)   |
-| onlineAt      | String      | Timestamp of moment publication was published   |
-| url           | String      | URL to the publication data json   |
-
-
+| Field        | Type    | Description                                       |
+| ------------ | ------- | ------------------------------------------------- |
+| id           | Integer | Publication ID                                    |
+| slug         | String  | Publication slug (used in path for API)           |
+| title        | String  | Publication title                                 |
+| browserTitle | String  | Publication browser title (can differ from title) |
+| onlineAt     | String  | Timestamp of moment publication was published     |
+| url          | String  | URL to the publication data json                  |
 
 # Publication
 
@@ -103,10 +98,10 @@ The JSON response returns a list of publications with the following attributes.
 # This will retrieve a single publication for a group:
 curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example.json"
 ```
+
 > The above command returns JSON structured like this:
 
-
-``` json
+```json
 {
   "sizes": {},
   "config": {},
@@ -125,11 +120,9 @@ A complete path looks like:
 
 This endpoint returns a JSON object, we'll go into the details of this response below.
 
-
 ## Sizes
 
-
-``` json
+```json
 {
   "sizes": {
     "at200": {
@@ -170,15 +163,14 @@ This endpoint returns a JSON object, we'll go into the details of this response 
 
 Contains a hash of the resolutions we have images for. Each resolution contains the width and height of that image.
 
-| Field         | Type        | Description         |
-| ------------- |-------------| ------------------- |
-| width         | Integer     | Width in pixels     |
-| height        | Integer     | Height in pixels    |
-
+| Field  | Type    | Description      |
+| ------ | ------- | ---------------- |
+| width  | Integer | Width in pixels  |
+| height | Integer | Height in pixels |
 
 ## Config
 
-``` json
+```json
 {
   "config": {
     "publicationId": 10323,
@@ -200,30 +192,31 @@ Contains a hash of the resolutions we have images for. Each resolution contains 
   }
 }
 ```
+
 This contains the configuration of the reader.
 
-| Field             | Type        | Description         |
-| ------------------|-------------| ------------------- |
-| publicationId     | Integer     | Unique ID of the publication |
-| publicationTitle  | String      | Title of the publication|
-| customerName      | String      | Customer / Company name |
-| relativeSize      | Float       | Indicating the relative size between the width/height of the images |
-| locale            | String      | Locale of the publication, used for the translation hash |
-| language          | String      | Language of the publication |
-| downloadPdfUrl    | String      | Relative URL to the PDF, can be null if download is disabled |
-| disableFeedback   | Boolean     | Disable feedback tab |
-| disableBranding   | Boolean     | Disable Publitas.com branding |
-| showPrintButton   | Boolean     | Show print button |
-| currencySymbol    | String      | Custom currency symbol value set in the Publication Reader configuration. For legacy reasons, this field defaults to € |
-| currency          | String      | Currency set in the Publication Reader configuration. This field is specified using an [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) |
-| styling           | Hash        | Hash containing Call To Action (CTA) button styling, described below |
+| Field            | Type    | Description                                                                                                                                             |
+| ---------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| publicationId    | Integer | Unique ID of the publication                                                                                                                            |
+| publicationTitle | String  | Title of the publication                                                                                                                                |
+| customerName     | String  | Customer / Company name                                                                                                                                 |
+| relativeSize     | Float   | Indicating the relative size between the width/height of the images                                                                                     |
+| locale           | String  | Locale of the publication, used for the translation hash                                                                                                |
+| language         | String  | Language of the publication                                                                                                                             |
+| downloadPdfUrl   | String  | Relative URL to the PDF, can be null if download is disabled                                                                                            |
+| disableFeedback  | Boolean | Disable feedback tab                                                                                                                                    |
+| disableBranding  | Boolean | Disable Publitas.com branding                                                                                                                           |
+| showPrintButton  | Boolean | Show print button                                                                                                                                       |
+| currencySymbol   | String  | Custom currency symbol value set in the Publication Reader configuration. For legacy reasons, this field defaults to €                                  |
+| currency         | String  | Currency set in the Publication Reader configuration. This field is specified using an [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) |
+| styling          | Hash    | Hash containing Call To Action (CTA) button styling, described below                                                                                    |
 
 Styling:
 
-| Field                                    | Type      | Description         |
-| -----------------------------------------|-----------| ------------------- |
-| `call_to_action_button_background_color` | CSS/Hex   | Color of the cta button background |
-| `call_to_action_button_text_color`       | CSS/Hex   | Color of the cta button text |
+| Field                                    | Type    | Description                        |
+| ---------------------------------------- | ------- | ---------------------------------- |
+| `call_to_action_button_background_color` | CSS/Hex | Color of the cta button background |
+| `call_to_action_button_text_color`       | CSS/Hex | Color of the cta button text       |
 
 <aside class="notice">
   Additional fields could be added to the configuration, they are meant to influcence our HTML reader, but can also be used in your implementation. These fields will not be removed without incrementing the API version.
@@ -258,30 +251,31 @@ Spreads are the core of a Publitas publication. They contain information about t
 
 In general all spreads contain two pages, but there are two exceptions.
 
-* The first spread always contains a single page and should ideally be displayed on the right side.
-* The last spread can contain one or two pages. If only one page is returned, it should ideally be displayed on the left side.
+- The first spread always contains a single page and should ideally be displayed on the right side.
+- The last spread can contain one or two pages. If only one page is returned, it should ideally be displayed on the left side.
 
 If hotspots are present for a page the `"hotspots"` attribute is set. Otherwise the spread doesn't contain a `"hotspots"` attribute.
 
 See [Hotspots](#hotspots) for more information.
 
 ### Images
+
 The photos pages array contains 1 or 2 paths to page images. After the base path and this path, a number of options are available for the complete link.
 
-* -at200.jpg
-* -at600.jpg
-* -at800.jpg
-* -at1000.jpg
-* -at1200.jpg
-* -at1600.jpg
-* -at2000.jpg
-* -at2400.jpg
+- -at200.jpg
+- -at600.jpg
+- -at800.jpg
+- -at1000.jpg
+- -at1200.jpg
+- -at1600.jpg
+- -at2000.jpg
+- -at2400.jpg
 
 A full page image path would look like: `https://view.publitas.com/1230/10323/pages/b6d66056b3c9bab5332033ce401ec1f9549b5e8a-at200.jpg`
 
 ## Translations
 
-``` json
+```json
 "translations": {
   "loading": "loading...",
   "pages": {
@@ -351,16 +345,15 @@ A full page image path would look like: `https://view.publitas.com/1230/10323/pa
 
 Depending on the chosen language in the publication edit and group "localisation and branding" forms, translation strings for the reader are included at the end of the data json.
 
-
 # Hotspots
 
 Hotspots are generated in the hotspot editor.
 Currently we support four kinds of hotspots:
 
-* Product
-* Link
-* Page link
-* Video
+- Product
+- Link
+- Page link
+- Video
 
 ## Generic hotspot data:
 
@@ -384,39 +377,35 @@ Currently we support four kinds of hotspots:
 Hotspots of all types return at least this data.
 It contains the hotspot id, title and type. But also data on where the hotspot is positioned on the page.
 
-
 ### Fields
 
-| Field         | Type        | Description         |
-| ------------- |-------------| ------------------- |
-| id            | Integer     | Specific hotspot ID |
-| title         | String (optional)| Hotspot title |
-| type          | String     | Hotspot type |
-| showIndication| Boolean     | If set to true, hotspot indication should be shown, |
-| position      | Hash     | Hash containing position information, |
-
+| Field          | Type              | Description                                         |
+| -------------- | ----------------- | --------------------------------------------------- |
+| id             | Integer           | Specific hotspot ID                                 |
+| title          | String (optional) | Hotspot title                                       |
+| type           | String            | Hotspot type                                        |
+| showIndication | Boolean           | If set to true, hotspot indication should be shown, |
+| position       | Hash              | Hash containing position information,               |
 
 ### Position information
 
 Position of the hotspots is calculated from the top-left of a spread.
 The value is a float from 0 to 1, where 0 is left and 1 is the right side of the spread. The same goes for top where 0 is top and 1 is bottom of the spread.
 
-| Field    | Type  | Description         |
-| -------- | ----- | ------------------- |
-| left     | Float | Left position of the hotspot within the spread |
-| top      | Float | Top position of the hotspot within the spread |
-| width    | Float | Width of the hotspot |
-| height   | Float | Height of the hotspot |
+| Field    | Type  | Description                                         |
+| -------- | ----- | --------------------------------------------------- |
+| left     | Float | Left position of the hotspot within the spread      |
+| top      | Float | Top position of the hotspot within the spread       |
+| width    | Float | Width of the hotspot                                |
+| height   | Float | Height of the hotspot                               |
 | iconLeft | Float | Left position (within the hotspot) of the indicator |
-| iconTop  | Float | Top position (within the hotspot) of the indicator |
-
+| iconTop  | Float | Top position (within the hotspot) of the indicator  |
 
 For each hotspot we add additional data to the hotspot hash, here's an overview of all types.
 
-
 ## Product (product)
 
-``` json
+```json
 {
   "id": 138622,
   "title": null,
@@ -443,16 +432,14 @@ This hotspot type contains an array called `products` containing one or more pro
 
 The `"stub": "true"` flag means this is a "stub" product and more information about this product has to be retrieved from the [products API](#product). For now only "stubbed" products are supported.
 
-
-| Field    | Type  | Description         |
-| -------- | ----- | ------------------- |
-| id       | Int   | ID of the product, can be used to retrieve additional information |
-| stub     | Bool  | Wether more information has to be retrieved, currently only true is supported |
-
+| Field | Type | Description                                                                   |
+| ----- | ---- | ----------------------------------------------------------------------------- |
+| id    | Int  | ID of the product, can be used to retrieve additional information             |
+| stub  | Bool | Wether more information has to be retrieved, currently only true is supported |
 
 ## Link (externalLink)
 
-``` json
+```json
 {
   "id": 173114,
   "title": "Visit Google",
@@ -474,14 +461,13 @@ Link to an (external) URL. Can also be used for custom application schemes on mo
 
 Internal link to a page, page numbers start at 1.
 
-| Field    | Type  | Description         |
-| -------- | ----- | ------------------- |
-| url | String   | Can be an URL to a site or __app__ (appName://) |
-
+| Field | Type   | Description                                     |
+| ----- | ------ | ----------------------------------------------- |
+| url   | String | Can be an URL to a site or **app** (appName://) |
 
 ## Page link (pageReference)
 
-``` json
+```json
 {
   "id": 173113,
   "title": "Go to page 2",
@@ -501,14 +487,13 @@ Internal link to a page, page numbers start at 1.
 
 Internal link to a page, page numbers start at 1.
 
-| Field    | Type  | Description         |
-| -------- | ----- | ------------------- |
-| pageNumber | Int   | Reference to page number in the publication |
-
+| Field      | Type | Description                                 |
+| ---------- | ---- | ------------------------------------------- |
+| pageNumber | Int  | Reference to page number in the publication |
 
 ## Video (video)
 
-``` json
+```json
 {
   "id": 173115,
   "title": "Watch this video!",
@@ -528,12 +513,9 @@ Internal link to a page, page numbers start at 1.
 
 For now only YouTube is supported, the `youtubeId` can be used in embed code, or to generate a link to YouTube.
 
-| Field    | Type  | Description         |
-| -------- | ----- | ------------------- |
-| youtubeId | String   | YouTube video ID |
-
-
-
+| Field     | Type   | Description      |
+| --------- | ------ | ---------------- |
+| youtubeId | String | YouTube video ID |
 
 # Product
 
@@ -541,10 +523,10 @@ For now only YouTube is supported, the `youtubeId` can be used in embed code, or
 # This will retrieve a single product for a publication:
 curl "https://api.publitas.com/v1/groups/example-blokker/publications/blokker-example/products/49836.json"
 ```
+
 > The above command returns JSON structured like this:
 
-
-``` json
+```json
 {
   "id": 49836,
   "hotspotId": 138648,
@@ -574,29 +556,27 @@ The JSON response returns a product with the following attributes.
 
 Where `id` is the product ID from the `data.json`
 
-| Field         | Type        | Description         |
-| ------------- |-------------| ------------------- |
-| id            | Integer     | Product ID     |
-| hotspotId     | Integer     | Id of the related hotspot     |
-| title         | String      | Product title |
-| description   | String      | Product description   |
-| price         | Float       | Product price  |
-| discountedPrice | Float       | Product price with discount |
-| webshopIdentifier | String  | Product ID from the webshop |
-| webshopUrl    | String      | Direct link to the product on the webshop   |
-| photos        | Array       | Array of product photos containing 0 - 6 photos   |
-
+| Field             | Type    | Description                                     |
+| ----------------- | ------- | ----------------------------------------------- |
+| id                | Integer | Product ID                                      |
+| hotspotId         | Integer | Id of the related hotspot                       |
+| title             | String  | Product title                                   |
+| description       | String  | Product description                             |
+| price             | Float   | Product price                                   |
+| discountedPrice   | Float   | Product price with discount                     |
+| webshopIdentifier | String  | Product ID from the webshop                     |
+| webshopUrl        | String  | Direct link to the product on the webshop       |
+| photos            | Array   | Array of product photos containing 0 - 6 photos |
 
 The photos array contains 0 to 6 photos with a `photoUrl` attribute. The `photoUrl` field refers to a relative base path to the image. After this base path two options are available for the complete link.
 
-* -at200.jpg - a thumbnail of 200x200 px
-* -within1000.jpg - image with a _maximum_ width/height of 1000 px.
+- -at200.jpg - a thumbnail of 200x200 px
+- -within1000.jpg - image with a _maximum_ width/height of 1000 px.
 
 In the example below the full photo URL will become:
 
 `https://view.publitas.com/1230/10323/photos/22js92ksasfhhj2l-at200.png`
 
-| Field         | Type        | Description         |
-| ------------- |-------------| ------------------- |
-| photoUrl      | String      | (Relative) link to product image base path |
-
+| Field    | Type   | Description                                |
+| -------- | ------ | ------------------------------------------ |
+| photoUrl | String | (Relative) link to product image base path |

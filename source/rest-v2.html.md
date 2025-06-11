@@ -5,8 +5,8 @@ language_tabs:
   - shell
 
 toc_footers:
+  - <a href='../'>API Overview</a>
   - <a href='https://publitas.com'>Publitas.com</a>
-  - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
 ---
 
 # REST API v2

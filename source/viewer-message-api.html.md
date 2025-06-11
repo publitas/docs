@@ -5,10 +5,9 @@ language_tabs:
   - javascript
 
 toc_footers:
- - <a href='https://publitas.com'>Publitas.com</a>
- - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='../'>API Overview</a>
+  - <a href='https://publitas.com'>Publitas.com</a>
 ---
-
 
 # Viewer Message API v1
 
@@ -17,7 +16,6 @@ This API can be used to listen to events in the Viewer, for example:
 - the user navigated to a page/spread
 - the user opened a product
 
-
 # Getting Started
 
 The message API uses HTML5's [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) to send messages. You can access messages sent by the Viewer in two different ways:
@@ -25,7 +23,7 @@ The message API uses HTML5's [window.postMessage](https://developer.mozilla.org/
 ### Using the Code Injection Tool
 
 ```javascript
-window.addEventListener('message', function(message) {
+window.addEventListener("message", function (message) {
   // do something with message
 });
 ```
@@ -33,14 +31,13 @@ window.addEventListener('message', function(message) {
 The code injection tool in the [Publitas CMS](revolution.publitas.com) lets you add custom HTML tags into the header of a publication. Use a `<script>` tag to include custom javacsript code.
 The viewer will post messages to its window, so we can listen to events using `window.addEventListener`
 
-
 ### In Your Own Website
 
 ```javascript
 // get a reference to the iFrame containing the Viewer
-var viewerFrame = document.getElementById('viewer-frame-id');
+var viewerFrame = document.getElementById("viewer-frame-id");
 
-window.addEventListener('message', function(message) {
+window.addEventListener("message", function (message) {
   // do nothing if the message comes from a different source
   if (message.source != viewerFrame.contentWindow) {
     return;
@@ -61,7 +58,7 @@ If you have several Viewers embedded in your website, you can distinguish betwee
 ## Parsing Messages
 
 ```javascript
-window.addEventListener('message', function(message) {
+window.addEventListener("message", function (message) {
   var event = JSON.parse(message.data);
 });
 ```
@@ -71,7 +68,7 @@ The `message` object supplied to your event listener has a data property which i
 ## Data Format
 
 ```javascript
-window.addEventListener('message', function(message) {
+window.addEventListener("message", function (message) {
   var event = JSON.parse(message.data);
 
   var eventType = event[0];
@@ -82,7 +79,7 @@ window.addEventListener('message', function(message) {
 API messages, once parsed, are an array with two elements
 
 | Index | Type   | Description              |
-|-------|--------|--------------------------|
+| ----- | ------ | ------------------------ |
 | 0     | String | event type               |
 | 1     | Object | extra event data/details |
 
@@ -115,14 +112,14 @@ Once you've parsed the message to get the event data, you can react to the event
 ## stateChange Event
 
 ```javascript
-window.addEventListener('message', function(message) {
+window.addEventListener("message", function (message) {
   var event = JSON.parse(message.data);
 
   var eventType = event[0];
   var eventData = event[1];
 
   switch (eventType) {
-    case 'stateChange':
+    case "stateChange":
       reactToStateChange(eventData);
       break;
   }
@@ -131,7 +128,7 @@ window.addEventListener('message', function(message) {
 function reactToStateChange(data) {
   data.url; // e.g. https://view.publitas.com/g/p/pages/2-3
   data.state.pages; // e.g. [2, 3]
-  data.state.productId // e.g. 2431
+  data.state.productId; // e.g. 2431
 }
 ```
 
@@ -150,14 +147,14 @@ The event type is the String `"stateChange"`
 
 The event data is an Object in the form
 
-| Property      | Type        | Description         |
-|---------------|-------------|---------------------|
-| url           | String      | the deeplink url for the new state |
-| state         | Object      | the state data/details |
+| Property | Type   | Description                        |
+| -------- | ------ | ---------------------------------- |
+| url      | String | the deeplink url for the new state |
+| state    | Object | the state data/details             |
 
 where the `state` Object has the form
 
-| Property      | Type        | Description         |
-|---------------|-------------|---------------------|
-| pages         | Array       | an array of current page numbers |
-| productId     | Number      | the id of the current product (if applicable) |
+| Property  | Type   | Description                                   |
+| --------- | ------ | --------------------------------------------- |
+| pages     | Array  | an array of current page numbers              |
+| productId | Number | the id of the current product (if applicable) |
