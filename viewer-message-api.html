@@ -336,8 +336,8 @@
           </li>
       </ul>
         <ul class="toc-footer">
+            <li><a href='../'>API Overview</a></li>
             <li><a href='https://publitas.com'>Publitas.com</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -352,16 +352,16 @@
 </ul>
 <h1 id='getting-started'>Getting Started</h1>
 <p>The message API uses HTML5&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage">window.postMessage</a> to send messages. You can access messages sent by the Viewer in two different ways:</p>
-<h3 id='using-the-code-injection-tool'>Using the Code Injection Tool</h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+<h3 id='using-the-code-injection-tool'>Using the Code Injection Tool</h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// do something with message</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>The code injection tool in the <a href="revolution.publitas.com">Publitas CMS</a> lets you add custom HTML tags into the header of a publication. Use a <code>&lt;script&gt;</code> tag to include custom javacsript code.
 The viewer will post messages to its window, so we can listen to events using <code>window.addEventListener</code></p>
 <h3 id='in-your-own-website'>In Your Own Website</h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// get a reference to the iFrame containing the Viewer</span>
-<span class="kd">var</span> <span class="nx">viewerFrame</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">viewer-frame-id</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">viewerFrame</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">viewer-frame-id</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// do nothing if the message comes from a different source</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">source</span> <span class="o">!=</span> <span class="nx">viewerFrame</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span><span class="p">;</span>
@@ -375,12 +375,12 @@ The viewer will post messages to its window, so we can listen to events using <c
 <aside class='notice'>
 If you have several Viewers embedded in your website, you can distinguish between them by checking the message source.
 </aside>
-<h1 id='message-format'>Message Format</h1><h2 id='parsing-messages'>Parsing Messages</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+<h1 id='message-format'>Message Format</h1><h2 id='parsing-messages'>Parsing Messages</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>The <code>message</code> object supplied to your event listener has a data property which is JSON encoded. You can use the standard <code>JSON.parse</code> method to decode it.</p>
-<h2 id='data-format'>Data Format</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+<h2 id='data-format'>Data Format</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
 
   <span class="kd">var</span> <span class="nx">eventType</span> <span class="o">=</span> <span class="nx">event</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -428,14 +428,14 @@ If you have several Viewers embedded in your website, you can distinguish betwee
 <span class="p">});</span>
 </code></pre></div>
 <p>Once you&#39;ve parsed the message to get the event data, you can react to the event type in your code. Currently only one event type is supported:</p>
-<h2 id='statechange-event'>stateChange Event</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+<h2 id='statechange-event'>stateChange Event</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
 
   <span class="kd">var</span> <span class="nx">eventType</span> <span class="o">=</span> <span class="nx">event</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
   <span class="kd">var</span> <span class="nx">eventData</span> <span class="o">=</span> <span class="nx">event</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 
   <span class="k">switch</span> <span class="p">(</span><span class="nx">eventType</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="dl">'</span><span class="s1">stateChange</span><span class="dl">'</span><span class="p">:</span>
+    <span class="k">case</span> <span class="dl">"</span><span class="s2">stateChange</span><span class="dl">"</span><span class="p">:</span>
       <span class="nx">reactToStateChange</span><span class="p">(</span><span class="nx">eventData</span><span class="p">);</span>
       <span class="k">break</span><span class="p">;</span>
   <span class="p">}</span>
@@ -444,7 +444,7 @@ If you have several Viewers embedded in your website, you can distinguish betwee
 <span class="kd">function</span> <span class="nx">reactToStateChange</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">data</span><span class="p">.</span><span class="nx">url</span><span class="p">;</span> <span class="c1">// e.g. https://view.publitas.com/g/p/pages/2-3</span>
   <span class="nx">data</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">pages</span><span class="p">;</span> <span class="c1">// e.g. [2, 3]</span>
-  <span class="nx">data</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">productId</span> <span class="c1">// e.g. 2431</span>
+  <span class="nx">data</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">productId</span><span class="p">;</span> <span class="c1">// e.g. 2431</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>This event is triggered whenever a user does one of two things:</p>

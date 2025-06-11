@@ -349,8 +349,8 @@
           </li>
       </ul>
         <ul class="toc-footer">
+            <li><a href='../'>API Overview</a></li>
             <li><a href='https://publitas.com'>Publitas.com</a></li>
-            <li><a href='http://github.com/tripit/slate'>Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -388,13 +388,13 @@
 <h2 id='getting-basic-publication-information'>Getting basic publication information</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">publication</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">publication</span><span class="p">;</span>
 
- <span class="cm">/*
-  * Assuming your publication url is:
-  * https://view.publitas.com/my-group/my-publication/
-  */</span>
+  <span class="cm">/*
+   * Assuming your publication url is:
+   * https://view.publitas.com/my-group/my-publication/
+   */</span>
   <span class="nx">publication</span><span class="p">.</span><span class="nx">slug</span><span class="p">;</span> <span class="c1">// 'my-publication'</span>
   <span class="nx">publication</span><span class="p">.</span><span class="nx">groupSlug</span><span class="p">;</span> <span class="c1">// 'my-group'</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div>
 <p>The <code>api.publication</code> property exposes information of the current publication. It contains the following properties:</p>
 
@@ -432,9 +432,10 @@ use both the group and the publication slug.</p>
 If you have a custom domain configured,
 your URLs will have the structure:
 
-*http(s)://your-custom.domain/slug*
+_http(s)://your-custom.domain/slug_
 
 Using just the publication slug might be sufficient if you are doing tracking per domain.
+
 </aside>
 <h1 id='api-methods'>API Methods</h1><h2 id='custom-home-button-action'>Custom Home Button Action</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://your.custom.url</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">custom title</span><span class="dl">"</span><span class="p">);</span>
@@ -444,7 +445,7 @@ Using just the publication slug might be sufficient if you are doing tracking pe
   <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
   <span class="p">},</span> <span class="dl">"</span><span class="s2">custom title</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div>
 <p>Using the <code>setHomeButtonAction(action [, title])</code> you can specify a custom action when the user clicks the home button in the main menu. <code>action</code> can be a URL string or a function. <code>title</code> is an optional string argument, that sets the home button title.</p>
 <h2 id='custom-shopping-cart-button-action'>Custom Shopping Cart Button Action</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
@@ -455,7 +456,7 @@ Using just the publication slug might be sufficient if you are doing tracking pe
   <span class="nx">api</span><span class="p">.</span><span class="nx">setCartButtonAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
   <span class="p">},</span> <span class="dl">"</span><span class="s2">custom title</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div>
 <p>Using the <code>setCartButtonAction(action [, title])</code> you can specify a custom action when the user clicks the shopping cart button in the main menu. <code>action</code> can be a URL string or a function. <code>title</code> is an optional string argument, that sets the cart button title.</p>
 <h2 id='updating-the-shopping-cart-icon'>Updating the shopping cart icon</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">cartContentChanged</span><span class="p">({</span> <span class="na">numItems</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">num</span><span class="o">-</span><span class="nx">items</span><span class="o">&gt;</span> <span class="p">})</span>
@@ -463,25 +464,29 @@ Using just the publication slug might be sufficient if you are doing tracking pe
 <p>The shopping cart icon can display the number of items currently in the cart, using the cartContentChange method.</p>
 
 <p>The appearance of the shopping cart icon will change from &#39;empty&#39; to &#39;full&#39; if there are more than 0 items in the cart. To change the cart to empty again, set numItems to 0.</p>
-<h3 id='updating-the-shopping-cart-from-an-iframe'>Updating the shopping cart from an iframe</h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">parent</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span><span class="dl">'</span><span class="s1">cartContentChanged</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">numItems</span><span class="p">:</span> <span class="nx">numItems</span>
-<span class="p">}]),</span> <span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">);</span>
-
+<h3 id='updating-the-shopping-cart-from-an-iframe'>Updating the shopping cart from an iframe</h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">parent</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span>
+  <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span>
+    <span class="dl">"</span><span class="s2">cartContentChanged</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="na">numItems</span><span class="p">:</span> <span class="nx">numItems</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">]),</span>
+  <span class="dl">"</span><span class="s2">*</span><span class="dl">"</span>
+<span class="p">);</span>
 </code></pre></div>
 <p>If you use an iframe (check <a href="#showing-external-content-in-an-iframe">the section</a> on iframes) and you need to update the shopping cart icon from within the iframed content, you can use the <code>postMessage</code> as shown to the left.</p>
 
 <p>The message consists of an array, but because IE 8 &amp; 9 only support sending string messages, it needs to be serialized using <code>JSON.stringify</code>.</p>
 
 <p>The second parameter to postMessage controls the target origin the parent window should have to receive the message. Using <code>&quot;*&quot;</code> is a good default, but you can implement a more restrictive policy. Check <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage">the postMessage documentation</a> for more details.</p>
-<h2 id='showing-external-content-in-an-iframe'>Showing external content in an iframe</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
-<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">width</span><span class="p">:</span> <span class="dl">'</span><span class="s1">800px</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">background</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#ffffff</span><span class="dl">'</span>
+<h2 id='showing-external-content-in-an-iframe'>Showing external content in an iframe</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">width</span><span class="p">:</span> <span class="dl">"</span><span class="s2">800px</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">background</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ffffff</span><span class="dl">"</span><span class="p">,</span>
 <span class="p">};</span>
 
-<span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://some.url</span><span class="dl">'</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://some.url</span><span class="dl">"</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
 </code></pre></div>
-<p>Using the <code>showExternalContent(url [, options])</code>  method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.</p>
+<p>Using the <code>showExternalContent(url [, options])</code> method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.</p>
 
 <p>The first parameter is a URL string and the second an optional object with options. Supported options are</p>
 
@@ -490,14 +495,14 @@ Using just the publication slug might be sufficient if you are doing tracking pe
 
 <ul>
 <li><em>desktop</em> : <code>&#39;800px&#39;</code></li>
-<li><em>tablet</em>  : <code>&#39;720px&#39;</code></li>
-<li><em>mobile</em>  : <code>&#39;100%&#39;</code> (cannot be overruled)</li>
+<li><em>tablet</em> : <code>&#39;720px&#39;</code></li>
+<li><em>mobile</em> : <code>&#39;100%&#39;</code> (cannot be overruled)</li>
 </ul></li>
 <li><code>background</code>, a css string to set the background color of the popover. You can use this to match the background color of your content. Default is <code>&#39;#ffffff&#39;</code></li>
 </ul>
-<h3 id='callbacks'>callbacks</h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://some.url</span><span class="dl">'</span><span class="p">);</span>
+<h3 id='callbacks'>callbacks</h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://some.url</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">content</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="nx">content</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">close</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="c1">// do something when the iframe closes</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -506,7 +511,7 @@ Using just the publication slug might be sufficient if you are doing tracking pe
   <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
   <span class="p">});</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div>
 <p>Using the <code>setProductAction(action [, onOpen[, onClose[, callOriginal[, index]]]])</code> you can specify a custom action when the user clicks on a product on the Viewer. <code>action</code> needs to be a function. It will receive an array of products that belong to the clicked hotspot as an argument. Products have the following properties:</p>
 
@@ -588,53 +593,52 @@ Using just the publication slug might be sufficient if you are doing tracking pe
 <p>whenever the product view opens. This way, users can directly link to a product within the catalog and refreshing the page will leave the product view intact. If you want to keep this behavior for your custom product action, please make sure to invoke these callbacks at appropriate times. The second example to the right highlights this use case.</p>
 <h3 id='calloriginal-and-index'><code>callOriginal</code> and <code>index</code></h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">,</span> <span class="nx">_o</span><span class="p">,</span> <span class="nx">_c</span><span class="p">,</span> <span class="nx">callOriginal</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">product viewed</span><span class="dl">'</span><span class="p">,</span> <span class="nx">products</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">product viewed</span><span class="dl">"</span><span class="p">,</span> <span class="nx">products</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
     <span class="nx">callOriginal</span><span class="p">();</span>
   <span class="p">});</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div>
 <p>The fifth param provides the index of the current product within the product array. It is used to identify which product was clicked in a multi-product hotspot.</p>
 <h2 id='custom-product-cta'>Custom Product CTA</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setProductCtaAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">product</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
   <span class="p">});</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div>
 <p>Using the <code>setProductCtaAction(action)</code> you can specify a custom action when the user clicks the &#39;Go To Webshop&#39; button (call to action) in the product details view. <code>action</code> needs to be a function. It will receive the corresponding product as argument (same as <code>setProductAction</code>).</p>
 <h2 id='custom-link-action'>Custom Link Action</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setLinkAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
   <span class="p">});</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div>
 <p>Using the <code>setLinkAction(action)</code> you can specify a custom action when the user clicks on an external link in the Viewer. <code>action</code> needs to be a function. It will receive the original URL as an argument.</p>
 <h2 id='custom-menu-item'>Custom Menu Item</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">addMenuItem</span><span class="p">({</span>
-    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">custom_item_1</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Custom Title 1</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">iconUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://icons.com/b7803b.jpg</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">action</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">custom_item_1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Custom Title 1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">iconUrl</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://icons.com/b7803b.jpg</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">action</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
       <span class="c1">// do something here</span>
     <span class="p">},</span>
     <span class="na">order</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="p">});</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div>
 <p>Using the <code>addMenuItem(object)</code> you can add a custom item into the main menu. <code>item</code> needs to be an object. <code>name</code> is a unique identifier in case you need to address it for further actions (for instance, custom styling it). <code>title</code> sets item title. <code>iconUrl</code> is the source of the icon displayed for item, may be external url or image data. <code>action</code> could be a function as well as an external url (to keep compatibility among all browsers, we recommend not using arrow functions). <code>order</code> is a number indicating item&#39;s position starting from the top of the main menu, regardless of the amount of items being displayed for a specific publication. It is the only optional parameter, when it&#39;s not defined, item will be pushed to bottom of main menu.</p>
 <h2 id='consent-management-for-analytics'>Consent Management For Analytics</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setAnalyticsTrackingConsent</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="p">};</span>
 
 <span class="c1">// or if your consent tool uses events</span>
 
-<span class="nx">consentManager</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">consent</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">categories</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">categories</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="dl">'</span><span class="s1">analytics</span><span class="dl">'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">consentManager</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">consent</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">categories</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">categories</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="dl">"</span><span class="s2">analytics</span><span class="dl">"</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">api</span><span class="p">.</span><span class="nx">setAnalyticsTrackingConsent</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nx">api</span><span class="p">.</span><span class="nx">setAnalyticsTrackingConsent</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
-
 </code></pre></div>
 <p>Using the <code>setAnalyticsTrackingConsent(true/false)</code> you can manage user consent for Publitas analytics tracking events. This method is effective only if the &quot;Require visitor consent to allow Publitas to collect performance data&quot; option is toggled on in our CMS. If this option is not enabled, tracking occurs by default without needing explicit consent.</p>
 
