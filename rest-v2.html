@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -6,34 +7,423 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src="javascripts/all_nosearch.js" type="text/javascript"></script>
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #6272a4;
+}
+.highlight .sr {
+  color: #ffb86c;
+}
+.highlight .go {
+  color: #6272a4;
+}
+.highlight .gp {
+  color: #44475a;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #ffb86c;
+}
+.highlight .cm {
+  color: #6272a4;
+}
+.highlight .cp {
+  color: #6272a4;
+}
+.highlight .c1 {
+  color: #6272a4;
+}
+.highlight .cs {
+  color: #6272a4;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #6272a4;
+}
+.highlight .err {
+  color: #ff5555;
+}
+.highlight .gr {
+  color: #ff5555;
+}
+.highlight .gt {
+  color: #ff5555;
+}
+.highlight .gd {
+  color: #44475a;
+}
+.highlight .gi {
+  color: #44475a;
+}
+.highlight .ge {
+  color: #44475a;
+}
+.highlight .kc {
+  color: #8be9fd;
+}
+.highlight .kd {
+  color: #8be9fd;
+}
+.highlight .kr {
+  color: #8be9fd;
+}
+.highlight .no {
+  color: #8be9fd;
+}
+.highlight .kt {
+  color: #8be9fd;
+}
+.highlight .mf {
+  color: #bd93f9;
+}
+.highlight .mh {
+  color: #bd93f9;
+}
+.highlight .il {
+  color: #bd93f9;
+}
+.highlight .mi {
+  color: #bd93f9;
+}
+.highlight .mo {
+  color: #bd93f9;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #bd93f9;
+}
+.highlight .sc {
+  color: #bd93f9;
+}
+.highlight .se {
+  color: #bd93f9;
+}
+.highlight .ss {
+  color: #bd93f9;
+}
+.highlight .sd {
+  color: #f1fa8c;
+}
+.highlight .s2 {
+  color: #f1fa8c;
+}
+.highlight .sb {
+  color: #f1fa8c;
+}
+.highlight .sh {
+  color: #f1fa8c;
+}
+.highlight .si {
+  color: #f1fa8c;
+}
+.highlight .sx {
+  color: #f1fa8c;
+}
+.highlight .s1 {
+  color: #f1fa8c;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #f1fa8c;
+}
+.highlight .na {
+  color: #50fa7b;
+}
+.highlight .nc {
+  color: #50fa7b;
+}
+.highlight .nd {
+  color: #50fa7b;
+}
+.highlight .ne {
+  color: #50fa7b;
+}
+.highlight .nf, .highlight .fm {
+  color: #50fa7b;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv, .highlight .vm {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight {
+  color: #f8f8f2;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #ff79c6;
+}
+.highlight .ow {
+  color: #ff79c6;
+}
+.highlight .nt {
+  color: #ff79c6;
+}
+.highlight .k, .highlight .kv {
+  color: #ff79c6;
+}
+.highlight .kn {
+  color: #ff79c6;
+}
+.highlight .kp {
+  color: #ff79c6;
+}
+.highlight .o {
+  color: #ff79c6;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-29928c59.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-bc04fe75.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch-53bdb4f3.js"></script>
 
-      <script>
-        $(function() {
-          setupLanguages(["shell"]);
-        });
-      </script>
   </head>
 
-  <body class="rest-v2">
+  <body class="rest-v2" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar-cad8cdcb.png" alt="" />
       </span>
     </a>
-    <div class="tocify-wrapper">
-      <a href='./' class='logo-wrapper'>
-        <img src="images/logo.png" alt="Logo" /><span>api</span>
-      </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-372d1fbe.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
-      <div id="toc">
-      </div>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#rest-api-v2" class="toc-h1 toc-link" data-title="REST API v2">REST API v2</a>
+          </li>
+          <li>
+            <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-an-api-key" class="toc-h2 toc-link" data-title="Get an API key">Get an API key</a>
+                  </li>
+                  <li>
+                    <a href="#understanding-pagination" class="toc-h2 toc-link" data-title="Understanding Pagination">Understanding Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#api-path-structure" class="toc-h2 toc-link" data-title="API Path structure">API Path structure</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#groups" class="toc-h1 toc-link" data-title="Groups">Groups</a>
+          </li>
+          <li>
+            <a href="#publications" class="toc-h1 toc-link" data-title="Publications">Publications</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-all-publications-of-a-group" class="toc-h2 toc-link" data-title="List all publications of a group">List all publications of a group</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-publication" class="toc-h2 toc-link" data-title="Get a specific publication">Get a specific publication</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-publication" class="toc-h2 toc-link" data-title="Create a publication">Create a publication</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-publication" class="toc-h2 toc-link" data-title="Update a publication">Update a publication</a>
+                  </li>
+                  <li>
+                    <a href="#mark-a-publication-as-online" class="toc-h2 toc-link" data-title="Mark a publication as online">Mark a publication as online</a>
+                  </li>
+                  <li>
+                    <a href="#mark-a-publication-as-offline" class="toc-h2 toc-link" data-title="Mark a publication as offline">Mark a publication as offline</a>
+                  </li>
+                  <li>
+                    <a href="#archive-publication" class="toc-h2 toc-link" data-title="Archive Publication">Archive Publication</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#metatags" class="toc-h1 toc-link" data-title="Metatags">Metatags</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-all-metatags-of-a-group" class="toc-h2 toc-link" data-title="List all metatags of a group">List all metatags of a group</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-metatag" class="toc-h2 toc-link" data-title="Get a specific metatag">Get a specific metatag</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-metatag" class="toc-h2 toc-link" data-title="Create a metatag">Create a metatag</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-metatag" class="toc-h2 toc-link" data-title="Update a metatag">Update a metatag</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-metatag" class="toc-h2 toc-link" data-title="Delete a metatag">Delete a metatag</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#collections" class="toc-h1 toc-link" data-title="Collections">Collections</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-all-collections-of-a-group" class="toc-h2 toc-link" data-title="List all collections of a group">List all collections of a group</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-collection" class="toc-h2 toc-link" data-title="Create a collection">Create a collection</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pages" class="toc-h1 toc-link" data-title="Pages">Pages</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#add-pages-to-publication" class="toc-h2 toc-link" data-title="Add pages to publication">Add pages to publication</a>
+                  </li>
+                  <li>
+                    <a href="#replace-a-publication-page" class="toc-h2 toc-link" data-title="Replace a publication page">Replace a publication page</a>
+                  </li>
+                  <li>
+                    <a href="#remove-a-publication-page" class="toc-h2 toc-link" data-title="Remove a publication page">Remove a publication page</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#product-feeds" class="toc-h1 toc-link" data-title="Product Feeds">Product Feeds</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-recent-product-feeds" class="toc-h2 toc-link" data-title="List recent product feeds">List recent product feeds</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-product-feed" class="toc-h2 toc-link" data-title="Create a product feed">Create a product feed</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#conversions" class="toc-h1 toc-link" data-title="Conversions">Conversions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-last-conversions" class="toc-h2 toc-link" data-title="List last conversions">List last conversions</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-conversion" class="toc-h2 toc-link" data-title="Get a specific conversion">Get a specific conversion</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#languages" class="toc-h1 toc-link" data-title="Languages">Languages</a>
+          </li>
+          <li>
+            <a href="#extraction-options" class="toc-h1 toc-link" data-title="Extraction Options">Extraction Options</a>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
         <ul class="toc-footer">
             <li><a href='https://publitas.com'>Publitas.com</a></li>
             <li><a href='http://github.com/tripit/slate'>Powered by Slate</a></li>
@@ -42,22 +432,14 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="rest-api-v2">REST API v2</h1>
-
-<p>This API can be used to programatically list your account&rsquo;s groups, as well as to list and create publications based on existing PDF documents.</p>
-
-<h1 id="getting-started">Getting Started</h1>
-
-<h3 id="get-an-api-key">Get an API key</h3>
-
+        <h1 id='rest-api-v2'>REST API v2</h1>
+<p>This API can be used to programatically list your account&#39;s groups, as well as to list and create publications based on existing PDF documents.</p>
+<h1 id='getting-started'>Getting Started</h1><h3 id='get-an-api-key'>Get an API key</h3>
 <p>To use the rest API you need to an API key. Contact our <a href="mailto:support@publitas.com">support team</a> to request an API key.</p>
 
-<p>API keys are passed via the <code class="prettyprint">Authorization</code> header as demonstrated in the code snippet to the right.</p>
-<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups"</span>
-</code></pre>
-
-<h3 id="understanding-pagination">Understanding Pagination</h3>
-
+<p>API keys are passed via the <code>Authorization</code> header as demonstrated in the code snippet to the right.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups"</span>
+</code></pre></div><h3 id='understanding-pagination'>Understanding Pagination</h3>
 <p>Many endpoints in the API support pagination to help manage large result sets. When using pagination, the following query parameters are available:</p>
 
 <table><thead>
@@ -104,38 +486,32 @@
 <td>Previous page number (if available)</td>
 </tr>
 </tbody></table>
-
-<h3 id="api-path-structure">API Path structure</h3>
-
-<p>The base path of an API request is: <code class="prettyprint">https://api.publitas.com/v2/</code></p>
+<h3 id='api-path-structure'>API Path structure</h3>
+<p>The base path of an API request is: <code>https://api.publitas.com/v2/</code></p>
 
 <p>A example of a complete path is:</p>
 
-<p><code class="prettyprint">https://api.publitas.com/v2/groups/</code></p>
-
-<h1 id="groups">Groups</h1>
-<pre class="highlight shell"><code><span class="c"># This will retrieve all the groups accessible by the user</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups"</span>
-</code></pre>
-
+<p><code>https://api.publitas.com/v2/groups/</code></p>
+<h1 id='groups'>Groups</h1><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve all the groups accessible by the user</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns a JSON document structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example group"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-group"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"publications_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"publication_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group"</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example group"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-group"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"publications_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"publication_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p>The attributes are as follows:</p>
 
 <table><thead>
@@ -181,69 +557,59 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Group public URL (redirects to latest online publication)</td>
 </tr>
 </tbody></table>
-
-<h1 id="publications">Publications</h1>
-
-<h2 id="list-all-publications-of-a-group">List all publications of a group</h2>
-<pre class="highlight shell"><code><span class="c"># This will retrieve all publications for a group</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span>
-</code></pre>
-
+<h1 id='publications'>Publications</h1><h2 id='list-all-publications-of-a-group'>List all publications of a group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve all publications for a group</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"publications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"publications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/1/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"collection_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/1/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/1/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
+      </span><span class="nl">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"collection_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Autumn 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014 description"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autumn-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/2/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Autumn%25202014.pdf"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-25T15:17:20.000+02:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/autumn-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-26"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"collection_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Autumn 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn 2014 description"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autumn-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/2/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/2/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Autumn%25202014.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-25T15:17:20.000+02:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/autumn-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
+      </span><span class="nl">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-26"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"collection_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -255,9 +621,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
+<h3 id='query-parameters'>Query Parameters</h3>
 <p>See the <a href="#pagination">Pagination</a> section for pagination parameters.</p>
 
 <p>The JSON response returns a list of publications with the following attributes:</p>
@@ -342,7 +706,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <tr>
 <td>public_url</td>
 <td>String</td>
-<td>Publication public URL or <code class="prettyprint">null</code> when the publication is still converting.</td>
+<td>Publication public URL or <code>null</code> when the publication is still converting.</td>
 </tr>
 <tr>
 <td>metatag_ids</td>
@@ -357,11 +721,11 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <tr>
 <td>collection_id</td>
 <td>Integer</td>
-<td>ID of the collection this publication belongs to, or <code class="prettyprint">null</code> if not part of any collection</td>
+<td>ID of the collection this publication belongs to, or <code>null</code> if not part of any collection</td>
 </tr>
 </tbody></table>
 
-<p>The <code class="prettyprint">state</code> field can have one of the following values:</p>
+<p>The <code>state</code> field can have one of the following values:</p>
 
 <table><thead>
 <tr>
@@ -378,14 +742,11 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Publication is publicly visible.</td>
 </tr>
 </tbody></table>
-
-<h3 id="filtering-results">Filtering results</h3>
-
+<h3 id='filtering-results'>Filtering results</h3>
 <p>You can filter the results list with the following query params:</p>
-<pre class="highlight shell"><code><span class="c"># This will retrieve only publicly listed publications</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?state=public&amp;collection_id=1"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve only publicly listed publications</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?state=public&amp;collection_id=1"</span>
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Param</th>
@@ -404,47 +765,39 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Filter publications by collection ID. Returns only publications that belong to the specified collection</td>
 </tr>
 </tbody></table>
-
-<h2 id="get-a-specific-publication">Get a specific publication</h2>
-<pre class="highlight shell"><code><span class="c"># This endpoint retrieves a specific publication.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
-</code></pre>
-
+<h2 id='get-a-specific-publication'>Get a specific publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint retrieves a specific publication.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"collection_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
+      </span><span class="nl">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"collection_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -460,44 +813,36 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific publication</td>
 </tr>
 </tbody></table>
-
-<h2 id="create-a-publication">Create a publication</h2>
-<pre class="highlight shell"><code><span class="c"># This will create a publication with the title Winter2014, browser title BrowserWinter2014, description Winter2014Description and source URL http://example.com/winter2014.pdf.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <span class="s2">"publication[title]=Winter2014&amp;publication[source_url]=http://example.com/winter2014.pdf&amp;publication[browser_title]=BrowserWinter2014&amp;publication[description]=Winter2014Description"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span>
-</code></pre>
-
+<h2 id='create-a-publication'>Create a publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will create a publication with the title Winter2014, browser title BrowserWinter2014, description Winter2014Description and source URL http://example.com/winter2014.pdf.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">--data</span> <span class="s2">"publication[title]=Winter2014&amp;publication[source_url]=http://example.com/winter2014.pdf&amp;publication[browser_title]=BrowserWinter2014&amp;publication[description]=Winter2014Description"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BrowserWinter2014"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014Description"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"winter2014"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/3/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Winter%25202014.pdf"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BrowserWinter2014"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014Description"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"winter2014"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/3/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Winter%25202014.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -509,9 +854,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-
-<h3 id="request-body-parameters">Request body parameters</h3>
-
+<h3 id='request-body-parameters'>Request body parameters</h3>
 <p>The following fields need to be sent within a publication scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -595,44 +938,36 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <
 <td>Define settings to extract hotspots from the PDF file. See <a href="#extraction-options">extraction options</a> for allowed fields</td>
 </tr>
 </tbody></table>
-
-<h2 id="update-a-publication">Update a publication</h2>
-<pre class="highlight shell"><code><span class="c"># This will update a publication with the browser title UpdatedBrowserTitle, description UpdatedDescription and assign metatags with IDs 1 and 2.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -H <span class="s2">"Content-Type: application/json"</span> -X PUT --data <span class="s1">'{"publication": {"browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "metatag_ids": [1,2]}}'</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span>
-</code></pre>
-
+<h2 id='update-a-publication'>Update a publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will update a publication with the browser title UpdatedBrowserTitle, description UpdatedDescription and assign metatags with IDs 1 and 2.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="nt">-X</span> PUT <span class="nt">--data</span> <span class="s1">'{"publication": {"browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "metatag_ids": [1,2]}}'</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UpdatedBrowserTitle"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UpdatedDescription"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"winter2014"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/3/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Winter%25202014.pdf"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
-    </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Winter2014"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UpdatedBrowserTitle"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UpdatedDescription"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"winter2014"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/3/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Winter%25202014.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"metatag_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -648,9 +983,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -H <span
 <td>The ID of a specific publication</td>
 </tr>
 </tbody></table>
-
-<h3 id="request-body-parameters">Request body parameters</h3>
-
+<h3 id='request-body-parameters-2'>Request body parameters</h3>
 <p>The following fields need to be sent within a publication scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -692,45 +1025,37 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -H <span
 <td>Validity date of the publication. This is a descriptive parameter and has no effect on the publication</td>
 </tr>
 </tbody></table>
-
-<h2 id="mark-a-publication-as-online">Mark a publication as online</h2>
-<pre class="highlight shell"><code><span class="c"># This endpoint marks a publication as being online.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X POST <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/online"</span>
-</code></pre>
-
+<h2 id='mark-a-publication-as-online'>Mark a publication as online</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint marks a publication as being online.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> POST <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/online"</span>
+</code></pre></div>
 <blockquote>
 <p>When the response code is 200 the command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-28T16:05:28.309+01:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-28T16:05:28.309+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/online</code></p>
-
-<h3 id="response-codes">Response codes</h3>
-
+</span></code></pre></div><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/online</code></p>
+<h3 id='response-codes'>Response codes</h3>
 <p>This endpoint returns one of the following HTTP codes:</p>
 
 <table><thead>
@@ -748,62 +1073,47 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X POST 
 <td>You have reached your publishing limit.</td>
 </tr>
 </tbody></table>
-
-<h2 id="mark-a-publication-as-offline">Mark a publication as offline</h2>
-<pre class="highlight shell"><code><span class="c"># This endpoint marks a publication as being offline.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X POST <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/offline"</span>
-</code></pre>
-
+<h2 id='mark-a-publication-as-offline'>Mark a publication as offline</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint marks a publication as being offline.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> POST <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/offline"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"publication"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-28T16:05:28.309+01:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-28T17:05:28.309+01:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"browser_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Browser Spring 2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spring 2014 description"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pdf_download_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"online_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-28T16:05:28.309+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offline_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-28T17:05:28.309+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_online_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"schedule_offline_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://view.publitas.com/example-group/spring-2014"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"valid_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/offline</code></p>
-
-<h3 id="response-codes">Response codes</h3>
-
-<p>This endpoint returns the <code class="prettyprint">200</code> response code.</p>
-
-<h2 id="archive-publication">Archive Publication</h2>
-<pre class="highlight shell"><code><span class="c"># This endpoint archives a publication</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
-</code></pre>
-
+</span></code></pre></div><h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/offline</code></p>
+<h3 id='response-codes-2'>Response codes</h3>
+<p>This endpoint returns the <code>200</code> response code.</p>
+<h2 id='archive-publication'>Archive Publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint archives a publication</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns a 204 with no content</p>
 </blockquote>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -819,41 +1129,31 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X DELET
 <td>The ID of a specific publication</td>
 </tr>
 </tbody></table>
-
-<h1 id="metatags">Metatags</h1>
-
-<h2 id="list-all-metatags-of-a-group">List all metatags of a group</h2>
-<pre class="highlight shell"><code><span class="c"># This will retrieve all metatags for a group</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags"</span>
-</code></pre>
-
+<h1 id='metatags'>Metatags</h1><h2 id='list-all-metatags-of-a-group'>List all metatags of a group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve all metatags for a group</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"metatags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"metatags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"category_1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_1"</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"category_1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"category_1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_2"</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"category_1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -865,9 +1165,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <p>See the <a href="#pagination">Pagination</a> section for pagination parameters.</p>
 
 <p>The JSON response returns a list of metatags with the following attributes:</p>
@@ -900,33 +1198,25 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Metatag value</td>
 </tr>
 </tbody></table>
-
-<h2 id="get-a-specific-metatag">Get a specific metatag</h2>
-<pre class="highlight shell"><code><span class="c"># This endpoint retrieves a specific metatag.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/222"</span>
-</code></pre>
-
+<h2 id='get-a-specific-metatag'>Get a specific metatag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint retrieves a specific metatag.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/222"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"metatag"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"metatag"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"category_1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_1"</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"category_1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags/&lt;Metatag ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags/&lt;Metatag ID&gt;</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -942,31 +1232,23 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific metatag</td>
 </tr>
 </tbody></table>
-
-<h2 id="create-a-metatag">Create a metatag</h2>
-<pre class="highlight shell"><code><span class="c"># This will create a metatag with the categordy category_3 and value value_3.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <span class="s2">"metatag[category]=category_3&amp;metatag[value]=value_3"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags"</span>
-</code></pre>
-
+<h2 id='create-a-metatag'>Create a metatag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will create a metatag with the categordy category_3 and value value_3.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">--data</span> <span class="s2">"metatag[category]=category_3&amp;metatag[value]=value_3"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"metatag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"category_3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_3"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"metatag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"category_3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_3"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags</code></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -978,9 +1260,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-
-<h3 id="request-body-parameters">Request body parameters</h3>
-
+<h3 id='request-body-parameters-3'>Request body parameters</h3>
 <p>The following fields need to be sent within a metatag scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -1004,31 +1284,23 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <
 <td>Value of the metatag</td>
 </tr>
 </tbody></table>
-
-<h2 id="update-a-metatag">Update a metatag</h2>
-<pre class="highlight shell"><code><span class="c"># This will update a metatag with the category new_category and value value_4.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X PUT --data <span class="s2">"metatag[category]=new_category&amp;metatag[value]=value_4"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/3"</span>
-</code></pre>
-
+<h2 id='update-a-metatag'>Update a metatag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will update a metatag with the category new_category and value value_4.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> PUT <span class="nt">--data</span> <span class="s2">"metatag[category]=new_category&amp;metatag[value]=value_4"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/3"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"metatag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_category"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_4"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"metatag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_category"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_4"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags/&lt;Metatag ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-11'>HTTP Request</h3>
+<p><code>PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags/&lt;Metatag ID&gt;</code></p>
+<h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1044,9 +1316,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X PUT -
 <td>The ID of a specific metatag</td>
 </tr>
 </tbody></table>
-
-<h3 id="request-body-parameters">Request body parameters</h3>
-
+<h3 id='request-body-parameters-4'>Request body parameters</h3>
 <p>The following fields need to be sent within a metatag scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -1070,33 +1340,24 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X PUT -
 <td>Value of the metatag</td>
 </tr>
 </tbody></table>
-
-<h2 id="delete-a-metatag">Delete a metatag</h2>
-<pre class="highlight shell"><code><span class="c"># This will try to delete a metatag with id 4.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/4"</span>
-</code></pre>
-
+<h2 id='delete-a-metatag'>Delete a metatag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will try to delete a metatag with id 4.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/4"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns a 409 error and the following JSON if metatag is assigned to a publication:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Metatag is currently in use, send \"force_delete=true\" to delete anyway"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Metatag is currently in use, send </span><span class="se">\"</span><span class="s2">force_delete=true</span><span class="se">\"</span><span class="s2"> to delete anyway"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<pre class="highlight shell"><code><span class="c"># This will delete the metatag with id 4 even if it's assigned to a publication.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/4?force_delete=true"</span>
-</code></pre>
-
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will delete the metatag with id 4 even if it's assigned to a publication.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/4?force_delete=true"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns a 204 with no content</p>
 </blockquote>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags/&lt;Metatag ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/metatags/&lt;Metatag ID&gt;</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1113,40 +1374,30 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X DELET
 </tr>
 <tr>
 <td>force_delete</td>
-<td>Send &ldquo;true&rdquo; to override &ldquo;Metatag is currently in use&rdquo; error</td>
+<td>Send &quot;true&quot; to override &quot;Metatag is currently in use&quot; error</td>
 </tr>
 </tbody></table>
-
-<h1 id="collections">Collections</h1>
-
-<h2 id="list-all-collections-of-a-group">List all collections of a group</h2>
-<pre class="highlight shell"><code><span class="c"># This will retrieve all collections for a group</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span>
-</code></pre>
-
+<h1 id='collections'>Collections</h1><h2 id='list-all-collections-of-a-group'>List all collections of a group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve all collections for a group</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"collections"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"collections"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 1"</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 2"</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections</code></p>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1158,9 +1409,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <p>See the <a href="#pagination">Pagination</a> section for pagination parameters.</p>
 
 <p>The JSON response returns a list of collections with the following attributes:</p>
@@ -1183,15 +1432,9 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Collection Title</td>
 </tr>
 </tbody></table>
-
-<h2 id="create-a-collection">Create a collection</h2>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+<h2 id='create-a-collection'>Create a collection</h2><h3 id='http-request-14'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections</code></p>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1203,26 +1446,22 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> --data <span class="s2">"{
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">--data</span> <span class="s2">"{
   "</span>collection<span class="s2">": {
     "</span>title<span class="s2">": "</span>New Collection<span class="s2">"
   }
 }"</span>
-</code></pre>
-
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Collection"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Collection"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="request-body-parameters">Request body parameters</h3>
-
+</span></code></pre></div><h3 id='request-body-parameters-5'>Request body parameters</h3>
 <p>The following fields need to be sent within a collection scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -1240,19 +1479,11 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Collection Title</td>
 </tr>
 </tbody></table>
-
-<h1 id="pages">Pages</h1>
-
-<h2 id="add-pages-to-publication">Add pages to publication</h2>
-
+<h1 id='pages'>Pages</h1><h2 id='add-pages-to-publication'>Add pages to publication</h2>
 <p>Add pages to a publication from a PDF file</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages</code></p>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1268,16 +1499,13 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a publication to add pages to</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell"><code>curl --location <span class="s1">'https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages'</span> <span class="se">\</span>
---header <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
---header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
---data <span class="s1">'{
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
     "source_url": "https://some/file.pdf"
   }'</span>
-</code></pre>
-
-<h3 id="request-body-parameters">Request body parameters</h3>
-
+</code></pre></div><h3 id='request-body-parameters-6'>Request body parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1311,21 +1539,13 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Hotspot extraction (auto-tagging) settings, see <a href="#extraction-options">extraction options</a> for details</td>
 </tr>
 </tbody></table>
-
-<h3 id="response-codes">Response codes</h3>
-
-<p>This endpoint returns the <code class="prettyprint">200</code> response code.</p>
-
-<h2 id="replace-a-publication-page">Replace a publication page</h2>
-
+<h3 id='response-codes-3'>Response codes</h3>
+<p>This endpoint returns the <code>200</code> response code.</p>
+<h2 id='replace-a-publication-page'>Replace a publication page</h2>
 <p>Replace a page in a publication</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1345,18 +1565,15 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The number of the page to be replaced in the publication</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell"><code>curl --location --request PUT <span class="s1">'https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;'</span> <span class="se">\</span>
---header <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
---header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
---data <span class="s1">'{
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PUT <span class="s1">'https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
   "page": {
     "source_url": "https://some/file.pdf"
   }
 }'</span>
-</code></pre>
-
-<h3 id="request-body-parameters">Request body parameters</h3>
-
+</code></pre></div><h3 id='request-body-parameters-7'>Request body parameters</h3>
 <p>The following fields need to be sent within a page scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -1392,21 +1609,12 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Remove existing hotspots on the specified page (based on page number parameter)</td>
 </tr>
 </tbody></table>
-
-<h3 id="response-codes">Response codes</h3>
-
-<p>This endpoint returns the <code class="prettyprint">200</code> response code.</p>
-
-<h2 id="remove-a-publication-page">Remove a publication page</h2>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
-<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> -X DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
-</code></pre>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+<h3 id='response-codes-4'>Response codes</h3>
+<p>This endpoint returns the <code>200</code> response code.</p>
+<h2 id='remove-a-publication-page'>Remove a publication page</h2><h3 id='http-request-17'>HTTP Request</h3>
+<p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
+</code></pre></div><h3 id='url-parameters-15'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1426,74 +1634,62 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The number of the page to be removed in the publication</td>
 </tr>
 </tbody></table>
-
-<h3 id="response-codes">Response codes</h3>
-
-<p>This endpoint returns the <code class="prettyprint">200</code> response code.</p>
-
-<h1 id="product-feeds">Product Feeds</h1>
-
-<h2 id="list-recent-product-feeds">List recent product feeds</h2>
-
+<h3 id='response-codes-5'>Response codes</h3>
+<p>This endpoint returns the <code>200</code> response code.</p>
+<h1 id='product-feeds'>Product Feeds</h1><h2 id='list-recent-product-feeds'>List recent product feeds</h2>
 <p>Lists last 5 product feed imports</p>
-<pre class="highlight shell"><code>curl --location <span class="s2">"http://api.publitas.com/v2/groups/1/product_feeds"</span> --header <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s2">"http://api.publitas.com/v2/groups/1/product_feeds"</span> <span class="nt">--header</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns a JSON document structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"product_feeds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"product_feeds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"failed"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1890</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"failed"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1890</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-18'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1505,39 +1701,31 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-
-<h2 id="create-a-product-feed">Create a product feed</h2>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
-<pre class="highlight shell"><code>curl --location <span class="s1">'http://api.publitas.com/v2/groups/1/product_feeds'</span> <span class="se">\</span>
---header <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
---header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
---data <span class="s1">'{
+<h2 id='create-a-product-feed'>Create a product feed</h2><h3 id='http-request-19'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api.publitas.com/v2/groups/1/product_feeds'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
     "product_feed": {
         "url": "http://some/feed/file.xml"
     }
 }'</span>
-</code></pre>
-
+</code></pre></div>
 <blockquote>
 <p>The above command returns a JSON document structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"product_feed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"product_feed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='url-parameters-17'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1549,9 +1737,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-
-<h3 id="request-body-parameters">Request body parameters</h3>
-
+<h3 id='request-body-parameters-8'>Request body parameters</h3>
 <p>The following fields need to be sent within a product feed scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -1569,83 +1755,75 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file</td>
 </tr>
 </tbody></table>
-
-<h1 id="conversions">Conversions</h1>
-
-<h2 id="list-last-conversions">List last conversions</h2>
-
+<h1 id='conversions'>Conversions</h1><h2 id='list-last-conversions'>List last conversions</h2>
 <p>List last 5 conversions of a publication</p>
-<pre class="highlight shell"><code>curl --location <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/conversions/"</span> --header <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/conversions/"</span> <span class="nt">--header</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns a JSON document structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"conversions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"conversions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1404</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_add_pages"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1404</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_add_pages"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1403</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"failed"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fail to download given source file: https://some/pdf/file.pdf"</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1403</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"failed"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fail to download given source file: https://some/pdf/file.pdf"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_add_pages"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_add_pages"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1402</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_replace_page"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1402</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_replace_page"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1401</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"page_manager"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1401</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"page_manager"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1400</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_publication"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1400</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_publication"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='url-parameters-18'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1718,7 +1896,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 </tr>
 </tbody></table>
 
-<p>The <code class="prettyprint">state</code> field can have one of the following values:</p>
+<p>The <code>state</code> field can have one of the following values:</p>
 
 <table><thead>
 <tr>
@@ -1752,7 +1930,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 </tr>
 </tbody></table>
 
-<p>The <code class="prettyprint">state_details</code> is object with the following attributes:</p>
+<p>The <code>state_details</code> is object with the following attributes:</p>
 
 <table><thead>
 <tr>
@@ -1767,36 +1945,28 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Error message describing conversion failed state</td>
 </tr>
 </tbody></table>
-
-<h2 id="get-a-specific-conversion">Get a specific conversion</h2>
-<pre class="highlight shell"><code><span class="c"># This endpoint retrieves a specific publication conversion.</span>
-curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/conversion/1404"</span>
-</code></pre>
-
+<h2 id='get-a-specific-conversion'>Get a specific conversion</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint retrieves a specific publication conversion.</span>
+curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/conversion/1404"</span>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1404</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_add_pages"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"conversion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1404</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_add_pages"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"converted_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
+<h3 id='url-parameters-19'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1816,9 +1986,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>The ID of a specific conversion</td>
 </tr>
 </tbody></table>
-
-<h1 id="languages">Languages</h1>
-
+<h1 id='languages'>Languages</h1>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1926,22 +2094,19 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>uk</td>
 </tr>
 </tbody></table>
-
-<h1 id="extraction-options">Extraction Options</h1>
-
+<h1 id='extraction-options'>Extraction Options</h1>
 <p>The following fields define options to extract hotspots from a PDF</p>
 
 <blockquote>
 <p>Extraction options field JSON object structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"icons"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"icons"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"icons"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"icons"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1964,7 +2129,7 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 </tr>
 </tbody></table>
 
-<p>Both &lsquo;links&rsquo; and &#39;products&rsquo; allow the fields below:</p>
+<p>Both &#39;links&#39; and &#39;products&#39; allow the fields below:</p>
 
 <table><thead>
 <tr>
@@ -1981,19 +2146,16 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 <td>Show or hide hotspot icons for extracted hotspot. This setting is not applicable to hotspots extracted from PDF annotations (those are defined in the annotation itself)</td>
 </tr>
 </tbody></table>
-
-<h1 id="errors">Errors</h1>
-
+<h1 id='errors'>Errors</h1>
 <blockquote>
 <p>When there is an error the command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"You have reached your publication limit"</span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"You have reached your publication limit"</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p>The Publitas API uses the following error codes:</p>
 
 <table><thead>
@@ -2004,39 +2166,39 @@ curl -H <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span cl
 </thead><tbody>
 <tr>
 <td>402</td>
-<td>Payment Required &ndash; You have reached your publishing limit</td>
+<td>Payment Required -- You have reached your publishing limit</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; You requested access to a resource which you don&rsquo;t have permission</td>
+<td>Forbidden -- You requested access to a resource which you don&#39;t have permission</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The path or document could not be found</td>
+<td>Not Found -- The path or document could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access the API with an invalid method</td>
+<td>Method Not Allowed -- You tried to access the API with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json</td>
 </tr>
 <tr>
 <td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>I&#39;m a teapot</td>
 </tr>
 <tr>
 <td>422</td>
-<td>Unprocessable Entity &ndash; We found validation errors on one or more fields, a detailed error message can be found in the response body</td>
+<td>Unprocessable Entity -- We found validation errors on one or more fields, a detailed error message can be found in the response body</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintenance. Please try again later</td>
+<td>Service Unavailable -- We&#39;re temporarially offline for maintenance. Please try again later</td>
 </tr>
 </tbody></table>
 

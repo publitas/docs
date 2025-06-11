@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -6,34 +7,347 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Viewer API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src="javascripts/all_nosearch.js" type="text/javascript"></script>
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #6272a4;
+}
+.highlight .sr {
+  color: #ffb86c;
+}
+.highlight .go {
+  color: #6272a4;
+}
+.highlight .gp {
+  color: #44475a;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #ffb86c;
+}
+.highlight .cm {
+  color: #6272a4;
+}
+.highlight .cp {
+  color: #6272a4;
+}
+.highlight .c1 {
+  color: #6272a4;
+}
+.highlight .cs {
+  color: #6272a4;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #6272a4;
+}
+.highlight .err {
+  color: #ff5555;
+}
+.highlight .gr {
+  color: #ff5555;
+}
+.highlight .gt {
+  color: #ff5555;
+}
+.highlight .gd {
+  color: #44475a;
+}
+.highlight .gi {
+  color: #44475a;
+}
+.highlight .ge {
+  color: #44475a;
+}
+.highlight .kc {
+  color: #8be9fd;
+}
+.highlight .kd {
+  color: #8be9fd;
+}
+.highlight .kr {
+  color: #8be9fd;
+}
+.highlight .no {
+  color: #8be9fd;
+}
+.highlight .kt {
+  color: #8be9fd;
+}
+.highlight .mf {
+  color: #bd93f9;
+}
+.highlight .mh {
+  color: #bd93f9;
+}
+.highlight .il {
+  color: #bd93f9;
+}
+.highlight .mi {
+  color: #bd93f9;
+}
+.highlight .mo {
+  color: #bd93f9;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #bd93f9;
+}
+.highlight .sc {
+  color: #bd93f9;
+}
+.highlight .se {
+  color: #bd93f9;
+}
+.highlight .ss {
+  color: #bd93f9;
+}
+.highlight .sd {
+  color: #f1fa8c;
+}
+.highlight .s2 {
+  color: #f1fa8c;
+}
+.highlight .sb {
+  color: #f1fa8c;
+}
+.highlight .sh {
+  color: #f1fa8c;
+}
+.highlight .si {
+  color: #f1fa8c;
+}
+.highlight .sx {
+  color: #f1fa8c;
+}
+.highlight .s1 {
+  color: #f1fa8c;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #f1fa8c;
+}
+.highlight .na {
+  color: #50fa7b;
+}
+.highlight .nc {
+  color: #50fa7b;
+}
+.highlight .nd {
+  color: #50fa7b;
+}
+.highlight .ne {
+  color: #50fa7b;
+}
+.highlight .nf, .highlight .fm {
+  color: #50fa7b;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv, .highlight .vm {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight {
+  color: #f8f8f2;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #ff79c6;
+}
+.highlight .ow {
+  color: #ff79c6;
+}
+.highlight .nt {
+  color: #ff79c6;
+}
+.highlight .k, .highlight .kv {
+  color: #ff79c6;
+}
+.highlight .kn {
+  color: #ff79c6;
+}
+.highlight .kp {
+  color: #ff79c6;
+}
+.highlight .o {
+  color: #ff79c6;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-29928c59.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-bc04fe75.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch-53bdb4f3.js"></script>
 
-      <script>
-        $(function() {
-          setupLanguages(["javascript"]);
-        });
-      </script>
   </head>
 
-  <body class="js">
+  <body class="js" data-languages="[&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar-cad8cdcb.png" alt="" />
       </span>
     </a>
-    <div class="tocify-wrapper">
-      <a href='./' class='logo-wrapper'>
-        <img src="images/logo.png" alt="Logo" /><span>api</span>
-      </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-372d1fbe.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
-      <div id="toc">
-      </div>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#viewer-javascript-api-v1" class="toc-h1 toc-link" data-title="Viewer JavaScript API v1">Viewer JavaScript API v1</a>
+          </li>
+          <li>
+            <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
+          </li>
+          <li>
+            <a href="#targeting-different-devices" class="toc-h1 toc-link" data-title="Targeting Different Devices">Targeting Different Devices</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#getting-basic-publication-information" class="toc-h2 toc-link" data-title="Getting basic publication information">Getting basic publication information</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-methods" class="toc-h1 toc-link" data-title="API Methods">API Methods</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#custom-home-button-action" class="toc-h2 toc-link" data-title="Custom Home Button Action">Custom Home Button Action</a>
+                  </li>
+                  <li>
+                    <a href="#custom-shopping-cart-button-action" class="toc-h2 toc-link" data-title="Custom Shopping Cart Button Action">Custom Shopping Cart Button Action</a>
+                  </li>
+                  <li>
+                    <a href="#updating-the-shopping-cart-icon" class="toc-h2 toc-link" data-title="Updating the shopping cart icon">Updating the shopping cart icon</a>
+                  </li>
+                  <li>
+                    <a href="#showing-external-content-in-an-iframe" class="toc-h2 toc-link" data-title="Showing external content in an iframe">Showing external content in an iframe</a>
+                  </li>
+                  <li>
+                    <a href="#custom-product-action" class="toc-h2 toc-link" data-title="Custom Product Action">Custom Product Action</a>
+                  </li>
+                  <li>
+                    <a href="#custom-product-cta" class="toc-h2 toc-link" data-title="Custom Product CTA">Custom Product CTA</a>
+                  </li>
+                  <li>
+                    <a href="#custom-link-action" class="toc-h2 toc-link" data-title="Custom Link Action">Custom Link Action</a>
+                  </li>
+                  <li>
+                    <a href="#custom-menu-item" class="toc-h2 toc-link" data-title="Custom Menu Item">Custom Menu Item</a>
+                  </li>
+                  <li>
+                    <a href="#consent-management-for-analytics" class="toc-h2 toc-link" data-title="Consent Management For Analytics">Consent Management For Analytics</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
         <ul class="toc-footer">
             <li><a href='https://publitas.com'>Publitas.com</a></li>
             <li><a href='http://github.com/tripit/slate'>Powered by Slate</a></li>
@@ -42,45 +356,36 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="viewer-javascript-api-v1">Viewer JavaScript API v1</h1>
-
+        <h1 id='viewer-javascript-api-v1'>Viewer JavaScript API v1</h1>
 <p>This API can be used to customize some behaviors in the Publitas.com Viewer.</p>
-
-<h1 id="getting-started">Getting Started</h1>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+<h1 id='getting-started'>Getting Started</h1><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">switch</span><span class="p">(</span><span class="nx">platform</span><span class="p">)</span>
 <span class="p">};</span>
-</code></pre>
-
-<p>To access the Publitas.com JavaScript API you need to inject JavaScript code into the Viewer. This can be achieved using the code injection field in your group or publication settings. The basic usage is shown to the right. Please make sure to wrap it in a <code class="prettyprint">&lt;script&gt;</code> tag when setting it in the header.</p>
+</code></pre></div>
+<p>To access the Publitas.com JavaScript API you need to inject JavaScript code into the Viewer. This can be achieved using the code injection field in your group or publication settings. The basic usage is shown to the right. Please make sure to wrap it in a <code>&lt;script&gt;</code> tag when setting it in the header.</p>
 
 <p>The arguments passed to this function are</p>
 
 <ul>
-<li><code class="prettyprint">api</code>, an object exposing API properties and methods</li>
-<li><code class="prettyprint">platform</code>, a string specifying the current device category. Can be <em>desktop</em>, <em>tablet</em> or <em>mobile</em></li>
+<li><code>api</code>, an object exposing API properties and methods</li>
+<li><code>platform</code>, a string specifying the current device category. Can be <em>desktop</em>, <em>tablet</em> or <em>mobile</em></li>
 </ul>
-
-<h1 id="targeting-different-devices">Targeting Different Devices</h1>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+<h1 id='targeting-different-devices'>Targeting Different Devices</h1><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">switch</span> <span class="p">(</span><span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="s2">"desktop"</span><span class="err">:</span>
+    <span class="k">case</span> <span class="dl">"</span><span class="s2">desktop</span><span class="dl">"</span><span class="p">:</span>
       <span class="c1">// desktop only customizations here</span>
       <span class="k">break</span><span class="p">;</span>
-    <span class="k">case</span> <span class="s2">"tablet"</span><span class="err">:</span>
+    <span class="k">case</span> <span class="dl">"</span><span class="s2">tablet</span><span class="dl">"</span><span class="p">:</span>
       <span class="c1">// tablet only customizations here</span>
       <span class="k">break</span><span class="p">;</span>
-    <span class="k">case</span> <span class="s2">"mobile"</span><span class="err">:</span>
+    <span class="k">case</span> <span class="dl">"</span><span class="s2">mobile</span><span class="dl">"</span><span class="p">:</span>
       <span class="c1">// mobile only customizations here</span>
       <span class="k">break</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</code></pre>
-
-<p>By default, customizations are applied to all device categories. This example shows how you could use the <code class="prettyprint">platform</code> parameter to implement different customizations depending on the device the Viewer is running on.</p>
-
-<h2 id="getting-basic-publication-information">Getting basic publication information</h2>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+<p>By default, customizations are applied to all device categories. This example shows how you could use the <code>platform</code> parameter to implement different customizations depending on the device the Viewer is running on.</p>
+<h2 id='getting-basic-publication-information'>Getting basic publication information</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">publication</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">publication</span><span class="p">;</span>
 
  <span class="cm">/*
@@ -90,9 +395,8 @@
   <span class="nx">publication</span><span class="p">.</span><span class="nx">slug</span><span class="p">;</span> <span class="c1">// 'my-publication'</span>
   <span class="nx">publication</span><span class="p">.</span><span class="nx">groupSlug</span><span class="p">;</span> <span class="c1">// 'my-group'</span>
 <span class="p">}</span>
-</code></pre>
-
-<p>The <code class="prettyprint">api.publication</code> property exposes information of the current publication. It contains the following properties:</p>
+</code></pre></div>
+<p>The <code>api.publication</code> property exposes information of the current publication. It contains the following properties:</p>
 
 <table><thead>
 <tr>
@@ -113,7 +417,7 @@
 </tr>
 </tbody></table>
 
-<p>The <code class="prettyprint">slug</code> and <code class="prettyprint">groupSlug</code> properties are the building blocks of publication URLs, which have the structure:</p>
+<p>The <code>slug</code> and <code>groupSlug</code> properties are the building blocks of publication URLs, which have the structure:</p>
 
 <p><em>https://view.publitas.com/groupSlug/slug/</em></p>
 
@@ -132,102 +436,79 @@ your URLs will have the structure:
 
 Using just the publication slug might be sufficient if you are doing tracking per domain.
 </aside>
-
-<h1 id="api-methods">API Methods</h1>
-
-<h2 id="custom-home-button-action">Custom Home Button Action</h2>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="s2">"http://your.custom.url"</span><span class="p">,</span> <span class="s2">"custom title"</span><span class="p">);</span>
+<h1 id='api-methods'>API Methods</h1><h2 id='custom-home-button-action'>Custom Home Button Action</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://your.custom.url</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">custom title</span><span class="dl">"</span><span class="p">);</span>
 
   <span class="c1">// or</span>
 
   <span class="nx">api</span><span class="p">.</span><span class="nx">setHomeButtonAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
-  <span class="p">},</span> <span class="s2">"custom title"</span><span class="p">);</span>
+  <span class="p">},</span> <span class="dl">"</span><span class="s2">custom title</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre>
-
-<p>Using the <code class="prettyprint">setHomeButtonAction(action [, title])</code> you can specify a custom action when the user clicks the home button in the main menu. <code class="prettyprint">action</code> can be a URL string or a function. <code class="prettyprint">title</code> is an optional string argument, that sets the home button title.</p>
-
-<h2 id="custom-shopping-cart-button-action">Custom Shopping Cart Button Action</h2>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">api</span><span class="p">.</span><span class="nx">setCartButtonAction</span><span class="p">(</span><span class="s2">"http://your.custom.url"</span><span class="p">,</span> <span class="s2">"custom title"</span><span class="p">);</span>
+</code></pre></div>
+<p>Using the <code>setHomeButtonAction(action [, title])</code> you can specify a custom action when the user clicks the home button in the main menu. <code>action</code> can be a URL string or a function. <code>title</code> is an optional string argument, that sets the home button title.</p>
+<h2 id='custom-shopping-cart-button-action'>Custom Shopping Cart Button Action</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">api</span><span class="p">.</span><span class="nx">setCartButtonAction</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://your.custom.url</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">custom title</span><span class="dl">"</span><span class="p">);</span>
 
   <span class="c1">// or</span>
 
   <span class="nx">api</span><span class="p">.</span><span class="nx">setCartButtonAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
-  <span class="p">},</span> <span class="s2">"custom title"</span><span class="p">);</span>
+  <span class="p">},</span> <span class="dl">"</span><span class="s2">custom title</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre>
-
-<p>Using the <code class="prettyprint">setCartButtonAction(action [, title])</code> you can specify a custom action when the user clicks the shopping cart button in the main menu. <code class="prettyprint">action</code> can be a URL string or a function. <code class="prettyprint">title</code> is an optional string argument, that sets the cart button title.</p>
-
-<h2 id="updating-the-shopping-cart-icon">Updating the shopping cart icon</h2>
-<pre class="highlight javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">cartContentChanged</span><span class="p">({</span> <span class="na">numItems</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">num</span><span class="o">-</span><span class="nx">items</span><span class="o">&gt;</span> <span class="p">})</span>
-</code></pre>
-
+</code></pre></div>
+<p>Using the <code>setCartButtonAction(action [, title])</code> you can specify a custom action when the user clicks the shopping cart button in the main menu. <code>action</code> can be a URL string or a function. <code>title</code> is an optional string argument, that sets the cart button title.</p>
+<h2 id='updating-the-shopping-cart-icon'>Updating the shopping cart icon</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">cartContentChanged</span><span class="p">({</span> <span class="na">numItems</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">num</span><span class="o">-</span><span class="nx">items</span><span class="o">&gt;</span> <span class="p">})</span>
+</code></pre></div>
 <p>The shopping cart icon can display the number of items currently in the cart, using the cartContentChange method.</p>
 
-<p>The appearance of the shopping cart icon will change from &lsquo;empty&rsquo; to &#39;full&rsquo; if there are more than 0 items in the cart. To change the cart to empty again, set numItems to 0.</p>
-
-<h3 id="updating-the-shopping-cart-from-an-iframe">Updating the shopping cart from an iframe</h3>
-<pre class="highlight javascript"><code><span class="nx">parent</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span><span class="s1">'cartContentChanged'</span><span class="p">,</span> <span class="p">{</span>
+<p>The appearance of the shopping cart icon will change from &#39;empty&#39; to &#39;full&#39; if there are more than 0 items in the cart. To change the cart to empty again, set numItems to 0.</p>
+<h3 id='updating-the-shopping-cart-from-an-iframe'>Updating the shopping cart from an iframe</h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">parent</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span><span class="dl">'</span><span class="s1">cartContentChanged</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">numItems</span><span class="p">:</span> <span class="nx">numItems</span>
-<span class="p">}]),</span> <span class="s2">"*"</span><span class="p">);</span>
+<span class="p">}]),</span> <span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">);</span>
 
-</code></pre>
+</code></pre></div>
+<p>If you use an iframe (check <a href="#showing-external-content-in-an-iframe">the section</a> on iframes) and you need to update the shopping cart icon from within the iframed content, you can use the <code>postMessage</code> as shown to the left.</p>
 
-<p>If you use an iframe (check <a href="#showing-external-content-in-an-iframe">the section</a> on iframes) and you need to update the shopping cart icon from within the iframed content, you can use the <code class="prettyprint">postMessage</code> as shown to the left.</p>
+<p>The message consists of an array, but because IE 8 &amp; 9 only support sending string messages, it needs to be serialized using <code>JSON.stringify</code>.</p>
 
-<p>The message consists of an array, but because IE 8 &amp; 9 only support sending string messages, it needs to be serialized using <code class="prettyprint">JSON.stringify</code>.</p>
-
-<p>The second parameter to postMessage controls the target origin the parent window should have to receive the message. Using <code class="prettyprint">&quot;*&quot;</code> is a good default, but you can implement a more restrictive policy. Check <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage">the postMessage documentation</a> for more details.</p>
-
-<h2 id="showing-external-content-in-an-iframe">Showing external content in an iframe</h2>
-<pre class="highlight javascript"><code>
+<p>The second parameter to postMessage controls the target origin the parent window should have to receive the message. Using <code>&quot;*&quot;</code> is a good default, but you can implement a more restrictive policy. Check <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage">the postMessage documentation</a> for more details.</p>
+<h2 id='showing-external-content-in-an-iframe'>Showing external content in an iframe</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
 <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">width</span><span class="p">:</span> <span class="s1">'800px'</span><span class="p">,</span>
-  <span class="na">background</span><span class="p">:</span> <span class="s1">'#ffffff'</span>
+  <span class="na">width</span><span class="p">:</span> <span class="dl">'</span><span class="s1">800px</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">background</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#ffffff</span><span class="dl">'</span>
 <span class="p">};</span>
 
-<span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="s1">'http://some.url'</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
-</code></pre>
-
-<p>Using the <code class="prettyprint">showExternalContent(url [, options])</code>  method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.</p>
+<span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://some.url</span><span class="dl">'</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</code></pre></div>
+<p>Using the <code>showExternalContent(url [, options])</code>  method, you can display custom content in a popover (or sliding panel on mobile). This is commonly used for showing a custom product details page in combination with setProductAction described below.</p>
 
 <p>The first parameter is a URL string and the second an optional object with options. Supported options are</p>
 
 <ul>
-<li><code class="prettyprint">width</code>, a css string to set the width of the iframe. Default is different per device category:
+<li><code>width</code>, a css string to set the width of the iframe. Default is different per device category:
 
 <ul>
-<li><em>desktop</em> : <code class="prettyprint">&#39;800px&#39;</code></li>
-<li><em>tablet</em>  : <code class="prettyprint">&#39;720px&#39;</code></li>
-<li><em>mobile</em>  : <code class="prettyprint">&#39;100%&#39;</code> (cannot be overruled)</li>
+<li><em>desktop</em> : <code>&#39;800px&#39;</code></li>
+<li><em>tablet</em>  : <code>&#39;720px&#39;</code></li>
+<li><em>mobile</em>  : <code>&#39;100%&#39;</code> (cannot be overruled)</li>
 </ul></li>
-<li><code class="prettyprint">background</code>, a css string to set the background color of the popover. You can use this to match the background color of your content. Default is <code class="prettyprint">&#39;#ffffff&#39;</code></li>
+<li><code>background</code>, a css string to set the background color of the popover. You can use this to match the background color of your content. Default is <code>&#39;#ffffff&#39;</code></li>
 </ul>
+<h3 id='callbacks'>callbacks</h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://some.url</span><span class="dl">'</span><span class="p">);</span>
 
-<h3 id="callbacks">callbacks</h3>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="s1">'http://some.url'</span><span class="p">);</span>
-
-<span class="nx">content</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="nx">content</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="c1">// do something when the iframe closes</span>
 <span class="p">});</span>
-</code></pre>
-
-<p><code class="prettyprint">showExternalContent</code> returns a proxy on which you can register event listeners. The only supported event at the moment is <code class="prettyprint">close</code> which gets triggered whenever the user closes the iframe. The syntax is shown in the second example on the right. For a full use case, check the next section on setting custom product actions.</p>
-
-<h2 id="custom-product-action">Custom Product Action</h2>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+<p><code>showExternalContent</code> returns a proxy on which you can register event listeners. The only supported event at the moment is <code>close</code> which gets triggered whenever the user closes the iframe. The syntax is shown in the second example on the right. For a full use case, check the next section on setting custom product actions.</p>
+<h2 id='custom-product-action'>Custom Product Action</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
   <span class="p">});</span>
 <span class="p">}</span>
-</code></pre>
-
-<p>Using the <code class="prettyprint">setProductAction(action [, onOpen[, onClose[, callOriginal[, index]]]])</code> you can specify a custom action when the user clicks on a product on the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive an array of products that belong to the clicked hotspot as an argument. Products have the following properties:</p>
+</code></pre></div>
+<p>Using the <code>setProductAction(action [, onOpen[, onClose[, callOriginal[, index]]]])</code> you can specify a custom action when the user clicks on a product on the Viewer. <code>action</code> needs to be a function. It will receive an array of products that belong to the clicked hotspot as an argument. Products have the following properties:</p>
 
 <table><thead>
 <tr>
@@ -284,96 +565,78 @@ Using just the publication slug might be sufficient if you are doing tracking pe
 <tr>
 <td>video</td>
 <td>Object</td>
-<td>Object with property &#39;youtubeId&rsquo; if product has a YouTube video</td>
+<td>Object with property &#39;youtubeId&#39; if product has a YouTube video</td>
 </tr>
 </tbody></table>
-
-<h3 id="onopen-and-onclose"><code class="prettyprint">onOpen</code> and <code class="prettyprint">onClose</code></h3>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+<h3 id='onopen-and-onclose'><code>onOpen</code> and <code>onClose</code></h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">,</span> <span class="nx">onOpen</span><span class="p">,</span> <span class="nx">onClose</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="p">...;</span> <span class="c1">// create a URL based on products</span>
 
     <span class="nx">onOpen</span><span class="p">();</span> <span class="c1">// update the address bar and browser title</span>
 
     <span class="c1">// show custom product page</span>
-    <span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="s1">'600px'</span><span class="p">})</span>
+    <span class="nx">api</span><span class="p">.</span><span class="nx">showExternalContent</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="dl">'</span><span class="s1">600px</span><span class="dl">'</span><span class="p">})</span>
       <span class="c1">// revert the address bar and browser title once iframe is closed</span>
-      <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="nx">onClose</span><span class="p">);</span>
+      <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="nx">onClose</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>These are optional callbacks that you can evoke if you are implementing a custom product popover. The default behavior of the catalog viewer is to update the address bar URL to</p>
 
 <p><em>http://url.of/your/publication/product/&lt;product-id&gt;</em></p>
 
 <p>whenever the product view opens. This way, users can directly link to a product within the catalog and refreshing the page will leave the product view intact. If you want to keep this behavior for your custom product action, please make sure to invoke these callbacks at appropriate times. The second example to the right highlights this use case.</p>
-
-<h3 id="calloriginal-and-index"><code class="prettyprint">callOriginal</code> and <code class="prettyprint">index</code></h3>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+<h3 id='calloriginal-and-index'><code>callOriginal</code> and <code>index</code></h3><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setProductAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">products</span><span class="p">,</span> <span class="nx">_o</span><span class="p">,</span> <span class="nx">_c</span><span class="p">,</span> <span class="nx">callOriginal</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'product viewed'</span><span class="p">,</span> <span class="nx">products</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">product viewed</span><span class="dl">'</span><span class="p">,</span> <span class="nx">products</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
     <span class="nx">callOriginal</span><span class="p">();</span>
   <span class="p">});</span>
 <span class="p">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>The fifth param provides the index of the current product within the product array. It is used to identify which product was clicked in a multi-product hotspot.</p>
-
-<h2 id="custom-product-cta">Custom Product CTA</h2>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+<h2 id='custom-product-cta'>Custom Product CTA</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setProductCtaAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">product</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
   <span class="p">});</span>
 <span class="p">}</span>
-</code></pre>
-
-<p>Using the <code class="prettyprint">setProductCtaAction(action)</code> you can specify a custom action when the user clicks the &#39;Go To Webshop&rsquo; button (call to action) in the product details view. <code class="prettyprint">action</code> needs to be a function. It will receive the corresponding product as argument (same as <code class="prettyprint">setProductAction</code>).</p>
-
-<h2 id="custom-link-action">Custom Link Action</h2>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+<p>Using the <code>setProductCtaAction(action)</code> you can specify a custom action when the user clicks the &#39;Go To Webshop&#39; button (call to action) in the product details view. <code>action</code> needs to be a function. It will receive the corresponding product as argument (same as <code>setProductAction</code>).</p>
+<h2 id='custom-link-action'>Custom Link Action</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setLinkAction</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// do something here</span>
   <span class="p">});</span>
 <span class="p">}</span>
-</code></pre>
-
-<p>Using the <code class="prettyprint">setLinkAction(action)</code> you can specify a custom action when the user clicks on an external link in the Viewer. <code class="prettyprint">action</code> needs to be a function. It will receive the original URL as an argument.</p>
-
-<h2 id="custom-menu-item">Custom Menu Item</h2>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+<p>Using the <code>setLinkAction(action)</code> you can specify a custom action when the user clicks on an external link in the Viewer. <code>action</code> needs to be a function. It will receive the original URL as an argument.</p>
+<h2 id='custom-menu-item'>Custom Menu Item</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">addMenuItem</span><span class="p">({</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'custom_item_1'</span><span class="p">,</span>
-    <span class="na">title</span><span class="p">:</span> <span class="s1">'Custom Title 1'</span><span class="p">,</span>
-    <span class="na">iconUrl</span><span class="p">:</span> <span class="s1">'https://icons.com/b7803b.jpg'</span><span class="p">,</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">custom_item_1</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Custom Title 1</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">iconUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://icons.com/b7803b.jpg</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">action</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
       <span class="c1">// do something here</span>
     <span class="p">},</span>
     <span class="na">order</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="p">});</span>
 <span class="p">}</span>
-</code></pre>
-
-<p>Using the <code class="prettyprint">addMenuItem(object)</code> you can add a custom item into the main menu. <code class="prettyprint">item</code> needs to be an object. <code class="prettyprint">name</code> is a unique identifier in case you need to address it for further actions (for instance, custom styling it). <code class="prettyprint">title</code> sets item title. <code class="prettyprint">iconUrl</code> is the source of the icon displayed for item, may be external url or image data. <code class="prettyprint">action</code> could be a function as well as an external url (to keep compatibility among all browsers, we recommend not using arrow functions). <code class="prettyprint">order</code> is a number indicating item&rsquo;s position starting from the top of the main menu, regardless of the amount of items being displayed for a specific publication. It is the only optional parameter, when it&rsquo;s not defined, item will be pushed to bottom of main menu.</p>
-
-<h2 id="consent-management-for-analytics">Consent Management For Analytics</h2>
-<pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+<p>Using the <code>addMenuItem(object)</code> you can add a custom item into the main menu. <code>item</code> needs to be an object. <code>name</code> is a unique identifier in case you need to address it for further actions (for instance, custom styling it). <code>title</code> sets item title. <code>iconUrl</code> is the source of the icon displayed for item, may be external url or image data. <code>action</code> could be a function as well as an external url (to keep compatibility among all browsers, we recommend not using arrow functions). <code>order</code> is a number indicating item&#39;s position starting from the top of the main menu, regardless of the amount of items being displayed for a specific publication. It is the only optional parameter, when it&#39;s not defined, item will be pushed to bottom of main menu.</p>
+<h2 id='consent-management-for-analytics'>Consent Management For Analytics</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">viewerReady</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">.</span><span class="nx">setAnalyticsTrackingConsent</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">// or if your consent tool uses events</span>
 
-<span class="nx">consentManager</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'consent'</span><span class="p">,</span> <span class="p">(</span><span class="nx">categories</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">categories</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'analytics'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">consentManager</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">consent</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">categories</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">categories</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="dl">'</span><span class="s1">analytics</span><span class="dl">'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">api</span><span class="p">.</span><span class="nx">setAnalyticsTrackingConsent</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nx">api</span><span class="p">.</span><span class="nx">setAnalyticsTrackingConsent</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
 
-</code></pre>
-
-<p>Using the <code class="prettyprint">setAnalyticsTrackingConsent(true/false)</code> you can manage user consent for Publitas analytics tracking events. This method is effective only if the &ldquo;Require visitor consent to allow Publitas to collect performance data&rdquo; option is toggled on in our CMS. If this option is not enabled, tracking occurs by default without needing explicit consent.</p>
+</code></pre></div>
+<p>Using the <code>setAnalyticsTrackingConsent(true/false)</code> you can manage user consent for Publitas analytics tracking events. This method is effective only if the &quot;Require visitor consent to allow Publitas to collect performance data&quot; option is toggled on in our CMS. If this option is not enabled, tracking occurs by default without needing explicit consent.</p>
 
 <p>This method does not store the consent preference in any cookie. Therefore, it must be set on every page refresh. It should be used in conjunction with any third-party cookie consent manager to handle user preferences.</p>
 
