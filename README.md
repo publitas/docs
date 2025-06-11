@@ -10,7 +10,12 @@ Run middleman with `bundle exec middleman` and visit `http://localhost:4567`
 
 ## Edit
 
-You only need to worry about the `.md` files in the `source/` folder.
+Content is edited in the `.md` files in the `source/` folder. Custom styling can be applied in
+
+- `source/stylesheets/_variables.scss`: for basic styling
+- `source/stylesheets/publitas.css`: for more advanced customizations
+
+It's best to not modify other files in order to keep merge conflicts when upgrading Slate to the minimum
 
 ### Edit GraphQL docs
 
@@ -26,9 +31,8 @@ This will refresh everything inside the `<!-- START graphql-markdown -->` and `<
 
 ## Deploy
 
-run `rake publish`
-
+run `./deploy.sh`
 
 ## Visit
 
-It's hosted on github pages, the url is [http://publitas.github.io/docs](http://publitas.github.io/docs)
+It's hosted on github pages, the url is [https://developers.publitas.com/docs](https://developers.publitas.com/docs)
