@@ -435,11 +435,19 @@
         <h1 id='rest-api-v2'>REST API v2</h1>
 <p>This API can be used to programatically list your account&#39;s groups, as well as to list and create publications based on existing PDF documents.</p>
 <h1 id='getting-started'>Getting Started</h1><h3 id='get-an-api-key'>Get an API key</h3>
-<p>To use the rest API you need to an API key. Contact our <a href="mailto:support@publitas.com">support team</a> to request an API key.</p>
+<p>To use the rest API you need to an API key. You can create one in your account directly through the following steps:</p>
 
+<ul>
+<li>Click the top right-side menu</li>
+<li>Select &#39;Edit Profile&#39;</li>
+<li>Select the &#39;Advanced Settings&#39; tab</li>
+<li>Click &#39;Generate API key&#39;</li>
+</ul>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.publitas.com/v2/groups <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
 <p>API keys are passed via the <code>Authorization</code> header as demonstrated in the code snippet to the right.</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups"</span>
-</code></pre></div><h3 id='understanding-pagination'>Understanding Pagination</h3>
+<h3 id='understanding-pagination'>Understanding Pagination</h3>
 <p>Many endpoints in the API support pagination to help manage large result sets. When using pagination, the following query parameters are available:</p>
 
 <table><thead>
