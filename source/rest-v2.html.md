@@ -322,6 +322,34 @@ The following fields need to be sent within a publication scope (see the right p
 | collection_id       | Integer  | No       | Associate publication to a collection by ID                                                                                                             |
 | extraction_options  | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields                                 |
 
+## Hotspot Annotations
+
+```postscript
+[
+  /Subtype /Text
+  /Rect [150 500 350 450]
+  /Contents ({ "type": "product", "icon": true, "dynamic": true, "sku": "WP06-29-Black" })
+  /ANN pdfmark
+
+```
+
+> Tip – All rectangles are expressed in PDF user space units (1 unit = 1⁄72 inch) with the origin at the bottom‑left corner of the page.
+
+Annotations present in the provided PDF can be automatically converted into hotspots. The annotation rectangle (`/Rect`) defines the hotspot’s clickable area.
+
+Standard PDF **_Link_ annotations** (`/Subtype /Link`) will be converted into link hotspots.
+
+Standard **_Text_ annotations** (`/Subtype /Text`) whose _Contents_ string is a UTF-8 JSON object can be used for move advanced cases. An example using the PDFMark syntax is shown to the right
+
+### Field Reference
+
+| Field     | Type                   | Required            | Description                                                                                                                         |
+| --------- | ---------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `type`    | `"product"`            | **Yes**             | Hotspot type. Only `product` is currently recognized.                                                                               |
+| `icon`    | `boolean`              | No (default `true`) | Whether the hotspot icon is rendered in the reader.                                                                                 |
+| `dynamic` | `boolean`              | No (default `true`) | `true` ⇒ Publitas shows the full product card overlay; `false` ⇒ hotspot acts as a transparent link over designer-provided imagery. |
+| `sku`     | `string` \| `string[]` | **Yes**             | SKU(s) to bind to the hotspot, in display order.                                                                                    |
+
 ## Update a publication
 
 ```shell
