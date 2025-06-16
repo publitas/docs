@@ -331,6 +331,9 @@
                     <a href="#create-a-publication" class="toc-h2 toc-link" data-title="Create a publication">Create a publication</a>
                   </li>
                   <li>
+                    <a href="#hotspot-annotations" class="toc-h2 toc-link" data-title="Hotspot Annotations">Hotspot Annotations</a>
+                  </li>
+                  <li>
                     <a href="#update-a-publication" class="toc-h2 toc-link" data-title="Update a publication">Update a publication</a>
                   </li>
                   <li>
@@ -947,6 +950,56 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span>
 <td>Object</td>
 <td>No</td>
 <td>Define settings to extract hotspots from the PDF file. See <a href="#extraction-options">extraction options</a> for allowed fields</td>
+</tr>
+</tbody></table>
+<h2 id='hotspot-annotations'>Hotspot Annotations</h2><div class="highlight"><pre class="highlight postscript tab-postscript"><code><span class="p">[</span>
+  <span class="nv">/Subtype</span> <span class="nv">/Text</span>
+  <span class="nv">/Rect</span> <span class="p">[</span><span class="mf">150</span> <span class="mf">500</span> <span class="mf">350</span> <span class="mf">450</span><span class="p">]</span>
+  <span class="nv">/Contents</span> <span class="s">({ "type": "product", "icon": true, "dynamic": true, "sku": "WP06-29-Black" })</span>
+  <span class="nv">/ANN</span> <span class="nf">pdfmark</span>
+
+</code></pre></div>
+<blockquote>
+<p>Tip – All rectangles are expressed in PDF user space units (1 unit = 1⁄72 inch) with the origin at the bottom‑left corner of the page.</p>
+</blockquote>
+
+<p>Annotations present in the provided PDF can be automatically converted into hotspots. The annotation rectangle (<code>/Rect</code>) defines the hotspot’s clickable area.</p>
+
+<p>Standard PDF <strong><em>Link</em> annotations</strong> (<code>/Subtype /Link</code>) will be converted into link hotspots.</p>
+
+<p>Standard <strong><em>Text</em> annotations</strong> (<code>/Subtype /Text</code>) whose <em>Contents</em> string is a UTF-8 JSON object can be used for move advanced cases. An example using the PDFMark syntax is shown to the right</p>
+<h3 id='field-reference'>Field Reference</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>&quot;product&quot;</code></td>
+<td><strong>Yes</strong></td>
+<td>Hotspot type. Only <code>product</code> is currently recognized.</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td><code>boolean</code></td>
+<td>No (default <code>true</code>)</td>
+<td>Whether the hotspot icon is rendered in the reader.</td>
+</tr>
+<tr>
+<td><code>dynamic</code></td>
+<td><code>boolean</code></td>
+<td>No (default <code>true</code>)</td>
+<td><code>true</code> ⇒ Publitas shows the full product card overlay; <code>false</code> ⇒ hotspot acts as a transparent link over designer-provided imagery.</td>
+</tr>
+<tr>
+<td><code>sku</code></td>
+<td><code>string</code> \</td>
+<td><code>string[]</code></td>
+<td><strong>Yes</strong></td>
 </tr>
 </tbody></table>
 <h2 id='update-a-publication'>Update a publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will update a publication with the browser title UpdatedBrowserTitle, description UpdatedDescription and assign metatags with IDs 1 and 2.</span>
@@ -1598,14 +1651,15 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
 <td>The number of the page to be replaced in the publication</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PUT <span class="s1">'https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-<span class="nt">--data</span> <span class="s1">'{
-  "page": {
-    "source_url": "https://some/file.pdf"
-  }
-}'</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-X</span> PUT
+  <span class="nt">--data</span> <span class="s1">'{
+    "page": {
+      "source_url": "https://some/file.pdf"
+    }
+  }'</span>
 </code></pre></div><h3 id='request-body-parameters-7'>Request body parameters</h3>
 <p>The following fields need to be sent within a page scope (see the right panel for an example):</p>
 
