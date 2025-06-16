@@ -850,14 +850,15 @@ Replace a page in a publication
 | Page Number    | The number of the page to be replaced in the publication |
 
 ```shell
-curl --location --request PUT 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>' \
---header 'Authorization: ApiKey <api_key>' \
---header 'Content-Type: application/json' \
---data '{
-  "page": {
-    "source_url": "https://some/file.pdf"
-  }
-}'
+curl 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>' \
+  -H 'Authorization: ApiKey <api_key>' \
+  -H 'Content-Type: application/json' \
+  -X PUT
+  --data '{
+    "page": {
+      "source_url": "https://some/file.pdf"
+    }
+  }'
 ```
 
 ### Request body parameters
