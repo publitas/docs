@@ -288,7 +288,7 @@
 
   </head>
 
-  <body class="rest-v2" data-languages="[&quot;shell&quot;]">
+  <body class="rest-v2" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -297,9 +297,6 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo-01b54094.png" class="logo" alt="" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-        </div>
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#rest-api-v2" class="toc-h1 toc-link" data-title="REST API v2">REST API v2</a>
@@ -501,7 +498,8 @@
 
 <p><code>https://api.publitas.com/v2/groups/</code></p>
 <h1 id='groups'>Groups</h1><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve all the groups accessible by the user</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups"</span>
+curl https://api.publitas.com/v2/groups <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns a JSON document structured like this:</p>
@@ -566,7 +564,8 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h1 id='publications'>Publications</h1><h2 id='list-all-publications-of-a-group'>List all publications of a group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve all publications for a group</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span>
+curl https://api.publitas.com/v2/groups/1/publications <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -753,7 +752,8 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 <h3 id='filtering-results'>Filtering results</h3>
 <p>You can filter the results list with the following query params:</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve only publicly listed publications</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications?state=public&amp;collection_id=1"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications?state=public&amp;collection_id=1"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
 </code></pre></div>
 <table><thead>
 <tr>
@@ -774,7 +774,8 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-publication'>Get a specific publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint retrieves a specific publication.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -822,7 +823,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h2 id='create-a-publication'>Create a publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will create a publication with the title Winter2014, browser title BrowserWinter2014, description Winter2014Description and source URL http://example.com/winter2014.pdf.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">--data</span> <span class="s2">"publication[title]=Winter2014&amp;publication[source_url]=http://example.com/winter2014.pdf&amp;publication[browser_title]=BrowserWinter2014&amp;publication[description]=Winter2014Description"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s2">"publication[title]=Winter2014&amp;publication[source_url]=http://example.com/winter2014.pdf&amp;publication[browser_title]=BrowserWinter2014&amp;publication[description]=Winter2014Description"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -947,7 +950,11 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h2 id='update-a-publication'>Update a publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will update a publication with the browser title UpdatedBrowserTitle, description UpdatedDescription and assign metatags with IDs 1 and 2.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="nt">-X</span> PUT <span class="nt">--data</span> <span class="s1">'{"publication": {"browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "metatag_ids": [1,2]}}'</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-X</span> PUT <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{"publication": {"browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "metatag_ids": [1,2]}}'</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1034,7 +1041,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h2 id='mark-a-publication-as-online'>Mark a publication as online</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint marks a publication as being online.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> POST <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/online"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/online"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST
 </code></pre></div>
 <blockquote>
 <p>When the response code is 200 the command returns JSON structured like this:</p>
@@ -1082,7 +1091,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h2 id='mark-a-publication-as-offline'>Mark a publication as offline</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint marks a publication as being offline.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> POST <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/offline"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/offline"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1114,7 +1125,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 <h3 id='response-codes-2'>Response codes</h3>
 <p>This endpoint returns the <code>200</code> response code.</p>
 <h2 id='archive-publication'>Archive Publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint archives a publication</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE
 </code></pre></div>
 <blockquote>
 <p>The above command returns a 204 with no content</p>
@@ -1138,7 +1151,8 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h1 id='metatags'>Metatags</h1><h2 id='list-all-metatags-of-a-group'>List all metatags of a group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve all metatags for a group</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags"</span>
+curl  <span class="s2">"https://api.publitas.com/v2/groups/1/metatags"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1207,7 +1221,8 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-metatag'>Get a specific metatag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint retrieves a specific metatag.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/222"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/222"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1241,7 +1256,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h2 id='create-a-metatag'>Create a metatag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will create a metatag with the categordy category_3 and value value_3.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">--data</span> <span class="s2">"metatag[category]=category_3&amp;metatag[value]=value_3"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/metatags"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s2">"metatag[category]=category_3&amp;metatag[value]=value_3"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1293,7 +1310,10 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h2 id='update-a-metatag'>Update a metatag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will update a metatag with the category new_category and value value_4.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> PUT <span class="nt">--data</span> <span class="s2">"metatag[category]=new_category&amp;metatag[value]=value_4"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/3"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/3"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> PUT <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s2">"metatag[category]=new_category&amp;metatag[value]=value_4"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1349,7 +1369,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h2 id='delete-a-metatag'>Delete a metatag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will try to delete a metatag with id 4.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/4"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/4"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE
 </code></pre></div>
 <blockquote>
 <p>The above command returns a 409 error and the following JSON if metatag is assigned to a publication:</p>
@@ -1358,7 +1380,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
   </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Metatag is currently in use, send </span><span class="se">\"</span><span class="s2">force_delete=true</span><span class="se">\"</span><span class="s2"> to delete anyway"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will delete the metatag with id 4 even if it's assigned to a publication.</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/4?force_delete=true"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/metatags/4?force_delete=true"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE
 </code></pre></div>
 <blockquote>
 <p>The above command returns a 204 with no content</p>
@@ -1386,7 +1410,8 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tr>
 </tbody></table>
 <h1 id='collections'>Collections</h1><h2 id='list-all-collections-of-a-group'>List all collections of a group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve all collections for a group</span>
-curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1507,10 +1532,10 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 <td>The ID of a publication to add pages to</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-<span class="nt">--data</span> <span class="s1">'{
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
     "source_url": "https://some/file.pdf"
   }'</span>
 </code></pre></div><h3 id='request-body-parameters-6'>Request body parameters</h3>
@@ -1621,7 +1646,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 <p>This endpoint returns the <code>200</code> response code.</p>
 <h2 id='remove-a-publication-page'>Remove a publication page</h2><h3 id='http-request-17'>HTTP Request</h3>
 <p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE
 </code></pre></div><h3 id='url-parameters-15'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -1711,14 +1738,14 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tbody></table>
 <h2 id='create-a-product-feed'>Create a product feed</h2><h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'http://api.publitas.com/v2/groups/1/product_feeds'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-<span class="nt">--data</span> <span class="s1">'{
-    "product_feed": {
-        "url": "http://some/feed/file.xml"
-    }
-}'</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'http://api.publitas.com/v2/groups/1/product_feeds'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+      "product_feed": {
+          "url": "http://some/feed/file.xml"
+      }
+  }'</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns a JSON document structured like this:</p>
@@ -1765,7 +1792,8 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tbody></table>
 <h1 id='conversions'>Conversions</h1><h2 id='list-last-conversions'>List last conversions</h2>
 <p>List last 5 conversions of a publication</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/conversions/"</span> <span class="nt">--header</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/conversions/"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns a JSON document structured like this:</p>
@@ -2212,9 +2240,6 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-          </div>
       </div>
     </div>
   </body>
