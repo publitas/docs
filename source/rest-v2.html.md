@@ -1,9 +1,6 @@
 ---
 title: API Reference
 
-language_tabs:
-  - shell
-
 toc_footers:
   - <a href='../'>API Overview</a>
   - <a href='https://publitas.com'>Publitas.com</a>
@@ -61,7 +58,8 @@ A example of a complete path is:
 
 ```shell
 # This will retrieve all the groups accessible by the user
-curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
+curl https://api.publitas.com/v2/groups \
+  -H "Authorization: ApiKey <api_key>"
 ```
 
 > The above command returns a JSON document structured like this:
@@ -100,7 +98,8 @@ The attributes are as follows:
 
 ```shell
 # This will retrieve all publications for a group
-curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications"
+curl https://api.publitas.com/v2/groups/1/publications \
+  -H "Authorization: ApiKey <api_key>"
 ```
 
 > The above command returns JSON structured like this:
@@ -202,7 +201,8 @@ You can filter the results list with the following query params:
 
 ```shell
 # This will retrieve only publicly listed publications
-curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications?state=public&collection_id=1"
+curl "https://api.publitas.com/v2/groups/1/publications?state=public&collection_id=1" \
+  -H "Authorization: ApiKey <api_key>"
 ```
 
 | Param         | Options                                 | Description                                                                                                                                                  |
@@ -214,7 +214,8 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 
 ```shell
 # This endpoint retrieves a specific publication.
-curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/publications/222"
+curl "https://api.publitas.com/v2/groups/1/publications/222" \
+  -H "Authorization: ApiKey <api_key>"
 ```
 
 > The above command returns JSON structured like this:
@@ -261,7 +262,9 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 
 ```shell
 # This will create a publication with the title Winter2014, browser title BrowserWinter2014, description Winter2014Description and source URL http://example.com/winter2014.pdf.
-curl -H "Authorization: ApiKey <api_key>" --data "publication[title]=Winter2014&publication[source_url]=http://example.com/winter2014.pdf&publication[browser_title]=BrowserWinter2014&publication[description]=Winter2014Description" "https://api.publitas.com/v2/groups/1/publications"
+curl "https://api.publitas.com/v2/groups/1/publications" \
+  -H "Authorization: ApiKey <api_key>" \
+  --data "publication[title]=Winter2014&publication[source_url]=http://example.com/winter2014.pdf&publication[browser_title]=BrowserWinter2014&publication[description]=Winter2014Description"
 ```
 
 > The above command returns JSON structured like this:
@@ -323,7 +326,11 @@ The following fields need to be sent within a publication scope (see the right p
 
 ```shell
 # This will update a publication with the browser title UpdatedBrowserTitle, description UpdatedDescription and assign metatags with IDs 1 and 2.
-curl -H "Authorization: ApiKey <api_key>" -H "Content-Type: application/json" -X PUT --data '{"publication": {"browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "metatag_ids": [1,2]}}' "https://api.publitas.com/v2/groups/1/publications/3"
+curl "https://api.publitas.com/v2/groups/1/publications/3" \
+  -H "Authorization: ApiKey <api_key>" \
+  -H "Content-Type: application/json" \
+  -X PUT \
+  --data '{"publication": {"browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "metatag_ids": [1,2]}}'
 ```
 
 > The above command returns JSON structured like this:
@@ -379,7 +386,9 @@ The following fields need to be sent within a publication scope (see the right p
 
 ```shell
 # This endpoint marks a publication as being online.
-curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/groups/1/publications/222/online"
+curl "https://api.publitas.com/v2/groups/1/publications/222/online" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X POST
 ```
 
 > When the response code is 200 the command returns JSON structured like this:
@@ -426,7 +435,9 @@ This endpoint returns one of the following HTTP codes:
 
 ```shell
 # This endpoint marks a publication as being offline.
-curl -H "Authorization: ApiKey <api_key>" -X POST "https://api.publitas.com/v2/groups/1/publications/222/offline"
+curl "https://api.publitas.com/v2/groups/1/publications/222/offline" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X POST
 ```
 
 > The above command returns JSON structured like this:
@@ -468,7 +479,9 @@ This endpoint returns the `200` response code.
 
 ```shell
 # This endpoint archives a publication
-curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/publications/222"
+curl "https://api.publitas.com/v2/groups/1/publications/222" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X DELETE
 ```
 
 > The above command returns a 204 with no content
@@ -490,7 +503,8 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 
 ```shell
 # This will retrieve all metatags for a group
-curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/metatags"
+curl  "https://api.publitas.com/v2/groups/1/metatags" \
+  -H "Authorization: ApiKey <api_key>"
 ```
 
 > The above command returns JSON structured like this:
@@ -541,7 +555,8 @@ The JSON response returns a list of metatags with the following attributes:
 
 ```shell
 # This endpoint retrieves a specific metatag.
-curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/metatags/222"
+curl "https://api.publitas.com/v2/groups/1/metatags/222" \
+  -H "Authorization: ApiKey <api_key>"
 ```
 
 > The above command returns JSON structured like this:
@@ -574,7 +589,9 @@ curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/
 
 ```shell
 # This will create a metatag with the categordy category_3 and value value_3.
-curl -H "Authorization: ApiKey <api_key>" --data "metatag[category]=category_3&metatag[value]=value_3" "https://api.publitas.com/v2/groups/1/metatags"
+curl "https://api.publitas.com/v2/groups/1/metatags" \
+  -H "Authorization: ApiKey <api_key>" \
+  --data "metatag[category]=category_3&metatag[value]=value_3"
 ```
 
 > The above command returns JSON structured like this:
@@ -613,7 +630,10 @@ The following fields need to be sent within a metatag scope (see the right panel
 
 ```shell
 # This will update a metatag with the category new_category and value value_4.
-curl -H "Authorization: ApiKey <api_key>" -X PUT --data "metatag[category]=new_category&metatag[value]=value_4" "https://api.publitas.com/v2/groups/1/metatags/3"
+curl "https://api.publitas.com/v2/groups/1/metatags/3" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X PUT \
+  --data "metatag[category]=new_category&metatag[value]=value_4"
 ```
 
 > The above command returns JSON structured like this:
@@ -653,7 +673,9 @@ The following fields need to be sent within a metatag scope (see the right panel
 
 ```shell
 # This will try to delete a metatag with id 4.
-curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/metatags/4"
+curl "https://api.publitas.com/v2/groups/1/metatags/4" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X DELETE
 ```
 
 > The above command returns a 409 error and the following JSON if metatag is assigned to a publication:
@@ -666,7 +688,9 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 
 ```shell
 # This will delete the metatag with id 4 even if it's assigned to a publication.
-curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/metatags/4?force_delete=true"
+curl "https://api.publitas.com/v2/groups/1/metatags/4?force_delete=true" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X DELETE
 ```
 
 > The above command returns a 204 with no content
@@ -689,7 +713,8 @@ curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2
 
 ```shell
 # This will retrieve all collections for a group
-curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups/1/collections"
+curl "https://api.publitas.com/v2/groups/1/collections" \
+  -H "Authorization: ApiKey <api_key>"
 ```
 
 > The above command returns JSON structured like this:
@@ -787,10 +812,10 @@ Add pages to a publication from a PDF file
 | Publication ID | The ID of a publication to add pages to  |
 
 ```shell
-curl --location 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages' \
---header 'Authorization: ApiKey <api_key>' \
---header 'Content-Type: application/json' \
---data '{
+curl 'https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages' \
+  -H 'Authorization: ApiKey <api_key>' \
+  -H 'Content-Type: application/json' \
+  --data '{
     "source_url": "https://some/file.pdf"
   }'
 ```
@@ -857,7 +882,9 @@ This endpoint returns the `200` response code.
 `DELETE https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>`
 
 ```shell
-curl -H "Authorization: ApiKey <api_key>" -X DELETE "https://api.publitas.com/v2/groups/1/publications/222"
+curl "https://api.publitas.com/v2/groups/1/publications/222" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X DELETE
 ```
 
 ### URL Parameters
@@ -948,14 +975,14 @@ curl --location "http://api.publitas.com/v2/groups/1/product_feeds" --header "Au
 `POST https://api.publitas.com/v2/groups/<Group ID>/product_feeds`
 
 ```shell
-curl --location 'http://api.publitas.com/v2/groups/1/product_feeds' \
---header 'Authorization: ApiKey <api_key>' \
---header 'Content-Type: application/json' \
---data '{
-    "product_feed": {
-        "url": "http://some/feed/file.xml"
-    }
-}'
+curl 'http://api.publitas.com/v2/groups/1/product_feeds' \
+  -H 'Authorization: ApiKey <api_key>' \
+  -H 'Content-Type: application/json' \
+  --data '{
+      "product_feed": {
+          "url": "http://some/feed/file.xml"
+      }
+  }'
 ```
 
 > The above command returns a JSON document structured like this:
@@ -994,7 +1021,8 @@ The following fields need to be sent within a product feed scope (see the right 
 List last 5 conversions of a publication
 
 ```shell
-curl --location "https://api.publitas.com/v2/groups/1/publications/222/conversions/" --header "Authorization: ApiKey <api_key>"
+curl "https://api.publitas.com/v2/groups/1/publications/222/conversions/" \
+  -H "Authorization: ApiKey <api_key>"
 ```
 
 > The above command returns a JSON document structured like this:
