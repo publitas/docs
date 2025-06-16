@@ -17,13 +17,19 @@ This API can be used to programatically list your account's groups, as well as t
 
 ### Get an API key
 
-To use the rest API you need to an API key. Contact our [support team](mailto:support@publitas.com) to request an API key.
+To use the rest API you need to an API key. You can create one in your account directly through the following steps:
 
-API keys are passed via the `Authorization` header as demonstrated in the code snippet to the right.
+- Click the top right-side menu
+- Select 'Edit Profile'
+- Select the 'Advanced Settings' tab
+- Click 'Generate API key'
 
 ```shell
-curl -H "Authorization: ApiKey <api_key>" "https://api.publitas.com/v2/groups"
+curl https://api.publitas.com/v2/groups \
+  -H "Authorization: ApiKey <api_key>"
 ```
+
+API keys are passed via the `Authorization` header as demonstrated in the code snippet to the right.
 
 ### Understanding Pagination
 
