@@ -12,6 +12,12 @@ You can use the GraphQL API as an affiliate partner to ingest publication data f
 
 # Getting Started
 
+## The GraphQL endpoint
+
+With GraphQL there is only a single endpoint, which is
+
+`https://affiliate.publitas.com/graphql`
+
 ## Get an API key
 
 To use the GraphQL API you need to an API key. Contact our [support team](mailto:support@publitas.com) to request an API key.
