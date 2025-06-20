@@ -282,7 +282,7 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-29928c59.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-9d294b90.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-bc04fe75.css" rel="stylesheet" media="print" />
       <script src="javascripts/all_nosearch-53bdb4f3.js"></script>
 
@@ -299,7 +299,53 @@
       <img src="images/logo-01b54094.png" class="logo" alt="" />
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#publitas-api-overview" class="toc-h1 toc-link" data-title="Publitas API Overview">Publitas API Overview</a>
+            <a href="#publitas-api-documentation" class="toc-h1 toc-link" data-title="Publitas API Documentation">Publitas API Documentation</a>
+          </li>
+          <li>
+            <a href="#recipe-syncing-your-product-inventory" class="toc-h1 toc-link" data-title="Recipe: Syncing your product inventory">Recipe: Syncing your product inventory</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#prerequisites" class="toc-h2 toc-link" data-title="Prerequisites">Prerequisites</a>
+                  </li>
+                  <li>
+                    <a href="#set-up-your-feed" class="toc-h2 toc-link" data-title="Set up your feed">Set up your feed</a>
+                  </li>
+                  <li>
+                    <a href="#kick-off-the-import" class="toc-h2 toc-link" data-title="Kick‑off the import">Kick‑off the import</a>
+                  </li>
+                  <li>
+                    <a href="#poll-the-processing-status" class="toc-h2 toc-link" data-title="Poll the processing status">Poll the processing status</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#recipe-end-to-end-publishing-via-the-rest-api" class="toc-h1 toc-link" data-title="Recipe: End-to-end publishing via the REST API.">Recipe: End-to-end publishing via the REST API.</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#prerequisites-2" class="toc-h2 toc-link" data-title="Prerequisites">Prerequisites</a>
+                  </li>
+                  <li>
+                    <a href="#optional-annotate-the-pdf-with-ghostscript" class="toc-h2 toc-link" data-title="Optional: Annotate the PDF with Ghostscript">Optional: Annotate the PDF with Ghostscript</a>
+                  </li>
+                  <li>
+                    <a href="#make-the-file-publicly-reachable" class="toc-h2 toc-link" data-title="Make the file publicly reachable">Make the file publicly reachable</a>
+                  </li>
+                  <li>
+                    <a href="#create-the-publication" class="toc-h2 toc-link" data-title="Create the publication">Create the publication</a>
+                  </li>
+                  <li>
+                    <a href="#optional-poll-the-conversion-status" class="toc-h2 toc-link" data-title="Optional: Poll the conversion status">Optional: Poll the conversion status</a>
+                  </li>
+                  <li>
+                    <a href="#optional-manually-take-the-publication-online" class="toc-h2 toc-link" data-title="Optional: Manually take the publication online">Optional: Manually take the publication online</a>
+                  </li>
+                  <li>
+                    <a href="#grab-the-public-url" class="toc-h2 toc-link" data-title="Grab the public URL">Grab the public URL</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-overview" class="toc-h1 toc-link" data-title="API Overview">API Overview</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#rest-api" class="toc-h2 toc-link" data-title="REST API">REST API</a>
@@ -323,7 +369,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='publitas-api-overview'>Publitas API Overview</h1><div class="highlight"><pre class="highlight plaintext"><code>    ____        _     _ _ _
+        <h1 id='publitas-api-documentation'>Publitas API Documentation</h1><div class="highlight"><pre class="highlight plaintext"><code>    ____        _     _ _ _
    |  _ \ _   _| |__ | (_) |_ __ _ ___
    | |_) | | | | '_ \| | | __/ _` / __|
    |  __/| |_| | |_) | | | || (_| \__ \
@@ -331,22 +377,158 @@
 
             API Documentation
 </code></pre></div>
-<p>Welcome to the Publitas API documentation. We offer several APIs for customizing and integrating Publitas.com products:</p>
-<h3 id='rest-api'>REST API</h3>
-<p>A REST to be used to retrieve publication data for usage in mobile apps, sites and other integrations.</p>
+<p>Welcome to the Publitas API documentation. On Page you can find recipes to get you started with common use cases as well as links to detailed API documentation.</p>
+<h1 id='recipe-syncing-your-product-inventory'>Recipe: Syncing your product inventory</h1>
+<p>This quick‑start guide shows how to import a product feed into Publitas and poll for its processing status using simple <code>curl</code> commands. Copy‑and‑paste the snippets, replacing the placeholder values with your own.</p>
+<h2 id='prerequisites'>Prerequisites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Tip: to find your group id, list groups with</span>
+curl  https://api.publitas.com/v2/groups <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;API_KEY&gt;"</span>
+</code></pre></div>
+<ol>
+<li><strong>Publitas API key</strong> with access to REST API v2.</li>
+<li>Your <strong>Group ID</strong>.</li>
+</ol>
+
+<p>To follow the example here you will also need <code>jq</code> for JSON parsing &amp; a UNIX‑like shell.</p>
+
+<p>The examples use shell commands to be generic, but they are by no means the recommended way to use the API. Feel free to use a language and/or framework of your choice.</p>
+<h2 id='set-up-your-feed'>Set up your feed</h2>
+<p>You will need a publicly reachable <strong>product‑feed</strong> in <code>.xml</code> or <code>.tsv</code> format.  HTTP/S, (S)FTP are accepted.</p>
+
+<p>You can learn more about setting up a feed <a href="https://support.publitas.com/setting-up-your-product-feed">visit our knowledge base</a></p>
+<h2 id='kick-off-the-import'>Kick‑off the import</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="s2">"https://api.publitas.com/v2/groups/</span><span class="nv">$GROUP_ID</span><span class="s2">/product_feeds"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey </span><span class="nv">$API_KEY</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "product_feed": {
+      "url": "'</span><span class="s2">"</span><span class="nv">$FEED_URL</span><span class="s2">"</span><span class="s1">'"
+    }
+  }'</span>
+</code></pre></div>
+<p>Create a new product‑feed import with a <strong>POST</strong> request. The call returns a JSON envelope named <code>product_feed</code>. Save the returned <code>id</code> if you prefer to filter the polling results later.</p>
+<h2 id='poll-the-processing-status'>Poll the processing status</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do
+  </span><span class="nv">resp</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-s</span> <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey </span><span class="nv">$API_KEY</span><span class="s2">"</span> <span class="se">\</span>
+              <span class="s2">"https://api.publitas.com/v2/groups/</span><span class="nv">$GROUP_ID</span><span class="s2">/product_feeds"</span><span class="si">)</span>
+
+  <span class="nv">state</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$resp</span><span class="s2">"</span> | jq <span class="nt">-r</span> <span class="s1">'.product_feeds[] | select(.id == $FEED_ID) | .state'</span><span class="si">)</span>
+  <span class="nb">echo</span> <span class="s2">"Import state: </span><span class="nv">$state</span><span class="s2">"</span>
+
+  <span class="o">[[</span> <span class="nv">$state</span> <span class="o">=</span>~ success|failed <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">break
+  sleep </span>15
+<span class="k">done</span>
+</code></pre></div>
+<p>Publitas processes the feed asynchronously. The simplest approach is to ask for the <strong>last 5 imports</strong> and inspect the most recent one until it leaves the <code>processing</code> state. If you have stored the feed id, you can filter for it as illustrated here.</p>
+
+<p>Possible <strong>states</strong> are:</p>
+
+<table><thead>
+<tr>
+<th>State</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>processing</code></td>
+<td>Feed is being parsed &amp; validated</td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td>All products processed (or minor warnings)</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>Import aborted — see <code>failed_count</code></td>
+</tr>
+</tbody></table>
+<h1 id='recipe-end-to-end-publishing-via-the-rest-api'>Recipe: End-to-end publishing via the REST API.</h1>
+<p>Below is a minimal “recipe” that takes a PDF with product-hotspot annotations all the way to a finished online publication in Publitas, using nothing but standard shell tools ( <code>gs</code>, <code>curl</code>, and a little <code>jq</code> ).</p>
+<h2 id='prerequisites-2'>Prerequisites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Tip: to find your group id, list groups with</span>
+curl  https://api.publitas.com/v2/groups <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;API_KEY&gt;"</span>
+</code></pre></div>
+<ol>
+<li><strong>Publitas API key</strong> with access to REST API v2.</li>
+<li>Your <strong>Group ID</strong>.</li>
+<li>Optionally, <a href="https://ghostscript.com">GhostScript</a> installed on your machine.</li>
+</ol>
+
+<p>To follow the example here you will also need <code>jq</code> for JSON parsing &amp; a UNIX‑like shell.</p>
+
+<p>The examples use shell commands to be generic, but they are by no means the recommended way to use the API. Feel free to use a language and/or framework of your choice.</p>
+<h2 id='optional-annotate-the-pdf-with-ghostscript'>Optional: Annotate the PDF with Ghostscript</h2><div class="highlight"><pre class="highlight shell"><code><span class="nb">cat</span> <span class="o">&gt;</span> hotspots.ps <span class="o">&lt;&lt;</span><span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+[/Subtype /Text
+ /Rect [150 500 350 450]
+ /Contents ({ "type": "product", "icon": true,
+              "dynamic": true, "sku": "WP06-29-Black" })
+ /ANN pdfmark
+</span><span class="no">EOF
+
+</span>gs <span class="nt">-dBATCH</span> <span class="nt">-dNOPAUSE</span> <span class="nt">-sDEVICE</span><span class="o">=</span>pdfwrite <span class="se">\</span>
+   <span class="nt">-sOutputFile</span><span class="o">=</span><span class="s2">"annotated.pdf"</span> hotspots.ps <span class="s2">"input.pdf"</span>
+</code></pre></div>
+<p>Publitas recognizes standard <strong>PDF annotations</strong> and converts them into hotspots. If you want to automate this part of the process and have a data set with coordinates and product SKUs you can use <a href="https://ghostscript.com">GhostScript</a> and the <strong>pdfmark syntax</strong> to add these annotation to your original PDF.</p>
+
+<p>Otherwise skip to the next step.</p>
+<h2 id='make-the-file-publicly-reachable'>Make the file publicly reachable</h2>
+<p>The <code>POST /publications</code> endpoint only accepts a <strong>URL</strong>, so copy <code>annotated.pdf</code> somewhere the API can fetch (S3, Azure Blob, GitHub Release, etc.) and note the link.</p>
+<h2 id='create-the-publication'>Create the publication</h2><div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="s2">"https://api.publitas.com/v2/groups/</span><span class="nv">$GROUP_ID</span><span class="s2">/publications"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey </span><span class="nv">$API_KEY</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "publication": {
+      "title": "Publication Title",
+      "source_url": "$PDF_URL",
+      "schedule_online_at": "2025-09-25T15:17:20.000+02:00"
+    }
+  }'</span>
+</code></pre></div>
+<p>The call returns a JSON envelope named <code>publication</code>; save the <code>id</code>, you&#39;ll need it for later steps. This assumes you stored the <strong>public PDF URL</strong> from the previous link in <code>$PDF_URL</code>.</p>
+
+<p><code>schedule_online_at</code> will make the publication publicly available (<strong>online</strong>) at the given timestamp.</p>
+<h2 id='optional-poll-the-conversion-status'>Optional: Poll the conversion status</h2><div class="highlight"><pre class="highlight shell"><code><span class="k">while</span> :<span class="p">;</span> <span class="k">do
+  </span><span class="nv">state</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-s</span> <span class="se">\</span>
+      <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey </span><span class="nv">$API_KEY</span><span class="s2">"</span> <span class="se">\</span>
+      <span class="s2">"https://api.publitas.com/v2/groups/</span><span class="nv">$GROUP_ID</span><span class="s2">/publications/</span><span class="nv">$PUB_ID</span><span class="s2">/conversions/"</span> |
+      jq <span class="nt">-r</span> <span class="s1">'.conversions[0].state'</span><span class="si">)</span>
+
+  <span class="nb">echo</span> <span class="s2">"Conversion state: </span><span class="nv">$state</span><span class="s2">"</span>
+  <span class="o">[[</span> <span class="nv">$state</span> <span class="o">=</span>~ finished|failed|canceled <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">break
+  sleep </span>15
+<span class="k">done</span>
+</code></pre></div>
+<p>Publitas creates an internal <strong>conversion</strong> record every time pages are processed.
+We poll until the latest record’s <code>state</code> becomes <code>finished</code> (or <code>failed</code>).</p>
+
+<p>If it finishes, your PDF is now rendered into pages and hotspots. If it fails, inspect <code>.conversions[0].state_details.error</code> for a message (e.g. bad URL, corrupted PDF).</p>
+<h2 id='optional-manually-take-the-publication-online'>Optional: Manually take the publication online</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/</span><span class="nv">$GROUP_ID</span><span class="s2">/publications/</span><span class="nv">$PUB_ID</span><span class="s2">/online"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST
+</code></pre></div>
+<p>Instead of scheduling the publication via <code>schedule_online_at</code> you can also take it <strong>online</strong> immediately using this API call. The conversion has to be finished for this to work.</p>
+<h2 id='grab-the-public-url'>Grab the public URL</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/</span><span class="nv">$GROUP_ID</span><span class="s2">/publications/</span><span class="nv">$PUB_ID</span><span class="s2">"</span>  <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey </span><span class="nv">$API_KEY</span><span class="s2">"</span> |
+  jq <span class="nt">-r</span> <span class="s1">'.publication.public_url'</span>
+</code></pre></div>
+<p>When the conversion is complete and the publication is put online (manually or via <code>schedule_online_at</code>), it will be accessible via <code>public_url</code>.</p>
+
+<p>You can use this URL to link to this publication or embed it within your website.</p>
+<h1 id='api-overview'>API Overview</h1><h2 id='rest-api'>REST API</h2>
+<p>A REST API for retailers to automate their workflows from creation to. The current version is v2, but v1 is still supported. Please build all new integrations using version 2</p>
 
 <p><a href="rest-v1.html">REST API v1 documentation</a></p>
 
 <p><a href="rest-v2.html">REST API v2 documentation</a></p>
-<h3 id='graphql-api'>GraphQL API</h3>
-<p>A GraphQL API that allows users to specify the content they want to fetch from our platform.</p>
+<h2 id='graphql-api'>GraphQL API</h2>
+<p>A GraphQL API that allows affilates to fetch publication data from different retailers.</p>
 
 <p><a href="graphql.html">GraphQL documentation</a></p>
-<h3 id='viewer-javascript-api'>Viewer JavaScript API</h3>
+<h2 id='viewer-javascript-api'>Viewer JavaScript API</h2>
 <p>A JavaScript API to be used in our Viewers via the code injection tool. Can be used for customizing the Viewer, add analytics tracking or even develop new features.</p>
 
 <p><a href="js.html">Viewer JavaScript API v1 documentation</a></p>
-<h3 id='viewer-message-api'>Viewer Message API</h3>
+<h2 id='viewer-message-api'>Viewer Message API</h2>
 <p>A JavaScript API to react to events in the Viewer. Useful for integrating an embedded Viewer with your site, or for triggering custom actions on certain events.</p>
 
 <p><a href="viewer-message-api.html">Viewer Message API documentation</a></p>
