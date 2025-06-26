@@ -33,9 +33,9 @@ API keys are passed via the `Authorization` header as demonstrated in the code s
 Many endpoints in the API support pagination to help manage large result sets. When using pagination, the following query parameters are available:
 
 | Parameter | Type    | Description                                            |
-| --------- | ------- | ------------------------------------------------------ |
+| --------- | ------- |--------------------------------------------------------|
 | page      | Integer | Page number to retrieve (default: returns all results) |
-| per_page  | Integer | Number of items per page (default: 25, max: 100)       |
+| per_page  | Integer | Number of items per page (default: 1000, max: 1000)    |
 
 When pagination is used, the following headers are included in the response:
 
@@ -45,6 +45,12 @@ When pagination is used, the following headers are included in the response:
 | X-Per-Page  | Number of items per page            |
 | X-Next-Page | Next page number (if available)     |
 | X-Prev-Page | Previous page number (if available) |
+
+If no pagination parameters are provided, the API will return all results in a single response, up to a maximum of 1000 items, and include the following header in the response:
+
+| Header               | Description                                                  |
+|----------------------|--------------------------------------------------------------|
+| X-Response-Truncated | Set to `true` if there are more items than the maximum allowed |
 
 ### API Path structure
 
