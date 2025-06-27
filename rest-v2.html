@@ -465,7 +465,7 @@
 <tr>
 <td>per_page</td>
 <td>Integer</td>
-<td>Number of items per page (default: 25, max: 100)</td>
+<td>Number of items per page (default: 1000, max: 1000)</td>
 </tr>
 </tbody></table>
 
@@ -492,6 +492,20 @@
 <tr>
 <td>X-Prev-Page</td>
 <td>Previous page number (if available)</td>
+</tr>
+</tbody></table>
+
+<p>If no pagination parameters are provided, the API will return all results in a single response, up to a maximum of 1000 items, and include the following header in the response:</p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Result-Truncated</td>
+<td>Set to <code>true</code> if there are more items than the maximum allowed</td>
 </tr>
 </tbody></table>
 <h3 id='api-path-structure'>API Path structure</h3>
