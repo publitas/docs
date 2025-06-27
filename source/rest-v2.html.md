@@ -48,9 +48,9 @@ When pagination is used, the following headers are included in the response:
 
 If no pagination parameters are provided, the API will return all results in a single response, up to a maximum of 1000 items, and include the following header in the response:
 
-| Header               | Description                                                  |
-|----------------------|--------------------------------------------------------------|
-| X-Response-Truncated | Set to `true` if there are more items than the maximum allowed |
+| Header             | Description                                                  |
+|--------------------|--------------------------------------------------------------|
+| X-Result-Truncated | Set to `true` if there are more items than the maximum allowed |
 
 ### API Path structure
 
