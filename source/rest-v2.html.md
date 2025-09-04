@@ -131,7 +131,8 @@ curl https://api.publitas.com/v2/groups/1/publications \
       "public_url": "https://view.publitas.com/example-group/spring-2014",
       "metatag_ids": [1, 2],
       "valid_from": null,
-      "collection_id": null
+      "collection_id": null,
+      "disable_seo": true
     },
     {
       "id": 2,
@@ -151,7 +152,8 @@ curl https://api.publitas.com/v2/groups/1/publications \
       "public_url": "https://view.publitas.com/example-group/autumn-2014",
       "metatag_ids": [2, 3],
       "valid_from": "2014-09-26",
-      "collection_id": null
+      "collection_id": null,
+      "disable_seo": true
     }
   ]
 }
@@ -193,6 +195,7 @@ The JSON response returns a list of publications with the following attributes:
 | metatag_ids         | Array    | List of metatag IDs assigned to the publication                                                        |
 | valid_from          | Date     | Validity date of the publication. This is a descriptive parameter and has no effect on the publication |
 | collection_id       | Integer  | ID of the collection this publication belongs to, or `null` if not part of any collection              |
+| disable_seo         | Boolean  | Whether SEO is disabled for this publication (true = unlisted, false = public)                          |
 
 The `state` field can have one of the following values:
 
@@ -247,7 +250,8 @@ curl "https://api.publitas.com/v2/groups/1/publications/222" \
       "public_url": "https://view.publitas.com/example-group/spring-2014",
       "metatag_ids": [2, 3],
       "valid_from": null,
-      "collection_id": null
+      "collection_id": null,
+      "disable_seo": true
     }
   ]
 }
@@ -294,7 +298,8 @@ curl "https://api.publitas.com/v2/groups/1/publications" \
     "schedule_offline_at": null,
     "public_url": null,
     "metatag_ids": [],
-    "valid_from": null
+    "valid_from": null,
+    "disable_seo": true
   }
 }
 ```
@@ -388,7 +393,8 @@ curl "https://api.publitas.com/v2/groups/1/publications/3" \
     "schedule_offline_at": null,
     "public_url": null,
     "metatag_ids": [1, 2],
-    "valid_from": null
+    "valid_from": null,
+    "disable_seo": true
   }
 }
 ```
@@ -446,7 +452,8 @@ curl "https://api.publitas.com/v2/groups/1/publications/222/online" \
       "schedule_online_at": null,
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
-      "valid_from": null
+      "valid_from": null,
+      "disable_seo": false
     }
   ]
 }
@@ -495,7 +502,8 @@ curl "https://api.publitas.com/v2/groups/1/publications/222/offline" \
       "schedule_online_at": null,
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
-      "valid_from": null
+      "valid_from": null,
+      "disable_seo": true
     }
   ]
 }
@@ -508,6 +516,56 @@ curl "https://api.publitas.com/v2/groups/1/publications/222/offline" \
 ### Response codes
 
 This endpoint returns the `200` response code.
+
+## Mark a publication as unlisted
+
+```shell
+# This endpoint marks a publication as being online but unlisted (SEO disabled).
+curl "https://api.publitas.com/v2/groups/1/publications/222/unlisted" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X POST
+```
+
+> When the response code is 200 the command returns JSON structured like this:
+
+```json
+{
+  "publication": [
+    {
+      "id": 222,
+      "title": "Spring 2014",
+      "browser_title": "Browser Spring 2014",
+      "description": "Spring 2014 description",
+      "slug": "spring-2014",
+      "url": "https://api.publitas.com/v2/groups/1/publications/222",
+      "cover_url": "https://view.publitas.com/1/222/pages/fb7be8c8211c15f3b5aa6e7527fe6fe2efb4f60c-at800.jpg",
+      "page_count": 52,
+      "pdf_download_url": "https://view.publitas.com/1/222/pdfs/ba113516-f927-4f81-a814-68d050d8fb85.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Browser%2520Spring%25202014.pdf",
+      "state": "online",
+      "online_at": "2015-01-28T16:05:28.309+01:00",
+      "offline_at": null,
+      "schedule_online_at": null,
+      "schedule_offline_at": null,
+      "public_url": "https://view.publitas.com/example-group/spring-2014",
+      "valid_from": null,
+      "disable_seo": true
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/unlisted`
+
+### Response codes
+
+This endpoint returns one of the following HTTP codes:
+
+| Code | Description                             |
+| ---- | --------------------------------------- |
+| 200  | Publication is online and unlisted      |
+| 402  | You have reached your publishing limit. |
 
 ## Archive Publication
 
