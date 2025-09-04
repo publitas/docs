@@ -866,7 +866,7 @@ When a collection cannot be deleted because it contains publications, the API re
 ```
 
 <aside class="notice">
-A collection can only be deleted if it contains no publications. Collections with offline publications can be deleted.
+A collection can only be deleted if it contains no publications.
 </aside>
 
 # Pages
