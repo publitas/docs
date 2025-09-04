@@ -828,6 +828,47 @@ The following fields need to be sent within a collection scope (see the right pa
 | ----- | ------ | -------- | ---------------- |
 | title | String | Yes      | Collection Title |
 
+## Delete a collection
+
+### HTTP Request
+
+`DELETE https://api.publitas.com/v2/groups/<Group ID>/collections/<Collection ID>`
+
+### URL Parameters
+
+| Parameter     | Description                |
+| ------------- | -------------------------- |
+| Group ID      | The ID of a specific group |
+| Collection ID | The ID of the collection to delete |
+
+```shell
+curl -X DELETE "https://api.publitas.com/v2/groups/1/collections/42" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+### Response codes
+
+| Code | Description |
+| ---- | ----------- |
+| 204  | No Content - Collection successfully deleted |
+| 403  | Forbidden - Invalid API key or insufficient permissions |
+| 404  | Not Found - Collection does not exist |
+| 409  | Conflict - Collection cannot be deleted because it contains publications |
+
+### Error responses
+
+When a collection cannot be deleted because it contains publications, the API returns a 409 Conflict status with the following error message:
+
+```json
+{
+  "error": "You can't delete this collection. It must be empty."
+}
+```
+
+<aside class="notice">
+A collection can only be deleted if it contains no publications. Collections with offline publications can be deleted.
+</aside>
+
 # Pages
 
 ## Add pages to publication
