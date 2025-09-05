@@ -379,6 +379,9 @@
                   <li>
                     <a href="#create-a-collection" class="toc-h2 toc-link" data-title="Create a collection">Create a collection</a>
                   </li>
+                  <li>
+                    <a href="#delete-a-collection" class="toc-h2 toc-link" data-title="Delete a collection">Delete a collection</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1645,11 +1648,64 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
 <td>Collection Title</td>
 </tr>
 </tbody></table>
+<h2 id='delete-a-collection'>Delete a collection</h2><h3 id='http-request-16'>HTTP Request</h3>
+<p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections/&lt;Collection ID&gt;</code></p>
+<h3 id='url-parameters-13'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Collection ID</td>
+<td>The ID of the collection to delete</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/collections/42"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div><h3 id='response-codes-4'>Response codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>204</td>
+<td>No Content - Collection successfully deleted</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden - Invalid API key or insufficient permissions</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found - Collection does not exist</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict - Collection cannot be deleted because it contains publications</td>
+</tr>
+</tbody></table>
+<h3 id='error-responses'>Error responses</h3>
+<p>When a collection cannot be deleted because it contains publications, the API returns a 409 Conflict status with the following error message:</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You can't delete this collection. It must be empty."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+A collection can only be deleted if it contains no publications.
+</aside>
 <h1 id='pages'>Pages</h1><h2 id='add-pages-to-publication'>Add pages to publication</h2>
 <p>Add pages to a publication from a PDF file</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1705,13 +1761,13 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
 <td>Hotspot extraction (auto-tagging) settings, see <a href="#extraction-options">extraction options</a> for details</td>
 </tr>
 </tbody></table>
-<h3 id='response-codes-4'>Response codes</h3>
+<h3 id='response-codes-5'>Response codes</h3>
 <p>This endpoint returns the <code>200</code> response code.</p>
 <h2 id='replace-a-publication-page'>Replace a publication page</h2>
 <p>Replace a page in a publication</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1776,14 +1832,14 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
 <td>Remove existing hotspots on the specified page (based on page number parameter)</td>
 </tr>
 </tbody></table>
-<h3 id='response-codes-5'>Response codes</h3>
+<h3 id='response-codes-6'>Response codes</h3>
 <p>This endpoint returns the <code>200</code> response code.</p>
-<h2 id='remove-a-publication-page'>Remove a publication page</h2><h3 id='http-request-18'>HTTP Request</h3>
+<h2 id='remove-a-publication-page'>Remove a publication page</h2><h3 id='http-request-19'>HTTP Request</h3>
 <p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
   <span class="nt">-X</span> DELETE
-</code></pre></div><h3 id='url-parameters-15'>URL Parameters</h3>
+</code></pre></div><h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1803,7 +1859,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
 <td>The number of the page to be removed in the publication</td>
 </tr>
 </tbody></table>
-<h3 id='response-codes-6'>Response codes</h3>
+<h3 id='response-codes-7'>Response codes</h3>
 <p>This endpoint returns the <code>200</code> response code.</p>
 <h1 id='product-feeds'>Product Feeds</h1><h2 id='list-recent-product-feeds'>List recent product feeds</h2>
 <p>Lists last 5 product feed imports</p>
@@ -1856,9 +1912,9 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-19'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1870,7 +1926,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-<h2 id='create-a-product-feed'>Create a product feed</h2><h3 id='http-request-20'>HTTP Request</h3>
+<h2 id='create-a-product-feed'>Create a product feed</h2><h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'http://api.publitas.com/v2/groups/1/product_feeds'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
@@ -1894,7 +1950,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
     </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='url-parameters-17'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters-18'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1993,7 +2049,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='url-parameters-18'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters-19'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2134,9 +2190,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
     </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-21'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-20'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
