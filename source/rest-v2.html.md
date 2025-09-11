@@ -33,7 +33,7 @@ API keys are passed via the `Authorization` header as demonstrated in the code s
 Many endpoints in the API support pagination to help manage large result sets. When using pagination, the following query parameters are available:
 
 | Parameter | Type    | Description                                            |
-| --------- | ------- |--------------------------------------------------------|
+| --------- | ------- | ------------------------------------------------------ |
 | page      | Integer | Page number to retrieve (default: returns all results) |
 | per_page  | Integer | Number of items per page (default: 1000, max: 1000)    |
 
@@ -48,8 +48,8 @@ When pagination is used, the following headers are included in the response:
 
 If no pagination parameters are provided, the API will return all results in a single response, up to a maximum of 1000 items, and include the following header in the response:
 
-| Header             | Description                                                  |
-|--------------------|--------------------------------------------------------------|
+| Header             | Description                                                    |
+| ------------------ | -------------------------------------------------------------- |
 | X-Result-Truncated | Set to `true` if there are more items than the maximum allowed |
 
 ### API Path structure
@@ -195,7 +195,7 @@ The JSON response returns a list of publications with the following attributes:
 | metatag_ids         | Array    | List of metatag IDs assigned to the publication                                                        |
 | valid_from          | Date     | Validity date of the publication. This is a descriptive parameter and has no effect on the publication |
 | collection_id       | Integer  | ID of the collection this publication belongs to, or `null` if not part of any collection              |
-| disable_seo         | Boolean  | Whether SEO is disabled for this publication (true = unlisted, false = public)                          |
+| disable_seo         | Boolean  | Whether SEO is disabled for this publication (true = unlisted, false = public)                         |
 
 The `state` field can have one of the following values:
 
@@ -894,9 +894,9 @@ The following fields need to be sent within a collection scope (see the right pa
 
 ### URL Parameters
 
-| Parameter     | Description                |
-| ------------- | -------------------------- |
-| Group ID      | The ID of a specific group |
+| Parameter     | Description                        |
+| ------------- | ---------------------------------- |
+| Group ID      | The ID of a specific group         |
 | Collection ID | The ID of the collection to delete |
 
 ```shell
@@ -906,11 +906,11 @@ curl -X DELETE "https://api.publitas.com/v2/groups/1/collections/42" \
 
 ### Response codes
 
-| Code | Description |
-| ---- | ----------- |
-| 204  | No Content - Collection successfully deleted |
-| 403  | Forbidden - Invalid API key or insufficient permissions |
-| 404  | Not Found - Collection does not exist |
+| Code | Description                                                              |
+| ---- | ------------------------------------------------------------------------ |
+| 204  | No Content - Collection successfully deleted                             |
+| 403  | Forbidden - Invalid API key or insufficient permissions                  |
+| 404  | Not Found - Collection does not exist                                    |
 | 409  | Conflict - Collection cannot be deleted because it contains publications |
 
 ### Error responses
@@ -1016,7 +1016,7 @@ This endpoint returns the `200` response code.
 `DELETE https://api.publitas.com/v2/groups/<Group ID>/publications/<Publication ID>/pages/<Page Number>`
 
 ```shell
-curl "https://api.publitas.com/v2/groups/1/publications/222" \
+curl "https://api.publitas.com/v2/groups/1/publications/222/pages/1" \
   -H "Authorization: ApiKey <api_key>" \
   -X DELETE
 ```
