@@ -332,6 +332,7 @@ The following fields need to be sent within a publication scope (see the right p
 | valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                                  |
 | collection_id       | Integer  | No       | Associate publication to a collection by ID                                                                                                             |
 | extraction_options  | Object   | No       | Define settings to extract hotspots from the PDF file. See [extraction options](#extraction-options) for allowed fields                                 |
+| layout_type         | String   | No       | Sets the publication layout, possible values are: `single`, `booklet`. Changing the publication layout creates a new conversion                         |
 
 ## Hotspot Annotations
 
@@ -421,6 +422,7 @@ The following fields need to be sent within a publication scope (see the right p
 | metatag_ids       | Array  | No       | List of metatag IDs you want to assign to the publication. This replaces current assignments (sending an empty array will clear assignments). |
 | metatags_category | String | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                    |
 | valid_from        | Date   | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                        |
+| layout_type       | String   | No       | Sets the publication layout, possible values are: `single`, `booklet`. Changing the publication layout creates a new conversion             |
 
 ## Mark a publication as online
 
