@@ -980,6 +980,12 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications"</span>
 <td>No</td>
 <td>Define settings to extract hotspots from the PDF file. See <a href="#extraction-options">extraction options</a> for allowed fields</td>
 </tr>
+<tr>
+<td>layout_type</td>
+<td>String</td>
+<td>No</td>
+<td>Sets the publication layout, possible values are: <code>single</code>, <code>booklet</code>. Changing the publication layout creates a new conversion</td>
+</tr>
 </tbody></table>
 <h2 id='hotspot-annotations'>Hotspot Annotations</h2><div class="highlight"><pre class="highlight postscript tab-postscript"><code><span class="p">[</span>
   <span class="nv">/Subtype</span> <span class="nv">/Text</span>
@@ -1121,6 +1127,12 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/3"</spa
 <td>Date</td>
 <td>No</td>
 <td>Validity date of the publication. This is a descriptive parameter and has no effect on the publication</td>
+</tr>
+<tr>
+<td>layout_type</td>
+<td>String</td>
+<td>No</td>
+<td>Sets the publication layout, possible values are: <code>single</code>, <code>booklet</code>. Changing the publication layout creates a new conversion</td>
 </tr>
 </tbody></table>
 <h2 id='mark-a-publication-as-online'>Mark a publication as online</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint marks a publication as being online.</span>
