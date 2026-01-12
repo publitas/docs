@@ -469,7 +469,7 @@ curl  https://api.publitas.com/v2/groups <span class="se">\</span>
 </code></pre></div>
 <p>Publitas recognizes standard <strong>PDF annotations</strong> and converts them into hotspots. If you want to automate this part of the process and have a data set with coordinates and product SKUs you can use <a href="https://ghostscript.com">GhostScript</a> and the <strong>pdfmark syntax</strong> to add these annotation to your original PDF.</p>
 
-<p>Otherwise skip to the next step.</p>
+<p>For all the supported hotspot types and attributes, check <a href="hotspot-annotations.html">Hotspot Annotations</a>. Otherwise skip to the next step.</p>
 <h2 id='make-the-file-publicly-reachable'>Make the file publicly reachable</h2>
 <p>The <code>POST /publications</code> endpoint only accepts a <strong>URL</strong>, so copy <code>annotated.pdf</code> somewhere the API can fetch (S3, Azure Blob, GitHub Release, etc.) and note the link.</p>
 <h2 id='create-the-publication'>Create the publication</h2><div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="s2">"https://api.publitas.com/v2/groups/</span><span class="nv">$GROUP_ID</span><span class="s2">/publications"</span> <span class="se">\</span>
