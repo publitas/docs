@@ -124,7 +124,7 @@ gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite \
 
 Publitas recognizes standard **PDF annotations** and converts them into hotspots. If you want to automate this part of the process and have a data set with coordinates and product SKUs you can use [GhostScript](https://ghostscript.com) and the **pdfmark syntax** to add these annotation to your original PDF.
 
-Otherwise skip to the next step.
+For all the supported hotspot types and attributes, check [Hotspot Annotations](hotspot-annotations.html). Otherwise skip to the next step.
 
 ## Make the file publicly reachable
 
