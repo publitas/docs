@@ -134,7 +134,17 @@ curl https://api.publitas.com/v2/groups/1/publications \
       "collection_id": null,
       "disable_seo": true,
       "language": "en",
-      "secured": false
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     },
     {
       "id": 2,
@@ -157,7 +167,17 @@ curl https://api.publitas.com/v2/groups/1/publications \
       "collection_id": null,
       "disable_seo": true,
       "language": "en",
-      "secured": false
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
@@ -202,6 +222,16 @@ The JSON response returns a list of publications with the following attributes:
 | disable_seo         | Boolean  | Whether SEO is disabled for this publication (true = unlisted, false = public)                         |
 | language            | String   | Language code of the publication (e.g. "en", "nl", "de"). See [the language table](#languages) below  |
 | secured             | Boolean  | Whether the publication is password-protected                                                          |
+| show_related_publications | Boolean | Whether related publications are shown                                                           |
+| auto_related_publications | Boolean | Whether related publications are automatically determined                                        |
+| test                | Boolean  | Whether this is a test publication                                                                     |
+| custom_header       | String   | Custom header HTML for the publication                                                                 |
+| force_single_page_on_mobile | Boolean | Whether to force single page layout on mobile devices                                        |
+| mobile_vertical_scroll | Boolean | Whether vertical scroll is enabled on mobile                                                        |
+| override_mobile_layout | Boolean | Whether the mobile layout is overridden                                                             |
+| content_goal        | String   | The content goal of the publication                                                                    |
+| content_goal_other  | String   | Custom content goal description (when content_goal is "other")                                         |
+| format_type         | String   | The format type of the publication                                                                     |
 
 The `state` field can have one of the following values:
 
@@ -259,7 +289,17 @@ curl "https://api.publitas.com/v2/groups/1/publications/222" \
       "collection_id": null,
       "disable_seo": true,
       "language": "en",
-      "secured": false
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
@@ -309,7 +349,17 @@ curl "https://api.publitas.com/v2/groups/1/publications" \
     "valid_from": null,
     "disable_seo": true,
     "language": "en",
-    "secured": false
+    "secured": false,
+    "show_related_publications": false,
+    "auto_related_publications": false,
+    "test": false,
+    "custom_header": null,
+    "force_single_page_on_mobile": false,
+    "mobile_vertical_scroll": false,
+    "override_mobile_layout": false,
+    "content_goal": null,
+    "content_goal_other": null,
+    "format_type": null
   }
 }
 ```
@@ -407,7 +457,17 @@ curl "https://api.publitas.com/v2/groups/1/publications/3" \
     "valid_from": null,
     "disable_seo": true,
     "language": "en",
-    "secured": false
+    "secured": false,
+    "show_related_publications": false,
+    "auto_related_publications": false,
+    "test": false,
+    "custom_header": null,
+    "force_single_page_on_mobile": false,
+    "mobile_vertical_scroll": false,
+    "override_mobile_layout": false,
+    "content_goal": null,
+    "content_goal_other": null,
+    "format_type": null
   }
 }
 ```
@@ -443,6 +503,16 @@ The following fields need to be sent within a publication scope (see the right p
 | disable_seo         | Boolean  | No       | Whether to disable SEO for this publication. Requires the disable SEO feature to be enabled on the account                                    |
 | secured             | Boolean  | No       | Whether the publication is password-protected. Requires the secure publications feature to be enabled on the account                           |
 | password            | String   | No       | Password for the publication (required when `secured` is `true`). Never returned in responses                                                 |
+| show_related_publications | Boolean | No | Whether to show related publications                                                                                                          |
+| auto_related_publications | Boolean | No | Whether related publications are automatically determined                                                                                     |
+| test                | Boolean  | No       | Whether this is a test publication                                                                                                            |
+| custom_header       | String   | No       | Custom header HTML for the publication. Requires the custom header feature to be enabled on the account                                        |
+| force_single_page_on_mobile | Boolean | No | Whether to force single page layout on mobile devices. Requires the force single page on mobile feature to be enabled on the account       |
+| mobile_vertical_scroll | Boolean | No    | Whether vertical scroll is enabled on mobile. Requires the mobile vertical scroll feature to be enabled on the account                        |
+| override_mobile_layout | Boolean | No    | Whether to override the mobile layout. Requires the force single page on mobile or mobile vertical scroll feature to be enabled on the account |
+| content_goal        | String   | No       | The content goal of the publication. Requires the content metadata feature to be enabled on the account                                        |
+| content_goal_other  | String   | No       | Custom content goal description (when content_goal is "other"). Requires the content metadata feature to be enabled on the account             |
+| format_type         | String   | No       | The format type of the publication. Requires the content metadata feature to be enabled on the account                                         |
 
 ## Mark a publication as online
 
@@ -477,7 +547,17 @@ curl "https://api.publitas.com/v2/groups/1/publications/222/online" \
       "valid_from": null,
       "disable_seo": false,
       "language": "en",
-      "secured": false
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
@@ -529,7 +609,17 @@ curl "https://api.publitas.com/v2/groups/1/publications/222/offline" \
       "valid_from": null,
       "disable_seo": true,
       "language": "en",
-      "secured": false
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
@@ -576,7 +666,17 @@ curl "https://api.publitas.com/v2/groups/1/publications/222/unlisted" \
       "valid_from": null,
       "disable_seo": true,
       "language": "en",
-      "secured": false
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
