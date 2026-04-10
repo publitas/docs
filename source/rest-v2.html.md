@@ -820,14 +820,12 @@ curl "https://api.publitas.com/v2/groups/1/collections" \
       "id": 1,
       "title": "Collection 1",
       "group_id": 1,
-      "parent_collection_id": null,
       "current_product_library_id": null
     },
     {
       "id": 2,
       "title": "Collection 2",
       "group_id": 1,
-      "parent_collection_id": 1,
       "current_product_library_id": 5
     }
   ]
@@ -855,7 +853,6 @@ The JSON response returns a list of collections with the following attributes:
 | id                         | Integer | Collection ID                                            |
 | title                      | String  | Collection Title                                         |
 | group_id                   | Integer | ID of the group this collection belongs to               |
-| parent_collection_id       | Integer | ID of the parent collection, or `null` if top-level      |
 | current_product_library_id | Integer | ID of the associated product library, or `null` if unset |
 
 ## Get a specific collection
@@ -874,7 +871,6 @@ curl "https://api.publitas.com/v2/groups/1/collections/42" \
     "id": 42,
     "title": "Collection 1",
     "group_id": 1,
-    "parent_collection_id": null,
     "current_product_library_id": null
   }
 }
@@ -919,7 +915,6 @@ curl -H "Authorization: ApiKey <api_key>" --data "{
     "id": 42,
     "title": "New Collection",
     "group_id": 1,
-    "parent_collection_id": null,
     "current_product_library_id": null
   }
 }
@@ -951,7 +946,6 @@ curl "https://api.publitas.com/v2/groups/1/collections/42" \
     "id": 42,
     "title": "Updated Title",
     "group_id": 1,
-    "parent_collection_id": null,
     "current_product_library_id": null
   }
 }
