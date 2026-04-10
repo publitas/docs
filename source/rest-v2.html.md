@@ -906,8 +906,7 @@ curl "https://api.publitas.com/v2/groups/1/collections/42" \
 ```shell
 curl -H "Authorization: ApiKey <api_key>" --data "{
   "collection": {
-    "title": "New Collection",
-    "parent_collection_id": 1
+    "title": "New Collection"
   }
 }"
 ```
@@ -920,7 +919,7 @@ curl -H "Authorization: ApiKey <api_key>" --data "{
     "id": 42,
     "title": "New Collection",
     "group_id": 1,
-    "parent_collection_id": 1,
+    "parent_collection_id": null,
     "current_product_library_id": null
   }
 }
@@ -930,19 +929,18 @@ curl -H "Authorization: ApiKey <api_key>" --data "{
 
 The following fields need to be sent within a collection scope (see the right panel for an example):
 
-| Name                 | Type    | Required | Description                                     |
-| -------------------- | ------- | -------- | ----------------------------------------------- |
-| title                | String  | Yes      | Collection Title                                |
-| parent_collection_id | Integer | No       | ID of the parent collection to nest under       |
+| Name  | Type   | Required | Description      |
+| ----- | ------ | -------- | ---------------- |
+| title | String | Yes      | Collection Title |
 
 ## Update a collection
 
 ```shell
-# This will update a collection's title and parent.
+# This will update a collection's title.
 curl "https://api.publitas.com/v2/groups/1/collections/42" \
   -H "Authorization: ApiKey <api_key>" \
   -X PUT \
-  --data "collection[title]=Updated Title&collection[parent_collection_id]=1"
+  --data "collection[title]=Updated Title"
 ```
 
 > The above command returns JSON structured like this:
@@ -953,7 +951,7 @@ curl "https://api.publitas.com/v2/groups/1/collections/42" \
     "id": 42,
     "title": "Updated Title",
     "group_id": 1,
-    "parent_collection_id": 1,
+    "parent_collection_id": null,
     "current_product_library_id": null
   }
 }
@@ -974,11 +972,10 @@ curl "https://api.publitas.com/v2/groups/1/collections/42" \
 
 The following fields need to be sent within a collection scope (see the right panel for an example):
 
-| Name                       | Type    | Required | Description                                                        |
-| -------------------------- | ------- | -------- | ------------------------------------------------------------------ |
-| title                      | String  | No       | Collection Title                                                   |
-| parent_collection_id       | Integer | No       | ID of the parent collection to nest under, or `null` to un-nest    |
-| current_product_library_id | Integer | No       | ID of the product library to associate, or `null` to clear         |
+| Name                       | Type    | Required | Description                                                |
+| -------------------------- | ------- | -------- | ---------------------------------------------------------- |
+| title                      | String  | No       | Collection Title                                           |
+| current_product_library_id | Integer | No       | ID of the product library to associate, or `null` to clear |
 
 ## Delete a collection
 
