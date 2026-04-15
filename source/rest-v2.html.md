@@ -818,11 +818,15 @@ curl "https://api.publitas.com/v2/groups/1/collections" \
   "collections": [
     {
       "id": 1,
-      "title": "Collection 1"
+      "title": "Collection 1",
+      "group_id": 1,
+      "current_product_library_id": null
     },
     {
       "id": 2,
-      "title": "Collection 2"
+      "title": "Collection 2",
+      "group_id": 1,
+      "current_product_library_id": 5
     }
   ]
 }
@@ -844,10 +848,44 @@ See the [Pagination](#pagination) section for pagination parameters.
 
 The JSON response returns a list of collections with the following attributes:
 
-| Field | Type    | Description      |
-| ----- | ------- | ---------------- |
-| id    | Integer | Collection ID    |
-| title | String  | Collection Title |
+| Field                      | Type    | Description                                              |
+| -------------------------- | ------- | -------------------------------------------------------- |
+| id                         | Integer | Collection ID                                            |
+| title                      | String  | Collection Title                                         |
+| group_id                   | Integer | ID of the group this collection belongs to               |
+| current_product_library_id | Integer | ID of the associated product library, or `null` if unset |
+
+## Get a specific collection
+
+```shell
+# This endpoint retrieves a specific collection.
+curl "https://api.publitas.com/v2/groups/1/collections/42" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "collection": {
+    "id": 42,
+    "title": "Collection 1",
+    "group_id": 1,
+    "current_product_library_id": null
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/collections/<Collection ID>`
+
+### URL Parameters
+
+| Parameter     | Description                      |
+| ------------- | -------------------------------- |
+| Group ID      | The ID of a specific group       |
+| Collection ID | The ID of a specific collection  |
 
 ## Create a collection
 
@@ -875,7 +913,9 @@ curl -H "Authorization: ApiKey <api_key>" --data "{
 {
   "collection": {
     "id": 42,
-    "title": "New Collection"
+    "title": "New Collection",
+    "group_id": 1,
+    "current_product_library_id": null
   }
 }
 ```
@@ -887,6 +927,49 @@ The following fields need to be sent within a collection scope (see the right pa
 | Name  | Type   | Required | Description      |
 | ----- | ------ | -------- | ---------------- |
 | title | String | Yes      | Collection Title |
+
+## Update a collection
+
+```shell
+# This will update a collection's title.
+curl "https://api.publitas.com/v2/groups/1/collections/42" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X PUT \
+  --data "collection[title]=Updated Title"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "collection": {
+    "id": 42,
+    "title": "Updated Title",
+    "group_id": 1,
+    "current_product_library_id": null
+  }
+}
+```
+
+### HTTP Request
+
+`PUT https://api.publitas.com/v2/groups/<Group ID>/collections/<Collection ID>`
+
+### URL Parameters
+
+| Parameter     | Description                        |
+| ------------- | ---------------------------------- |
+| Group ID      | The ID of a specific group         |
+| Collection ID | The ID of the collection to update |
+
+### Request body parameters
+
+The following fields need to be sent within a collection scope (see the right panel for an example):
+
+| Name                       | Type    | Required | Description                                                |
+| -------------------------- | ------- | -------- | ---------------------------------------------------------- |
+| title                      | String  | No       | Collection Title                                           |
+| current_product_library_id | Integer | No       | ID of the product library to associate, or `null` to clear |
 
 ## Delete a collection
 
