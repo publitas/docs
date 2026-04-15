@@ -377,7 +377,13 @@
                     <a href="#list-all-collections-of-a-group" class="toc-h2 toc-link" data-title="List all collections of a group">List all collections of a group</a>
                   </li>
                   <li>
+                    <a href="#get-a-specific-collection" class="toc-h2 toc-link" data-title="Get a specific collection">Get a specific collection</a>
+                  </li>
+                  <li>
                     <a href="#create-a-collection" class="toc-h2 toc-link" data-title="Create a collection">Create a collection</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-collection" class="toc-h2 toc-link" data-title="Update a collection">Update a collection</a>
                   </li>
                   <li>
                     <a href="#delete-a-collection" class="toc-h2 toc-link" data-title="Delete a collection">Delete a collection</a>
@@ -1568,11 +1574,15 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
   </span><span class="nl">"collections"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 1"</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"current_product_library_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 2"</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"current_product_library_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1612,10 +1622,53 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
 <td>String</td>
 <td>Collection Title</td>
 </tr>
+<tr>
+<td>group_id</td>
+<td>Integer</td>
+<td>ID of the group this collection belongs to</td>
+</tr>
+<tr>
+<td>current_product_library_id</td>
+<td>Integer</td>
+<td>ID of the associated product library, or <code>null</code> if unset</td>
+</tr>
 </tbody></table>
-<h2 id='create-a-collection'>Create a collection</h2><h3 id='http-request-15'>HTTP Request</h3>
-<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections</code></p>
+<h2 id='get-a-specific-collection'>Get a specific collection</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint retrieves a specific collection.</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections/42"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Collection 1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"current_product_library_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-15'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections/&lt;Collection ID&gt;</code></p>
 <h3 id='url-parameters-12'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Collection ID</td>
+<td>The ID of a specific collection</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-collection'>Create a collection</h2><h3 id='http-request-16'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections</code></p>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1639,7 +1692,9 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Collection"</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Collection"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"current_product_library_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='request-body-parameters-5'>Request body parameters</h3>
@@ -1660,9 +1715,68 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections"</span> 
 <td>Collection Title</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-collection'>Delete a collection</h2><h3 id='http-request-16'>HTTP Request</h3>
+<h2 id='update-a-collection'>Update a collection</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will update a collection's title.</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections/42"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> PUT <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s2">"collection[title]=Updated Title"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updated Title"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"current_product_library_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-17'>HTTP Request</h3>
+<p><code>PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections/&lt;Collection ID&gt;</code></p>
+<h3 id='url-parameters-14'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Collection ID</td>
+<td>The ID of the collection to update</td>
+</tr>
+</tbody></table>
+<h3 id='request-body-parameters-6'>Request body parameters</h3>
+<p>The following fields need to be sent within a collection scope (see the right panel for an example):</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>No</td>
+<td>Collection Title</td>
+</tr>
+<tr>
+<td>current_product_library_id</td>
+<td>Integer</td>
+<td>No</td>
+<td>ID of the product library to associate, or <code>null</code> to clear</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-collection'>Delete a collection</h2><h3 id='http-request-18'>HTTP Request</h3>
 <p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/collections/&lt;Collection ID&gt;</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1715,9 +1829,9 @@ A collection can only be deleted if it contains no publications.
 </aside>
 <h1 id='pages'>Pages</h1><h2 id='add-pages-to-publication'>Add pages to publication</h2>
 <p>Add pages to a publication from a PDF file</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages</code></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1739,7 +1853,7 @@ A collection can only be deleted if it contains no publications.
   <span class="nt">--data</span> <span class="s1">'{
     "source_url": "https://some/file.pdf"
   }'</span>
-</code></pre></div><h3 id='request-body-parameters-6'>Request body parameters</h3>
+</code></pre></div><h3 id='request-body-parameters-7'>Request body parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1777,9 +1891,9 @@ A collection can only be deleted if it contains no publications.
 <p>This endpoint returns the <code>200</code> response code.</p>
 <h2 id='replace-a-publication-page'>Replace a publication page</h2>
 <p>Replace a page in a publication</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1808,7 +1922,7 @@ A collection can only be deleted if it contains no publications.
       "source_url": "https://some/file.pdf"
     }
   }'</span>
-</code></pre></div><h3 id='request-body-parameters-7'>Request body parameters</h3>
+</code></pre></div><h3 id='request-body-parameters-8'>Request body parameters</h3>
 <p>The following fields need to be sent within a page scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -1846,12 +1960,12 @@ A collection can only be deleted if it contains no publications.
 </tbody></table>
 <h3 id='response-codes-6'>Response codes</h3>
 <p>This endpoint returns the <code>200</code> response code.</p>
-<h2 id='remove-a-publication-page'>Remove a publication page</h2><h3 id='http-request-19'>HTTP Request</h3>
+<h2 id='remove-a-publication-page'>Remove a publication page</h2><h3 id='http-request-21'>HTTP Request</h3>
 <p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/pages/1"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
   <span class="nt">-X</span> DELETE
-</code></pre></div><h3 id='url-parameters-16'>URL Parameters</h3>
+</code></pre></div><h3 id='url-parameters-18'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1924,9 +2038,9 @@ A collection can only be deleted if it contains no publications.
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-19'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1938,7 +2052,7 @@ A collection can only be deleted if it contains no publications.
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-<h2 id='create-a-product-feed'>Create a product feed</h2><h3 id='http-request-21'>HTTP Request</h3>
+<h2 id='create-a-product-feed'>Create a product feed</h2><h3 id='http-request-23'>HTTP Request</h3>
 <p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'http://api.publitas.com/v2/groups/1/product_feeds'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
@@ -1962,7 +2076,7 @@ A collection can only be deleted if it contains no publications.
     </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='url-parameters-18'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters-20'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1974,7 +2088,7 @@ A collection can only be deleted if it contains no publications.
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-<h3 id='request-body-parameters-8'>Request body parameters</h3>
+<h3 id='request-body-parameters-9'>Request body parameters</h3>
 <p>The following fields need to be sent within a product feed scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -2061,7 +2175,7 @@ A collection can only be deleted if it contains no publications.
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='url-parameters-19'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters-21'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2202,9 +2316,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
     </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-22'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-24'>HTTP Request</h3>
 <p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
-<h3 id='url-parameters-20'>URL Parameters</h3>
+<h3 id='url-parameters-22'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
