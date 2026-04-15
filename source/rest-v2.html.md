@@ -132,7 +132,19 @@ curl https://api.publitas.com/v2/groups/1/publications \
       "metatag_ids": [1, 2],
       "valid_from": null,
       "collection_id": null,
-      "disable_seo": true
+      "disable_seo": true,
+      "language": "en",
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     },
     {
       "id": 2,
@@ -153,7 +165,19 @@ curl https://api.publitas.com/v2/groups/1/publications \
       "metatag_ids": [2, 3],
       "valid_from": "2014-09-26",
       "collection_id": null,
-      "disable_seo": true
+      "disable_seo": true,
+      "language": "en",
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
@@ -196,6 +220,18 @@ The JSON response returns a list of publications with the following attributes:
 | valid_from          | Date     | Validity date of the publication. This is a descriptive parameter and has no effect on the publication |
 | collection_id       | Integer  | ID of the collection this publication belongs to, or `null` if not part of any collection              |
 | disable_seo         | Boolean  | Whether SEO is disabled for this publication (true = unlisted, false = public)                         |
+| language            | String   | Language code of the publication (e.g. "en", "nl", "de"). See [the language table](#languages) below  |
+| secured             | Boolean  | Whether the publication is password-protected                                                          |
+| show_related_publications | Boolean | Whether related publications are shown                                                           |
+| auto_related_publications | Boolean | Whether related publications are automatically determined                                        |
+| test                | Boolean  | Whether this is a test publication                                                                     |
+| custom_header       | String   | Custom header HTML for the publication                                                                 |
+| force_single_page_on_mobile | Boolean | Whether to force single page layout on mobile devices                                        |
+| mobile_vertical_scroll | Boolean | Whether vertical scroll is enabled on mobile                                                        |
+| override_mobile_layout | Boolean | Whether the mobile layout is overridden                                                             |
+| content_goal        | String   | The content goal of the publication                                                                    |
+| content_goal_other  | String   | Custom content goal description (when content_goal is "other")                                         |
+| format_type         | String   | The format type of the publication                                                                     |
 
 The `state` field can have one of the following values:
 
@@ -251,7 +287,19 @@ curl "https://api.publitas.com/v2/groups/1/publications/222" \
       "metatag_ids": [2, 3],
       "valid_from": null,
       "collection_id": null,
-      "disable_seo": true
+      "disable_seo": true,
+      "language": "en",
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
@@ -299,7 +347,19 @@ curl "https://api.publitas.com/v2/groups/1/publications" \
     "public_url": null,
     "metatag_ids": [],
     "valid_from": null,
-    "disable_seo": true
+    "disable_seo": true,
+    "language": "en",
+    "secured": false,
+    "show_related_publications": false,
+    "auto_related_publications": false,
+    "test": false,
+    "custom_header": null,
+    "force_single_page_on_mobile": false,
+    "mobile_vertical_scroll": false,
+    "override_mobile_layout": false,
+    "content_goal": null,
+    "content_goal_other": null,
+    "format_type": null
   }
 }
 ```
@@ -365,12 +425,12 @@ Standard **_Text_ annotations** (`/Subtype /Text`) whose _Contents_ string is a 
 ## Update a publication
 
 ```shell
-# This will update a publication with the browser title UpdatedBrowserTitle, description UpdatedDescription and assign metatags with IDs 1 and 2.
+# This will update a publication's title, schedule it to go online, and assign metatags with IDs 1 and 2.
 curl "https://api.publitas.com/v2/groups/1/publications/3" \
   -H "Authorization: ApiKey <api_key>" \
   -H "Content-Type: application/json" \
   -X PUT \
-  --data '{"publication": {"browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "metatag_ids": [1,2]}}'
+  --data '{"publication": {"title": "Winter 2014 Updated", "browser_title": "UpdatedBrowserTitle", "description": "UpdatedDescription", "schedule_online_at": "2025-06-01T10:00:00+02:00", "metatag_ids": [1,2]}}'
 ```
 
 > The above command returns JSON structured like this:
@@ -379,7 +439,7 @@ curl "https://api.publitas.com/v2/groups/1/publications/3" \
 {
   "publication": {
     "id": 3,
-    "title": "Winter2014",
+    "title": "Winter 2014 Updated",
     "browser_title": "UpdatedBrowserTitle",
     "description": "UpdatedDescription",
     "slug": "winter2014",
@@ -390,12 +450,24 @@ curl "https://api.publitas.com/v2/groups/1/publications/3" \
     "state": "offline",
     "online_at": null,
     "offline_at": null,
-    "schedule_online_at": null,
+    "schedule_online_at": "2025-06-01T10:00:00.000+02:00",
     "schedule_offline_at": null,
     "public_url": null,
     "metatag_ids": [1, 2],
     "valid_from": null,
-    "disable_seo": true
+    "disable_seo": true,
+    "language": "en",
+    "secured": false,
+    "show_related_publications": false,
+    "auto_related_publications": false,
+    "test": false,
+    "custom_header": null,
+    "force_single_page_on_mobile": false,
+    "mobile_vertical_scroll": false,
+    "override_mobile_layout": false,
+    "content_goal": null,
+    "content_goal_other": null,
+    "format_type": null
   }
 }
 ```
@@ -415,14 +487,32 @@ curl "https://api.publitas.com/v2/groups/1/publications/3" \
 
 The following fields need to be sent within a publication scope (see the right panel for an example):
 
-| Name              | Type   | Required | Description                                                                                                                                   |
-| ----------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| browser_title     | String | No       | The SEO title for the publication                                                                                                             |
-| description       | String | No       | The SEO description for the publication                                                                                                       |
-| metatag_ids       | Array  | No       | List of metatag IDs you want to assign to the publication. This replaces current assignments (sending an empty array will clear assignments). |
-| metatags_category | String | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                    |
-| valid_from        | Date   | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                        |
-| layout_type       | String   | No       | Sets the publication layout, possible values are: `single`, `booklet`. Changing the publication layout creates a new conversion             |
+| Name                | Type     | Required | Description                                                                                                                                   |
+| ------------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| title               | String   | No       | The title of the publication                                                                                                                  |
+| slug                | String   | No       | The URL slug. Only lowercase letters, numbers, hyphens, and underscores allowed. Must be unique within the group                              |
+| language            | String   | No       | Language code (e.g. "en", "nl", "de"). See [the language table](#languages) for allowed values                                                |
+| browser_title       | String   | No       | The SEO title for the publication                                                                                                             |
+| description         | String   | No       | The SEO description for the publication                                                                                                       |
+| metatag_ids         | Array    | No       | List of metatag IDs you want to assign to the publication. This replaces current assignments (sending an empty array will clear assignments). |
+| metatags_category   | String   | No       | Assigns all metatags in that category to the publication. This can be sent in combination with metatag_ids                                    |
+| valid_from          | Date     | No       | Validity date of the publication. This is a descriptive parameter and has no effect on the publication                                        |
+| layout_type         | String   | No       | Sets the publication layout, possible values are: `single`, `booklet`. Changing the publication layout creates a new conversion               |
+| schedule_online_at  | DateTime | No       | ISO 8601 date-time to schedule publication to go online. Requires the scheduling feature to be enabled on the account                         |
+| schedule_offline_at | DateTime | No       | ISO 8601 date-time to schedule publication to go offline. Requires the scheduling feature to be enabled on the account                        |
+| disable_seo         | Boolean  | No       | Whether to disable SEO for this publication. Requires the disable SEO feature to be enabled on the account                                    |
+| secured             | Boolean  | No       | Whether the publication is password-protected. Requires the secure publications feature to be enabled on the account                           |
+| password            | String   | No       | Password for the publication (required when `secured` is `true`). Never returned in responses                                                 |
+| show_related_publications | Boolean | No | Whether to show related publications                                                                                                          |
+| auto_related_publications | Boolean | No | Whether related publications are automatically determined                                                                                     |
+| test                | Boolean  | No       | Whether this is a test publication                                                                                                            |
+| custom_header       | String   | No       | Custom header HTML for the publication. Requires the custom header feature to be enabled on the account                                        |
+| force_single_page_on_mobile | Boolean | No | Whether to force single page layout on mobile devices. Requires the force single page on mobile feature to be enabled on the account       |
+| mobile_vertical_scroll | Boolean | No    | Whether vertical scroll is enabled on mobile. Requires the mobile vertical scroll feature to be enabled on the account                        |
+| override_mobile_layout | Boolean | No    | Whether to override the mobile layout. Requires the force single page on mobile or mobile vertical scroll feature to be enabled on the account |
+| content_goal        | String   | No       | The content goal of the publication. Requires the content metadata feature to be enabled on the account                                        |
+| content_goal_other  | String   | No       | Custom content goal description (when content_goal is "other"). Requires the content metadata feature to be enabled on the account             |
+| format_type         | String   | No       | The format type of the publication. Requires the content metadata feature to be enabled on the account                                         |
 
 ## Mark a publication as online
 
@@ -455,7 +545,19 @@ curl "https://api.publitas.com/v2/groups/1/publications/222/online" \
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
       "valid_from": null,
-      "disable_seo": false
+      "disable_seo": false,
+      "language": "en",
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
@@ -505,7 +607,19 @@ curl "https://api.publitas.com/v2/groups/1/publications/222/offline" \
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
       "valid_from": null,
-      "disable_seo": true
+      "disable_seo": true,
+      "language": "en",
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
@@ -550,7 +664,19 @@ curl "https://api.publitas.com/v2/groups/1/publications/222/unlisted" \
       "schedule_offline_at": null,
       "public_url": "https://view.publitas.com/example-group/spring-2014",
       "valid_from": null,
-      "disable_seo": true
+      "disable_seo": true,
+      "language": "en",
+      "secured": false,
+      "show_related_publications": false,
+      "auto_related_publications": false,
+      "test": false,
+      "custom_header": null,
+      "force_single_page_on_mobile": false,
+      "mobile_vertical_scroll": false,
+      "override_mobile_layout": false,
+      "content_goal": null,
+      "content_goal_other": null,
+      "format_type": null
     }
   ]
 }
