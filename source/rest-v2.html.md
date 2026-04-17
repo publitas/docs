@@ -1138,6 +1138,334 @@ When a collection cannot be deleted because it contains publications, the API re
 A collection can only be deleted if it contains no publications.
 </aside>
 
+# Product Libraries
+
+## List all product libraries of a group
+
+```shell
+# This will retrieve all product libraries for a group
+curl "https://api.publitas.com/v2/groups/1/product_libraries" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "product_libraries": [
+    {
+      "id": 1,
+      "group_id": 1,
+      "account_id": 10,
+      "title": "Main Library",
+      "url": "https://some/feed/file.xml",
+      "sync_enabled": true,
+      "sync_hour": 3,
+      "sync_time_zone": "Europe/Amsterdam",
+      "hourly_sync_enabled": false,
+      "integration_instance_id": null,
+      "external_id": null,
+      "created_at": "2026-04-01T10:00:00Z",
+      "updated_at": "2026-04-10T12:00:00Z",
+      "last_import": {
+        "id": 42,
+        "state": "success",
+        "success_count": 1891,
+        "failed_count": 0,
+        "created_at": "2026-04-10T12:00:00Z"
+      }
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/product_libraries`
+
+### URL Parameters
+
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
+
+### Query Parameters
+
+See the [Pagination](#pagination) section for pagination parameters.
+
+The JSON response returns a list of product libraries with the following attributes:
+
+| Field                   | Type    | Description                                                                             |
+| ----------------------- | ------- | --------------------------------------------------------------------------------------- |
+| id                      | Integer | Product Library ID                                                                      |
+| group_id                | Integer | ID of the group this product library belongs to                                         |
+| account_id              | Integer | ID of the account this product library belongs to                                       |
+| title                   | String  | Product Library title                                                                   |
+| url                     | String  | URL of the product feed file backing this library                                       |
+| sync_enabled            | Boolean | Whether scheduled sync is enabled                                                       |
+| sync_hour               | Integer | Hour of the day (0-23) at which the daily sync runs                                     |
+| sync_time_zone          | String  | Time zone in which `sync_hour` is interpreted (IANA identifier, e.g. `Europe/Amsterdam`) |
+| hourly_sync_enabled     | Boolean | Whether the library is synced every hour                                                |
+| integration_instance_id | Integer | ID of the integration instance backing this library, or `null` if none                  |
+| external_id             | String  | External identifier for libraries that are synced from an external system               |
+| created_at              | String  | ISO 8601 timestamp of creation                                                          |
+| updated_at              | String  | ISO 8601 timestamp of last update                                                       |
+| last_import             | Object  | Summary of the most recent import, or `null` if the library has never been imported     |
+
+The `last_import` object has the following attributes:
+
+| Field         | Type    | Description                                                    |
+| ------------- | ------- | -------------------------------------------------------------- |
+| id            | Integer | Import ID                                                      |
+| state         | String  | Import state (`processing`, `success`, `failed`)               |
+| success_count | Integer | Number of products successfully imported                       |
+| failed_count  | Integer | Number of products that failed to import                       |
+| created_at    | String  | ISO 8601 timestamp at which the import was created             |
+
+## Get a specific product library
+
+```shell
+# This endpoint retrieves a specific product library.
+curl "https://api.publitas.com/v2/groups/1/product_libraries/1" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "product_library": {
+    "id": 1,
+    "group_id": 1,
+    "account_id": 10,
+    "title": "Main Library",
+    "url": "https://some/feed/file.xml",
+    "sync_enabled": true,
+    "sync_hour": 3,
+    "sync_time_zone": "Europe/Amsterdam",
+    "hourly_sync_enabled": false,
+    "integration_instance_id": null,
+    "external_id": null,
+    "created_at": "2026-04-01T10:00:00Z",
+    "updated_at": "2026-04-10T12:00:00Z",
+    "last_import": {
+      "id": 42,
+      "state": "success",
+      "success_count": 1891,
+      "failed_count": 0,
+      "created_at": "2026-04-10T12:00:00Z"
+    }
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/product_libraries/<Product Library ID>`
+
+### URL Parameters
+
+| Parameter          | Description                          |
+| ------------------ | ------------------------------------ |
+| Group ID           | The ID of a specific group           |
+| Product Library ID | The ID of a specific product library |
+
+## Create a product library
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/product_libraries`
+
+### URL Parameters
+
+| Parameter | Description                |
+| --------- | -------------------------- |
+| Group ID  | The ID of a specific group |
+
+```shell
+curl "https://api.publitas.com/v2/groups/1/product_libraries" \
+  -H "Authorization: ApiKey <api_key>" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "product_library": {
+      "title": "Main Library",
+      "url": "https://some/feed/file.xml",
+      "sync_enabled": true,
+      "sync_hour": 3,
+      "sync_time_zone": "Europe/Amsterdam"
+    }
+  }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "product_library": {
+    "id": 1,
+    "group_id": 1,
+    "account_id": 10,
+    "title": "Main Library",
+    "url": "https://some/feed/file.xml",
+    "sync_enabled": true,
+    "sync_hour": 3,
+    "sync_time_zone": "Europe/Amsterdam",
+    "hourly_sync_enabled": false,
+    "integration_instance_id": null,
+    "external_id": null,
+    "created_at": "2026-04-13T16:12:08Z",
+    "updated_at": "2026-04-13T16:12:08Z",
+    "last_import": null
+  }
+}
+```
+
+Creating a product library schedules an initial import of its product feed.
+
+### Request body parameters
+
+The following fields need to be sent within a product_library scope (see the right panel for an example):
+
+| Name                    | Type    | Required | Description                                                                          |
+| ----------------------- | ------- | -------- | ------------------------------------------------------------------------------------ |
+| title                   | String  | Yes      | Product Library title                                                                |
+| url                     | String  | No       | URL of the product feed file. HTTP, HTTPS, FTP and SFTP are accepted                 |
+| sync_enabled            | Boolean | No       | Whether scheduled sync is enabled                                                    |
+| sync_hour               | Integer | No       | Hour of the day (0-23) at which the daily sync runs                                  |
+| sync_time_zone          | String  | No       | Time zone in which `sync_hour` is interpreted (IANA identifier)                      |
+| hourly_sync_enabled     | Boolean | No       | Whether the library is synced every hour                                             |
+| integration_instance_id | Integer | No       | ID of the integration instance to back this library, instead of a `url`              |
+
+### Response codes
+
+This endpoint returns the `201` response code on success.
+
+## Update a product library
+
+```shell
+# This will update a product library's title and URL.
+curl "https://api.publitas.com/v2/groups/1/product_libraries/1" \
+  -H "Authorization: ApiKey <api_key>" \
+  -H "Content-Type: application/json" \
+  -X PUT \
+  --data '{
+    "product_library": {
+      "title": "Updated Title",
+      "url": "https://some/new/feed.xml"
+    }
+  }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "product_library": {
+    "id": 1,
+    "group_id": 1,
+    "account_id": 10,
+    "title": "Updated Title",
+    "url": "https://some/new/feed.xml",
+    "sync_enabled": true,
+    "sync_hour": 3,
+    "sync_time_zone": "Europe/Amsterdam",
+    "hourly_sync_enabled": false,
+    "integration_instance_id": null,
+    "external_id": null,
+    "created_at": "2026-04-13T16:12:08Z",
+    "updated_at": "2026-04-14T09:30:00Z",
+    "last_import": {
+      "id": 42,
+      "state": "success",
+      "success_count": 1891,
+      "failed_count": 0,
+      "created_at": "2026-04-10T12:00:00Z"
+    }
+  }
+}
+```
+
+### HTTP Request
+
+`PUT https://api.publitas.com/v2/groups/<Group ID>/product_libraries/<Product Library ID>`
+
+### URL Parameters
+
+| Parameter          | Description                              |
+| ------------------ | ---------------------------------------- |
+| Group ID           | The ID of a specific group               |
+| Product Library ID | The ID of the product library to update  |
+
+### Request body parameters
+
+The following fields need to be sent within a product_library scope (see the right panel for an example):
+
+| Name                    | Type    | Required | Description                                                                          |
+| ----------------------- | ------- | -------- | ------------------------------------------------------------------------------------ |
+| title                   | String  | No       | Product Library title                                                                |
+| url                     | String  | No       | URL of the product feed file. HTTP, HTTPS, FTP and SFTP are accepted                 |
+| sync_enabled            | Boolean | No       | Whether scheduled sync is enabled                                                    |
+| sync_hour               | Integer | No       | Hour of the day (0-23) at which the daily sync runs                                  |
+| sync_time_zone          | String  | No       | Time zone in which `sync_hour` is interpreted (IANA identifier)                      |
+| hourly_sync_enabled     | Boolean | No       | Whether the library is synced every hour                                             |
+| integration_instance_id | Integer | No       | ID of the integration instance to back this library, instead of a `url`              |
+
+Updating `url` or `integration_instance_id` schedules a new import of the library.
+
+## Delete a product library
+
+### HTTP Request
+
+`DELETE https://api.publitas.com/v2/groups/<Group ID>/product_libraries/<Product Library ID>`
+
+### URL Parameters
+
+| Parameter          | Description                              |
+| ------------------ | ---------------------------------------- |
+| Group ID           | The ID of a specific group               |
+| Product Library ID | The ID of the product library to delete  |
+
+```shell
+curl -X DELETE "https://api.publitas.com/v2/groups/1/product_libraries/1" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+### Response codes
+
+| Code | Description                                             |
+| ---- | ------------------------------------------------------- |
+| 204  | No Content - Product library successfully deleted       |
+| 403  | Forbidden - Invalid API key or insufficient permissions |
+| 404  | Not Found - Product library does not exist              |
+
+## Sync a product library
+
+Triggers an on-demand import of a product library's feed. The import runs asynchronously; poll the library's `last_import` to track progress.
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/groups/<Group ID>/product_libraries/<Product Library ID>/sync`
+
+### URL Parameters
+
+| Parameter          | Description                            |
+| ------------------ | -------------------------------------- |
+| Group ID           | The ID of a specific group             |
+| Product Library ID | The ID of the product library to sync  |
+
+```shell
+curl -X POST "https://api.publitas.com/v2/groups/1/product_libraries/1/sync" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+### Response codes
+
+| Code | Description                                             |
+| ---- | ------------------------------------------------------- |
+| 202  | Accepted - Import scheduled                             |
+| 403  | Forbidden - Invalid API key or insufficient permissions |
+| 404  | Not Found - Product library does not exist              |
+
 # Pages
 
 ## Add pages to publication
