@@ -1140,6 +1140,10 @@ A collection can only be deleted if it contains no publications.
 
 # Product Libraries
 
+<aside class="notice">
+All endpoints in this section return <code>422 Unprocessable Entity</code> if product libraries are not available for the group.
+</aside>
+
 ## List all product libraries of a group
 
 ```shell
