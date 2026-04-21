@@ -1211,7 +1211,7 @@ The JSON response returns a list of product libraries with the following attribu
 | sync_time_zone          | String  | Time zone in which `sync_hour` is interpreted (IANA identifier, e.g. `Europe/Amsterdam`) |
 | hourly_sync_enabled     | Boolean | Whether the library is synced every hour                                                |
 | integration_instance_id | Integer | ID of the integration instance backing this library, or `null` if none                  |
-| external_id             | String  | External identifier for libraries that are synced from an external system               |
+| external_id             | Integer | External identifier for libraries that are synced from an external system               |
 | created_at              | String  | ISO 8601 timestamp of creation                                                          |
 | updated_at              | String  | ISO 8601 timestamp of last update                                                       |
 | last_import             | Object  | Summary of the most recent import, or `null` if the library has never been imported     |
