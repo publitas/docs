@@ -391,6 +391,29 @@
               </ul>
           </li>
           <li>
+            <a href="#product-libraries" class="toc-h1 toc-link" data-title="Product Libraries">Product Libraries</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-all-product-libraries-of-a-group" class="toc-h2 toc-link" data-title="List all product libraries of a group">List all product libraries of a group</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-product-library" class="toc-h2 toc-link" data-title="Get a specific product library">Get a specific product library</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-product-library" class="toc-h2 toc-link" data-title="Create a product library">Create a product library</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-product-library" class="toc-h2 toc-link" data-title="Update a product library">Update a product library</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-product-library" class="toc-h2 toc-link" data-title="Delete a product library">Delete a product library</a>
+                  </li>
+                  <li>
+                    <a href="#sync-a-product-library" class="toc-h2 toc-link" data-title="Sync a product library">Sync a product library</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#pages" class="toc-h1 toc-link" data-title="Pages">Pages</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2091,11 +2114,531 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/collections/42"</spa
 <aside class="notice">
 A collection can only be deleted if it contains no publications.
 </aside>
+<h1 id='product-libraries'>Product Libraries</h1>
+<aside class="notice">
+All endpoints in this section return <code>422 Unprocessable Entity</code> if product libraries are not available for the group.
+</aside>
+<h2 id='list-all-product-libraries-of-a-group'>List all product libraries of a group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will retrieve all product libraries for a group</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/product_libraries"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"product_libraries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main Library"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sync_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sync_hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sync_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/Amsterdam"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"hourly_sync_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"integration_instance_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-01T10:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-10T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"last_import"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-10T12:00:00Z"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-19'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_libraries</code></p>
+<h3 id='url-parameters-16'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<p>See the <a href="#pagination">Pagination</a> section for pagination parameters.</p>
+
+<p>The JSON response returns a list of product libraries with the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Product Library ID</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>Integer</td>
+<td>ID of the group this product library belongs to</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>Integer</td>
+<td>ID of the account this product library belongs to</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Product Library title</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>URL of the product feed file backing this library</td>
+</tr>
+<tr>
+<td>sync_enabled</td>
+<td>Boolean</td>
+<td>Whether scheduled sync is enabled</td>
+</tr>
+<tr>
+<td>sync_hour</td>
+<td>Integer</td>
+<td>Hour of the day (0-23) at which the daily sync runs</td>
+</tr>
+<tr>
+<td>sync_time_zone</td>
+<td>String</td>
+<td>Time zone in which <code>sync_hour</code> is interpreted (IANA identifier, e.g. <code>Europe/Amsterdam</code>)</td>
+</tr>
+<tr>
+<td>hourly_sync_enabled</td>
+<td>Boolean</td>
+<td>Whether the library is synced every hour</td>
+</tr>
+<tr>
+<td>integration_instance_id</td>
+<td>Integer</td>
+<td>ID of the integration instance backing this library, or <code>null</code> if none</td>
+</tr>
+<tr>
+<td>external_id</td>
+<td>Integer</td>
+<td>External identifier for libraries that are synced from an external system</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>String</td>
+<td>ISO 8601 timestamp of creation</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>String</td>
+<td>ISO 8601 timestamp of last update</td>
+</tr>
+<tr>
+<td>last_import</td>
+<td>Object</td>
+<td>Summary of the most recent import, or <code>null</code> if the library has never been imported</td>
+</tr>
+</tbody></table>
+
+<p>The <code>last_import</code> object has the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Import ID</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>Import state (<code>processing</code>, <code>success</code>, <code>failed</code>)</td>
+</tr>
+<tr>
+<td>success_count</td>
+<td>Integer</td>
+<td>Number of products successfully imported</td>
+</tr>
+<tr>
+<td>failed_count</td>
+<td>Integer</td>
+<td>Number of products that failed to import</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>String</td>
+<td>ISO 8601 timestamp at which the import was created</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-specific-product-library'>Get a specific product library</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This endpoint retrieves a specific product library.</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/product_libraries/1"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"product_library"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main Library"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sync_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sync_hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sync_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/Amsterdam"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"hourly_sync_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"integration_instance_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-01T10:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-10T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"last_import"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-10T12:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-20'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_libraries/&lt;Product Library ID&gt;</code></p>
+<h3 id='url-parameters-17'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Product Library ID</td>
+<td>The ID of a specific product library</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-product-library'>Create a product library</h2><h3 id='http-request-21'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_libraries</code></p>
+<h3 id='url-parameters-18'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/product_libraries"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "product_library": {
+      "title": "Main Library",
+      "url": "https://some/feed/file.xml",
+      "sync_enabled": true,
+      "sync_hour": 3,
+      "sync_time_zone": "Europe/Amsterdam"
+    }
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"product_library"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main Library"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sync_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sync_hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sync_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/Amsterdam"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"hourly_sync_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"integration_instance_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-13T16:12:08Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-13T16:12:08Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"last_import"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Creating a product library schedules an initial import of its product feed.</p>
+<h3 id='request-body-parameters-7'>Request body parameters</h3>
+<p>The following fields need to be sent within a product_library scope (see the right panel for an example):</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Yes</td>
+<td>Product Library title</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>No</td>
+<td>URL of the product feed file. HTTP, HTTPS, FTP and SFTP are accepted</td>
+</tr>
+<tr>
+<td>sync_enabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether scheduled sync is enabled</td>
+</tr>
+<tr>
+<td>sync_hour</td>
+<td>Integer</td>
+<td>No</td>
+<td>Hour of the day (0-23) at which the daily sync runs</td>
+</tr>
+<tr>
+<td>sync_time_zone</td>
+<td>String</td>
+<td>No</td>
+<td>Time zone in which <code>sync_hour</code> is interpreted (IANA identifier)</td>
+</tr>
+<tr>
+<td>hourly_sync_enabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the library is synced every hour</td>
+</tr>
+<tr>
+<td>integration_instance_id</td>
+<td>Integer</td>
+<td>No</td>
+<td>ID of the integration instance to back this library, instead of a <code>url</code></td>
+</tr>
+</tbody></table>
+<h3 id='response-codes-5'>Response codes</h3>
+<p>This endpoint returns the <code>201</code> response code on success.</p>
+<h2 id='update-a-product-library'>Update a product library</h2><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># This will update a product library's title and URL.</span>
+curl <span class="s2">"https://api.publitas.com/v2/groups/1/product_libraries/1"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-X</span> PUT <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "product_library": {
+      "title": "Updated Title",
+      "url": "https://some/new/feed.xml"
+    }
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"product_library"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updated Title"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://some/new/feed.xml"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sync_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sync_hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sync_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/Amsterdam"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"hourly_sync_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"integration_instance_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-13T16:12:08Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-14T09:30:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"last_import"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-04-10T12:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-22'>HTTP Request</h3>
+<p><code>PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_libraries/&lt;Product Library ID&gt;</code></p>
+<h3 id='url-parameters-19'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Product Library ID</td>
+<td>The ID of the product library to update</td>
+</tr>
+</tbody></table>
+<h3 id='request-body-parameters-8'>Request body parameters</h3>
+<p>The following fields need to be sent within a product_library scope (see the right panel for an example):</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>No</td>
+<td>Product Library title</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>No</td>
+<td>URL of the product feed file. HTTP, HTTPS, FTP and SFTP are accepted</td>
+</tr>
+<tr>
+<td>sync_enabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether scheduled sync is enabled</td>
+</tr>
+<tr>
+<td>sync_hour</td>
+<td>Integer</td>
+<td>No</td>
+<td>Hour of the day (0-23) at which the daily sync runs</td>
+</tr>
+<tr>
+<td>sync_time_zone</td>
+<td>String</td>
+<td>No</td>
+<td>Time zone in which <code>sync_hour</code> is interpreted (IANA identifier)</td>
+</tr>
+<tr>
+<td>hourly_sync_enabled</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the library is synced every hour</td>
+</tr>
+<tr>
+<td>integration_instance_id</td>
+<td>Integer</td>
+<td>No</td>
+<td>ID of the integration instance to back this library, instead of a <code>url</code></td>
+</tr>
+</tbody></table>
+
+<p>Updating <code>url</code> or <code>integration_instance_id</code> schedules a new import of the library.</p>
+<h2 id='delete-a-product-library'>Delete a product library</h2><h3 id='http-request-23'>HTTP Request</h3>
+<p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_libraries/&lt;Product Library ID&gt;</code></p>
+<h3 id='url-parameters-20'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Product Library ID</td>
+<td>The ID of the product library to delete</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s2">"https://api.publitas.com/v2/groups/1/product_libraries/1"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div><h3 id='response-codes-6'>Response codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>204</td>
+<td>No Content - Product library successfully deleted</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden - Invalid API key or insufficient permissions</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found - Product library does not exist</td>
+</tr>
+</tbody></table>
+<h2 id='sync-a-product-library'>Sync a product library</h2>
+<p>Triggers an on-demand import of a product library&#39;s feed. The import runs asynchronously; poll the library&#39;s <code>last_import</code> to track progress.</p>
+<h3 id='http-request-24'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_libraries/&lt;Product Library ID&gt;/sync</code></p>
+<h3 id='url-parameters-21'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Product Library ID</td>
+<td>The ID of the product library to sync</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://api.publitas.com/v2/groups/1/product_libraries/1/sync"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div><h3 id='response-codes-7'>Response codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>202</td>
+<td>Accepted - Import scheduled</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden - Invalid API key or insufficient permissions</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found - Product library does not exist</td>
+</tr>
+</tbody></table>
 <h1 id='pages'>Pages</h1><h2 id='add-pages-to-publication'>Add pages to publication</h2>
 <p>Add pages to a publication from a PDF file</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-22'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2117,7 +2660,7 @@ A collection can only be deleted if it contains no publications.
   <span class="nt">--data</span> <span class="s1">'{
     "source_url": "https://some/file.pdf"
   }'</span>
-</code></pre></div><h3 id='request-body-parameters-7'>Request body parameters</h3>
+</code></pre></div><h3 id='request-body-parameters-9'>Request body parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2151,13 +2694,13 @@ A collection can only be deleted if it contains no publications.
 <td>Hotspot extraction (auto-tagging) settings, see <a href="#extraction-options">extraction options</a> for details</td>
 </tr>
 </tbody></table>
-<h3 id='response-codes-5'>Response codes</h3>
+<h3 id='response-codes-8'>Response codes</h3>
 <p>This endpoint returns the <code>200</code> response code.</p>
 <h2 id='replace-a-publication-page'>Replace a publication page</h2>
 <p>Replace a page in a publication</p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>PUT https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-23'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2186,7 +2729,7 @@ A collection can only be deleted if it contains no publications.
       "source_url": "https://some/file.pdf"
     }
   }'</span>
-</code></pre></div><h3 id='request-body-parameters-8'>Request body parameters</h3>
+</code></pre></div><h3 id='request-body-parameters-10'>Request body parameters</h3>
 <p>The following fields need to be sent within a page scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -2222,14 +2765,14 @@ A collection can only be deleted if it contains no publications.
 <td>Remove existing hotspots on the specified page (based on page number parameter)</td>
 </tr>
 </tbody></table>
-<h3 id='response-codes-6'>Response codes</h3>
+<h3 id='response-codes-9'>Response codes</h3>
 <p>This endpoint returns the <code>200</code> response code.</p>
-<h2 id='remove-a-publication-page'>Remove a publication page</h2><h3 id='http-request-21'>HTTP Request</h3>
+<h2 id='remove-a-publication-page'>Remove a publication page</h2><h3 id='http-request-27'>HTTP Request</h3>
 <p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;/pages/&lt;Page Number&gt;</code></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/pages/1"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
   <span class="nt">-X</span> DELETE
-</code></pre></div><h3 id='url-parameters-18'>URL Parameters</h3>
+</code></pre></div><h3 id='url-parameters-24'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2249,7 +2792,7 @@ A collection can only be deleted if it contains no publications.
 <td>The number of the page to be removed in the publication</td>
 </tr>
 </tbody></table>
-<h3 id='response-codes-7'>Response codes</h3>
+<h3 id='response-codes-10'>Response codes</h3>
 <p>This endpoint returns the <code>200</code> response code.</p>
 <h1 id='product-feeds'>Product Feeds</h1><h2 id='list-recent-product-feeds'>List recent product feeds</h2>
 <p>Lists last 5 product feed imports</p>
@@ -2302,9 +2845,9 @@ A collection can only be deleted if it contains no publications.
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-22'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-25'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2316,7 +2859,7 @@ A collection can only be deleted if it contains no publications.
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-<h2 id='create-a-product-feed'>Create a product feed</h2><h3 id='http-request-23'>HTTP Request</h3>
+<h2 id='create-a-product-feed'>Create a product feed</h2><h3 id='http-request-29'>HTTP Request</h3>
 <p><code>POST https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds</code></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'http://api.publitas.com/v2/groups/1/product_feeds'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: ApiKey &lt;api_key&gt;'</span> <span class="se">\</span>
@@ -2340,7 +2883,7 @@ A collection can only be deleted if it contains no publications.
     </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='url-parameters-20'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters-26'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2352,7 +2895,7 @@ A collection can only be deleted if it contains no publications.
 <td>The ID of a specific group</td>
 </tr>
 </tbody></table>
-<h3 id='request-body-parameters-9'>Request body parameters</h3>
+<h3 id='request-body-parameters-11'>Request body parameters</h3>
 <p>The following fields need to be sent within a product feed scope (see the right panel for an example):</p>
 
 <table><thead>
@@ -2439,7 +2982,7 @@ A collection can only be deleted if it contains no publications.
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='url-parameters-21'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters-27'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2580,9 +3123,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
     </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-24'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-30'>HTTP Request</h3>
 <p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
-<h3 id='url-parameters-22'>URL Parameters</h3>
+<h3 id='url-parameters-28'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
