@@ -1691,6 +1691,146 @@ The following fields need to be sent within a product feed scope (see the right 
 | ---- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------- |
 | url  | String | Yes      | URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file |
 
+### Response codes
+
+| Code | Description                                                     |
+| ---- | --------------------------------------------------------------- |
+| 201  | Created - Product feed import scheduled                         |
+| 409  | Conflict - A product feed import is already in progress         |
+| 412  | Precondition Failed - `url` is missing or empty                 |
+
+## Retrieve a product feed
+
+Returns a single product feed import record belonging to the given group.
+
+```shell
+curl "https://api.publitas.com/v2/groups/1/product_feeds/28" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns a JSON document structured like this:
+
+```json
+{
+  "product_feed": {
+    "id": 28,
+    "group_id": 1,
+    "url": "http://some/feed/file.xml",
+    "state": "success",
+    "success_count": 1891,
+    "failed_count": 0
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/groups/<Group ID>/product_feeds/<Product Feed ID>`
+
+### URL Parameters
+
+| Parameter       | Description                                    |
+| --------------- | ---------------------------------------------- |
+| Group ID        | The ID of a specific group                     |
+| Product Feed ID | The ID of the product feed import to retrieve  |
+
+### Response codes
+
+| Code | Description                                                 |
+| ---- | ----------------------------------------------------------- |
+| 200  | OK - Product feed returned                                  |
+| 403  | Forbidden - Invalid API key or insufficient permissions     |
+| 404  | Not Found - Product feed does not exist in the given group  |
+
+## Update a product feed
+
+Changes the group's product feed URL and schedules a new import. A successful update creates a new import record with a new ID.
+
+### HTTP Request
+
+`PATCH https://api.publitas.com/v2/groups/<Group ID>/product_feeds/<Product Feed ID>`
+
+```shell
+curl "https://api.publitas.com/v2/groups/1/product_feeds/28" \
+  -H "Authorization: ApiKey <api_key>" \
+  -H "Content-Type: application/json" \
+  -X PATCH \
+  --data '{
+      "product_feed": {
+          "url": "http://some/new/feed/file.xml"
+      }
+  }'
+```
+
+> The above command returns a JSON document structured like this:
+
+```json
+{
+  "product_feed": {
+    "id": 43,
+    "group_id": 1,
+    "url": "http://some/new/feed/file.xml",
+    "state": "scheduled",
+    "success_count": null,
+    "failed_count": null
+  }
+}
+```
+
+### URL Parameters
+
+| Parameter       | Description                                  |
+| --------------- | -------------------------------------------- |
+| Group ID        | The ID of a specific group                   |
+| Product Feed ID | The ID of an existing product feed import    |
+
+### Request body parameters
+
+The following fields need to be sent within a product feed scope (see the right panel for an example):
+
+| Name | Type   | Required | Description                                                                                                           |
+| ---- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| url  | String | Yes      | URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file |
+
+### Response codes
+
+| Code | Description                                                     |
+| ---- | --------------------------------------------------------------- |
+| 200  | OK - Product feed updated and a new import scheduled            |
+| 403  | Forbidden - Invalid API key or insufficient permissions         |
+| 404  | Not Found - Product feed does not exist in the given group      |
+| 409  | Conflict - A product feed import is already in progress         |
+| 412  | Precondition Failed - `url` is missing or empty                 |
+
+## Delete a product feed
+
+Clears the group's product feed configuration, removes all import records, and enqueues a cleanup of the group's products.
+
+### HTTP Request
+
+`DELETE https://api.publitas.com/v2/groups/<Group ID>/product_feeds/<Product Feed ID>`
+
+```shell
+curl "https://api.publitas.com/v2/groups/1/product_feeds/28" \
+  -H "Authorization: ApiKey <api_key>" \
+  -X DELETE
+```
+
+### URL Parameters
+
+| Parameter       | Description                                  |
+| --------------- | -------------------------------------------- |
+| Group ID        | The ID of a specific group                   |
+| Product Feed ID | The ID of an existing product feed import    |
+
+### Response codes
+
+| Code | Description                                                 |
+| ---- | ----------------------------------------------------------- |
+| 204  | No Content - Product feed successfully removed              |
+| 403  | Forbidden - Invalid API key or insufficient permissions     |
+| 404  | Not Found - Product feed does not exist in the given group  |
+
 # Conversions
 
 ## List last conversions
