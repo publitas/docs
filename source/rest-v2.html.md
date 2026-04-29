@@ -2039,6 +2039,317 @@ Both 'links' and 'products' allow the fields below:
 | ----- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | icons | Boolean | No       | Show or hide hotspot icons for extracted hotspot. This setting is not applicable to hotspots extracted from PDF annotations (those are defined in the annotation itself) |
 
+# Hotspot Endpoints
+
+Hotspots are interactive areas placed on spread pages. Each hotspot has a type that determines its behavior and the additional fields returned in the response. All coordinates and dimensions are expressed as a fraction of the spread size (values between 0 and 1).
+
+## List all hotspots of a spread
+
+```shell
+curl "https://api.publitas.com/v2/spreads/42/hotspots" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "hotspots": [
+    {
+      "id": 1,
+      "type": "external_link",
+      "top": 0.1,
+      "left": 0.2,
+      "width": 0.15,
+      "height": 0.08,
+      "icon_left": 0.5,
+      "icon_top": 0.5,
+      "show_indication": true,
+      "tab_index": null,
+      "z_index": 0,
+      "embedded_content": false,
+      "dynamic": false,
+      "product_theme_id": null,
+      "rotation": 0.0,
+      "url": "https://example.com",
+      "popup_max_width": null,
+      "popup_max_height": null
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/spreads/<Spread ID>/hotspots`
+
+### URL Parameters
+
+| Parameter | Description                     |
+| --------- | ------------------------------- |
+| Spread ID | The ID of a specific spread     |
+
+This endpoint supports [pagination](#understanding-pagination). Results are ordered by page number.
+
+### Response fields
+
+The response returns an array of hotspot objects. All hotspot types share the following base fields:
+
+| Field             | Type         | Description                                              |
+| ----------------- | ------------ | -------------------------------------------------------- |
+| `id`              | Integer      | Hotspot ID                                               |
+| `type`            | String       | Hotspot type (see below)                                 |
+| `top`             | Float        | Top offset as a fraction of spread height (0–1)          |
+| `left`            | Float        | Left offset as a fraction of spread width (0–1)          |
+| `width`           | Float        | Width as a fraction of spread width (0–1)                |
+| `height`          | Float        | Height as a fraction of spread height (0–1)              |
+| `icon_left`       | Float        | Horizontal center of the hotspot icon (0–1)              |
+| `icon_top`        | Float        | Vertical center of the hotspot icon (0–1)                |
+| `show_indication` | Boolean      | Whether the hotspot indication icon is visible           |
+| `tab_index`       | Integer/null | Accessibility tab order                                  |
+| `z_index`         | Integer      | Stacking order relative to other hotspots on the spread  |
+| `embedded_content`| Boolean      | Whether the hotspot renders its content inline           |
+| `dynamic`         | Boolean      | `true` shows a full product card overlay; `false` acts as a transparent link |
+| `product_theme_id`| Integer/null | Product theme ID for product-type hotspots               |
+| `rotation`        | Float        | Rotation in degrees                                      |
+
+Additional fields are included depending on `type`:
+
+**`external_link`**
+
+| Field             | Type         | Description                                   |
+| ----------------- | ------------ | --------------------------------------------- |
+| `url`             | String       | Target URL                                    |
+| `popup_max_width` | Integer/null | Maximum popup width in pixels                 |
+| `popup_max_height`| Integer/null | Maximum popup height in pixels                |
+
+**`page_reference`**
+
+| Field         | Type    | Description                          |
+| ------------- | ------- | ------------------------------------ |
+| `page_number` | Integer | Publication page number to link to   |
+
+**`video`**
+
+| Field                            | Type         | Description                                      |
+| -------------------------------- | ------------ | ------------------------------------------------ |
+| `video_id`                       | String/null  | Video ID (for hosted providers)                  |
+| `video_provider`                 | String/null  | Video provider (e.g. `youtube`, `vimeo`)         |
+| `video_url`                      | String/null  | Direct video URL or file path                    |
+| `video_type`                     | String/null  | Video type                                       |
+| `video_autoplay`                 | Boolean      | Whether the video autoplays on open              |
+| `video_show_preview`             | Boolean/null | Whether a preview thumbnail is shown             |
+| `video_loop`                     | Boolean      | Whether the video loops                          |
+| `video_start_time`               | Integer/null | Start time in seconds                            |
+| `video_overlay_content`          | Boolean      | Whether the video overlays other content         |
+| `video_show_accessibility_controls` | Boolean   | Whether accessibility controls are shown         |
+| `accessibility_text`             | String/null  | Accessible label for the video                   |
+
+**`image`**
+
+| Field                | Type         | Description                                           |
+| -------------------- | ------------ | ----------------------------------------------------- |
+| `url`                | String       | Image URL                                             |
+| `image_alt_text`     | String/null  | Alt text for the image                                |
+| `content_fit_mode`   | String/null  | How the image is fitted (`cover`, `contain`, etc.)    |
+| `image_show_lightbox`| Boolean      | Whether clicking opens the image in a lightbox        |
+| `show_tooltip`       | Boolean      | Whether to show a tooltip                             |
+| `corner_radius`      | Integer/null | Corner radius in pixels                               |
+| `opacity`            | Float/null   | Opacity (0–1)                                         |
+| `image_crop_state`   | Object/null  | Crop state metadata                                   |
+| `style_json`         | Object/null  | Custom style overrides                                |
+| `background_color`   | String/null  | Background color (hex); `null` when disabled          |
+
+**`slideshow`**
+
+| Field    | Type  | Description              |
+| -------- | ----- | ------------------------ |
+| `slides` | Array | Array of slide objects (see below) |
+
+Each slide object contains:
+
+| Field               | Type         | Description                        |
+| ------------------- | ------------ | ---------------------------------- |
+| `id`                | Integer      | Slide ID                           |
+| `hotspot_id`        | Integer      | Parent hotspot ID                  |
+| `position`          | Integer      | Display order                      |
+| `url`               | String/null  | External image URL                 |
+| `file_path`         | String/null  | Hosted file path                   |
+| `file_hosted`       | Boolean      | Whether the file is hosted         |
+| `file_url`          | String/null  | Absolute URL to the hosted file    |
+| `original_filename` | String/null  | Original upload filename           |
+| `alt_text`          | String/null  | Accessible alt text for the slide  |
+
+**`product`**
+
+| Field      | Type  | Description                                                    |
+| ---------- | ----- | -------------------------------------------------------------- |
+| `products` | Array | Array of product objects serialized via the V2 Product schema  |
+
+## Get a specific hotspot
+
+```shell
+curl "https://api.publitas.com/v2/spreads/42/hotspots/1" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "hotspot": {
+    "id": 1,
+    "type": "external_link",
+    "top": 0.1,
+    "left": 0.2,
+    "width": 0.15,
+    "height": 0.08,
+    "icon_left": 0.5,
+    "icon_top": 0.5,
+    "show_indication": true,
+    "tab_index": null,
+    "z_index": 0,
+    "embedded_content": false,
+    "dynamic": false,
+    "product_theme_id": null,
+    "rotation": 0.0,
+    "url": "https://example.com",
+    "popup_max_width": null,
+    "popup_max_height": null
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/spreads/<Spread ID>/hotspots/<Hotspot ID>`
+
+### URL Parameters
+
+| Parameter  | Description                         |
+| ---------- | ----------------------------------- |
+| Spread ID  | The ID of a specific spread         |
+| Hotspot ID | The ID of a specific hotspot        |
+
+Returns 404 if the hotspot does not exist on the requested spread or belongs to a different spread.
+
+## Create a hotspot
+
+```shell
+curl "https://api.publitas.com/v2/spreads/42/hotspots" \
+  -H "Authorization: ApiKey <api_key>" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "type": "external_link",
+    "top": 0.1,
+    "left": 0.2,
+    "width": 0.15,
+    "height": 0.08,
+    "url": "https://example.com"
+  }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "hotspot": {
+    "id": 99,
+    "type": "external_link",
+    "top": 0.1,
+    "left": 0.2,
+    "width": 0.15,
+    "height": 0.08,
+    "icon_left": 0.5,
+    "icon_top": 0.5,
+    "show_indication": true,
+    "tab_index": null,
+    "z_index": 0,
+    "embedded_content": false,
+    "dynamic": false,
+    "product_theme_id": null,
+    "rotation": 0.0,
+    "url": "https://example.com",
+    "popup_max_width": null,
+    "popup_max_height": null
+  }
+}
+```
+
+### HTTP Request
+
+`POST https://api.publitas.com/v2/spreads/<Spread ID>/hotspots`
+
+### URL Parameters
+
+| Parameter | Description                     |
+| --------- | ------------------------------- |
+| Spread ID | The ID of a specific spread     |
+
+### Request body parameters
+
+**Core fields (all types)**
+
+| Field             | Type    | Required | Description                                                                                           |
+| ----------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------- |
+| `type`            | String  | Yes      | Hotspot type: `external_link`, `page_reference`, `video`, `image`, `slideshow`, or `product`          |
+| `top`             | Float   | Yes      | Top offset as a fraction of spread height (0–1)                                                       |
+| `left`            | Float   | Yes      | Left offset as a fraction of spread width (0–1)                                                       |
+| `width`           | Float   | Yes      | Width as a fraction of spread width (0–1)                                                             |
+| `height`          | Float   | Yes      | Height as a fraction of spread height (0–1)                                                           |
+| `show_indication` | Boolean | No       | Whether the hotspot indication icon is visible                                                        |
+| `tab_index`       | Integer | No       | Accessibility tab order                                                                               |
+| `embedded_content`| Boolean | No       | Whether the hotspot renders its content inline                                                        |
+
+**`external_link` fields**
+
+| Field             | Type    | Required | Description                        |
+| ----------------- | ------- | -------- | ---------------------------------- |
+| `url`             | String  | Yes      | Target URL                         |
+| `popup_max_width` | Integer | No       | Maximum popup width in pixels      |
+| `popup_max_height`| Integer | No       | Maximum popup height in pixels     |
+
+**`page_reference` fields**
+
+| Field         | Type    | Required | Description                        |
+| ------------- | ------- | -------- | ---------------------------------- |
+| `page_number` | Integer | Yes      | Publication page number to link to |
+
+**`video` fields**
+
+| Field                            | Type    | Required | Description                                            |
+| -------------------------------- | ------- | -------- | ------------------------------------------------------ |
+| `video_url`                      | String  | Yes      | Video URL or file path                                 |
+| `video_type`                     | String  | No       | Video type                                             |
+| `video_provider`                 | String  | No       | Video provider (e.g. `youtube`, `vimeo`)               |
+| `video_autoplay`                 | Boolean | No       | Whether the video autoplays on open                    |
+| `video_loop`                     | Boolean | No       | Whether the video loops                                |
+| `video_show_preview`             | Boolean | No       | Whether a preview thumbnail is shown                   |
+| `video_start_time`               | Integer | No       | Start time in seconds                                  |
+| `video_overlay_content`          | Boolean | No       | Whether the video overlays other content               |
+| `video_show_accessibility_controls` | Boolean | No    | Whether accessibility controls are shown               |
+| `accessibility_text`             | String  | No       | Accessible label for the video                         |
+
+**`image` fields**
+
+| Field                | Type    | Required | Description                                             |
+| -------------------- | ------- | -------- | ------------------------------------------------------- |
+| `url`                | String  | Yes      | Image URL                                               |
+| `image_alt_text`     | String  | No       | Alt text for the image                                  |
+| `image_add_alt_text` | Boolean | No       | Whether to include alt text in the response             |
+| `content_fit_mode`   | String  | No       | How the image is fitted (`cover`, `contain`, etc.)      |
+| `image_show_lightbox`| Boolean | No       | Whether clicking opens the image in a lightbox          |
+| `show_tooltip`       | Boolean | No       | Whether to show a tooltip                               |
+| `corner_radius`      | Integer | No       | Corner radius in pixels                                 |
+| `opacity`            | Float   | No       | Opacity (0–1)                                           |
+
+### Response codes
+
+| Code | Description                        |
+| ---- | ---------------------------------- |
+| 201  | Hotspot created successfully       |
+| 422  | Validation errors in request body  |
+
 # Errors
 
 > When there is an error the command returns JSON structured like this:
