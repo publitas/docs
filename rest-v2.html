@@ -436,6 +436,15 @@
                   <li>
                     <a href="#create-a-product-feed" class="toc-h2 toc-link" data-title="Create a product feed">Create a product feed</a>
                   </li>
+                  <li>
+                    <a href="#retrieve-a-product-feed" class="toc-h2 toc-link" data-title="Retrieve a product feed">Retrieve a product feed</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-product-feed" class="toc-h2 toc-link" data-title="Update a product feed">Update a product feed</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-product-feed" class="toc-h2 toc-link" data-title="Delete a product feed">Delete a product feed</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2913,6 +2922,214 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/product_libraries/1"
 <td>URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file</td>
 </tr>
 </tbody></table>
+<h3 id='response-codes-11'>Response codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created - Product feed import scheduled</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict - A product feed import is already in progress</td>
+</tr>
+<tr>
+<td>412</td>
+<td>Precondition Failed - <code>url</code> is missing or empty</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-a-product-feed'>Retrieve a product feed</h2>
+<p>Returns a single product feed import record belonging to the given group.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/product_feeds/28"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a JSON document structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"product_feed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/feed/file.xml"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-30'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds/&lt;Product Feed ID&gt;</code></p>
+<h3 id='url-parameters-27'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Product Feed ID</td>
+<td>The ID of the product feed import to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='response-codes-12'>Response codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK - Product feed returned</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden - Invalid API key or insufficient permissions</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found - Product feed does not exist in the given group</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-product-feed'>Update a product feed</h2>
+<p>Changes the group&#39;s product feed URL and schedules a new import. A successful update creates a new import record with a new ID.</p>
+<h3 id='http-request-31'>HTTP Request</h3>
+<p><code>PATCH https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds/&lt;Product Feed ID&gt;</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/product_feeds/28"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-X</span> PATCH <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+      "product_feed": {
+          "url": "http://some/new/feed/file.xml"
+      }
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a JSON document structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"product_feed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://some/new/feed/file.xml"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"failed_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='url-parameters-28'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Product Feed ID</td>
+<td>The ID of an existing product feed import</td>
+</tr>
+</tbody></table>
+<h3 id='request-body-parameters-12'>Request body parameters</h3>
+<p>The following fields need to be sent within a product feed scope (see the right panel for an example):</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>Yes</td>
+<td>URL of the feed file to upload. HTTP, HTTPS, FTP and SFTP are accepted, and it needs to be a publicly accessible file</td>
+</tr>
+</tbody></table>
+<h3 id='response-codes-13'>Response codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK - Product feed updated and a new import scheduled</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden - Invalid API key or insufficient permissions</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found - Product feed does not exist in the given group</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict - A product feed import is already in progress</td>
+</tr>
+<tr>
+<td>412</td>
+<td>Precondition Failed - <code>url</code> is missing or empty</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-product-feed'>Delete a product feed</h2>
+<p>Clears the group&#39;s product feed configuration, removes all import records, and enqueues a cleanup of the group&#39;s products.</p>
+<h3 id='http-request-32'>HTTP Request</h3>
+<p><code>DELETE https://api.publitas.com/v2/groups/&lt;Group ID&gt;/product_feeds/&lt;Product Feed ID&gt;</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/product_feeds/28"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE
+</code></pre></div><h3 id='url-parameters-29'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Group ID</td>
+<td>The ID of a specific group</td>
+</tr>
+<tr>
+<td>Product Feed ID</td>
+<td>The ID of an existing product feed import</td>
+</tr>
+</tbody></table>
+<h3 id='response-codes-14'>Response codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>204</td>
+<td>No Content - Product feed successfully removed</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden - Invalid API key or insufficient permissions</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found - Product feed does not exist in the given group</td>
+</tr>
+</tbody></table>
 <h1 id='conversions'>Conversions</h1><h2 id='list-last-conversions'>List last conversions</h2>
 <p>List last 5 conversions of a publication</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/groups/1/publications/222/conversions/"</span> <span class="se">\</span>
@@ -2982,7 +3199,7 @@ curl <span class="s2">"https://api.publitas.com/v2/groups/1/product_libraries/1"
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='url-parameters-27'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters-30'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3123,9 +3340,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
     </span><span class="nl">"extraction_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-30'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-33'>HTTP Request</h3>
 <p><code>GET https://api.publitas.com/v2/groups/&lt;Group ID&gt;/publications/&lt;Publication ID&gt;</code></p>
-<h3 id='url-parameters-28'>URL Parameters</h3>
+<h3 id='url-parameters-31'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
