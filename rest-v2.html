@@ -465,6 +465,20 @@
             <a href="#extraction-options" class="toc-h1 toc-link" data-title="Extraction Options">Extraction Options</a>
           </li>
           <li>
+            <a href="#hotspot-endpoints" class="toc-h1 toc-link" data-title="Hotspot Endpoints">Hotspot Endpoints</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-all-hotspots-of-a-spread" class="toc-h2 toc-link" data-title="List all hotspots of a spread">List all hotspots of a spread</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-hotspot" class="toc-h2 toc-link" data-title="Get a specific hotspot">Get a specific hotspot</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-hotspot" class="toc-h2 toc-link" data-title="Create a hotspot">Create a hotspot</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -3520,6 +3534,754 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 <td>Boolean</td>
 <td>No</td>
 <td>Show or hide hotspot icons for extracted hotspot. This setting is not applicable to hotspots extracted from PDF annotations (those are defined in the annotation itself)</td>
+</tr>
+</tbody></table>
+<h1 id='hotspot-endpoints'>Hotspot Endpoints</h1>
+<p>Hotspots are interactive areas placed on spread pages. Each hotspot has a type that determines its behavior and the additional fields returned in the response. All coordinates and dimensions are expressed as a fraction of the spread size (values between 0 and 1).</p>
+<h2 id='list-all-hotspots-of-a-spread'>List all hotspots of a spread</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/spreads/42/hotspots"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"hotspots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_link"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.08</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"icon_left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"icon_top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"show_indication"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tab_index"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"z_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"embedded_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"product_theme_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"rotation"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"popup_max_width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"popup_max_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-34'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/spreads/&lt;Spread ID&gt;/hotspots</code></p>
+<h3 id='url-parameters-32'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Spread ID</td>
+<td>The ID of a specific spread</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint supports <a href="#understanding-pagination">pagination</a>. Results are ordered by page number.</p>
+<h3 id='response-fields'>Response fields</h3>
+<p>The response returns an array of hotspot objects. All hotspot types share the following base fields:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>Integer</td>
+<td>Hotspot ID</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>String</td>
+<td>Hotspot type (see below)</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>Float</td>
+<td>Top offset as a fraction of spread height (0–1)</td>
+</tr>
+<tr>
+<td><code>left</code></td>
+<td>Float</td>
+<td>Left offset as a fraction of spread width (0–1)</td>
+</tr>
+<tr>
+<td><code>width</code></td>
+<td>Float</td>
+<td>Width as a fraction of spread width (0–1)</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>Float</td>
+<td>Height as a fraction of spread height (0–1)</td>
+</tr>
+<tr>
+<td><code>icon_left</code></td>
+<td>Float</td>
+<td>Horizontal center of the hotspot icon (0–1)</td>
+</tr>
+<tr>
+<td><code>icon_top</code></td>
+<td>Float</td>
+<td>Vertical center of the hotspot icon (0–1)</td>
+</tr>
+<tr>
+<td><code>show_indication</code></td>
+<td>Boolean</td>
+<td>Whether the hotspot indication icon is visible</td>
+</tr>
+<tr>
+<td><code>tab_index</code></td>
+<td>Integer/null</td>
+<td>Accessibility tab order</td>
+</tr>
+<tr>
+<td><code>z_index</code></td>
+<td>Integer</td>
+<td>Stacking order relative to other hotspots on the spread</td>
+</tr>
+<tr>
+<td><code>embedded_content</code></td>
+<td>Boolean</td>
+<td>Whether the hotspot renders its content inline</td>
+</tr>
+<tr>
+<td><code>dynamic</code></td>
+<td>Boolean</td>
+<td><code>true</code> shows a full product card overlay; <code>false</code> acts as a transparent link</td>
+</tr>
+<tr>
+<td><code>product_theme_id</code></td>
+<td>Integer/null</td>
+<td>Product theme ID for product-type hotspots</td>
+</tr>
+<tr>
+<td><code>rotation</code></td>
+<td>Float</td>
+<td>Rotation in degrees</td>
+</tr>
+</tbody></table>
+
+<p>Additional fields are included depending on <code>type</code>:</p>
+
+<p><strong><code>external_link</code></strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>url</code></td>
+<td>String</td>
+<td>Target URL</td>
+</tr>
+<tr>
+<td><code>popup_max_width</code></td>
+<td>Integer/null</td>
+<td>Maximum popup width in pixels</td>
+</tr>
+<tr>
+<td><code>popup_max_height</code></td>
+<td>Integer/null</td>
+<td>Maximum popup height in pixels</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>page_reference</code></strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>page_number</code></td>
+<td>Integer</td>
+<td>Publication page number to link to</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>video</code></strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>video_id</code></td>
+<td>String/null</td>
+<td>Video ID (for hosted providers)</td>
+</tr>
+<tr>
+<td><code>video_provider</code></td>
+<td>String/null</td>
+<td>Video provider (e.g. <code>youtube</code>, <code>vimeo</code>)</td>
+</tr>
+<tr>
+<td><code>video_url</code></td>
+<td>String/null</td>
+<td>Direct video URL or file path</td>
+</tr>
+<tr>
+<td><code>video_type</code></td>
+<td>String/null</td>
+<td>Video type</td>
+</tr>
+<tr>
+<td><code>video_autoplay</code></td>
+<td>Boolean</td>
+<td>Whether the video autoplays on open</td>
+</tr>
+<tr>
+<td><code>video_show_preview</code></td>
+<td>Boolean/null</td>
+<td>Whether a preview thumbnail is shown</td>
+</tr>
+<tr>
+<td><code>video_loop</code></td>
+<td>Boolean</td>
+<td>Whether the video loops</td>
+</tr>
+<tr>
+<td><code>video_start_time</code></td>
+<td>Integer/null</td>
+<td>Start time in seconds</td>
+</tr>
+<tr>
+<td><code>video_overlay_content</code></td>
+<td>Boolean</td>
+<td>Whether the video overlays other content</td>
+</tr>
+<tr>
+<td><code>video_show_accessibility_controls</code></td>
+<td>Boolean</td>
+<td>Whether accessibility controls are shown</td>
+</tr>
+<tr>
+<td><code>accessibility_text</code></td>
+<td>String/null</td>
+<td>Accessible label for the video</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>image</code></strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>url</code></td>
+<td>String</td>
+<td>Image URL</td>
+</tr>
+<tr>
+<td><code>image_alt_text</code></td>
+<td>String/null</td>
+<td>Alt text for the image</td>
+</tr>
+<tr>
+<td><code>content_fit_mode</code></td>
+<td>String/null</td>
+<td>How the image is fitted (<code>cover</code>, <code>contain</code>, etc.)</td>
+</tr>
+<tr>
+<td><code>image_show_lightbox</code></td>
+<td>Boolean</td>
+<td>Whether clicking opens the image in a lightbox</td>
+</tr>
+<tr>
+<td><code>show_tooltip</code></td>
+<td>Boolean</td>
+<td>Whether to show a tooltip</td>
+</tr>
+<tr>
+<td><code>corner_radius</code></td>
+<td>Integer/null</td>
+<td>Corner radius in pixels</td>
+</tr>
+<tr>
+<td><code>opacity</code></td>
+<td>Float/null</td>
+<td>Opacity (0–1)</td>
+</tr>
+<tr>
+<td><code>image_crop_state</code></td>
+<td>Object/null</td>
+<td>Crop state metadata</td>
+</tr>
+<tr>
+<td><code>style_json</code></td>
+<td>Object/null</td>
+<td>Custom style overrides</td>
+</tr>
+<tr>
+<td><code>background_color</code></td>
+<td>String/null</td>
+<td>Background color (hex); <code>null</code> when disabled</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>slideshow</code></strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>slides</code></td>
+<td>Array</td>
+<td>Array of slide objects (see below)</td>
+</tr>
+</tbody></table>
+
+<p>Each slide object contains:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>Integer</td>
+<td>Slide ID</td>
+</tr>
+<tr>
+<td><code>hotspot_id</code></td>
+<td>Integer</td>
+<td>Parent hotspot ID</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>Integer</td>
+<td>Display order</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>String/null</td>
+<td>External image URL</td>
+</tr>
+<tr>
+<td><code>file_path</code></td>
+<td>String/null</td>
+<td>Hosted file path</td>
+</tr>
+<tr>
+<td><code>file_hosted</code></td>
+<td>Boolean</td>
+<td>Whether the file is hosted</td>
+</tr>
+<tr>
+<td><code>file_url</code></td>
+<td>String/null</td>
+<td>Absolute URL to the hosted file</td>
+</tr>
+<tr>
+<td><code>original_filename</code></td>
+<td>String/null</td>
+<td>Original upload filename</td>
+</tr>
+<tr>
+<td><code>alt_text</code></td>
+<td>String/null</td>
+<td>Accessible alt text for the slide</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>product</code></strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>products</code></td>
+<td>Array</td>
+<td>Array of product objects serialized via the V2 Product schema</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-specific-hotspot'>Get a specific hotspot</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/spreads/42/hotspots/1"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"hotspot"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_link"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.08</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"icon_left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"icon_top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"show_indication"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tab_index"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"z_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"embedded_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"product_theme_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rotation"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"popup_max_width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"popup_max_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-35'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/spreads/&lt;Spread ID&gt;/hotspots/&lt;Hotspot ID&gt;</code></p>
+<h3 id='url-parameters-33'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Spread ID</td>
+<td>The ID of a specific spread</td>
+</tr>
+<tr>
+<td>Hotspot ID</td>
+<td>The ID of a specific hotspot</td>
+</tr>
+</tbody></table>
+
+<p>Returns 404 if the hotspot does not exist on the requested spread or belongs to a different spread.</p>
+<h2 id='create-a-hotspot'>Create a hotspot</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/spreads/42/hotspots"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "type": "external_link",
+    "top": 0.1,
+    "left": 0.2,
+    "width": 0.15,
+    "height": 0.08,
+    "url": "https://example.com"
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"hotspot"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_link"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.08</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"icon_left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"icon_top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"show_indication"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tab_index"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"z_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"embedded_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"product_theme_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rotation"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"popup_max_width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"popup_max_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-36'>HTTP Request</h3>
+<p><code>POST https://api.publitas.com/v2/spreads/&lt;Spread ID&gt;/hotspots</code></p>
+<h3 id='url-parameters-34'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Spread ID</td>
+<td>The ID of a specific spread</td>
+</tr>
+</tbody></table>
+<h3 id='request-body-parameters-13'>Request body parameters</h3>
+<p><strong>Core fields (all types)</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td>String</td>
+<td>Yes</td>
+<td>Hotspot type: <code>external_link</code>, <code>page_reference</code>, <code>video</code>, <code>image</code>, <code>slideshow</code>, or <code>product</code></td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>Float</td>
+<td>Yes</td>
+<td>Top offset as a fraction of spread height (0–1)</td>
+</tr>
+<tr>
+<td><code>left</code></td>
+<td>Float</td>
+<td>Yes</td>
+<td>Left offset as a fraction of spread width (0–1)</td>
+</tr>
+<tr>
+<td><code>width</code></td>
+<td>Float</td>
+<td>Yes</td>
+<td>Width as a fraction of spread width (0–1)</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>Float</td>
+<td>Yes</td>
+<td>Height as a fraction of spread height (0–1)</td>
+</tr>
+<tr>
+<td><code>show_indication</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the hotspot indication icon is visible</td>
+</tr>
+<tr>
+<td><code>tab_index</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Accessibility tab order</td>
+</tr>
+<tr>
+<td><code>embedded_content</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the hotspot renders its content inline</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>external_link</code> fields</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>url</code></td>
+<td>String</td>
+<td>Yes</td>
+<td>Target URL</td>
+</tr>
+<tr>
+<td><code>popup_max_width</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Maximum popup width in pixels</td>
+</tr>
+<tr>
+<td><code>popup_max_height</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Maximum popup height in pixels</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>page_reference</code> fields</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>page_number</code></td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Publication page number to link to</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>video</code> fields</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>video_url</code></td>
+<td>String</td>
+<td>Yes</td>
+<td>Video URL or file path</td>
+</tr>
+<tr>
+<td><code>video_type</code></td>
+<td>String</td>
+<td>No</td>
+<td>Video type</td>
+</tr>
+<tr>
+<td><code>video_provider</code></td>
+<td>String</td>
+<td>No</td>
+<td>Video provider (e.g. <code>youtube</code>, <code>vimeo</code>)</td>
+</tr>
+<tr>
+<td><code>video_autoplay</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the video autoplays on open</td>
+</tr>
+<tr>
+<td><code>video_loop</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the video loops</td>
+</tr>
+<tr>
+<td><code>video_show_preview</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether a preview thumbnail is shown</td>
+</tr>
+<tr>
+<td><code>video_start_time</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Start time in seconds</td>
+</tr>
+<tr>
+<td><code>video_overlay_content</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the video overlays other content</td>
+</tr>
+<tr>
+<td><code>video_show_accessibility_controls</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether accessibility controls are shown</td>
+</tr>
+<tr>
+<td><code>accessibility_text</code></td>
+<td>String</td>
+<td>No</td>
+<td>Accessible label for the video</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>image</code> fields</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>url</code></td>
+<td>String</td>
+<td>Yes</td>
+<td>Image URL</td>
+</tr>
+<tr>
+<td><code>image_alt_text</code></td>
+<td>String</td>
+<td>No</td>
+<td>Alt text for the image</td>
+</tr>
+<tr>
+<td><code>image_add_alt_text</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether to include alt text in the response</td>
+</tr>
+<tr>
+<td><code>content_fit_mode</code></td>
+<td>String</td>
+<td>No</td>
+<td>How the image is fitted (<code>cover</code>, <code>contain</code>, etc.)</td>
+</tr>
+<tr>
+<td><code>image_show_lightbox</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether clicking opens the image in a lightbox</td>
+</tr>
+<tr>
+<td><code>show_tooltip</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether to show a tooltip</td>
+</tr>
+<tr>
+<td><code>corner_radius</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Corner radius in pixels</td>
+</tr>
+<tr>
+<td><code>opacity</code></td>
+<td>Float</td>
+<td>No</td>
+<td>Opacity (0–1)</td>
+</tr>
+</tbody></table>
+<h3 id='response-codes-15'>Response codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Hotspot created successfully</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation errors in request body</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
