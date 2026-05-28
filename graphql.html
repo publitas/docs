@@ -322,6 +322,9 @@
                   <li>
                     <a href="#using-the-pagination-cursor" class="toc-h2 toc-link" data-title="Using the pagination cursor">Using the pagination cursor</a>
                   </li>
+                  <li>
+                    <a href="#filtering-publications" class="toc-h2 toc-link" data-title="Filtering publications">Filtering publications</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -580,6 +583,29 @@
 <p>To get the next batch of items after the last one, the next query should include an <code>after</code> argument for the <code>spreads</code> block, passing the last cursor as value.</p>
 
 <p>When there are no more items, the <code>edges</code> object array will be empty.</p>
+<h2 id='filtering-publications'>Filtering publications</h2><div class="highlight"><pre class="highlight plaintext"><code>query {
+  publications(groupSlug: "acme", first: 25) {
+    edges {
+      cursor
+      node {
+        id
+        slug
+        title
+        groupSlug
+      }
+    }
+  }
+}
+</code></pre></div>
+<p>The <code>publications</code> query accepts three optional filters that narrow the result set server-side:</p>
+
+<ul>
+<li><code>groupId</code> — restrict to publications in a given group</li>
+<li><code>groupSlug</code> — restrict to publications in the group with this slug</li>
+<li><code>accountId</code> — restrict to publications whose group belongs to this account</li>
+</ul>
+
+<p>Filters can be combined and are AND-ed together. They only ever narrow results within your affiliate scope and never widen visibility. Filtering by an invalid integer ID (<code>groupId</code>, <code>accountId</code>) or an empty <code>groupSlug</code> returns an empty list rather than an error.</p>
 <h1 id='graphql-references'>GraphQL References</h1>
 <p>Below are the specifications for each supported field and object.</p>
 
@@ -675,6 +701,33 @@ Returns the first _n_ elements from the list.
 <td>
 
 Returns the last _n_ elements from the list.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">groupId</td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Filter to publications belonging to this group
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">groupSlug</td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+Filter to publications belonging to the group with this slug
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">accountId</td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Filter to publications whose group belongs to this account
 
 </td>
 </tr>
@@ -1088,6 +1141,31 @@ When paginating backwards, the cursor to continue.
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong id="product.customlabel5">customLabel5</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel6">customLabel6</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel7">customLabel7</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel8">customLabel8</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel9">customLabel9</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong id="product.description">description</strong></td>
 <td valign="top"><a href="#string">String</a></td>
 <td></td>
@@ -1095,6 +1173,11 @@ When paginating backwards, the cursor to continue.
 <tr>
 <td colspan="2" valign="top"><strong id="product.discountedprice">discountedPrice</strong></td>
 <td valign="top"><a href="#float">Float</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.googleproductcategory">googleProductCategory</strong></td>
+<td valign="top"><a href="#string">String</a></td>
 <td></td>
 </tr>
 <tr>
@@ -1134,6 +1217,11 @@ When paginating backwards, the cursor to continue.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="product.producttype">productType</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.promotionallabel">promotionalLabel</strong></td>
 <td valign="top"><a href="#string">String</a></td>
 <td></td>
 </tr>
