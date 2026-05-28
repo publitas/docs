@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "update-graphql-docs": "graphql-markdown --header x-api-key=$API_KEY --no-toc --no-title --update-file source/graphql.md https://affiliate.publitas.com:443/graphql"
+    "update-graphql-docs": "graphql-markdown --header x-api-key=$API_KEY --no-toc --no-title --update-file source/graphql.html.md https://affiliate.publitas.com:443/graphql"
   },
   "bin": {
     "graphql-markdown": "node_modules/.bin/graphql-markdown"

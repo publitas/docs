@@ -261,14 +261,40 @@ To get the next batch of items after the last one, the next query should include
 
 When there are no more items, the `edges` object array will be empty.
 
+## Filtering publications
+
+```text
+query {
+  publications(groupSlug: "acme", first: 25) {
+    edges {
+      cursor
+      node {
+        id
+        slug
+        title
+        groupSlug
+      }
+    }
+  }
+}
+```
+
+The `publications` query accepts three optional filters that narrow the result set server-side:
+
+- `groupId` — restrict to publications in a given group
+- `groupSlug` — restrict to publications in the group with this slug
+- `accountId` — restrict to publications whose group belongs to this account
+
+Filters can be combined and are AND-ed together. They only ever narrow results within your affiliate scope and never widen visibility. Filtering by an invalid integer ID (`groupId`, `accountId`) or an empty `groupSlug` returns an empty list rather than an error.
+
 # GraphQL References
 
 Below are the specifications for each supported field and object.
 
 <!-- START graphql-markdown -->
 
-## Query
 
+## Query
 <table>
 <thead>
 <tr>
@@ -359,6 +385,33 @@ Returns the first _n_ elements from the list.
 <td>
 
 Returns the last _n_ elements from the list.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">groupId</td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Filter to publications belonging to this group
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">groupSlug</td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+Filter to publications belonging to the group with this slug
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">accountId</td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Filter to publications whose group belongs to this account
 
 </td>
 </tr>
@@ -792,6 +845,31 @@ A product from a hotspot
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong id="product.customlabel5">customLabel5</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel6">customLabel6</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel7">customLabel7</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel8">customLabel8</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabel9">customLabel9</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong id="product.description">description</strong></td>
 <td valign="top"><a href="#string">String</a></td>
 <td></td>
@@ -799,6 +877,11 @@ A product from a hotspot
 <tr>
 <td colspan="2" valign="top"><strong id="product.discountedprice">discountedPrice</strong></td>
 <td valign="top"><a href="#float">Float</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.googleproductcategory">googleProductCategory</strong></td>
+<td valign="top"><a href="#string">String</a></td>
 <td></td>
 </tr>
 <tr>
@@ -838,6 +921,11 @@ A product from a hotspot
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="product.producttype">productType</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.promotionallabel">promotionalLabel</strong></td>
 <td valign="top"><a href="#string">String</a></td>
 <td></td>
 </tr>
@@ -1642,7 +1730,9 @@ Represents non-fractional signed whole numeric values. Int can represent values 
 
 Represents textual data as UTF-8 character sequences. This type is most often used by GraphQL to represent free-form human-readable text.
 
+
 ## Interfaces
+
 
 ### Hotspot
 
