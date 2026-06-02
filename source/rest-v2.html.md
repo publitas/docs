@@ -2058,6 +2058,9 @@ curl "https://api.publitas.com/v2/spreads/42/hotspots" \
     {
       "id": 1,
       "type": "external_link",
+      "title": null,
+      "text_content": null,
+      "processing": false,
       "top": 0.1,
       "left": 0.2,
       "width": 0.15,
@@ -2099,6 +2102,9 @@ The response returns an array of hotspot objects. All hotspot types share the fo
 | ----------------- | ------------ | -------------------------------------------------------- |
 | `id`              | Integer      | Hotspot ID                                               |
 | `type`            | String       | Hotspot type (see below)                                 |
+| `title`           | String/null  | Hotspot title/label                                      |
+| `text_content`    | String/null  | Rich-text content (text hotspots)                        |
+| `processing`      | Boolean      | Whether the hotspot's content is still being processed   |
 | `top`             | Float        | Top offset as a fraction of spread height (0–1)          |
 | `left`            | Float        | Left offset as a fraction of spread width (0–1)          |
 | `width`           | Float        | Width as a fraction of spread width (0–1)                |
@@ -2200,6 +2206,9 @@ curl "https://api.publitas.com/v2/spreads/42/hotspots/1" \
   "hotspot": {
     "id": 1,
     "type": "external_link",
+    "title": null,
+    "text_content": null,
+    "processing": false,
     "top": 0.1,
     "left": 0.2,
     "width": 0.15,
@@ -2256,6 +2265,9 @@ curl "https://api.publitas.com/v2/spreads/42/hotspots" \
   "hotspot": {
     "id": 99,
     "type": "external_link",
+    "title": null,
+    "text_content": null,
+    "processing": false,
     "top": 0.1,
     "left": 0.2,
     "width": 0.15,
@@ -2349,6 +2361,136 @@ curl "https://api.publitas.com/v2/spreads/42/hotspots" \
 | ---- | ---------------------------------- |
 | 201  | Hotspot created successfully       |
 | 422  | Validation errors in request body  |
+
+## Update a hotspot
+
+```shell
+curl "https://api.publitas.com/v2/spreads/42/hotspots/1" \
+  -X PATCH \
+  -H "Authorization: ApiKey <api_key>" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "url": "https://new.example.com"
+  }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "hotspot": {
+    "id": 1,
+    "type": "external_link",
+    "title": null,
+    "text_content": null,
+    "processing": false,
+    "top": 0.1,
+    "left": 0.2,
+    "width": 0.15,
+    "height": 0.08,
+    "icon_left": 0.5,
+    "icon_top": 0.5,
+    "show_indication": true,
+    "tab_index": null,
+    "z_index": 0,
+    "embedded_content": false,
+    "dynamic": false,
+    "product_theme_id": null,
+    "rotation": 0.0,
+    "url": "https://new.example.com",
+    "popup_max_width": null,
+    "popup_max_height": null
+  }
+}
+```
+
+Update the metadata of an existing hotspot in place. This is a **partial update**: only the fields
+you send are changed, and any field you omit keeps its current value. The hotspot `type` is
+immutable and cannot be changed.
+
+### HTTP Request
+
+`PATCH https://api.publitas.com/v2/spreads/<Spread ID>/hotspots/<Hotspot ID>`
+
+### URL Parameters
+
+| Parameter  | Description                         |
+| ---------- | ----------------------------------- |
+| Spread ID  | The ID of a specific spread         |
+| Hotspot ID | The ID of a specific hotspot        |
+
+### Request body parameters
+
+All fields are optional — send only the ones you want to change. Coordinates (`top`, `left`,
+`width`, `height`) are accepted as fractions of the spread size (0–1); any coordinate you omit is
+preserved. The `type` field is not accepted.
+
+**Core fields (all types)**
+
+| Field             | Type    | Required | Description                                                                                           |
+| ----------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------- |
+| `title`           | String  | No       | Hotspot title/label                                                                                  |
+| `text_content`    | String  | No       | Rich-text content (text hotspots)                                                                    |
+| `top`             | Float   | No       | Top offset as a fraction of spread height (0–1)                                                       |
+| `left`            | Float   | No       | Left offset as a fraction of spread width (0–1)                                                       |
+| `width`           | Float   | No       | Width as a fraction of spread width (0–1)                                                             |
+| `height`          | Float   | No       | Height as a fraction of spread height (0–1)                                                           |
+| `show_indication` | Boolean | No       | Whether the hotspot indication icon is visible                                                        |
+| `tab_index`       | Integer | No       | Accessibility tab order                                                                               |
+| `embedded_content`| Boolean | No       | Whether the hotspot renders its content inline                                                        |
+
+**`external_link` fields**
+
+| Field             | Type    | Required | Description                        |
+| ----------------- | ------- | -------- | ---------------------------------- |
+| `url`             | String  | No       | Target URL                         |
+| `popup_max_width` | Integer | No       | Maximum popup width in pixels      |
+| `popup_max_height`| Integer | No       | Maximum popup height in pixels     |
+
+**`page_reference` fields**
+
+| Field         | Type    | Required | Description                        |
+| ------------- | ------- | -------- | ---------------------------------- |
+| `page_number` | Integer | No       | Publication page number to link to |
+
+**`video` fields**
+
+| Field                            | Type    | Required | Description                                            |
+| -------------------------------- | ------- | -------- | ------------------------------------------------------ |
+| `video_url`                      | String  | No       | Video URL or file path                                 |
+| `video_type`                     | String  | No       | Video type                                             |
+| `video_provider`                 | String  | No       | Video provider (e.g. `youtube`, `vimeo`)               |
+| `video_autoplay`                 | Boolean | No       | Whether the video autoplays on open                    |
+| `video_loop`                     | Boolean | No       | Whether the video loops                                |
+| `video_show_preview`             | Boolean | No       | Whether a preview thumbnail is shown                   |
+| `video_start_time`               | Integer | No       | Start time in seconds                                  |
+| `video_overlay_content`          | Boolean | No       | Whether the video overlays other content               |
+| `video_show_accessibility_controls` | Boolean | No    | Whether accessibility controls are shown               |
+| `accessibility_text`             | String  | No       | Accessible label for the video                         |
+
+**`image` fields**
+
+| Field                | Type    | Required | Description                                             |
+| -------------------- | ------- | -------- | ------------------------------------------------------- |
+| `url`                | String  | No       | Image URL                                               |
+| `image_alt_text`     | String  | No       | Alt text for the image                                  |
+| `image_add_alt_text` | Boolean | No       | Whether to include alt text in the response             |
+| `content_fit_mode`   | String  | No       | How the image is fitted (`cover`, `contain`, etc.)      |
+| `image_show_lightbox`| Boolean | No       | Whether clicking opens the image in a lightbox          |
+| `show_tooltip`       | Boolean | No       | Whether to show a tooltip                               |
+| `corner_radius`      | Integer | No       | Corner radius in pixels                                 |
+| `opacity`            | Float   | No       | Opacity (0–1)                                           |
+
+Fields that require an account feature that is not enabled are silently ignored rather than
+rejected. A request whose body contains no recognized hotspot attribute returns `422`.
+
+### Response codes
+
+| Code | Description                                          |
+| ---- | ---------------------------------------------------- |
+| 200  | Hotspot updated successfully                         |
+| 404  | Hotspot not found on this spread, or not accessible  |
+| 422  | No valid attributes provided, or validation errors   |
 
 # Errors
 
