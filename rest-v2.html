@@ -476,6 +476,9 @@
                   <li>
                     <a href="#create-a-hotspot" class="toc-h2 toc-link" data-title="Create a hotspot">Create a hotspot</a>
                   </li>
+                  <li>
+                    <a href="#update-a-hotspot" class="toc-h2 toc-link" data-title="Update a hotspot">Update a hotspot</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -3549,6 +3552,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_link"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"text_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"processing"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
       </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
       </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
@@ -3603,6 +3609,21 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 <td><code>type</code></td>
 <td>String</td>
 <td>Hotspot type (see below)</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>String/null</td>
+<td>Hotspot title/label</td>
+</tr>
+<tr>
+<td><code>text_content</code></td>
+<td>String/null</td>
+<td>Rich-text content (text hotspots)</td>
+</tr>
+<tr>
+<td><code>processing</code></td>
+<td>Boolean</td>
+<td>Whether the hotspot&#39;s content is still being processed</td>
 </tr>
 <tr>
 <td><code>top</code></td>
@@ -3939,6 +3960,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
   </span><span class="nl">"hotspot"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_link"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"text_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"processing"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nl">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
     </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
@@ -3996,6 +4020,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
   </span><span class="nl">"hotspot"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
     </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_link"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"text_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"processing"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nl">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
     </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
@@ -4282,6 +4309,337 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 <tr>
 <td>422</td>
 <td>Validation errors in request body</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-hotspot'>Update a hotspot</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/spreads/42/hotspots/1"</span> <span class="se">\</span>
+  <span class="nt">-X</span> PATCH <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "url": "https://new.example.com"
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"hotspot"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_link"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"text_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"processing"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.08</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"icon_left"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"icon_top"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"show_indication"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tab_index"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"z_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"embedded_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dynamic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"product_theme_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rotation"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://new.example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"popup_max_width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"popup_max_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Update the metadata of an existing hotspot in place. This is a <strong>partial update</strong>: only the fields
+you send are changed, and any field you omit keeps its current value. The hotspot <code>type</code> is
+immutable and cannot be changed.</p>
+<h3 id='http-request-37'>HTTP Request</h3>
+<p><code>PATCH https://api.publitas.com/v2/spreads/&lt;Spread ID&gt;/hotspots/&lt;Hotspot ID&gt;</code></p>
+<h3 id='url-parameters-35'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Spread ID</td>
+<td>The ID of a specific spread</td>
+</tr>
+<tr>
+<td>Hotspot ID</td>
+<td>The ID of a specific hotspot</td>
+</tr>
+</tbody></table>
+<h3 id='request-body-parameters-14'>Request body parameters</h3>
+<p>All fields are optional — send only the ones you want to change. Coordinates (<code>top</code>, <code>left</code>,
+<code>width</code>, <code>height</code>) are accepted as fractions of the spread size (0–1); any coordinate you omit is
+preserved. The <code>type</code> field is not accepted.</p>
+
+<p><strong>Core fields (all types)</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>title</code></td>
+<td>String</td>
+<td>No</td>
+<td>Hotspot title/label</td>
+</tr>
+<tr>
+<td><code>text_content</code></td>
+<td>String</td>
+<td>No</td>
+<td>Rich-text content (text hotspots)</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>Float</td>
+<td>No</td>
+<td>Top offset as a fraction of spread height (0–1)</td>
+</tr>
+<tr>
+<td><code>left</code></td>
+<td>Float</td>
+<td>No</td>
+<td>Left offset as a fraction of spread width (0–1)</td>
+</tr>
+<tr>
+<td><code>width</code></td>
+<td>Float</td>
+<td>No</td>
+<td>Width as a fraction of spread width (0–1)</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>Float</td>
+<td>No</td>
+<td>Height as a fraction of spread height (0–1)</td>
+</tr>
+<tr>
+<td><code>show_indication</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the hotspot indication icon is visible</td>
+</tr>
+<tr>
+<td><code>tab_index</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Accessibility tab order</td>
+</tr>
+<tr>
+<td><code>embedded_content</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the hotspot renders its content inline</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>external_link</code> fields</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>url</code></td>
+<td>String</td>
+<td>No</td>
+<td>Target URL</td>
+</tr>
+<tr>
+<td><code>popup_max_width</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Maximum popup width in pixels</td>
+</tr>
+<tr>
+<td><code>popup_max_height</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Maximum popup height in pixels</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>page_reference</code> fields</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>page_number</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Publication page number to link to</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>video</code> fields</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>video_url</code></td>
+<td>String</td>
+<td>No</td>
+<td>Video URL or file path</td>
+</tr>
+<tr>
+<td><code>video_type</code></td>
+<td>String</td>
+<td>No</td>
+<td>Video type</td>
+</tr>
+<tr>
+<td><code>video_provider</code></td>
+<td>String</td>
+<td>No</td>
+<td>Video provider (e.g. <code>youtube</code>, <code>vimeo</code>)</td>
+</tr>
+<tr>
+<td><code>video_autoplay</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the video autoplays on open</td>
+</tr>
+<tr>
+<td><code>video_loop</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the video loops</td>
+</tr>
+<tr>
+<td><code>video_show_preview</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether a preview thumbnail is shown</td>
+</tr>
+<tr>
+<td><code>video_start_time</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Start time in seconds</td>
+</tr>
+<tr>
+<td><code>video_overlay_content</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether the video overlays other content</td>
+</tr>
+<tr>
+<td><code>video_show_accessibility_controls</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether accessibility controls are shown</td>
+</tr>
+<tr>
+<td><code>accessibility_text</code></td>
+<td>String</td>
+<td>No</td>
+<td>Accessible label for the video</td>
+</tr>
+</tbody></table>
+
+<p><strong><code>image</code> fields</strong></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>url</code></td>
+<td>String</td>
+<td>No</td>
+<td>Image URL</td>
+</tr>
+<tr>
+<td><code>image_alt_text</code></td>
+<td>String</td>
+<td>No</td>
+<td>Alt text for the image</td>
+</tr>
+<tr>
+<td><code>image_add_alt_text</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether to include alt text in the response</td>
+</tr>
+<tr>
+<td><code>content_fit_mode</code></td>
+<td>String</td>
+<td>No</td>
+<td>How the image is fitted (<code>cover</code>, <code>contain</code>, etc.)</td>
+</tr>
+<tr>
+<td><code>image_show_lightbox</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether clicking opens the image in a lightbox</td>
+</tr>
+<tr>
+<td><code>show_tooltip</code></td>
+<td>Boolean</td>
+<td>No</td>
+<td>Whether to show a tooltip</td>
+</tr>
+<tr>
+<td><code>corner_radius</code></td>
+<td>Integer</td>
+<td>No</td>
+<td>Corner radius in pixels</td>
+</tr>
+<tr>
+<td><code>opacity</code></td>
+<td>Float</td>
+<td>No</td>
+<td>Opacity (0–1)</td>
+</tr>
+</tbody></table>
+
+<p>Fields that require an account feature that is not enabled are silently ignored rather than
+rejected. A request whose body contains no recognized hotspot attribute returns <code>422</code>.</p>
+<h3 id='response-codes-16'>Response codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Hotspot updated successfully</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Hotspot not found on this spread, or not accessible</td>
+</tr>
+<tr>
+<td>422</td>
+<td>No valid attributes provided, or validation errors</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
