@@ -1108,7 +1108,11 @@ A string that may contain lowercase letters, numbers, hyphens, and underscores. 
 <tr>
 <td colspan="2" valign="top"><strong id="publication.publicationslug">publicationSlug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publication.publicationtitle">publicationTitle</strong></td>
@@ -1223,7 +1227,11 @@ Returns the last _n_ elements from the list.
 <tr>
 <td colspan="2" valign="top"><strong id="publicationlistitem.groupslug">groupSlug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publicationlistitem.grouptitle">groupTitle</strong></td>
@@ -1238,7 +1246,11 @@ Returns the last _n_ elements from the list.
 <tr>
 <td colspan="2" valign="top"><strong id="publicationlistitem.publicationslug">publicationSlug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publicationlistitem.publicationtitle">publicationTitle</strong></td>
