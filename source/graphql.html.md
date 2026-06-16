@@ -1069,7 +1069,11 @@ A hotspot containing products
 <tr>
 <td colspan="2" valign="top"><strong id="publication.groupslug">groupSlug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+A string that may contain letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publication.grouptitle">groupTitle</strong></td>
@@ -1129,7 +1133,11 @@ A hotspot containing products
 <tr>
 <td colspan="2" valign="top"><strong id="publication.slug">slug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+A string that may contain letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publication.spreads">spreads</strong></td>
