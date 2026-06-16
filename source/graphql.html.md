@@ -1071,7 +1071,7 @@ A hotspot containing products
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
 
-A string that may contain letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
 
 </td>
 </tr>
@@ -1135,7 +1135,7 @@ A string that may contain letters, numbers, hyphens, and underscores. It does no
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
 
-A string that may contain letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
 
 </td>
 </tr>
