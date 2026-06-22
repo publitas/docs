@@ -322,12 +322,20 @@ Finds a publication by ID or by both slug and the group slug
 <tr>
 <td colspan="2" align="right" valign="top">groupSlug</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The group's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">slug</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The publication's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="query.publicationbyurl">publicationByUrl</strong></td>
@@ -402,7 +410,7 @@ Filter to publications belonging to this group
 <td valign="top"><a href="#string">String</a></td>
 <td>
 
-Filter to publications belonging to the group with this slug
+Filter to publications belonging to the group with this slug. Consists of lowercase letters, numbers, hyphens, and underscores.
 
 </td>
 </tr>
@@ -1069,7 +1077,11 @@ A hotspot containing products
 <tr>
 <td colspan="2" valign="top"><strong id="publication.groupslug">groupSlug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+The group's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publication.grouptitle">groupTitle</strong></td>
@@ -1104,7 +1116,11 @@ A hotspot containing products
 <tr>
 <td colspan="2" valign="top"><strong id="publication.publicationslug">publicationSlug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+The publication's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publication.publicationtitle">publicationTitle</strong></td>
@@ -1129,7 +1145,11 @@ A hotspot containing products
 <tr>
 <td colspan="2" valign="top"><strong id="publication.slug">slug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+The publication's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publication.spreads">spreads</strong></td>
@@ -1215,7 +1235,11 @@ Returns the last _n_ elements from the list.
 <tr>
 <td colspan="2" valign="top"><strong id="publicationlistitem.groupslug">groupSlug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+The group's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publicationlistitem.grouptitle">groupTitle</strong></td>
@@ -1230,7 +1254,11 @@ Returns the last _n_ elements from the list.
 <tr>
 <td colspan="2" valign="top"><strong id="publicationlistitem.publicationslug">publicationSlug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+The publication's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publicationlistitem.publicationtitle">publicationTitle</strong></td>
