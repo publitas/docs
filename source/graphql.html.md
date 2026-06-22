@@ -322,12 +322,20 @@ Finds a publication by ID or by both slug and the group slug
 <tr>
 <td colspan="2" align="right" valign="top">groupSlug</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The group's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">slug</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The publication's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="query.publicationbyurl">publicationByUrl</strong></td>
@@ -402,7 +410,7 @@ Filter to publications belonging to this group
 <td valign="top"><a href="#string">String</a></td>
 <td>
 
-Filter to publications belonging to the group with this slug
+Filter to publications belonging to the group with this slug. Consists of lowercase letters, numbers, hyphens, and underscores.
 
 </td>
 </tr>
@@ -1071,7 +1079,7 @@ A hotspot containing products
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
 
-A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+The group's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
 
 </td>
 </tr>
@@ -1110,7 +1118,7 @@ A string that may contain lowercase letters, numbers, hyphens, and underscores. 
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
 
-A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+The publication's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
 
 </td>
 </tr>
@@ -1139,7 +1147,7 @@ A string that may contain lowercase letters, numbers, hyphens, and underscores. 
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
 
-A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+The publication's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
 
 </td>
 </tr>
@@ -1229,7 +1237,7 @@ Returns the last _n_ elements from the list.
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
 
-A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+The group's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
 
 </td>
 </tr>
@@ -1248,7 +1256,7 @@ A string that may contain lowercase letters, numbers, hyphens, and underscores. 
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
 
-A string that may contain lowercase letters, numbers, hyphens, and underscores. It does not follow an industry standard format.
+The publication's URL slug. Consists of lowercase letters, numbers, hyphens, and underscores.
 
 </td>
 </tr>
