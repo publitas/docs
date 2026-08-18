@@ -34,7 +34,7 @@ The Publications widget renders an affiliate's publications on your page.
 ## Loading the SDK
 
 ```html
-<script src="https://<affiliate-url>/widgets/v1/publications-sdk.js"></script>
+<script defer src="https://<affiliate-url>/widgets/v1/publications-sdk.js"></script>
 ```
 
 The SDK is served from the affiliate's own domain:
@@ -57,7 +57,7 @@ A complete, copy‑and‑paste ready page looks like this:
 <!doctype html>
 <html>
   <head>
-    <script src="https://<affiliate-url>/widgets/v1/publications-sdk.js"></script>
+    <script defer src="https://<affiliate-url>/widgets/v1/publications-sdk.js"></script>
   </head>
   <body>
     <pw-publications></pw-publications>
@@ -65,47 +65,59 @@ A complete, copy‑and‑paste ready page looks like this:
 </html>
 ```
 
+## Sizing
+
+```html
+<!-- on the element itself -->
+<pw-publications style="--pw-height: 600px"></pw-publications>
+
+<!-- or from a stylesheet -->
+<style>
+  pw-publications {
+    --pw-height: 600px;
+  }
+</style>
+```
+
+The widget is **400px** tall by default. Override that with the `--pw-height` custom property, either inline on the tag or from your own stylesheet. Because custom properties inherit, you can also set it on any ancestor element to apply it to every widget inside.
+
 # Playground
 
-Enter the URL of the affiliate you want to test against and press **Reload**. The preview below loads the SDK from that affiliate and renders a `<pw-publications>` tag inside an iframe.
+Paste the full URL of the SDK you want to test against and press **Reload**. The preview below loads that script and renders a `<pw-publications>` tag inside an iframe.
 
 <div class="widget-playground">
-  <label class="widget-playground__label" for="pw-playground-url">Affiliate URL</label>
+  <label class="widget-playground__label" for="pw-playground-url">SDK URL</label>
   <div class="widget-playground__controls">
-    <input class="widget-playground__input" id="pw-playground-url" type="url" placeholder="https://affiliate.example.com" autocomplete="off" spellcheck="false">
+    <input class="widget-playground__input" id="pw-playground-url" type="url" placeholder="https://affiliate.example.com/widgets/v1/publications-sdk.js" autocomplete="off" spellcheck="false">
     <button class="widget-playground__button" id="pw-playground-reload" type="button">Reload</button>
   </div>
-  <p class="widget-playground__hint">Tip: you can pre-fill this field by adding <code>?affiliate-url=affiliate.example.com</code> to the address of this page.</p>
+  <p class="widget-playground__hint">Tip: you can pre-fill this field by adding <code>?sdk-url=https://affiliate.example.com/widgets/v1/publications-sdk.js</code> to the address of this page.</p>
   <iframe class="widget-playground__frame" id="pw-playground-frame" title="Publications widget preview" loading="lazy"></iframe>
 </div>
 
 <script>
   (function () {
-    var PARAM = 'affiliate-url';
+    var PARAM = 'sdk-url';
     var input = document.getElementById('pw-playground-url');
     var button = document.getElementById('pw-playground-reload');
     var frame = document.getElementById('pw-playground-frame');
 
-    function sdkUrl(base) {
-      return 'https://' + base.replace(/\/+$/, '') + '/widgets/v1/shop24/publications-sdk.js';
-    }
-
-    function documentFor(base) {
+    function documentFor(url) {
       return `<!doctype html>
         <meta charset="utf-8">
-        <script src="${sdkUrl(base)}"><\/script>
+        <script defer src="${url}"><\/script>
         <pw-publications></pw-publications>
       `;
     }
 
     function render() {
-      var base = input.value.trim();
-      if (!base) {
+      var url = input.value.trim();
+      if (!url) {
         frame.removeAttribute('srcdoc');
         return;
       }
       frame.removeAttribute('srcdoc');
-      frame.setAttribute('srcdoc', documentFor(base));
+      frame.setAttribute('srcdoc', documentFor(url));
     }
 
     button.addEventListener('click', render);
