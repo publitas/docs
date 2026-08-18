@@ -55,3 +55,62 @@
     border-bottom: dashed 1px $border-color;
   }
 }
+
+.content > .widget-playground {
+  width: 100% - $examples-width;
+  box-sizing: border-box;
+  padding: $main-padding;
+  padding-top: 0;
+
+  .widget-playground__label {
+    display: block;
+    font-weight: bold;
+    padding: 6px 0;
+  }
+
+  .widget-playground__controls {
+    display: flex;
+    gap: 8px;
+  }
+
+  .widget-playground__input {
+    flex-grow: 1;
+    min-width: 0;
+    padding: 8px 10px;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+  }
+
+  .widget-playground__button {
+    padding: 8px 16px;
+    border: 0;
+    border-radius: $border-radius;
+    background-color: $main-text;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .widget-playground__hint {
+    padding-top: 8px;
+    font-size: 12px;
+  }
+
+  .widget-playground__frame {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 420px;
+    margin-top: 12px;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background-color: $main-bg;
+  }
+
+  @media (max-width: $phone-width) {
+    width: 100%;
+  }
+}

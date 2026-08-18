@@ -219,3 +219,9 @@ A JavaScript API to be used in our Viewers via the code injection tool. Can be u
 A JavaScript API to react to events in the Viewer. Useful for integrating an embedded Viewer with your site, or for triggering custom actions on certain events.
 
 [Viewer Message API documentation](viewer-message-api.html)
+
+## Widgets
+
+Embeddable web components that render an affiliate's content on your own website via a SDK script.
+
+[Widgets documentation](widgets.html)
