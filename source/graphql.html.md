@@ -428,6 +428,203 @@ Filter to publications whose group belongs to this account
 
 ## Objects
 
+### CustomLabel
+
+The custom labels of a product, keyed by their feed attribute name
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel0">customLabel0</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 0
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel1">customLabel1</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 1
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel10">customLabel10</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 10
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel11">customLabel11</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 11
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel12">customLabel12</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 12
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel13">customLabel13</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 13
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel14">customLabel14</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 14
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel15">customLabel15</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 15
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel16">customLabel16</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 16
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel17">customLabel17</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 17
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel18">customLabel18</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 18
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel19">customLabel19</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 19
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel2">customLabel2</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 2
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel3">customLabel3</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 3
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel4">customLabel4</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 4
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel5">customLabel5</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 5
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel6">customLabel6</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 6
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel7">customLabel7</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 7
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel8">customLabel8</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 8
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="customlabel.customlabel9">customLabel9</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 9
+
+</td>
+</tr>
+</tbody>
+</table>
+
 ### ExternalLinkHotspot
 
 A hotspot with an external link
@@ -828,53 +1025,158 @@ A product from a hotspot
 <td></td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel0">customLabel0</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel0">customLabel0</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The product's custom label 0
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel1">customLabel1</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel1">customLabel1</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The product's custom label 1
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel2">customLabel2</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel2">customLabel2</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The product's custom label 2
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel3">customLabel3</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel3">customLabel3</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The product's custom label 3
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel4">customLabel4</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel4">customLabel4</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The product's custom label 4
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel5">customLabel5</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel5">customLabel5</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The product's custom label 5
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel6">customLabel6</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel6">customLabel6</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The product's custom label 6
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel7">customLabel7</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel7">customLabel7</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The product's custom label 7
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel8">customLabel8</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel8">customLabel8</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
-<td></td>
+<td>
+
+The product's custom label 8
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong id="product.customlabel9">customLabel9</strong></td>
+<td colspan="2" valign="top"><strong id="product.customlabel9">customLabel9</strong> ⚠️</td>
 <td valign="top"><a href="#string">String</a></td>
+<td>
+
+The product's custom label 9
+
+<p>⚠️ <strong>DEPRECATED</strong></p>
+<blockquote>
+
+Legacy, prefer customLabels field
+
+</blockquote>
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="product.customlabels">customLabels</strong></td>
+<td valign="top"><a href="#customlabel">CustomLabel</a>!</td>
 <td></td>
 </tr>
 <tr>
