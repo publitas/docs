@@ -92,6 +92,11 @@ query {
                 customLabel2
                 customLabel3
                 customLabel4
+                customLabels
+                customLabels {
+                  customLabel0
+                  customLabel19
+                }
                 itemGroupId
                 videoId
                 videoProvider
