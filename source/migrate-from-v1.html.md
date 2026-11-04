@@ -19,9 +19,11 @@ API v1 stops working on [DATE]. This guide shows the GraphQL query that replaces
 | Address | `https://api.publitas.com/v1/...` (one address per call) | `https://affiliate.publitas.com/graphql` (one address for everything) |
 | Method | `GET` | `POST`, JSON body with `query` and `variables` |
 | Authentication | none | `x-api-key` header; request a key from support@publitas.com |
-| Spreads | all in one response | 50 per page; follow `pageInfo` |
+| Lists (publications, spreads) | all in one response | 50 per page; follow `pageInfo` |
 | Products | one call per product | included in each product hotspot |
 | Images | paths to complete yourself | full URLs per size |
+| Errors | HTTP 404 | HTTP 200 with an `errors` list in the body; check for it instead of the status code |
+| Where to call it from | anywhere, including web pages | your own server only: never put the API key in a web page or app, because anyone can read it there |
 
 ## Calls
 
@@ -39,7 +41,7 @@ You can also find a publication by its ID (`publication(id:)`) or by its viewer 
 query ($groupSlug: String!, $after: String) {
   publications(groupSlug: $groupSlug, first: 50, after: $after) {
     pageInfo { hasNextPage endCursor }
-    edges { node { id publicationSlug publicationTitle onlineAt } }
+    edges { node { id publicationSlug publicationTitle onlineAt scheduleOnlineAt } }
   }
 }
 ```
@@ -47,10 +49,12 @@ query ($groupSlug: String!, $after: String) {
 ```bash
 curl https://affiliate.publitas.com/graphql \
   -H "x-api-key: YOUR_KEY" -H "Content-Type: application/json" \
-  -d '{"query":"query ($groupSlug: String!) { publications(groupSlug: $groupSlug) { edges { node { id publicationSlug publicationTitle onlineAt } } } }","variables":{"groupSlug":"your-group"}}'
+  -d '{"query":"query ($groupSlug: String!, $after: String) { publications(groupSlug: $groupSlug, first: 50, after: $after) { pageInfo { hasNextPage endCursor } edges { node { id publicationSlug publicationTitle onlineAt scheduleOnlineAt } } } }","variables":{"groupSlug":"your-group"}}'
 ```
 
-The list only includes groups your key is linked to. If it comes back empty, ask support to link your groups to your key. Unlisted publications are not included.
+The list only includes groups your key is linked to. If it comes back empty, ask support to link your groups to your key. Unlisted publications are not included, but you can still fetch them one at a time by slug.
+
+Unlike API v1, GraphQL also returns publications that are scheduled to go online later. To show only live publications, skip any whose `scheduleOnlineAt` is in the future. The same applies when you fetch a single publication.
 
 ### Get one publication, with pages, hotspots and products
 
@@ -83,9 +87,11 @@ query ($groupSlug: String!, $slug: String!, $after: String) {
 
 If `pageInfo.hasNextPage` is true, send the query again with `after` set to `pageInfo.endCursor`.
 
+GraphQL also returns image and slideshow hotspots, which API v1 left out. Ignore the types you don't use, or ask only for the ones you need with `hotspots(types: [PRODUCT, EXTERNAL_LINK, PAGE_REFERENCE, VIDEO])`.
+
 ### Get one product
 
-There is no single-product query. Fetch the publication (above) and find the product in `ProductHotspot.products`. This returns more data than the API v1 call did, so cache the publication rather than fetching it per product.
+There is no single-product query. Fetch the publication (above) and find the product in `ProductHotspot.products`. This returns more data than the API v1 call did, so cache the publication rather than fetching it per product. Asking for `hotspots(types: [PRODUCT])` keeps the response smaller.
 
 ## Field names
 
@@ -94,12 +100,13 @@ There is no single-product query. Fetch the publication (above) and find the pro
 | `config.publicationId` | `publication.id` |
 | `config.publicationTitle` | `publication.title` |
 | `config.locale`, `config.language` | `publication.language` |
-| `config.currencySymbol` | `publication.customCurrency` |
+| `config.currencySymbol` | `publication.customCurrency` (null when no custom symbol is set; API v1 returned €) |
 | `config.downloadPdfUrl` (a path) | `publication.downloadPdfUrl` (a full URL) |
+| `sizes` (an object keyed `at200`, `at600`, …) | `sizes { at width height }` (a list) |
 | `spreads[].pages[]` (paths) | `spreads.pages.images { size url }` |
-| `hotspots[].type` | `hotspots.__typename` |
+| `hotspots[].type` (`product`, `externalLink`, `pageReference`, `video`) | `hotspots.__typename` (`ProductHotspot`, `ExternalLinkHotspot`, `PageReferenceHotspot`, `VideoHotspot`) |
 | `hotspots[].position.left/top/width/height` | `hotspots.left/top/width/height` |
-| `video.youtubeId` | `VideoHotspot.videoId` |
+| `hotspots[].youtubeId` (video hotspots) | `VideoHotspot.videoId` |
 | list `slug`, `title` | `publicationSlug`, `publicationTitle` |
 | product `photos[].photoUrl` | product `photoUrls { full }` |
 | product `video[].youtubeId` | product `videoId` |
