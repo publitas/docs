@@ -196,7 +196,7 @@ You can use this URL to link to this publication or embed it within your website
 
 ## REST API
 
-A REST API for retailers to automate their workflows from creation to. The current version is v2, but v1 is still supported. Please build all new integrations using version 2
+A REST API for retailers to automate their workflows from creation to. The current version is v2. Version 1 stops working on [DATE]; build all new integrations on version 2.
 
 [REST API v1 documentation](rest-v1.html) (stops working on [DATE]; see [Migrate from API v1](migrate-from-v1.html))
 
@@ -204,7 +204,7 @@ A REST API for retailers to automate their workflows from creation to. The curre
 
 ## GraphQL API
 
-A GraphQL API that allows affilates to fetch publication data from different retailers.
+A GraphQL API that allows affiliates to fetch publication data from different retailers. Retailers can also use it to read their own publications.
 
 [GraphQL documentation](graphql.html)
 
