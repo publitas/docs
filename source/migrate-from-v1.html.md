@@ -10,7 +10,7 @@ search: false
 
 # Migrate from API v1 to GraphQL
 
-API v1 stops working on [DATE]. After that date, every API v1 request returns an error (HTTP 403). This guide shows the GraphQL query that replaces each API v1 call.
+API v1 stops working on [DATE]. After that date, API v1 requests return an error (HTTP 403 or 404). This guide shows the GraphQL query that replaces each API v1 call.
 
 ## What changes
 
@@ -22,7 +22,7 @@ API v1 stops working on [DATE]. After that date, every API v1 request returns an
 | Lists (publications, spreads) | all in one response | 50 per page; follow `pageInfo` |
 | Products | one call per product | included in each product hotspot |
 | Images | paths to complete yourself | full URLs per size |
-| Errors | HTTP 404 | HTTP 200 with an `errors` list in the body; check for it instead of the status code |
+| Errors | HTTP 404 | HTTP 403 if the API key is missing or wrong, 429 if you send too many requests. Otherwise HTTP 200, with an `errors` list in the body when something is not found. Check both. |
 | Where to call it from | anywhere, including web pages | your own server only: never put the API key in a web page or app, because anyone can read it there |
 
 ## Calls
@@ -54,7 +54,7 @@ curl https://affiliate.publitas.com/graphql \
 
 The list only includes groups your key is linked to. If it comes back empty, ask support to link your groups to your key. Unlisted publications are not included, but you can still fetch them one at a time by slug.
 
-Unlike API v1, GraphQL also returns publications that are scheduled to go online later. To show only live publications, skip any whose `scheduleOnlineAt` is in the future. The same applies when you fetch a single publication.
+Unlike API v1, GraphQL also returns publications that are scheduled to go online later. To show only live publications, skip any whose `scheduleOnlineAt` is in the future. Scheduled publications appear in the list even if they will be unlisted. The same applies when you fetch a single publication.
 
 ### Get one publication, with pages, hotspots and products
 
@@ -100,7 +100,7 @@ There is no single-product query. Fetch the publication (above) and find the pro
 | `config.publicationId` | `publication.id` |
 | `config.publicationTitle` | `publication.title` |
 | `config.locale`, `config.language` | `publication.language` |
-| `config.currencySymbol` | `publication.customCurrency` (null when no custom symbol is set; API v1 returned €) |
+| `config.currencySymbol` | `publication.customCurrency` (null when no custom symbol is set; fall back to your own default) |
 | `config.downloadPdfUrl` (a path) | `publication.downloadPdfUrl` (a full URL) |
 | `sizes` (an object keyed `at200`, `at600`, …) | `sizes { at width height }` (a list) |
 | `spreads[].pages[]` (paths) | `spreads.pages.images { size url }` |
