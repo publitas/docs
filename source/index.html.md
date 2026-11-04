@@ -196,7 +196,7 @@ You can use this URL to link to this publication or embed it within your website
 
 ## REST API
 
-A REST API for retailers to automate their workflows from creation to. The current version is v2. Version 1 stops working on [DATE]; build all new integrations on version 2.
+A REST API for retailers to automate their workflows, from creating publications to publishing them. The current version is v2. Version 1 stops working on [DATE]. To read publications, move to the GraphQL API (see [Migrate from API v1](migrate-from-v1.html)). Build all other new integrations on version 2.
 
 [REST API v1 documentation](rest-v1.html) (stops working on [DATE]; see [Migrate from API v1](migrate-from-v1.html))
 
