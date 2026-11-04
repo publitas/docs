@@ -10,7 +10,7 @@ search: false
 
 # Migrate from API v1 to GraphQL
 
-API v1 stops working on [DATE]. This guide shows the GraphQL query that replaces each API v1 call.
+API v1 stops working on [DATE]. After that date, every API v1 request returns an error (HTTP 403). This guide shows the GraphQL query that replaces each API v1 call.
 
 ## What changes
 
@@ -61,7 +61,7 @@ Unlike API v1, GraphQL also returns publications that are scheduled to go online
 ```graphql
 query ($groupSlug: String!, $slug: String!, $after: String) {
   publication(groupSlug: $groupSlug, slug: $slug) {
-    id slug title description language currency customCurrency downloadPdfUrl
+    id slug title description language currency customCurrency downloadPdfUrl scheduleOnlineAt
     sizes { at width height }
     spreads(first: 50, after: $after) {
       pageInfo { hasNextPage endCursor }
