@@ -105,7 +105,7 @@ There is no single-product query. Fetch the publication (above) and find the pro
 | product `video[].youtubeId` | product `videoId` |
 | product `hotspotId` | the `id` of the hotspot that contains it |
 
-## What's gone
+## What has no replacement
 
 - **Viewer settings:** `customerName`, `relativeSize`, `websiteUrl`, `webshopCheckoutUrl`, `disableSharing`, `showPrintButton`, `enableSearch`, `searchHost`, `callToActionButtonText`, `styling`.
 - **Viewer translations** (`translations`).
