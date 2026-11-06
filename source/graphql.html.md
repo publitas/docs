@@ -669,6 +669,15 @@ A hotspot with an external link
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong id="externallinkhotspot.uid">uid</strong></td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Stable identifier that survives page operations and copies. Null until assigned.
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong id="externallinkhotspot.url">url</strong></td>
 <td valign="top"><a href="#string">String</a></td>
 <td></td>
@@ -682,6 +691,104 @@ A hotspot with an external link
 <td colspan="2" valign="top"><strong id="externallinkhotspot.zindex">zIndex</strong></td>
 <td valign="top"><a href="#int">Int</a></td>
 <td></td>
+</tr>
+</tbody>
+</table>
+
+### GeoTarget
+
+A geographic area the publication is meant for: a country, region, subregion, city or postal code, identified by ISO 3166 codes and Wikidata ids
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong id="geotarget.cityname">cityName</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The name of the city a postal code belongs to
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="geotarget.citywikidataid">cityWikidataId</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The Wikidata id of the city a postal code belongs to
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="geotarget.countrycode">countryCode</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The ISO 3166-1 alpha-2 code of the country, e.g. NL
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="geotarget.granularity">granularity</strong></td>
+<td valign="top"><a href="#geotargetgranularity">GeoTargetGranularity</a></td>
+<td>
+
+For a city, whether it is an area with an official boundary or a populated place. Empty for other levels, and when the provider does not say
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="geotarget.levelkind">levelKind</strong></td>
+<td valign="top"><a href="#geotargetlevelkind">GeoTargetLevelKind</a>!</td>
+<td>
+
+The level of the location: country, region, subregion, city or postal code
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="geotarget.name">name</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The display name of the location.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="geotarget.postalcode">postalCode</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The postal code in upper case letters and digits only, e.g. 7511. Present on postal codes
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="geotarget.subdivisioncode">subdivisionCode</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The ISO 3166-2 code of the region the location is in, e.g. NL-OV. Always present on regions
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="geotarget.wikidataid">wikidataId</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The Wikidata id of the location, e.g. Q10002, when one is known
+
+</td>
 </tr>
 </tbody>
 </table>
@@ -766,6 +873,15 @@ An image hotspot
 <td colspan="2" valign="top"><strong id="imagehotspot.top">top</strong></td>
 <td valign="top"><a href="#float">Float</a>!</td>
 <td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="imagehotspot.uid">uid</strong></td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Stable identifier that survives page operations and copies. Null until assigned.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="imagehotspot.url">url</strong></td>
@@ -858,6 +974,15 @@ A publication page
 <td colspan="2" valign="top"><strong id="page.text">text</strong></td>
 <td valign="top"><a href="#string">String</a></td>
 <td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="page.uid">uid</strong></td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Stable identifier that survives page operations and copies. Null until assigned.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="page.width">width</strong></td>
@@ -963,6 +1088,15 @@ A hotspot with a reference to another page
 <td colspan="2" valign="top"><strong id="pagereferencehotspot.top">top</strong></td>
 <td valign="top"><a href="#float">Float</a>!</td>
 <td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="pagereferencehotspot.uid">uid</strong></td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Stable identifier that survives page operations and copies. Null until assigned.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="pagereferencehotspot.width">width</strong></td>
@@ -1321,6 +1455,15 @@ A hotspot containing products
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong id="producthotspot.uid">uid</strong></td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Stable identifier that survives page operations and copies. Null until assigned.
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong id="producthotspot.width">width</strong></td>
 <td valign="top"><a href="#float">Float</a>!</td>
 <td></td>
@@ -1374,6 +1517,15 @@ A hotspot containing products
 <td colspan="2" valign="top"><strong id="publication.downloadpdfurl">downloadPdfUrl</strong></td>
 <td valign="top"><a href="#string">String</a></td>
 <td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="publication.geotargets">geoTargets</strong></td>
+<td valign="top">[<a href="#geotarget">GeoTarget</a>!]!</td>
+<td>
+
+The publication geographical targets, inherited from the collection or group when unset on the content
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="publication.groupid">groupId</strong></td>
@@ -1558,6 +1710,11 @@ The group's URL slug. Consists of lowercase letters, numbers, hyphens, and under
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong id="publicationlistitem.onlineat">onlineAt</strong></td>
+<td valign="top"><a href="#iso8601datetime">ISO8601DateTime</a></td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong id="publicationlistitem.publicationslug">publicationSlug</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
@@ -1721,6 +1878,15 @@ A hotspot with a slideshow of images
 <td colspan="2" valign="top"><strong id="slideshowhotspot.top">top</strong></td>
 <td valign="top"><a href="#float">Float</a>!</td>
 <td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="slideshowhotspot.uid">uid</strong></td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Stable identifier that survives page operations and copies. Null until assigned.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="slideshowhotspot.width">width</strong></td>
@@ -1921,6 +2087,15 @@ A hotspot with an embedded video
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong id="videohotspot.uid">uid</strong></td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Stable identifier that survives page operations and copies. Null until assigned.
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong id="videohotspot.videoautoplay">videoAutoplay</strong></td>
 <td valign="top"><a href="#boolean">Boolean</a></td>
 <td></td>
@@ -1979,6 +2154,68 @@ A hotspot with an embedded video
 </table>
 
 ## Enums
+
+### GeoTargetGranularity
+
+<table>
+<thead>
+<tr>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>ADMINISTRATIVE</strong></td>
+<td>
+
+An area with an official boundary, such as a municipality
+
+</td>
+</tr>
+<tr>
+<td valign="top"><strong>SETTLEMENT</strong></td>
+<td>
+
+A populated place without an official boundary, such as a village or hamlet
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### GeoTargetLevelKind
+
+<table>
+<thead>
+<tr>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>COUNTRY</strong></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>REGION</strong></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>SUBREGION</strong></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>CITY</strong></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>POSTAL_CODE</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 ### HotspotCategory
 
@@ -2106,6 +2343,15 @@ A hotspot that may be of several types
 <td colspan="2" valign="top"><strong id="hotspot.top">top</strong></td>
 <td valign="top"><a href="#float">Float</a>!</td>
 <td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong id="hotspot.uid">uid</strong></td>
+<td valign="top"><a href="#id">ID</a></td>
+<td>
+
+Stable identifier that survives page operations and copies. Null until assigned.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong id="hotspot.width">width</strong></td>
