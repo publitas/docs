@@ -196,9 +196,7 @@ You can use this URL to link to this publication or embed it within your website
 
 ## REST API
 
-A REST API for retailers to automate their workflows, from creating publications to publishing them. The current version is v2; build all new integrations on it. Version 1 will be deprecated and is only available to accounts that already use it (see [Migrate from API v1](migrate-from-v1.html)).
-
-[REST API v1 documentation](rest-v1.html) (existing integrations only; see [Migrate from API v1](migrate-from-v1.html))
+A REST API for retailers to automate their workflows, from creating publications to publishing them. The current version is v2.
 
 [REST API v2 documentation](rest-v2.html)
 
