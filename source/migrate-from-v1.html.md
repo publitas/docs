@@ -10,7 +10,7 @@ search: false
 
 # Migrate from API v1 to GraphQL
 
-API v1 stops working on [DATE]. After that date, API v1 requests return an error (HTTP 403 or 404). This guide shows the GraphQL query that replaces each API v1 call.
+API v1 will be deprecated. It is only available to accounts that already use it, and we'll announce the date it stops working well in advance. After that date, API v1 requests will return an error (HTTP 403 or 404). This guide shows the GraphQL query that replaces each API v1 call.
 
 ## What changes
 
