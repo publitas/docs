@@ -1,0 +1,752 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Migrate from API v1</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #6272a4;
+}
+.highlight .sr {
+  color: #ffb86c;
+}
+.highlight .go {
+  color: #6272a4;
+}
+.highlight .gp {
+  color: #44475a;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #f8f8f2;
+}
+.highlight .nb {
+  color: #ffb86c;
+}
+.highlight .cm {
+  color: #6272a4;
+}
+.highlight .cp {
+  color: #6272a4;
+}
+.highlight .c1 {
+  color: #6272a4;
+}
+.highlight .cs {
+  color: #6272a4;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #6272a4;
+}
+.highlight .err {
+  color: #ff5555;
+}
+.highlight .gr {
+  color: #ff5555;
+}
+.highlight .gt {
+  color: #ff5555;
+}
+.highlight .gd {
+  color: #44475a;
+}
+.highlight .gi {
+  color: #44475a;
+}
+.highlight .ge {
+  color: #44475a;
+}
+.highlight .kc {
+  color: #8be9fd;
+}
+.highlight .kd {
+  color: #8be9fd;
+}
+.highlight .kr {
+  color: #8be9fd;
+}
+.highlight .no {
+  color: #8be9fd;
+}
+.highlight .kt {
+  color: #8be9fd;
+}
+.highlight .mf {
+  color: #bd93f9;
+}
+.highlight .mh {
+  color: #bd93f9;
+}
+.highlight .il {
+  color: #bd93f9;
+}
+.highlight .mi {
+  color: #bd93f9;
+}
+.highlight .mo {
+  color: #bd93f9;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #bd93f9;
+}
+.highlight .sc {
+  color: #bd93f9;
+}
+.highlight .se {
+  color: #bd93f9;
+}
+.highlight .ss {
+  color: #bd93f9;
+}
+.highlight .sd {
+  color: #f1fa8c;
+}
+.highlight .s2 {
+  color: #f1fa8c;
+}
+.highlight .sb {
+  color: #f1fa8c;
+}
+.highlight .sh {
+  color: #f1fa8c;
+}
+.highlight .si {
+  color: #f1fa8c;
+}
+.highlight .sx {
+  color: #f1fa8c;
+}
+.highlight .s1 {
+  color: #f1fa8c;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #f1fa8c;
+}
+.highlight .na {
+  color: #50fa7b;
+}
+.highlight .nc {
+  color: #50fa7b;
+}
+.highlight .nd {
+  color: #50fa7b;
+}
+.highlight .ne {
+  color: #50fa7b;
+}
+.highlight .nf, .highlight .fm {
+  color: #50fa7b;
+}
+.highlight .vc {
+  color: #f8f8f2;
+}
+.highlight .nn {
+  color: #f8f8f2;
+}
+.highlight .ni {
+  color: #f8f8f2;
+}
+.highlight .bp {
+  color: #f8f8f2;
+}
+.highlight .vg {
+  color: #f8f8f2;
+}
+.highlight .vi {
+  color: #f8f8f2;
+}
+.highlight .nv, .highlight .vm {
+  color: #f8f8f2;
+}
+.highlight .w {
+  color: #f8f8f2;
+}
+.highlight {
+  color: #f8f8f2;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #f8f8f2;
+}
+.highlight .nl {
+  color: #ff79c6;
+}
+.highlight .ow {
+  color: #ff79c6;
+}
+.highlight .nt {
+  color: #ff79c6;
+}
+.highlight .k, .highlight .kv {
+  color: #ff79c6;
+}
+.highlight .kn {
+  color: #ff79c6;
+}
+.highlight .kp {
+  color: #ff79c6;
+}
+.highlight .o {
+  color: #ff79c6;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-6596e5af.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-bc04fe75.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch-53bdb4f3.js"></script>
+
+  </head>
+
+  <body class="migrate-from-v1" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-01b54094.png" class="logo" alt="" />
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#migrate-from-api-v1" class="toc-h1 toc-link" data-title="Migrate from API v1">Migrate from API v1</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#choose-where-to-move" class="toc-h2 toc-link" data-title="Choose where to move">Choose where to move</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#embed-the-viewer" class="toc-h1 toc-link" data-title="Embed the Viewer">Embed the Viewer</a>
+          </li>
+          <li>
+            <a href="#move-to-rest-api-v2" class="toc-h1 toc-link" data-title="Move to REST API v2">Move to REST API v2</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#what-changes" class="toc-h2 toc-link" data-title="What changes">What changes</a>
+                  </li>
+                  <li>
+                    <a href="#calls" class="toc-h2 toc-link" data-title="Calls">Calls</a>
+                  </li>
+                  <li>
+                    <a href="#field-names" class="toc-h2 toc-link" data-title="Field names">Field names</a>
+                  </li>
+                  <li>
+                    <a href="#what-has-no-replacement-in-rest-api-v2" class="toc-h2 toc-link" data-title="What has no replacement in REST API v2">What has no replacement in REST API v2</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#move-to-the-graphql-api" class="toc-h1 toc-link" data-title="Move to the GraphQL API">Move to the GraphQL API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#what-changes-2" class="toc-h2 toc-link" data-title="What changes">What changes</a>
+                  </li>
+                  <li>
+                    <a href="#calls-2" class="toc-h2 toc-link" data-title="Calls">Calls</a>
+                  </li>
+                  <li>
+                    <a href="#field-names-2" class="toc-h2 toc-link" data-title="Field names">Field names</a>
+                  </li>
+                  <li>
+                    <a href="#what-has-no-replacement-in-graphql" class="toc-h2 toc-link" data-title="What has no replacement in GraphQL">What has no replacement in GraphQL</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='../'>API Overview</a></li>
+            <li><a href='https://publitas.com'>Publitas.com</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='migrate-from-api-v1'>Migrate from API v1</h1>
+<p>API v1 will be deprecated. It is only available to accounts that already use it, and we&#39;ll announce the date it stops working well in advance. After that date, API v1 requests will return an error (HTTP 403 or 404).</p>
+<h2 id='choose-where-to-move'>Choose where to move</h2>
+<p>Where you move depends on whose publications you read with API v1, and what you do with them.</p>
+
+<table><thead>
+<tr>
+<th>You use API v1 to…</th>
+<th>Move to</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Show your own publications on your website or in your app</td>
+<td><a href="#embed-the-viewer">Embed the Viewer</a>. This is the right choice for most retailers.</td>
+</tr>
+<tr>
+<td>Read your own publications, hotspots and products into your own systems</td>
+<td><a href="#move-to-rest-api-v2">REST API v2</a></td>
+</tr>
+<tr>
+<td>Draw the pages of your own publications in your own custom catalog viewer</td>
+<td><a href="mailto:support@publitas.com">Contact our support team</a> to discuss your setup</td>
+</tr>
+<tr>
+<td>Show catalogs from the retailers you work with, as an affiliate partner, for example on a deals site or in a shopping app</td>
+<td><a href="#move-to-the-graphql-api">GraphQL API</a>. It gives you the publications of every retailer you work with through Publitas, with one API key.</td>
+</tr>
+</tbody></table>
+
+<p>REST API v2 and the GraphQL API both need an API key, so call them from your own server. Never put an API key in a web page or app, because anyone can read it there.</p>
+<h1 id='embed-the-viewer'>Embed the Viewer</h1>
+<p>This section and the next are for you if you are a retailer reading your own publications.</p>
+
+<p>The Publitas Viewer shows your publication with its pages, hotspots, products and search, and it keeps up with changes you make in Publitas. Instead of building this yourself from API v1 data, link to the publication or embed it on your site.</p>
+
+<ul>
+<li>Get the publication&#39;s address from <code>public_url</code> in <a href="rest-v2.html#get-a-specific-publication">REST API v2</a>, or copy it from Publitas.</li>
+<li>To react to what happens in an embedded Viewer, for example when a visitor turns the page, use the <a href="viewer-message-api.html">Viewer Message API</a>.</li>
+<li>To customise the Viewer itself, use the <a href="js.html">Viewer JavaScript API</a>.</li>
+</ul>
+<h1 id='move-to-rest-api-v2'>Move to REST API v2</h1>
+<p>Use REST API v2 to read your own publications, hotspots and products from your own server. It is the same API you use to create and publish them.</p>
+<h2 id='what-changes'>What changes</h2>
+<table><thead>
+<tr>
+<th></th>
+<th>API v1</th>
+<th>REST API v2</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Address</td>
+<td><code>https://api.publitas.com/v1/...</code></td>
+<td><code>https://api.publitas.com/v2/...</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>none</td>
+<td><code>Authorization: ApiKey &lt;api_key&gt;</code> header (see <a href="rest-v2.html#get-an-api-key">Get an API key</a>)</td>
+</tr>
+<tr>
+<td>Groups and publications</td>
+<td>by slug</td>
+<td>by ID. List your groups with <code>GET /v2/groups</code> to find the group ID</td>
+</tr>
+<tr>
+<td>Spreads, hotspots, products</td>
+<td>all in one response, products one call each</td>
+<td>one call for the spreads, then one call per spread for its hotspots, with products included</td>
+</tr>
+<tr>
+<td>Page images</td>
+<td>paths per page</td>
+<td>not available; use <code>cover_url</code> for the cover</td>
+</tr>
+<tr>
+<td>Lists</td>
+<td>all in one response</td>
+<td>up to 1000 per page (see <a href="rest-v2.html#understanding-pagination">pagination</a>)</td>
+</tr>
+<tr>
+<td>Errors</td>
+<td>HTTP 404</td>
+<td>HTTP 403 if the API key is missing or wrong, 404 if something is not found</td>
+</tr>
+<tr>
+<td>Where to call it from</td>
+<td>anywhere, including web pages</td>
+<td>your own server only</td>
+</tr>
+</tbody></table>
+<h2 id='calls'>Calls</h2>
+<table><thead>
+<tr>
+<th>API v1 call</th>
+<th>REST API v2 replacement</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>GET /v1/groups/:group/publications.json</code></td>
+<td><code>GET /v2/groups/:group_id/publications?state=public</code></td>
+</tr>
+<tr>
+<td><code>GET /v1/groups/:group/publications/:slug.json</code></td>
+<td><code>GET /v2/groups/:group_id/publications/:id</code>, then <code>GET /v2/publications/:id/spreads</code> and <code>GET /v2/spreads/:spread_id/hotspots</code> for each spread</td>
+</tr>
+<tr>
+<td><code>GET /v1/groups/:group/publications/:slug/products/:id.json</code></td>
+<td>the product in its product hotspot (<code>GET /v2/spreads/:spread_id/hotspots</code>)</td>
+</tr>
+</tbody></table>
+
+<p>API v1 only returned publications that are online and not password-protected. With <code>state=public</code>, REST API v2 returns online publications that are not unlisted; use <code>state=online</code> to include unlisted ones. Skip publications where <code>secured</code> is <code>true</code> to leave out password-protected ones.</p>
+
+<p>REST API v2 also returns image, slideshow and text hotspots, which API v1 left out. Ignore the types you don&#39;t use.</p>
+<h2 id='field-names'>Field names</h2>
+<table><thead>
+<tr>
+<th>API v1</th>
+<th>REST API v2</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>list <code>id</code>, <code>slug</code>, <code>title</code>, <code>browserTitle</code>, <code>onlineAt</code></td>
+<td><code>id</code>, <code>slug</code>, <code>title</code>, <code>browser_title</code>, <code>online_at</code></td>
+</tr>
+<tr>
+<td>list <code>url</code></td>
+<td><code>url</code> (the REST API v2 address of the publication); <code>public_url</code> for the Viewer address</td>
+</tr>
+<tr>
+<td><code>config.publicationId</code></td>
+<td><code>publication.id</code></td>
+</tr>
+<tr>
+<td><code>config.publicationTitle</code></td>
+<td><code>publication.browser_title</code></td>
+</tr>
+<tr>
+<td><code>config.locale</code>, <code>config.language</code></td>
+<td><code>publication.language</code></td>
+</tr>
+<tr>
+<td><code>config.description</code>, <code>config.slug</code></td>
+<td><code>publication.description</code>, <code>publication.slug</code></td>
+</tr>
+<tr>
+<td><code>config.downloadPdfUrl</code> (a path)</td>
+<td><code>publication.pdf_download_url</code> (a full URL)</td>
+</tr>
+<tr>
+<td><code>spreads[]</code></td>
+<td><code>spreads[]</code> from <code>GET /v2/publications/:id/spreads</code></td>
+</tr>
+<tr>
+<td><code>hotspots[].type</code> (<code>product</code>, <code>externalLink</code>, <code>pageReference</code>, <code>video</code>)</td>
+<td><code>type</code> (<code>product</code>, <code>external_link</code>, <code>page_reference</code>, <code>video</code>)</td>
+</tr>
+<tr>
+<td><code>hotspots[].position.left/top/width/height</code></td>
+<td><code>left</code>, <code>top</code>, <code>width</code>, <code>height</code></td>
+</tr>
+<tr>
+<td><code>hotspots[].position.iconLeft/iconTop</code></td>
+<td><code>icon_left</code>, <code>icon_top</code></td>
+</tr>
+<tr>
+<td><code>hotspots[].showIndication</code></td>
+<td><code>show_indication</code></td>
+</tr>
+<tr>
+<td><code>hotspots[].pageNumber</code></td>
+<td><code>page_number</code></td>
+</tr>
+<tr>
+<td><code>hotspots[].youtubeId</code></td>
+<td><code>video_id</code> (with <code>video_provider</code>)</td>
+</tr>
+<tr>
+<td><code>hotspots[].products[]</code> (IDs only)</td>
+<td><code>products[]</code> (full products)</td>
+</tr>
+<tr>
+<td>product <code>photos[].photoUrl</code></td>
+<td>product <code>photoUrls[].full</code></td>
+</tr>
+<tr>
+<td>product <code>video[].youtubeId</code></td>
+<td>product <code>videoId</code></td>
+</tr>
+<tr>
+<td>product <code>hotspotId</code></td>
+<td>the <code>id</code> of the hotspot that contains it</td>
+</tr>
+</tbody></table>
+
+<p>Product IDs are strings in REST API v2. Other product fields (<code>title</code>, <code>description</code>, <code>price</code>, <code>discountedPrice</code>, <code>webshopIdentifier</code>, <code>webshopUrl</code>, <code>promotionalLabel</code> and the unit price fields) keep their names.</p>
+<h2 id='what-has-no-replacement-in-rest-api-v2'>What has no replacement in REST API v2</h2>
+<ul>
+<li><strong>Page images</strong> (<code>spreads[].pages</code>) and image sizes (<code>sizes</code>). If you draw the pages yourself, <a href="mailto:support@publitas.com">contact our support team</a>.</li>
+<li><strong>Viewer settings:</strong> <code>customerName</code>, <code>relativeSize</code>, <code>websiteUrl</code>, <code>webshopCheckoutUrl</code>, <code>disableSharing</code>, <code>showPrintButton</code>, <code>enableSearch</code>, <code>searchHost</code>, <code>currencySymbol</code>, <code>currency</code>, <code>callToActionButtonText</code>, <code>styling</code>.</li>
+<li><strong>Viewer translations</strong> (<code>translations</code>).</li>
+</ul>
+<h1 id='move-to-the-graphql-api'>Move to the GraphQL API</h1>
+<p>This section is for you if you are an affiliate partner and show catalogs from the retailers you work with. To get an API key, <a href="mailto:support@publitas.com">contact our support team</a>. Your key gives you the publications of the retailers linked to it.</p>
+<h2 id='what-changes-2'>What changes</h2>
+<table><thead>
+<tr>
+<th></th>
+<th>API v1</th>
+<th>GraphQL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Address</td>
+<td><code>https://api.publitas.com/v1/...</code> (one address per call)</td>
+<td><code>https://affiliate.publitas.com/graphql</code> (one address for everything)</td>
+</tr>
+<tr>
+<td>Method</td>
+<td><code>GET</code></td>
+<td><code>POST</code>, JSON body with <code>query</code> and <code>variables</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>none</td>
+<td><code>x-api-key</code> header</td>
+</tr>
+<tr>
+<td>Lists (publications, spreads)</td>
+<td>all in one response</td>
+<td>50 per page; follow <code>pageInfo</code></td>
+</tr>
+<tr>
+<td>Products</td>
+<td>one call per product</td>
+<td>included in each product hotspot</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>paths to complete yourself</td>
+<td>full URLs per size</td>
+</tr>
+<tr>
+<td>Errors</td>
+<td>HTTP 404</td>
+<td>HTTP 403 if the API key is missing or wrong, 429 if you send too many requests. Otherwise HTTP 200, with an <code>errors</code> list in the body when something is not found. Check both.</td>
+</tr>
+<tr>
+<td>Where to call it from</td>
+<td>anywhere, including web pages</td>
+<td>your own server only</td>
+</tr>
+</tbody></table>
+<h2 id='calls-2'>Calls</h2>
+<table><thead>
+<tr>
+<th>API v1 call</th>
+<th>GraphQL replacement</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>GET /v1/groups/:group/publications.json</code></td>
+<td><code>publications(groupSlug:)</code></td>
+</tr>
+<tr>
+<td><code>GET /v1/groups/:group/publications/:slug.json</code></td>
+<td><code>publication(groupSlug:, slug:)</code></td>
+</tr>
+<tr>
+<td><code>GET /v1/groups/:group/publications/:slug/products/:id.json</code></td>
+<td><code>publication(groupSlug:, slug:)</code>, then the product in its product hotspot</td>
+</tr>
+</tbody></table>
+
+<p>You can also find a publication by its ID (<code>publication(id:)</code>) or by its viewer address (<code>publicationByUrl(url:)</code>).</p>
+<h3 id='list-a-group-39-s-publications'>List a group&#39;s publications</h3><div class="highlight"><pre class="highlight graphql tab-graphql"><code><span class="k">query</span><span class="w"> </span><span class="p">(</span><span class="nv">$groupSlug</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">!,</span><span class="w"> </span><span class="nv">$after</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">publications</span><span class="p">(</span><span class="n">groupSlug</span><span class="p">:</span><span class="w"> </span><span class="nv">$groupSlug</span><span class="p">,</span><span class="w"> </span><span class="n">first</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">after</span><span class="p">:</span><span class="w"> </span><span class="nv">$after</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">pageInfo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">hasNextPage</span><span class="w"> </span><span class="n">endCursor</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="n">edges</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">publicationSlug</span><span class="w"> </span><span class="n">publicationTitle</span><span class="w"> </span><span class="n">onlineAt</span><span class="w"> </span><span class="n">scheduleOnlineAt</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight shell"><code>curl https://affiliate.publitas.com/graphql <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"x-api-key: YOUR_KEY"</span> <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"query":"query ($groupSlug: String!, $after: String) { publications(groupSlug: $groupSlug, first: 50, after: $after) { pageInfo { hasNextPage endCursor } edges { node { id publicationSlug publicationTitle onlineAt scheduleOnlineAt } } } }","variables":{"groupSlug":"retailer-group"}}'</span>
+</code></pre></div>
+<p>The list only includes groups linked to your key. If a retailer you work with is missing, ask our support team to check that their groups are linked to your key. Unlisted publications are not included, but you can still fetch them one at a time by slug.</p>
+
+<p>Unlike API v1, GraphQL also returns publications that are scheduled to go online later. To show only live publications, skip any whose <code>scheduleOnlineAt</code> is in the future. Scheduled publications appear in the list even if they will be unlisted. The same applies when you fetch a single publication.</p>
+<h3 id='get-one-publication-with-pages-hotspots-and-products'>Get one publication, with pages, hotspots and products</h3><div class="highlight"><pre class="highlight graphql tab-graphql"><code><span class="k">query</span><span class="w"> </span><span class="p">(</span><span class="nv">$groupSlug</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">!,</span><span class="w"> </span><span class="nv">$slug</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">!,</span><span class="w"> </span><span class="nv">$after</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">publication</span><span class="p">(</span><span class="n">groupSlug</span><span class="p">:</span><span class="w"> </span><span class="nv">$groupSlug</span><span class="p">,</span><span class="w"> </span><span class="n">slug</span><span class="p">:</span><span class="w"> </span><span class="nv">$slug</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">id</span><span class="w"> </span><span class="n">slug</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="n">language</span><span class="w"> </span><span class="n">currency</span><span class="w"> </span><span class="n">customCurrency</span><span class="w"> </span><span class="n">downloadPdfUrl</span><span class="w"> </span><span class="n">scheduleOnlineAt</span><span class="w">
+    </span><span class="n">sizes</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="n">spreads</span><span class="p">(</span><span class="n">first</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">after</span><span class="p">:</span><span class="w"> </span><span class="nv">$after</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">pageInfo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">hasNextPage</span><span class="w"> </span><span class="n">endCursor</span><span class="w"> </span><span class="p">}</span><span class="w">
+      </span><span class="n">edges</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="n">position</span><span class="w">
+        </span><span class="n">pages</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="n">images</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="n">hotspots</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="n">__typename</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="n">height</span><span class="w">
+          </span><span class="p">...</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">PageReferenceHotspot</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pageNumber</span><span class="w"> </span><span class="p">}</span><span class="w">
+          </span><span class="p">...</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">ExternalLinkHotspot</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="p">}</span><span class="w">
+          </span><span class="p">...</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">VideoHotspot</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">videoId</span><span class="w"> </span><span class="n">videoProvider</span><span class="w"> </span><span class="p">}</span><span class="w">
+          </span><span class="p">...</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">ProductHotspot</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="n">id</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="n">discountedPrice</span><span class="w">
+            </span><span class="n">webshopIdentifier</span><span class="w"> </span><span class="n">webshopUrl</span><span class="w"> </span><span class="n">promotionalLabel</span><span class="w"> </span><span class="n">videoId</span><span class="w">
+            </span><span class="n">photoUrls</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">thumb</span><span class="w"> </span><span class="n">full</span><span class="w"> </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>If <code>pageInfo.hasNextPage</code> is true, send the query again with <code>after</code> set to <code>pageInfo.endCursor</code>.</p>
+
+<p>GraphQL also returns image and slideshow hotspots, which API v1 left out. Ignore the types you don&#39;t use, or ask only for the ones you need with <code>hotspots(types: [PRODUCT, EXTERNAL_LINK, PAGE_REFERENCE, VIDEO])</code>.</p>
+<h3 id='get-one-product'>Get one product</h3>
+<p>There is no single-product query. Fetch the publication (above) and find the product in <code>ProductHotspot.products</code>. This returns more data than the API v1 call did, so cache the publication rather than fetching it per product. Asking for <code>hotspots(types: [PRODUCT])</code> keeps the response smaller.</p>
+<h2 id='field-names-2'>Field names</h2>
+<table><thead>
+<tr>
+<th>API v1</th>
+<th>GraphQL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>config.publicationId</code></td>
+<td><code>publication.id</code></td>
+</tr>
+<tr>
+<td><code>config.publicationTitle</code></td>
+<td><code>publication.title</code></td>
+</tr>
+<tr>
+<td><code>config.locale</code>, <code>config.language</code></td>
+<td><code>publication.language</code></td>
+</tr>
+<tr>
+<td><code>config.currencySymbol</code></td>
+<td><code>publication.customCurrency</code> (null when no custom symbol is set; fall back to your own default)</td>
+</tr>
+<tr>
+<td><code>config.downloadPdfUrl</code> (a path)</td>
+<td><code>publication.downloadPdfUrl</code> (a full URL)</td>
+</tr>
+<tr>
+<td><code>sizes</code> (an object keyed <code>at200</code>, <code>at600</code>, …)</td>
+<td><code>sizes { at width height }</code> (a list)</td>
+</tr>
+<tr>
+<td><code>spreads[].pages[]</code> (paths)</td>
+<td><code>spreads.pages.images { size url }</code></td>
+</tr>
+<tr>
+<td><code>hotspots[].type</code> (<code>product</code>, <code>externalLink</code>, <code>pageReference</code>, <code>video</code>)</td>
+<td><code>hotspots.__typename</code> (<code>ProductHotspot</code>, <code>ExternalLinkHotspot</code>, <code>PageReferenceHotspot</code>, <code>VideoHotspot</code>)</td>
+</tr>
+<tr>
+<td><code>hotspots[].position.left/top/width/height</code></td>
+<td><code>hotspots.left/top/width/height</code></td>
+</tr>
+<tr>
+<td><code>hotspots[].youtubeId</code> (video hotspots)</td>
+<td><code>VideoHotspot.videoId</code></td>
+</tr>
+<tr>
+<td>list <code>slug</code>, <code>title</code></td>
+<td><code>publicationSlug</code>, <code>publicationTitle</code></td>
+</tr>
+<tr>
+<td>product <code>photos[].photoUrl</code></td>
+<td>product <code>photoUrls { full }</code></td>
+</tr>
+<tr>
+<td>product <code>video[].youtubeId</code></td>
+<td>product <code>videoId</code></td>
+</tr>
+<tr>
+<td>product <code>hotspotId</code></td>
+<td>the <code>id</code> of the hotspot that contains it</td>
+</tr>
+</tbody></table>
+<h2 id='what-has-no-replacement-in-graphql'>What has no replacement in GraphQL</h2>
+<ul>
+<li><strong>Viewer settings:</strong> <code>customerName</code>, <code>relativeSize</code>, <code>websiteUrl</code>, <code>webshopCheckoutUrl</code>, <code>disableSharing</code>, <code>showPrintButton</code>, <code>enableSearch</code>, <code>searchHost</code>, <code>callToActionButtonText</code>, <code>styling</code>.</li>
+<li><strong>Viewer translations</strong> (<code>translations</code>).</li>
+<li><strong>Unit prices</strong> on products: <code>basePricePerUnit</code>, <code>baseMeasureQuantity</code>, <code>baseMeasureUnit</code>.</li>
+<li><strong>On hotspots:</strong> <code>title</code>, <code>showIndication</code>, <code>showTooltip</code>, <code>position.iconLeft</code>, <code>position.iconTop</code>.</li>
+<li><strong>In the publications list:</strong> <code>browserTitle</code> (use <code>publication.title</code>) and the <code>url</code> link.</li>
+</ul>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

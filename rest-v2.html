@@ -465,6 +465,14 @@
             <a href="#extraction-options" class="toc-h1 toc-link" data-title="Extraction Options">Extraction Options</a>
           </li>
           <li>
+            <a href="#spreads" class="toc-h1 toc-link" data-title="Spreads">Spreads</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-all-spreads-of-a-publication" class="toc-h2 toc-link" data-title="List all spreads of a publication">List all spreads of a publication</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#hotspot-endpoints" class="toc-h1 toc-link" data-title="Hotspot Endpoints">Hotspot Endpoints</a>
               <ul class="toc-list-h2">
                   <li>
@@ -3539,6 +3547,62 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 <td>Show or hide hotspot icons for extracted hotspot. This setting is not applicable to hotspots extracted from PDF annotations (those are defined in the annotation itself)</td>
 </tr>
 </tbody></table>
+<h1 id='spreads'>Spreads</h1>
+<p>A spread is what the Viewer shows at once: usually two facing pages, or a single page for the cover and the back.</p>
+<h2 id='list-all-spreads-of-a-publication'>List all spreads of a publication</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/publications/222/spreads"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_key&gt;"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"spreads"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w"> </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">"publication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Use a spread&#39;s <code>id</code> to <a href="#list-all-hotspots-of-a-spread">list its hotspots</a>.</p>
+<h3 id='http-request-34'>HTTP Request</h3>
+<p><code>GET https://api.publitas.com/v2/publications/&lt;Publication ID&gt;/spreads</code></p>
+<h3 id='url-parameters-32'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Publication ID</td>
+<td>The ID of a specific publication</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint supports <a href="#understanding-pagination">pagination</a>. Results are ordered by position.</p>
+<h3 id='response-fields'>Response fields</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>Integer</td>
+<td>Spread ID</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>Integer</td>
+<td>The spread&#39;s place in the publication, starting at 0 for the cover</td>
+</tr>
+<tr>
+<td><code>publication_id</code></td>
+<td>Integer</td>
+<td>ID of the publication the spread belongs to</td>
+</tr>
+</tbody></table>
 <h1 id='hotspot-endpoints'>Hotspot Endpoints</h1>
 <p>Hotspots are interactive areas placed on spread pages. Each hotspot has a type that determines its behavior and the additional fields returned in the response. All coordinates and dimensions are expressed as a fraction of the spread size (values between 0 and 1).</p>
 <h2 id='list-all-hotspots-of-a-spread'>List all hotspots of a spread</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.publitas.com/v2/spreads/42/hotspots"</span> <span class="se">\</span>
@@ -3574,9 +3638,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-34'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-35'>HTTP Request</h3>
 <p><code>GET https://api.publitas.com/v2/spreads/&lt;Spread ID&gt;/hotspots</code></p>
-<h3 id='url-parameters-32'>URL Parameters</h3>
+<h3 id='url-parameters-33'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3590,7 +3654,7 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 </tbody></table>
 
 <p>This endpoint supports <a href="#understanding-pagination">pagination</a>. Results are ordered by page number.</p>
-<h3 id='response-fields'>Response fields</h3>
+<h3 id='response-fields-2'>Response fields</h3>
 <p>The response returns an array of hotspot objects. All hotspot types share the following base fields:</p>
 
 <table><thead>
@@ -3981,9 +4045,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
     </span><span class="nl">"popup_max_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-35'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-36'>HTTP Request</h3>
 <p><code>GET https://api.publitas.com/v2/spreads/&lt;Spread ID&gt;/hotspots/&lt;Hotspot ID&gt;</code></p>
-<h3 id='url-parameters-33'>URL Parameters</h3>
+<h3 id='url-parameters-34'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4041,9 +4105,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
     </span><span class="nl">"popup_max_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-36'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-37'>HTTP Request</h3>
 <p><code>POST https://api.publitas.com/v2/spreads/&lt;Spread ID&gt;/hotspots</code></p>
-<h3 id='url-parameters-34'>URL Parameters</h3>
+<h3 id='url-parameters-35'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4351,9 +4415,9 @@ curl <span class="nt">-H</span> <span class="s2">"Authorization: ApiKey &lt;api_
 <p>Update the metadata of an existing hotspot in place. This is a <strong>partial update</strong>: only the fields
 you send are changed, and any field you omit keeps its current value. The hotspot <code>type</code> is
 immutable and cannot be changed.</p>
-<h3 id='http-request-37'>HTTP Request</h3>
+<h3 id='http-request-38'>HTTP Request</h3>
 <p><code>PATCH https://api.publitas.com/v2/spreads/&lt;Spread ID&gt;/hotspots/&lt;Hotspot ID&gt;</code></p>
-<h3 id='url-parameters-35'>URL Parameters</h3>
+<h3 id='url-parameters-36'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
