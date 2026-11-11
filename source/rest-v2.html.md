@@ -2039,6 +2039,50 @@ Both 'links' and 'products' allow the fields below:
 | ----- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | icons | Boolean | No       | Show or hide hotspot icons for extracted hotspot. This setting is not applicable to hotspots extracted from PDF annotations (those are defined in the annotation itself) |
 
+# Spreads
+
+A spread is what the Viewer shows at once: usually two facing pages, or a single page for the cover and the back.
+
+## List all spreads of a publication
+
+```shell
+curl "https://api.publitas.com/v2/publications/222/spreads" \
+  -H "Authorization: ApiKey <api_key>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "spreads": [
+    { "id": 42, "position": 0, "publication_id": 222 },
+    { "id": 43, "position": 1, "publication_id": 222 }
+  ]
+}
+```
+
+Use a spread's `id` to [list its hotspots](#list-all-hotspots-of-a-spread).
+
+### HTTP Request
+
+`GET https://api.publitas.com/v2/publications/<Publication ID>/spreads`
+
+### URL Parameters
+
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| Publication ID | The ID of a specific publication |
+
+This endpoint supports [pagination](#understanding-pagination). Results are ordered by position.
+
+### Response fields
+
+| Field            | Type    | Description                                      |
+| ---------------- | ------- | ------------------------------------------------ |
+| `id`             | Integer | Spread ID                                        |
+| `position`       | Integer | The spread's place in the publication, starting at 0 for the cover |
+| `publication_id` | Integer | ID of the publication the spread belongs to      |
+
 # Hotspot Endpoints
 
 Hotspots are interactive areas placed on spread pages. Each hotspot has a type that determines its behavior and the additional fields returned in the response. All coordinates and dimensions are expressed as a fraction of the spread size (values between 0 and 1).

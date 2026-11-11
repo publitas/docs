@@ -13,6 +13,8 @@ search: false
 
 # REST API v1
 
+<aside class="warning">API v1 will be deprecated. It is only available to accounts that already use it; new accounts can't use it. We'll announce the date it stops working well in advance. Until then it keeps working for existing integrations. The <a href="migrate-from-v1.html">migration guide</a> explains where to move yours.</aside>
+
 This API can be used to retrieve publication data for usage in mobile apps, sites and other integrations.
 
 ### Authentication
